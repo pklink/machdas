@@ -7,6 +7,7 @@ use RedBean_Facade as R;
 use Dotor\Dotor;
 use Selleck\Todo\Action;
 use Silex\Application;
+use Silex\Provider\FormServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -27,6 +28,12 @@ class Todo
 
 
     /**
+     * @var Request
+     */
+    protected $request;
+
+
+    /**
      * @var \Silex\Application
      */
     protected $silex;
@@ -43,6 +50,9 @@ class Todo
 
         // create config
         $this->config = new Dotor($config);
+
+        // create instance of Request
+        $this->request = Request::createFromGlobals();
 
         // create app
         $this->silex          = new Application();
@@ -63,15 +73,9 @@ class Todo
      */
     protected function addRoutes()
     {
-        // task/add
-        $this->silex->get('/task/add', function() {
-            return (new Action\Task\Add())->get();
-        });
-
         // default route
-        $this->silex->get('/', function() {
-            $subRequest = Request::create('/task/add', 'GET');
-            return $this->silex->handle($subRequest, HttpKernelInterface::SUB_REQUEST);
+        $this->silex->match('/', function() {
+            return (new Action\Task\Index())->get();
         });
     }
 
@@ -104,6 +108,15 @@ class Todo
     public function getConfig()
     {
         return $this->config;
+    }
+
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
     }
 
 

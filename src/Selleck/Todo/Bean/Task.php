@@ -3,6 +3,9 @@
 
 namespace Selleck\Todo\Bean;
 
+
+use RedBean_Facade as R;
+
 /**
  * @property integer $id
  * @property string  $name
@@ -18,6 +21,12 @@ class Task extends AbstractImpl
     public function __construct()
     {
         parent::__construct('task');
+    }
+
+
+    public static function findAll($table = 'task')
+    {
+        return parent::findAll($table);
     }
 
 }

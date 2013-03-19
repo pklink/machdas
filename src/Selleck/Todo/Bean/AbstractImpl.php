@@ -47,11 +47,23 @@ class AbstractImpl
 
 
     /**
+     * @param string $table
+     * @return \RedBean_OODBBean[]
+     */
+    public static function findAll($table)
+    {
+        return R::findAll($table, 'ORDER BY id DESC');
+    }
+
+
+    /**
      * @return void
      */
     public function save()
     {
-        $this->id = R::store($this->bean);
+        /* @var \RedBean_SimpleModel $bean */
+        $bean = $this->bean;
+        $this->id = R::store($bean);
     }
 
 }

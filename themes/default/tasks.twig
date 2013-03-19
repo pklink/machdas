@@ -1,0 +1,37 @@
+{% extends "layout.twig" %}
+
+{% block headline %}Add Task{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        <div class="row collapse">
+            <div class="small-11 columns">
+                <input type="text" name="name" placeholder="New Task" />
+            </div>
+            <div class="small-1 columns">
+                <input type="submit" class="button prefix secondary" value="Save" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <textarea name="description" placeholder="Description"></textarea>
+            </div>
+        </div>
+    </form>
+
+    <div class="list">
+        {% for task in tasks %}
+            <div class="task">
+                <div class="row item">
+                    <div class="small-1 columns id">#{{ task.id }}</div>
+                    <div class="small-11 columns name">{{ task.name|e }}</div>
+                </div>
+                <div class="row description">
+                    <div class="small-11 small-offset-1 columns">{{ task.description|e }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
