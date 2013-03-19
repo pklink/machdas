@@ -7,7 +7,6 @@ use RedBean_Facade as R;
 use Dotor\Dotor;
 use Selleck\Todo\Action;
 use Silex\Application;
-use Silex\Provider\FormServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
