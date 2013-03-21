@@ -3,7 +3,18 @@
     padding-left: 10px;
 }
 
-.list .task span.checkbox {
+.list .task span.checkbox
+{
+    margin-right: 10px;
+}
+
+.list .task .actions
+{
+    text-align: right;
+}
+
+.list .task .actions i
+{
     margin-right: 10px;
 }
 
@@ -31,10 +42,23 @@
 
 #add input
 {
-    /*padding: 20px;*/
     font-size: 1.4em;
-    /*
-    height: 3em;
-    line-height: 2.5em;
-    */
+}
+
+footer
+{
+    padding-left: 10px;
+    line-height: 3em;
+}
+
+footer .columns
+{
+    font-size: 0.75em;
+    text-transform: uppercase;
+}
+
+footer .icons
+{
+    text-align: right;
+    font-size: 1.5em;
 }

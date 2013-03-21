@@ -20,14 +20,18 @@
             {% for task in tasks %}
                 <div class="task">
                     <div class="row item">
-                        <div class="small-12 columns">
+                        <div class="small-10 columns">
                             <label for="task-{{ task.id }}">
                                 <input type="checkbox" class="hide" id="task-{{ task.id }}" value="{{ task.id }}" />
                                 <span class="custom checkbox"></span>
                                 <span>{{ task.name|e }}</span>
                             </label>
                         </div>
-
+                        <div class="small-2 columns actions">
+                            <i class="foundicon-checkmark" style="display:none"></i>
+                            <i class="foundicon-edit"></i>
+                            <i class="foundicon-remove"></i>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
