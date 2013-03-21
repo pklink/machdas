@@ -14,35 +14,39 @@ class Index extends Action
 
     public function get()
     {
-        /*
-        $task = new Task();
-        $task->name = 'blbl';
-        $task->description = 'desc';
-        $task->priority = 4;
-        $task->save();
-        */
-
         $request = Todo::app()->getRequest();
 
-        // form was submitted
-        if (Todo::app()->getRequest()->isMethod('POST'))
+        // form submitted
+        if ($request->isMethod('POST') && $request->get('do') == 'save')
         {
-            $task = new Task();
-            $task->name        = $request->get('name');
-            $task->description = $request->get('description');
-            $task->save();
+            // save task
+            if ($request->get('do') == 'save')
+            {
+                $task = new Task();
+                $task->name        = $request->get('name');
+                $task->save();
+            }
+
+            // mark task
+            else
+            {
+
+            }
         }
 
+
+
+        // ajax-response
         if ($request->isXmlHttpRequest())
         {
             $return = [
                 'id'          => $task->id,
                 'name'        => $task->name,
-                'description' => $task->description
             ];
 
             return (new JsonPretty())->prettify($return);
         }
+        // "normal" response
         else
         {
             return $this->render('tasks', [

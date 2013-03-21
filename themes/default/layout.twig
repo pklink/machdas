@@ -10,33 +10,26 @@
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/screen.css" />
     <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/vendor/custom.modernizr.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
 </head>
 <body class="antialiased">
 
 <nav class="top-bar">
     <ul class="title-area">
-        <!-- Title Area -->
         <li class="name">
-            <h1><a href="#">Selleck.todo</a></h1>
+            <h1><a>Selleck.todo</a></h1>
         </li>
-        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
-
-    <section class="top-bar-section">
-        <ul class="left">
-            <li class="divider"></li>
-            <li class="active"><a href="#">Add Task</a></li>
-        </ul>
-    </section>
 </nav>
 
 
 <div class="row">
     <div class="small-12 large-12 columns">
-        <h2 class="subheader">{% block headline %}{% endblock %}</h2>
         {% block content %}{% endblock %}
     </div>
 </div>

@@ -48,6 +48,19 @@ class AbstractImpl
 
     /**
      * @param string $table
+     * @param int $id
+     * @return AbstractImpl
+     */
+    public static function find($table, $id)
+    {
+        $bean = new static($table);
+        $bean->setBean( R::load($table, $id) );
+        return $bean;
+    }
+
+
+    /**
+     * @param string $table
      * @return \RedBean_OODBBean[]
      */
     public static function findAll($table)
@@ -64,6 +77,15 @@ class AbstractImpl
         /* @var \RedBean_SimpleModel $bean */
         $bean = $this->bean;
         $this->id = R::store($bean);
+    }
+
+
+    /**
+     * @param $bean
+     */
+    public function setBean($bean)
+    {
+        $this->bean = $bean;
     }
 
 }

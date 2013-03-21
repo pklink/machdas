@@ -1,6 +1,14 @@
+.list .task
+{
+    padding-left: 10px;
+}
 
+.list .task span.checkbox {
+    margin-right: 10px;
+}
 
-.list div {
+.list div
+{
     line-height: 2.5em;
 }
 
@@ -9,11 +17,24 @@
     background-color: rgb(250, 250, 250);
 }
 
-.list .task .id
+.list label
 {
-    text-indent: 5px;
+    font-weight: normal;
+    font-size: 1em;
+    color: #222;
 }
 
-.list a {
+.list a
+{
     cursor: pointer;
+}
+
+#add input
+{
+    /*padding: 20px;*/
+    font-size: 1.4em;
+    /*
+    height: 3em;
+    line-height: 2.5em;
+    */
 }

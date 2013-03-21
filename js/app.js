@@ -11,20 +11,27 @@ $(function() {
         $(this).find('.item .name').append(newName);
     });
 
-    $('.task .name a').on('click', function() {
-        $('.task').has(this).find('.description').slideToggle(100);
+    // mark/unmark
+    $('.task :checkbox').on('change', function() {
+        if ($('.task').has(this).find('del').length) {
+            $('.task').has(this).find('label').unwrap();
+        }
+        else {
+            $('.task').has(this).find('label').wrap('<del />');
+        }
     });
 
-    $('form').submit(function() {
+    // save
+    $('#add').submit(function() {
         $.post($(this).attr('action'), $(this).serialize(), null, 'json')
             .done(function(response) {
                 var task = $('.list .task:first').clone();
-                task.find('.id').text('#' + response.id);
-                task.find('.name a').text(response.name);
-                task.find('.description').text(response.description);
+                task.find('label span:last').text(response.name);
                 task.hide();
                 task.prependTo($('.list:first'));
                 task.slideDown(100);
+
+                $('#add input:text').val('').focus();
             });
 
         return false;

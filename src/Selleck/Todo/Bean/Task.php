@@ -9,7 +9,6 @@ use RedBean_Facade as R;
 /**
  * @property integer $id
  * @property string  $name
- * @property string  $description
  * @property integer $priority
  */
 class Task extends AbstractImpl
@@ -21,6 +20,12 @@ class Task extends AbstractImpl
     public function __construct()
     {
         parent::__construct('task');
+    }
+
+
+    public static function find($table = 'task', $id)
+    {
+        return parent::find($table, $id);
     }
 
 
