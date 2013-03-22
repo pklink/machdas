@@ -10,6 +10,7 @@ $config = [
         'username' => 'root',
         'password' => 'bitnami',
         'name'     => 'silextodo',
+        'prefix'   => 'todo_'
     ]
 ];
 

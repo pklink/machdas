@@ -5,11 +5,13 @@ namespace Selleck;
 
 use RedBean_Facade as R;
 use Dotor\Dotor;
-use Selleck\Todo\Action;
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\UrlGeneratorServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Phormium\DB;
 
 class Todo
 {
@@ -62,6 +64,9 @@ class Todo
             'twig.path' => $this->config->get('rootDirectory') . '/themes/default'
         ));
 
+        // register url-generator
+        $this->silex->register(new UrlGeneratorServiceProvider());
+
         $this->setupDatabase();
         $this->addRoutes();
     }
@@ -72,10 +77,25 @@ class Todo
      */
     protected function addRoutes()
     {
-        // default route
+        // index / default route
         $this->silex->match('/', function() {
-            return (new Action\Task\Index())->get();
-        });
+            return (new Todo\Action\Task\Index())->get();
+        })->bind('home');
+
+        // add task
+        $this->silex->post('/add', function() {
+            return (new Todo\Action\Task\Add())->post();
+        })->bind('add');
+
+        // delete
+        $this->silex->post('/delete', function() {
+            return (new Todo\Action\Task\Delete())->post();
+        })->bind('delete');
+
+        // delete
+        $this->silex->post('/mark', function() {
+            return (new Todo\Action\Task\Delete())->post();
+        })->bind('mark');
     }
 
 
@@ -142,6 +162,14 @@ class Todo
      */
     protected function setupDatabase()
     {
+        DB::configure([
+            'todo' => [
+                'dsn'      => sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
+                'username' => $this->config->get('database.username'),
+                'password' => $this->config->get('database.password'),
+            ]
+        ]);
+
         R::setup(
             sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
             $this->config->get('database.username'),

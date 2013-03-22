@@ -16,6 +16,19 @@ $(function() {
         }
     });
 
+    // delete
+    $(document).on('click', '.list a.delete', function() {
+        var task = $('.task').has(this);
+        var id   = task.find('[name=id]:first').val();
+
+        $.post($('#delete-url').val(), {'id': id}, null, 'json')
+            .done(function() {
+                task.slideUp('fast');
+            });
+
+        return false;
+    });
+
     // save
     $('#add').submit(function() {
         $.post($(this).attr('action'), $(this).serialize(), null, 'json')
@@ -24,7 +37,7 @@ $(function() {
                 task.find('label span:last').text(response.name);
                 task.hide();
                 task.prependTo($('.list:first'));
-                task.slideDown(100);
+                task.slideDown('fast');
 
                 $('#add input:text').val('').focus();
             });

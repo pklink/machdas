@@ -2,8 +2,7 @@
 
 {% block content %}
 
-    <form method="POST" id="add">
-        <input type="hidden" name="do" value="save" />
+    <form id="add" action="{{ path('add') }}">
         <div class="row collapse">
             <div class="small-11 columns">
                 <input type="text" name="name" placeholder="New Task" />
@@ -15,10 +14,12 @@
     </form>
 
     <form class="custom">
-        <input type="hidden" name="do" value="mark" />
+        <input type="hidden" value="{{ url('delete') }}" id="delete-url"/>
+        <input type="hidden" value="{{ url('mark') }}" id="mark-url"/>
         <div class="list">
             {% for task in tasks %}
                 <div class="task">
+                    <input type="hidden" name="id" value="{{ task.id }}" />
                     <div class="row item">
                         <div class="small-10 columns">
                             <label for="task-{{ task.id }}">
@@ -29,8 +30,8 @@
                         </div>
                         <div class="small-2 columns actions">
                             <i class="foundicon-checkmark" style="display:none"></i>
-                            <i class="foundicon-edit"></i>
-                            <i class="foundicon-remove"></i>
+                            <a href="#update-task" class="update"><i data-tooltip class="foundicon-edit has-tip tip-top" title="Edit Task"></i></a>
+                            <a href="#delete-task" class="delete"><i data-tooltip class="foundicon-remove has-tip tip-top" title="Remove Task"></i></a>
                         </div>
                     </div>
                 </div>
