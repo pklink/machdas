@@ -1,5 +1,13 @@
 $(function() {
 
+    // ajax-loader
+    $(document).ajaxStart(function() {
+        $('#ajax-load').fadeIn();
+    })
+    $(document).ajaxComplete(function() {
+        $('#ajax-load').fadeOut();
+    });
+
     // mark/unmark
     $(document).on('change', '.task :checkbox', function() {
         var task = $('.task').has(this);
@@ -37,6 +45,7 @@ $(function() {
 
     // add
     $('#add').submit(function() {
+
         $.post($(this).attr('action'), $(this).serialize(), null, 'json')
             .done(function(response) {
                 var task = $('#task-stencil').clone();

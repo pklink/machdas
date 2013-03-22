@@ -1,3 +1,8 @@
+body
+{
+    padding-top: 25px;
+}
+
 .list .task
 {
     padding-left: 10px;
@@ -75,4 +80,16 @@ footer .icons
     font-size: .8em;
     padding: 10px;
     opacity: 0.7;
+}
+
+#ajax-load
+{
+    display: none;
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    width: 10px;
+    height: 10px;
+    background-image: url(ajax-loader.gif);
+    background-repeat: no-repeat;
 }
