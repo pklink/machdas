@@ -45,14 +45,20 @@ $(function() {
 
     // add
     $('#add').submit(function() {
+        var form = $(this);
+        var data = form.serialize();
 
-        $.post($(this).attr('action'), $(this).serialize(), null, 'json')
+        // disable inputs
+        $(this).find('input').attr('disabled', 'disabled');
+
+        $.post(form.attr('action'), data, null, 'json')
             .done(function(response) {
                 var task = $('#task-stencil').clone();
                 task.find('label span:last').text(response.name);
                 task.prependTo($('.list:first'));
                 task.slideDown('fast');
 
+                form.find('input').removeAttr('disabled');
                 $('#add input:text').val('').focus();
             });
 
