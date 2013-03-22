@@ -44,6 +44,8 @@ a
 {
     font-weight: normal;
     font-size: 1em;
+    overflow: hidden;
+    height: 2.5em;
 }
 
 .list a
