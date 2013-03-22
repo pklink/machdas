@@ -94,7 +94,7 @@ class Todo
 
         // delete
         $this->silex->post('/mark', function() {
-            return (new Todo\Action\Task\Delete())->post();
+            return (new Todo\Action\Task\Mark())->post();
         })->bind('mark');
     }
 
@@ -169,12 +169,6 @@ class Todo
                 'password' => $this->config->get('database.password'),
             ]
         ]);
-
-        R::setup(
-            sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
-            $this->config->get('database.username'),
-            $this->config->get('database.password')
-        );
     }
 
 }

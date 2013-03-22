@@ -31,4 +31,10 @@ class Task extends Model
      */
     public $name;
 
+
+    /**
+     * @var boolean
+     */
+    public $marked = false;
+
 }

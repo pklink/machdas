@@ -3,17 +3,21 @@ $(function() {
     // mark/unmark
     $(document).on('change', '.task :checkbox', function() {
         var task = $('.task').has(this);
+        var id   = task.find('[name=id]:first').val();
 
-        if (task.find('del').length) {
-            task.removeClass('marked');
-            task.find('label').unwrap();
-            task.find('.foundicon-checkmark').fadeOut('fast');
-        }
-        else {
-            task.addClass('marked');
-            task.find('label').wrap('<del />');
-            task.find('.foundicon-checkmark').fadeIn('fast');
-        }
+        $.post($('#mark-url').val(), {'id': id}, null, 'json')
+            .done(function() {
+                if (task.find('del').length) {
+                    task.removeClass('marked');
+                    task.find('label').unwrap();
+                    task.find('.foundicon-checkmark').fadeOut('fast');
+                }
+                else {
+                    task.addClass('marked');
+                    task.find('label').wrap('<del />');
+                    task.find('.foundicon-checkmark').fadeIn('fast');
+                }
+            });
     });
 
     // delete
