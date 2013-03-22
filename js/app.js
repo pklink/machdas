@@ -31,7 +31,7 @@ $(function() {
     // delete
     $(document).on('click', '.list a.delete', function() {
         var task = $('.task').has(this);
-        var id   = task.find('[name=id]:first').val();
+        var id   = task.find(':checkbox').val();
 
         $.post($('#delete-url').val(), {'id': id}, null, 'json')
             .done(function() {
@@ -54,6 +54,9 @@ $(function() {
         $.post(form.attr('action'), data, null, 'json')
             .done(function(response) {
                 var task = $('#task-stencil').clone();
+                task.find('label').attr('for', 'task-' + response.id);
+                task.find(':checkbox').attr('id', 'task-' + response.id);
+                task.find(':checkbox').val(response.id);
                 task.find('label span:last').text(response.name);
                 task.prependTo($('.list:first'));
                 task.slideDown('fast');

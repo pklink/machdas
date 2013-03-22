@@ -1,11 +1,15 @@
 <div class="task" {% if task.marked %} class="marked" {% endif %} >
-    <input type="hidden" name="id" value="{{ task.id }}" />
 
     <div class="row item">
         <div class="small-10 columns">
             {% if task.marked %}<del>{% endif %}
             <label for="task-{{ task.id }}">
-                <input type="checkbox" class="hide" id="task-{{ task.id }}" value="{{ task.id }}" {% if task.marked %}checked="checked"{% endif %}/>
+                <input type="checkbox" class="hide"
+                       id="task-{{ task.id }}"
+                       value="{{ task.id }}"
+                       name="id"
+                       {% if task.marked %}checked="checked"{% endif %}
+                />
                 <span class="custom checkbox {% if task.marked %}checked{% endif %}"></span>
                 <span>{{ task.name|e }}</span>
             </label>
