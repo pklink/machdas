@@ -14,7 +14,7 @@ class Index extends Action
     public function get()
     {
         return $this->render('tasks', [
-            'tasks' => Task::objects()->fetch(),
+            'tasks' => Task::objects()->orderBy('id', 'desc')->fetch(),
         ]);
     }
 

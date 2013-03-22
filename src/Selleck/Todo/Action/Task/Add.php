@@ -21,8 +21,8 @@ class Add extends Action
         $task->save();
 
         $return = [
-            'id'          => $task->id,
-            'name'        => $task->name,
+            'id'   => $task->id,
+            'name' => $task->name,
         ];
 
         return (new JsonPretty())->prettify($return);

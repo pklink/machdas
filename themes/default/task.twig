@@ -1,0 +1,19 @@
+<div class="task">
+    <input type="hidden" name="id" value="{{ task.id }}" />
+
+    <div class="row item">
+        <div class="small-10 columns">
+            <label for="task-{{ task.id }}">
+                <input type="checkbox" class="hide" id="task-{{ task.id }}" value="{{ task.id }}" />
+                <span class="custom checkbox"></span>
+                <span>{{ task.name|e }}</span>
+            </label>
+        </div>
+        <div class="small-2 columns actions">
+            <i class="foundicon-checkmark" style="display:none"></i>
+            <a href="#update-task" class="update"><i data-tooltip class="foundicon-edit has-tip tip-top" title="Edit Task"></i></a>
+            <a href="#delete-task" class="delete"><i data-tooltip class="foundicon-remove has-tip tip-top" title="Remove Task"></i></a>
+        </div>
+    </div>
+
+</div>

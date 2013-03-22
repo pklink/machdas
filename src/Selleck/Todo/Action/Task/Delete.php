@@ -14,10 +14,7 @@ class Delete extends Action
 
     public function post()
     {
-        $success = true;
-
         Task::get(Todo::app()->getRequest()->get('id'))->delete();
-
         return (new JsonPretty())->prettify(['success' => 1]);
     }
 

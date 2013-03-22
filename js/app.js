@@ -23,19 +23,20 @@ $(function() {
 
         $.post($('#delete-url').val(), {'id': id}, null, 'json')
             .done(function() {
-                task.slideUp('fast');
+                task.slideUp('fast', function() {
+                    task.remove();
+                });
             });
 
         return false;
     });
 
-    // save
+    // add
     $('#add').submit(function() {
         $.post($(this).attr('action'), $(this).serialize(), null, 'json')
             .done(function(response) {
-                var task = $('.list .task').not('.marked').first().clone();
+                var task = $('#task-stencil').clone();
                 task.find('label span:last').text(response.name);
-                task.hide();
                 task.prependTo($('.list:first'));
                 task.slideDown('fast');
 
