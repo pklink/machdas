@@ -3,6 +3,11 @@ body
     padding-top: 25px;
 }
 
+a
+{
+    color: #222;
+}
+
 .list .task
 {
     padding-left: 10px;
@@ -39,7 +44,6 @@ body
 {
     font-weight: normal;
     font-size: 1em;
-    color: #222;
 }
 
 .list a
@@ -68,11 +72,6 @@ footer .icons
 {
     text-align: right;
     font-size: 1.5em;
-}
-
-.list .actions a
-{
-    color: #222;
 }
 
 .tooltip
