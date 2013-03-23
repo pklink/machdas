@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <form id="add" action="{{ path('add') }}">
+    <form id="form" action="{{ path('task') }}">
         <div class="row collapse">
             <div class="small-11 columns">
                 <input type="text" name="name" placeholder="New Task" />
@@ -13,21 +13,12 @@
         </div>
     </form>
 
-    <div class="hide" id="task-stencil">
-        {% set task = {'id': 0, 'name': 0, 'marked': 0} %}
+    <script type="text/template" id="task-template">
         {% include('task.twig') %}
-    </div>
+    </script>
 
     <form class="custom">
-        <input type="hidden" value="{{ url('delete') }}" id="delete-url"/>
-        <input type="hidden" value="{{ url('mark') }}" id="mark-url"/>
-        <div class="list">
-            {% for task in tasks %}
-
-                {% include('task.twig') %}
-
-            {% endfor %}
-        </div>
+        <div id="list"></div>
     </form>
 
 {% endblock %}

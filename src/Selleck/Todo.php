@@ -5,6 +5,7 @@ namespace Selleck;
 
 use RedBean_Facade as R;
 use Dotor\Dotor;
+use Selleck\Todo\Action\Task\Add;
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
@@ -52,12 +53,20 @@ class Todo
         // create config
         $this->config = new Dotor($config);
 
-        // create instance of Request
-        $this->request = Request::createFromGlobals();
-
         // create app
         $this->silex          = new Application();
         $this->silex['debug'] = true;
+
+        // set instance of Request
+        $this->silex->before(function (Request $request) use (&$bla) {
+            if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+                $data = json_decode($request->getContent(), true);
+                $request->request->replace(is_array($data) ? $data : array());
+            }
+
+            $this->request = $request;
+        });
+
 
         // register twig
         $this->silex->register(new TwigServiceProvider(), array(
@@ -79,23 +88,28 @@ class Todo
     {
         // index / default route
         $this->silex->match('/', function() {
-            return (new Todo\Action\Task\Index())->get();
+            return (new Todo\Action\App\Start())->run();
         })->bind('home');
 
         // add task
-        $this->silex->post('/add', function() {
-            return (new Todo\Action\Task\Add())->post();
-        })->bind('add');
+        $this->silex->post('/task', function() {
+            return (new Todo\Action\Task\Add())->run();
+        })->bind('task');
 
         // delete
-        $this->silex->post('/delete', function() {
-            return (new Todo\Action\Task\Delete())->post();
-        })->bind('delete');
+        $this->silex->delete('/task/{id}', function($id) {
+            return (new Todo\Action\Task\Delete())->run($id);
+        });
 
-        // delete
-        $this->silex->post('/mark', function() {
-            return (new Todo\Action\Task\Mark())->post();
-        })->bind('mark');
+        // update
+        $this->silex->put('/task/{id}', function($id) {
+            return (new Todo\Action\Task\Update())->run($id);
+        });
+
+        // index
+        $this->silex->get('/tasks', function() {
+            return (new Todo\Action\Task\Index())->run();
+        })->bind('tasks');
     }
 
 

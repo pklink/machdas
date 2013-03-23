@@ -8,11 +8,13 @@ use Camspiers\JsonPretty\JsonPretty;
 use Selleck\Todo\Action;
 use Selleck\Todo\Model\Task;
 use Selleck\Todo;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class Add extends Action
 {
 
-    public function post()
+    public function run()
     {
         $request = Todo::app()->getRequest();
 
@@ -25,7 +27,7 @@ class Add extends Action
             'name' => $task->name,
         ];
 
-        return (new JsonPretty())->prettify($return);
+        return JsonResponse::create($return);
     }
 
 }

@@ -8,39 +8,39 @@ a
     color: #222;
 }
 
-.list .task
+#list .task
 {
     padding-left: 10px;
 }
 
-.list .task span.checkbox
+#list .task span.checkbox
 {
     margin-right: 10px;
 }
 
-.list .task .actions
+#list .task .actions
 {
     text-align: right;
 }
 
-.list .task .actions i
+#list .task .actions i
 {
     margin-right: 10px;
     border-bottom: 0;
     cursor: pointer;
 }
 
-.list div
+#list div
 {
     line-height: 2.5em;
 }
 
-.list .task:nth-child(even)
+#list .task:nth-child(even)
 {
     background-color: rgb(250, 250, 250);
 }
 
-.list label
+#list label
 {
     font-weight: normal;
     font-size: 1em;
@@ -48,12 +48,12 @@ a
     height: 2.5em;
 }
 
-.list a
+#list a
 {
     cursor: pointer;
 }
 
-#add input
+#form input
 {
     font-size: 1.4em;
 }
@@ -93,4 +93,12 @@ footer .icons
     height: 10px;
     background-image: url(ajax-loader.gif);
     background-repeat: no-repeat;
+}
+
+label {
+    cursor: default;
+}
+
+label .custom.checkbox {
+    cursor: pointer;
 }

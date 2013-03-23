@@ -13,36 +13,42 @@
     <link rel="stylesheet" href="css/icons/general_foundicons_ie7.css" />
     <link rel="stylesheet" href="css/icons/social_foundicons.css" />
     <link rel="stylesheet" href="css/icons/social_foundicons_ie7.css" />
+
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
     <script src="js/vendor/custom.modernizr.js"></script>
-    <script>
-        $(document).foundation();
-    </script>
+    <script src="js/vendor/json2.js"></script>
+    <script src="js/vendor/underscore-min.js"></script>
+    <script src="js/vendor/backbone-min.js"></script>
+    <script src="js/Model/task.js"></script>
+    <script src="js/Collection/tasks.js"></script>
+    <script src="js/Router/app.js"></script>
+    <script src="js/View/form.js"></script>
+    <script src="js/View/task.js"></script>
+    <script src="js/View/list.js"></script>
+    <script src="js/View/content.js"></script>
+    <script src="js/app.js"></script>
 </head>
 <body class="antialiased">
 
 <div id="ajax-load"></div>
+<input type="hidden" id="tasks-url" value="{{ url('tasks') }}" />
 
-<div class="row">
-    <div class="small-12 large-12 columns">
+<div class="row" id="content">
+    <div class="small-10 large-10 large-centered small-centered columns">
         {% block content %}{% endblock %}
     </div>
 </div>
 
 <footer>
     <div class="row">
-        <div class="small-10 large-10 columns">
+        <div class="small-10 large-10 small-centered large-centered columns">
             selleck.todo 0.1.0 - pow, pow, pow!
-        </div>
-        <div class="small-2 large-2 columns icons">
-            <a href="https://github.com/pklink/Selleck-Todo" target="_blank">
-                <i class="social foundicon-github"></i>
-            </a>
         </div>
     </div>
 </footer>
+
+
 
 </body>
 </html>

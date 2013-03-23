@@ -7,15 +7,23 @@ namespace Selleck\Todo\Action\Task;
 use Selleck\Todo\Action;
 use Selleck\Todo\Model\Task;
 use Selleck\Todo;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Index extends Action
 {
 
-    public function get()
+    public function run()
     {
-        return $this->render('tasks', [
-            'tasks' => Task::objects()->orderBy('id', 'desc')->fetch(),
-        ]);
+        $tasks = [];
+        foreach (Task::objects()->orderBy('id', 'asc')->fetch() as $task) {
+            $tasks[] = [
+                'id'     => $task->id,
+                'name'   => $task->name,
+                'marked' => $task->marked
+            ];
+        }
+
+        return JsonResponse::create($tasks);
     }
 
 }
