@@ -8,11 +8,7 @@ $(function() {
         },
 
 
-        events: {
-            'sync': 'alert'
-        },
-
-        urlRoot: $('#form').attr('action'),
+        urlRoot: $('#add-task').attr('action')
 
     });
 

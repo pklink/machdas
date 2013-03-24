@@ -2,10 +2,10 @@
 
 {% block content %}
 
-    <form id="form" action="{{ path('task') }}">
+    <form id="add-task" action="{{ path('task') }}">
         <div class="row collapse">
             <div class="small-11 columns">
-                <input type="text" name="name" placeholder="New Task" />
+                <input type="text" class="name" placeholder="New Task" />
             </div>
             <div class="small-1 columns">
                 <input type="submit" class="button prefix secondary" value="+" />
@@ -18,7 +18,22 @@
     </script>
 
     <form class="custom">
-        <div id="list"></div>
+        <div id="list">
+
+            <!--
+            <div class="row no-entries">
+                <div class="small-12 columns">
+                    no tasks found
+                </div>
+            </div>
+            -->
+
+            <div class="row loading">
+                <div class="small-11 small-centered columns">
+                    ...
+                </div>
+            </div>
+        </div>
     </form>
 
 {% endblock %}

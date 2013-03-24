@@ -2,7 +2,7 @@ $(function() {
 
     Selleck.View.Form = Backbone.View.extend({
 
-        el: '#form',
+        el: '#add-task',
 
 
         events: {
@@ -20,7 +20,7 @@ $(function() {
             this.listenToOnce(model, 'sync', this.addToCollection);
 
             // save model
-            model.set('name', this.$('input[name=name]').val());
+            model.set('name', this.$(':text.name').val());
             model.save();
 
             return false;

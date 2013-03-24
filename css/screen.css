@@ -6,7 +6,7 @@ a {
     color: #222;
 }
 
-#form input {
+#add-task input {
     font-size: 1.4em;
 }
 
@@ -42,6 +42,11 @@ a {
 
 #list > div:nth-child(even) {
     background-color: #fafafa;
+}
+
+#list .loading {
+    color: #222;
+    line-height: 3em;
 }
 
 .task label {
