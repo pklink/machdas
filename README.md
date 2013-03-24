@@ -11,6 +11,14 @@ A simple todo manager
 
 ## Installation
 
+* import `setup/install.sql`
+* edit `config.php`
+* set the `RewriteBase` in `.htaccess` to the subfolder on your webserver or remove the line if you run Selleck.todo
+from the the root folder
+    * `http://example.com/todo` set `RewriteBase` to `/todo`
+    * `http://example.com/selleck/todo` set `RewriteBase` to `/selleck/todo`
+    * `http://example.com` remove the `RewriteBase` line
+    * you find more information and instructions for other servers [here](http://silex.sensiolabs.org/doc/web_servers.html)
 
 ## Todos
 
