@@ -75,23 +75,6 @@ $(function() {
         },
 
 
-        unmark:  function() {
-            this.model.set('marked', 0);
-
-            this.$('.checkbox').removeClass('checked');
-            this.$('.name').unwrap();
-        },
-
-
-        update: function() {
-            var value = this.$(':text:first').val();
-            this.model.set('name', value).save();
-            this.$('.name').text(value);
-            this.hideForm();
-            return false;
-        },
-
-
         toggleMarked: function() {
             if (this.model.get('marked') == 1) {
                 this.unmark();
@@ -101,6 +84,26 @@ $(function() {
             }
 
             this.model.save();
+        },
+
+
+        unmark: function() {
+            this.model.set('marked', 0);
+
+            this.$('.checkbox').removeClass('checked');
+            this.$('.name').unwrap();
+        },
+
+
+        update: function() {
+            var value = this.$(':text:first').val();
+
+            if (this.model.set('name', value).save()) {
+                this.$('.name').text(value);
+                this.hideForm();
+            }
+
+            return false;
         }
 
     });

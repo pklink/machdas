@@ -8,7 +8,14 @@ $(function() {
         },
 
 
-        urlRoot: $('#add-task').attr('action')
+        urlRoot: $('#add-task').attr('action'),
+
+
+        validate: function(attributes, options) {
+            if (attributes.name.length < 1) {
+                return "no task is given";
+            }
+        }
 
     });
 
