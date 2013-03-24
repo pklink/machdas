@@ -76,3 +76,10 @@ footer .columns {
     height: 10px;
     background: url(ajax-loader.gif) no-repeat;
 }
+
+#app-loader {
+    margin: auto;
+    width: 50px;
+    height: 59px;
+    background: url(app-loader.gif) no-repeat;
+}
