@@ -28,6 +28,7 @@ A simple todo manager
 * [Foundation](http://foundation.zurb.com/)
 * [jQuery](http://jquery.com/)
 * [json2.js](http://github.com/douglascrockford/JSON-js)
+* [Phormium](https://github.com/ihabunek/phormium)
 * [Silex](http://silex.sensiolabs.org/)
 * [Twig](http://twig.sensiolabs.org/)
 * [Underscore.js](http://underscorejs.org/)
