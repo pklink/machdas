@@ -14,11 +14,19 @@ $(function() {
         events: {
             'click .update':   'showForm',
             'dblclick .name':   'showForm',
+            'click .cancel':   'hideForm',
             'click .delete':   'delete',
             'click .checkbox': 'toggleMarked',
+            'keyup :text': 'cancel',
             'submit form': 'update'
         },
 
+
+        cancel: function(event) {
+            if (event.which == 27) {
+                this.hideForm();
+            }
+        },
 
         update: function() {
             var value = this.$(':text:first').val();
@@ -31,13 +39,17 @@ $(function() {
 
         hideForm: function() {
             this.$(':text').hide();
+            this.$('.cancel').hide();
+            this.$('.update').show();
             this.$('label').show();
         },
 
 
         showForm: function() {
             this.$('label').hide();
+            this.$('.update').hide();
             this.$(':text').val(this.$('.name').text()).show();
+            this.$('.cancel').show();
         },
 
 
@@ -79,7 +91,7 @@ $(function() {
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
-            this.$(':text').hide();
+            this.hideForm();
 
             if (this.model.get('marked') == 1) {
                 this.mark();
