@@ -10,10 +10,10 @@ $(document).foundation();
 $(function() {
 
     $(document).ajaxStart(function() {
-        $('#ajax-load').fadeIn();
+        $('#ajax-loader').fadeIn();
     })
     $(document).ajaxComplete(function() {
-        $('#ajax-load').fadeOut();
+        $('#ajax-loader').fadeOut();
     });
 
     new Selleck.View.App();

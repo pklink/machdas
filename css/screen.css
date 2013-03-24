@@ -67,7 +67,7 @@ footer .columns {
     text-transform: uppercase;
 }
 
-#ajax-load {
+#ajax-loader {
     display: none;
     position: fixed;
     top: 25px;
