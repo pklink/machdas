@@ -10,6 +10,12 @@ a {
     font-size: 1.4em;
 }
 
+#list .no-tasks {
+    color: #4d4d4d;
+    padding-left: 10px;
+    background-color: #fff !important;
+}
+
 .task {
     padding-left: 10px;
     line-height: 3em;
@@ -31,7 +37,7 @@ a {
     cursor: pointer;
 }
 
-.task form {
+form {
     margin: 0;
 }
 
@@ -59,8 +65,10 @@ a {
 
 footer {
     padding-left: 10px;
+    padding-top: 10px;
     line-height: 3em;
 }
+
 
 footer .columns {
     font-size: .75em;
