@@ -1,126 +1,194 @@
 /* general icons for IE7 */
 [class*="foundicon-"] {
-  font-family: "SocialFoundicons";
+  font-family: "GeneralEnclosedFoundicons";
   font-weight: normal;
   font-style: normal;
 }
 
-.foundicon-thumb-up {
+.foundicon-settings {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf000;");
 }
 
-.foundicon-thumb-down {
+.foundicon-heart {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf001;");
 }
 
-.foundicon-rss {
+.foundicon-star {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf002;");
 }
 
-.foundicon-facebook {
+.foundicon-plus {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf003;");
 }
 
-.foundicon-twitter {
+.foundicon-minus {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf004;");
 }
 
-.foundicon-pinterest {
+.foundicon-checkmark {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf005;");
 }
 
-.foundicon-github {
+.foundicon-remove {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf006;");
 }
 
-.foundicon-path {
+.foundicon-mail {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf007;");
 }
 
-.foundicon-linkedin {
+.foundicon-calendar {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf008;");
 }
 
-.foundicon-dribbble {
+.foundicon-page {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf009;");
 }
 
-.foundicon-stumble-upon {
+.foundicon-tools {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00a;");
 }
 
-.foundicon-behance {
+.foundicon-globe {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00b;");
 }
 
-.foundicon-reddit {
+.foundicon-home {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00c;");
 }
 
-.foundicon-google-plus {
+.foundicon-quote {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00d;");
 }
 
-.foundicon-youtube {
+.foundicon-people {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00e;");
 }
 
-.foundicon-vimeo {
+.foundicon-monitor {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00f;");
 }
 
-.foundicon-flickr {
+.foundicon-laptop {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf010;");
 }
 
-.foundicon-slideshare {
+.foundicon-phone {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf011;");
 }
 
-.foundicon-picassa {
+.foundicon-cloud {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf012;");
 }
 
-.foundicon-skype {
+.foundicon-error {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf013;");
 }
 
-.foundicon-steam {
+.foundicon-right-arrow {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf014;");
 }
 
-.foundicon-instagram {
+.foundicon-left-arrow {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf015;");
 }
 
-.foundicon-foursquare {
+.foundicon-up-arrow {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf016;");
 }
 
-.foundicon-delicious {
+.foundicon-down-arrow {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf017;");
 }
 
-.foundicon-chat {
+.foundicon-trash {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf018;");
 }
 
-.foundicon-torso {
+.foundicon-add-doc {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf019;");
 }
 
-.foundicon-tumblr {
+.foundicon-edit {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01a;");
 }
 
-.foundicon-video-chat {
+.foundicon-lock {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01b;");
 }
 
-.foundicon-digg {
+.foundicon-unlock {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01c;");
 }
 
-.foundicon-wordpress {
+.foundicon-refresh {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01d;");
+}
+
+.foundicon-paper-clip {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01e;");
+}
+
+.foundicon-video {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01f;");
+}
+
+.foundicon-photo {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf020;");
+}
+
+.foundicon-graph {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf021;");
+}
+
+.foundicon-idea {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf022;");
+}
+
+.foundicon-mic {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf023;");
+}
+
+.foundicon-cart {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf024;");
+}
+
+.foundicon-address-book {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf025;");
+}
+
+.foundicon-compass {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf026;");
+}
+
+.foundicon-flag {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf027;");
+}
+
+.foundicon-location {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf028;");
+}
+
+.foundicon-clock {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf029;");
+}
+
+.foundicon-folder {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02a;");
+}
+
+.foundicon-inbox {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02b;");
+}
+
+.foundicon-website {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02c;");
+}
+
+.foundicon-smiley {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02d;");
+}
+
+.foundicon-search {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02e;");
 }
