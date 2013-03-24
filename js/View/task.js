@@ -13,7 +13,7 @@ $(function() {
 
         events: {
             'click .update':   'showForm',
-            'dblclick .name':   'showForm',
+            'dblclick label':   'showForm',
             'click .cancel':   'hideForm',
             'click .delete':   'delete',
             'click .checkbox': 'toggleMarked',
@@ -49,6 +49,7 @@ $(function() {
             this.$('label').hide();
             this.$('.update').hide();
             this.$(':text').val(this.$('.name').text()).show();
+            this.$(':text').focus();
             this.$('.cancel').show();
         },
 
