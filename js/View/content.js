@@ -4,11 +4,11 @@ $(function() {
 
         el: '#content',
 
-        initialize:  function(options) {
+
+        initialize:  function() {
             new Selleck.View.Form();
             new Selleck.View.List();
         }
-
 
     });
 
