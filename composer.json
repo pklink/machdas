@@ -9,7 +9,6 @@
         "pklink/dotor": "0.*",
         "twig/twig": ">=1.8,<2.0-dev",
         "symfony/twig-bridge": "~2.1",
-        "camspiers/json-pretty": "0.*",
         "phormium/phormium": "dev-master"
     }
 }
