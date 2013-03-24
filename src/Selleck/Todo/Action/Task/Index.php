@@ -14,7 +14,6 @@ class Index extends Action
 
     public function run()
     {
-        sleep(1);
         $tasks = [];
         foreach (Task::objects()->orderBy('id', 'asc')->fetch() as $task) {
             $tasks[] = [
