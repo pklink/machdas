@@ -1,6 +1,6 @@
 # Selleck.todo
 
-A simple todo manager
+A simple todo manager as PHP-Single-Page-App
 
 
 ## Requirement
