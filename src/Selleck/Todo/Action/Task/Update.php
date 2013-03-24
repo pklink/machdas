@@ -21,7 +21,7 @@ class Update extends Action
         $task = Task::get($id);
         $task->name   = $request->get('name');
         $task->marked = $request->get('marked');
-        $task->save();
+        $task->update();
 
         return JsonResponse::create(['success' => 1]);
     }
