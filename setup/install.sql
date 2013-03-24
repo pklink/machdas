@@ -5,3 +5,9 @@ CREATE TABLE `tasks` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tasks` (`id`, `name`, `marked`)
+VALUES
+	(1, 'save a whale', 0),
+	(2, 'kiss a chicken', 0),
+	(3, 'hug yourself', 0);
