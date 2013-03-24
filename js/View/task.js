@@ -12,8 +12,32 @@ $(function() {
 
 
         events: {
+            'click .update':   'showForm',
+            'dblclick .name':   'showForm',
             'click .delete':   'delete',
-            'click .checkbox': 'toggleMarked'
+            'click .checkbox': 'toggleMarked',
+            'submit form': 'update'
+        },
+
+
+        update: function() {
+            var value = this.$(':text:first').val();
+            this.model.set('name', value).save();
+            this.$('.name').text(value);
+            this.hideForm();
+            return false;
+        },
+
+
+        hideForm: function() {
+            this.$(':text').hide();
+            this.$('label').show();
+        },
+
+
+        showForm: function() {
+            this.$('label').hide();
+            this.$(':text').val(this.$('.name').text()).show();
         },
 
 
@@ -55,6 +79,7 @@ $(function() {
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
+            this.$(':text').hide();
 
             if (this.model.get('marked') == 1) {
                 this.mark();
