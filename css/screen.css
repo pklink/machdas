@@ -12,6 +12,7 @@ a {
 
 .task {
     padding-left: 10px;
+    line-height: 3em;
 }
 
 .task span.checkbox {
@@ -36,11 +37,7 @@ a {
 
 .task input {
     font-size: 1em;
-    margin: 0 0 0 22px;
-}
-
-#list div {
-    line-height: 2.5em;
+    margin: 0.47em 0 0 22px;
 }
 
 #list > div:nth-child(even) {
