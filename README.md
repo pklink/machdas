@@ -3,7 +3,7 @@
 A simple todo manager as PHP-Single-Page-App
 
 
-## Requirement
+## Requirements
 
 * PHP 5.4 and higher
 * MySQL 5.1 and higher
