@@ -55,7 +55,7 @@ class Todo
 
         // create app
         $this->silex          = new Application();
-        $this->silex['debug'] = true;
+        $this->silex['debug'] = $this->config->getBool('debugging', false);
 
         // set instance of Request
         $this->silex->before(function (Request $request) use (&$bla) {
