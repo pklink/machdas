@@ -19,6 +19,7 @@ A simple todo manager
 * add priority (high, normal, low)
 * add shorttags (e.g. @high, @normal, @low)
 * improve code
+* remove twig
 
 
 ## Credits
