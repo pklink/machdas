@@ -19,6 +19,7 @@
     <script src="js/vendor/json2-min.js"></script>
     <script src="js/vendor/underscore-min.js"></script>
     <script src="js/vendor/backbone-min.js"></script>
+    <script src="js/vendor/backbone.layoutmanager.js"></script>
     <script src="js/Model/task.js"></script>
     <script src="js/Collection/tasks.js"></script>
     <script src="js/View/form.js"></script>
@@ -30,14 +31,26 @@
 </head>
 <body class="antialiased">
 
-<div id="ajax-loader"></div>
-<input type="hidden" id="tasks-url" value="{{ url('tasks') }}" />
+    <div id="ajax-loader"></div>
+    <input type="hidden" id="tasks-url" value="{{ url('tasks') }}" />
+    <input type="hidden" id="task-url" value="{{ url('task') }}" />
 
-<div class="row" id="content">
-    <div class="small-10 large-10 large-centered small-centered columns">
+    <script type="text/template" id="app">
+        <div class="row">
+            <div class="small-10 large-10 large-centered small-centered columns">
+
+                <div class="form"></div>
+                <div class="list"></div>
+                <footer></footer>
+
+                <div id="app-loader"></div>
+            </div>
+        </div>
+    </script>
 
 
-        <form id="add-task" action="{{ path('task') }}">
+    <script type="text/template" id="form-template">
+        <form id="add-task">
             <div class="row collapse">
                 <div class="small-11 columns">
                     <input type="text" class="name" placeholder="New Task" />
@@ -47,57 +60,40 @@
                 </div>
             </div>
         </form>
+    </script>
 
-        <script type="text/template" id="task-template">
-            <div class="task">
 
-                <div class="row item">
-                    <div class="small-10 columns">
-                        <label>
-                            <span class="custom checkbox"></span>
-                            <span class="name"><%- name %></span>
-                        </label>
-                        <form><input type="text" /></form>
-                    </div>
-                    <div class="small-2 columns actions">
-                        <i class="foundicon-remove cancel"></i>
-                        <i class="foundicon-edit update"></i>
-                        <i class="foundicon-trash delete"></i>
-                    </div>
-                </div>
-
+    <script type="text/template" id="list-template">
+        <form class="custom list"></form>
+        <div class="row no-tasks">
+            <div class="small-12 columns">
+                no tasks! nothin' to do?
             </div>
-        </script>
-
-        <form class="custom">
-            <div id="list">
-
-                <div class="row no-tasks">
-                    <div class="small-12 columns">
-                        no tasks! nothin' to do?
-                    </div>
-                </div>
-
-            </div>
-        </form>
-
-        <div id="app-loader"></div>
-    </div>
-</div>
-
-<footer>
-
-    <div class="row">
-        <div class="small-10 large-10 small-centered large-centered columns">
-            selleck.todo 0.1.0 - pow, pow, pow!
         </div>
-    </div>
-</footer>
+    </script>
 
 
+    <script type="text/template" id="task-template">
+        <div class="row task">
+            <div class="small-10 columns">
+                <label>
+                    <span class="custom checkbox"></span>
+                    <span class="name"><%- name %></span>
+                </label>
+                <form><input type="text" /></form>
+            </div>
+            <div class="small-2 columns actions">
+                <i class="foundicon-remove cancel"></i>
+                <i class="foundicon-edit update"></i>
+                <i class="foundicon-trash delete"></i>
+            </div>
+        </div>
+    </script>
 
 
-
+    <script type="text/template" id="footer-template">
+        selleck.todo 0.1.0 - pow, pow, pow!
+    </script>
 
 </body>
 </html>

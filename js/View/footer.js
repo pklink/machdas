@@ -1,8 +1,8 @@
 $(function() {
 
-    Selleck.View.Footer = Backbone.View.extend({
+    Selleck.View.Footer = Backbone.Layout.extend({
 
-        el: 'footer'
+        template: '#footer-template'
 
     });
 

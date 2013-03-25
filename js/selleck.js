@@ -16,6 +16,7 @@ $(function() {
         $('#ajax-loader').fadeOut();
     });
 
-    new Selleck.View.App();
+    Selleck.View.App.$el.appendTo('body');
+    Selleck.View.App.render();
 
 });

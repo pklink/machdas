@@ -8,7 +8,7 @@ $(function() {
         },
 
 
-        urlRoot: $('#add-task').attr('action'),
+        urlRoot: $('#task-url').val(),
 
 
         validate: function(attributes, options) {

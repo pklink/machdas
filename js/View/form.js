@@ -1,8 +1,8 @@
 $(function() {
 
-    Selleck.View.Form = Backbone.View.extend({
+    Selleck.View.Form = Backbone.Layout.extend({
 
-        el: '#add-task',
+        template: '#form-template',
 
 
         events: {

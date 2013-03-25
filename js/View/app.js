@@ -1,20 +1,31 @@
 $(function() {
 
-    Selleck.View.App = Backbone.View.extend({
+    var app = Backbone.Layout.extend({
 
-        el: '#content',
-
-
-        form: new Selleck.View.Form(),
+        template: '#app',
 
 
-        footer: new Selleck.View.Footer(),
+        form: null,
 
 
-        list: new Selleck.View.List(),
+        footer: null,
+
+
+        list: null,
+
+
+        views: {
+            '.form':  new Selleck.View.Form(),
+            '.list':  new Selleck.View.List(),
+            'footer': new Selleck.View.Footer()
+        },
 
 
         initialize:  function() {
+            this.form = this.getView('.form');
+            this.footer = this.getView('footer');
+            this.list = this.getView('.list');
+
             this.form.$el.hide();
             this.list.$el.hide();
             this.footer.$el.hide();
@@ -31,6 +42,8 @@ $(function() {
         }
 
     });
+
+    Selleck.View.App = new app();
 
 })
 

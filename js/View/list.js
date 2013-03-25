@@ -1,14 +1,16 @@
 $(function() {
 
-    Selleck.View.List = Backbone.View.extend({
+    Selleck.View.List = Backbone.Layout.extend({
 
-        el: '#list',
+        template: '#list-template',
+
 
         isStarted: false,
 
+
         addTask: function(task) {
             var view = new Selleck.View.Task({model: task});
-            this.$el.prepend(view.render().$el.hide());
+            view.render().$el.hide().prependTo(this.$('form.list'));
 
             if (this.isStarted) {
                 view.$el.slideDown();
