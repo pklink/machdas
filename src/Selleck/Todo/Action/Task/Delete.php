@@ -4,7 +4,6 @@
 namespace Selleck\Todo\Action\Task;
 
 
-use Camspiers\JsonPretty\JsonPretty;
 use Selleck\Todo\Action;
 use Selleck\Todo\Model\Task;
 use Selleck\Todo;
