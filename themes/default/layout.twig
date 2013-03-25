@@ -35,7 +35,51 @@
 
 <div class="row" id="content">
     <div class="small-10 large-10 large-centered small-centered columns">
-        {% block content %}{% endblock %}
+
+
+        <form id="add-task" action="{{ path('task') }}">
+            <div class="row collapse">
+                <div class="small-11 columns">
+                    <input type="text" class="name" placeholder="New Task" />
+                </div>
+                <div class="small-1 columns">
+                    <input type="submit" class="button prefix secondary" value="+" />
+                </div>
+            </div>
+        </form>
+
+        <script type="text/template" id="task-template">
+            <div class="task">
+
+                <div class="row item">
+                    <div class="small-10 columns">
+                        <label>
+                            <span class="custom checkbox"></span>
+                            <span class="name"><%- name %></span>
+                        </label>
+                        <form><input type="text" /></form>
+                    </div>
+                    <div class="small-2 columns actions">
+                        <i class="foundicon-remove cancel"></i>
+                        <i class="foundicon-edit update"></i>
+                        <i class="foundicon-trash delete"></i>
+                    </div>
+                </div>
+
+            </div>
+        </script>
+
+        <form class="custom">
+            <div id="list">
+
+                <div class="row no-tasks">
+                    <div class="small-12 columns">
+                        no tasks! nothin' to do?
+                    </div>
+                </div>
+
+            </div>
+        </form>
 
         <div id="app-loader"></div>
     </div>
@@ -49,6 +93,9 @@
         </div>
     </div>
 </footer>
+
+
+
 
 
 

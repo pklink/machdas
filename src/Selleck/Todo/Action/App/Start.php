@@ -10,7 +10,7 @@ class Start extends Action
 
     public function run()
     {
-        return $this->render('tasks');
+        return $this->render('layout');
     }
 
 }
