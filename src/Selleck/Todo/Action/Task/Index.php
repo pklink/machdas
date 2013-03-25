@@ -17,9 +17,10 @@ class Index extends Action
         $tasks = [];
         foreach (Task::objects()->orderBy('id', 'asc')->fetch() as $task) {
             $tasks[] = [
-                'id'     => $task->id,
-                'name'   => $task->name,
-                'marked' => $task->marked
+                'id'       => $task->id,
+                'name'     => $task->name,
+                'marked'   => $task->marked,
+                'priority' => $task->priority
             ];
         }
 

@@ -19,6 +19,7 @@ class Add extends Action
 
         $task = new Task();
         $task->name = $request->get('name');
+        $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
         $task->save();
 
         $return = [

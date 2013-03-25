@@ -18,8 +18,9 @@ class Update extends Action
 
         /* @var Task $task */
         $task = Task::get($id);
-        $task->name   = $request->get('name');
-        $task->marked = $request->get('marked');
+        $task->name     = $request->get('name');
+        $task->marked   = $request->get('marked');
+        $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
         $task->update();
 
         return JsonResponse::create(['success' => 1]);

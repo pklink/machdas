@@ -1,6 +1,6 @@
 $(function() {
 
-    var app = Backbone.Layout.extend({
+    var App = Backbone.Layout.extend({
 
         template: '#app',
 
@@ -43,7 +43,7 @@ $(function() {
 
     });
 
-    Selleck.View.App = new app();
+    Selleck.View.App = new App();
 
 })
 

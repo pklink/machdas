@@ -10,6 +10,11 @@ use Selleck\Todo;
 class Task extends Model
 {
 
+    const PRIORITY_LOW    = 0;
+    const PRIORITY_NORMAL = 1;
+    const PRIORITY_HIGH   = 2;
+
+
     /**
      * @var array
      */
@@ -36,5 +41,11 @@ class Task extends Model
      * @var boolean
      */
     public $marked = false;
+
+
+    /**
+     * @var int
+     */
+    public $priority = self::PRIORITY_NORMAL;
 
 }

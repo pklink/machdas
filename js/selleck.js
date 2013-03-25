@@ -5,8 +5,6 @@ Selleck = {
     Collection: {}
 };
 
-$(document).foundation();
-
 $(function() {
 
     $(document).ajaxStart(function() {
@@ -18,5 +16,4 @@ $(function() {
 
     Selleck.View.App.$el.appendTo('body');
     Selleck.View.App.render();
-
 });

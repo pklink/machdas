@@ -39,7 +39,7 @@ $(function() {
 
 
         hideForm: function() {
-            this.$(':text').hide();
+            this.$(':text.name').hide();
             this.$('.cancel').hide();
             this.$('.update').show();
             this.$('label').show();
@@ -56,6 +56,7 @@ $(function() {
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
+            this.$el.attr('class', 'prio-' +  this.model.priorityName);
             this.hideForm();
 
             if (this.model.get('marked') == 1) {
@@ -68,8 +69,9 @@ $(function() {
 
         showForm: function() {
             this.$('label').hide();
+
             this.$('.update').hide();
-            this.$(':text').val(this.$('.name').text()).show();
+            this.$(':text.name').val(this.model.get('name')).show();
             this.$(':text').focus();
             this.$('.cancel').show();
         },
@@ -99,7 +101,8 @@ $(function() {
             var value = this.$(':text:first').val();
 
             if (this.model.set('name', value).save()) {
-                this.$('.name').text(value);
+                this.$('.name').text( this.model.get('name') );
+                this.$el.attr('class', 'prio-' + this.model.priorityName);
                 this.hideForm();
             }
 
