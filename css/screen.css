@@ -2,10 +2,6 @@ body {
     padding-top: 25px;
 }
 
-a {
-    color: #222;
-}
-
 #add-task input {
     font-size: 1.4em;
 }
