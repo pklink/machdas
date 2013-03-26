@@ -41,6 +41,7 @@ You can use the following shorttags for setting priority:
 ### 0.2.1
 
 * Added slidable sidebar
+* Removed .htaccess for an easier configuration
 
 ### 0.2.0
 
