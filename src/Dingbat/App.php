@@ -79,6 +79,11 @@ class App
     protected function addRoutes()
     {
         // add task
+        $this->silex->get('/min/js', function() {
+            return (new Action\Minifier\JavaScript())->run();
+        });
+
+        // add task
         $this->silex->post('/task', function() {
             return (new Action\Task\Add())->run();
         })->bind('task');

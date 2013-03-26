@@ -7,6 +7,7 @@
     "require": {
         "silex/silex": "1.0.*@dev",
         "pklink/dotor": "0.*",
-        "phormium/phormium": "dev-master"
+        "phormium/phormium": "dev-master",
+        "tedivm/jshrink": "v0.5.1"
     }
 }
