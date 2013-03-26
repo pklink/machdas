@@ -37,7 +37,7 @@ You can use the following shorttags for setting priority:
 - [ ] add several lists (e.g. job, private ...)
 - [ ] add hashtags (e.g. #project #blah ...)
 - [x] <del>add priority (high, normal, low)</del> (added in version 0.2.0)
-- [x] <del>add shorttags (e.g. @high, @normal, @low)</del> (added in version 0.2.1)
+- [x] <del>add shorttags (e.g. @high, @normal, @low)</del> (added in version 0.2.0)
 - [ ] improve code
 - [ ] remove twig
 
