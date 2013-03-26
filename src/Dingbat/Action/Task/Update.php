@@ -4,6 +4,7 @@
 namespace Dingbat\Action\Task;
 
 
+use Dingbat\App;
 use Dingbat\Action;
 use Dingbat\Model\Task;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,7 +14,7 @@ class Update extends Action
 
     public function run($id)
     {
-        $request = Todo::app()->getRequest();
+        $request = App::instance()->getRequest();
 
         /* @var Task $task */
         $task = Task::get($id);

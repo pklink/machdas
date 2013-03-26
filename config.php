@@ -5,8 +5,8 @@ return [
         'host'     => 'localhost',
         'username' => 'root',
         'password' => 'bitnami',
-        'name'     => 'dingbat',
+        'name'     => 'selleck',
     ],
 
-    'debugging' => false,
+    'debugging' => true,
 ];

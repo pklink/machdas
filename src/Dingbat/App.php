@@ -108,11 +108,11 @@ class App
      */
     public static function instance($projectRoot = null, array $config = [])
     {
-        if (!(self::$instance instanceof Todo))
+        if (!(self::$instance instanceof App))
         {
             if (is_null($projectRoot))
             {
-                throw new \InvalidArgumentException('At first call of Todo::app() is the $projectPath-parameter required');
+                throw new \InvalidArgumentException('At first call of Dingbat::instance() is the $projectPath-parameter required');
             }
 
             self::$instance = new static($projectRoot, $config);
