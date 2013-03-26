@@ -10,12 +10,22 @@ use Dingbat\Model\Task;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class Add
+ *
+ * @category Action
+ * @package  Dingbat\Action\Task
+ * @author   Pierre Klink <dev@klinks.info>
+ * @license  MIT http://opensource.org/licenses/MIT
+ * @link     https://github.com/pklink/Dingbat
+ */
 class Add extends Action
 {
 
     /**
+     * Create new task
      *
-     * @return \Symfony\Component\HttpFoundation\Response|static
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function run()
     {

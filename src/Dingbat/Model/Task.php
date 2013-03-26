@@ -6,6 +6,16 @@ namespace Dingbat\Model;
 
 use \Phormium\Model;
 
+
+/**
+ * Class Task
+ *
+ * @category Model
+ * @package  Dingbat\Model
+ * @author   Pierre Klink <dev@klinks.info>
+ * @license  MIT http://opensource.org/licenses/MIT
+ * @link     https://github.com/pklink/Dingbat
+ */
 class Task extends Model
 {
 

@@ -11,6 +11,15 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Phormium\DB;
 
+/**
+ * Class App
+ *
+ * @category Core
+ * @package  Dingbat
+ * @author   Pierre Klink <dev@klinks.info>
+ * @license  MIT http://opensource.org/licenses/MIT
+ * @link     https://github.com/pklink/Dingbat
+ */
 class App
 {
 
@@ -39,8 +48,11 @@ class App
 
 
     /**
-     * @param string $rootDirectory
-     * @param array  $config
+     * Constructor
+     *
+     * @param string $rootDirectory Root of application (normally where the
+     * index.html is found)
+     * @param array  $config        configuration of application
      */
     protected function __construct($rootDirectory, array $config = [])
     {
@@ -55,7 +67,7 @@ class App
         $this->silex['debug'] = $this->config->getBool('debugging', false);
 
         // set instance of Request
-        $this->silex->before(function (Request $request) use (&$bla) {
+        $this->silex->before(function (Request $request) {
             if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
                 $data = json_decode($request->getContent(), true);
                 $request->request->replace(is_array($data) ? $data : array());

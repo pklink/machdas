@@ -10,10 +10,20 @@ use Dingbat\Model\Task;
 use JShrink\Minifier;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class JavaScript
+ *
+ * @category Action
+ * @package  Dingbat\Action\Minifier
+ * @author   Pierre Klink <dev@klinks.info>
+ * @license  MIT http://opensource.org/licenses/MIT
+ * @link     https://github.com/pklink/Dingbat
+ */
 class JavaScript extends Action
 {
 
     /**
+     * Merge configurated javascript
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
