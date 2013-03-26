@@ -4,7 +4,7 @@ $(function() {
 
         model: Selleck.Model.Task,
 
-        url: $('#tasks-url').val()
+        url: 'index.php/tasks'
 
     });
 
