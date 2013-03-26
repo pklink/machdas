@@ -20,14 +20,26 @@ from the the root folder
     * `http://example.com` remove the `RewriteBase` line
     * you find more information and instructions for other servers [here](http://silex.sensiolabs.org/doc/web_servers.html)
 
+
+## Shorttags
+
+### Priority
+
+You can use the following shorttags for setting priority:
+
+* @high
+* @normal (default priority)
+* @low
+
+
 ## Todos
 
-* add several lists (e.g. job, private ...)
-* add hashtags (e.g. #project #blah ...)
-* add priority (high, normal, low)
-* add shorttags (e.g. @high, @normal, @low)
-* improve code
-* remove twig
+- [ ] add several lists (e.g. job, private ...)
+- [ ] add hashtags (e.g. #project #blah ...)
+- [x] add priority (high, normal, low)
+- [x] add shorttags (e.g. @high, @normal, @low)
+- [ ] improve code
+- [ ] remove twig
 
 
 ## Credits
