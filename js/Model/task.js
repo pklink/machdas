@@ -1,6 +1,6 @@
 $(function() {
 
-    Selleck.Model.Task = Backbone.Model.extend({
+    Dingbat.Model.Task = Backbone.Model.extend({
 
         defaults: {
             'name':     '',

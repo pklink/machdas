@@ -14,13 +14,13 @@ $(function() {
         list: null,
 
 
-        sidebar: new Selleck.View.Sidebar(),
+        sidebar: new Dingbat.View.Sidebar(),
 
 
         views: {
-            '.form':  new Selleck.View.Form(),
-            '.list':  new Selleck.View.List(),
-            'footer': new Selleck.View.Footer()
+            '.form':  new Dingbat.View.Form(),
+            '.list':  new Dingbat.View.List(),
+            'footer': new Dingbat.View.Footer()
         },
 
 
@@ -35,7 +35,7 @@ $(function() {
             this.list.$el.hide();
             this.footer.$el.hide();
 
-            this.listenToOnce(Selleck.Collection.Tasks, 'sync', this.showApp);
+            this.listenToOnce(Dingbat.Collection.Tasks, 'sync', this.showApp);
         },
 
 
@@ -49,7 +49,7 @@ $(function() {
 
     });
 
-    Selleck.View.App = new App();
+    Dingbat.View.App = new App();
 
 })
 

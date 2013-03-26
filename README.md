@@ -1,4 +1,4 @@
-# Selleck.todo
+# Dingbat
 
 A simple todo manager as PHP-Single-Page-App
 

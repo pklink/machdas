@@ -1,20 +1,17 @@
 <?php
 
 
-namespace Selleck;
+namespace Dingbat;
 
-use RedBean_Facade as R;
 use Dotor\Dotor;
-use Selleck\Todo\Action\Task\Add;
 use Silex\Application;
-use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Phormium\DB;
 
-class Todo
+class App
 {
 
     /**
@@ -24,7 +21,7 @@ class Todo
 
 
     /**
-     * @var Todo
+     * @var App
      */
     protected static $instance;
 
@@ -83,22 +80,22 @@ class Todo
     {
         // add task
         $this->silex->post('/task', function() {
-            return (new Todo\Action\Task\Add())->run();
+            return (new Action\Task\Add())->run();
         })->bind('task');
 
         // delete
         $this->silex->delete('/task/{id}', function($id) {
-            return (new Todo\Action\Task\Delete())->run($id);
+            return (new Action\Task\Delete())->run($id);
         });
 
         // update
         $this->silex->put('/task/{id}', function($id) {
-            return (new Todo\Action\Task\Update())->run($id);
+            return (new Action\Task\Update())->run($id);
         });
 
         // index
         $this->silex->get('/tasks', function() {
-            return (new Todo\Action\Task\Index())->run();
+            return (new Action\Task\Index())->run();
         })->bind('tasks');
     }
 
@@ -106,10 +103,10 @@ class Todo
     /**
      * @param string $projectRoot path to root path of project
      * @param array $config
-     * @return Todo
+     * @return App
      * @throws \InvalidArgumentException
      */
-    public static function app($projectRoot = null, array $config = [])
+    public static function instance($projectRoot = null, array $config = [])
     {
         if (!(self::$instance instanceof Todo))
         {

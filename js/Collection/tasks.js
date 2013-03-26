@@ -2,14 +2,14 @@ $(function() {
 
     var Tasks = Backbone.Collection.extend({
 
-        model: Selleck.Model.Task,
+        model: Dingbat.Model.Task,
 
         url: 'api.php/tasks'
 
     });
 
 
-    Selleck.Collection.Tasks = new Tasks();
+    Dingbat.Collection.Tasks = new Tasks();
 
 });
 

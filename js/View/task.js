@@ -1,6 +1,6 @@
 $(function() {
 
-    Selleck.View.Task = Backbone.View.extend({
+    Dingbat.View.Task = Backbone.View.extend({
 
         events: {
             'click .update':   'showForm',

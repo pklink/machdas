@@ -1,6 +1,6 @@
 $(function() {
 
-    Selleck.View.Form = Backbone.Layout.extend({
+    Dingbat.View.Form = Backbone.Layout.extend({
 
         template: '#form-template',
 
@@ -13,7 +13,7 @@ $(function() {
         add: function() {
 
             // create model
-            var model = new Selleck.Model.Task();
+            var model = new Dingbat.Model.Task();
 
             // add eventhandler
             this.listenToOnce(model, 'request', this.disable);
@@ -30,7 +30,7 @@ $(function() {
 
 
         addToCollection: function(model) {
-            Selleck.Collection.Tasks.add(model);
+            Dingbat.Collection.Tasks.add(model);
         },
 
 

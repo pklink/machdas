@@ -1,4 +1,4 @@
-Selleck = {
+Dingbat = {
     View:       {},
     Model:      {},
     Router:     {},
@@ -14,6 +14,6 @@ $(function() {
         $('#ajax-loader').fadeOut();
     });
 
-    Selleck.View.App.$el.appendTo('body');
-    Selleck.View.App.render();
+    Dingbat.View.App.$el.appendTo('body');
+    Dingbat.View.App.render();
 });

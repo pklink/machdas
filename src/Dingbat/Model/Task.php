@@ -1,11 +1,10 @@
 <?php
 
 
-namespace Selleck\Todo\Model;
+namespace Dingbat\Model;
 
 
 use \Phormium\Model;
-use Selleck\Todo;
 
 class Task extends Model
 {

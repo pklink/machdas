@@ -1,6 +1,6 @@
 $(function() {
 
-    Selleck.View.Footer = Backbone.Layout.extend({
+    Dingbat.View.Footer = Backbone.Layout.extend({
 
         template: '#footer-template'
 

@@ -1,6 +1,6 @@
 $(function() {
 
-    Selleck.View.Sidebar = Backbone.View.extend({
+    Dingbat.View.Sidebar = Backbone.View.extend({
 
         template: _.template($('#sidebar-template').html()),
 

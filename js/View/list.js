@@ -1,6 +1,6 @@
 $(function() {
 
-    Selleck.View.List = Backbone.Layout.extend({
+    Dingbat.View.List = Backbone.Layout.extend({
 
         template: '#list-template',
 
@@ -9,7 +9,7 @@ $(function() {
 
 
         addTask: function(task) {
-            var view = new Selleck.View.Task({model: task});
+            var view = new Dingbat.View.Task({model: task});
             view.render().$el.hide().prependTo(this.$('form.list'));
 
             if (this.isStarted) {
@@ -22,12 +22,12 @@ $(function() {
 
 
         initialize:  function() {
-            this.listenTo(Selleck.Collection.Tasks, 'add', this.addTask);
-            this.listenTo(Selleck.Collection.Tasks, 'add', this.hideNoTasksMessage);
-            this.listenTo(Selleck.Collection.Tasks, 'remove', this.showNoTasksMessage);
-            this.listenTo(Selleck.Collection.Tasks, 'sync', this.showList);
+            this.listenTo(Dingbat.Collection.Tasks, 'add', this.addTask);
+            this.listenTo(Dingbat.Collection.Tasks, 'add', this.hideNoTasksMessage);
+            this.listenTo(Dingbat.Collection.Tasks, 'remove', this.showNoTasksMessage);
+            this.listenTo(Dingbat.Collection.Tasks, 'sync', this.showList);
 
-            Selleck.Collection.Tasks.fetch();
+            Dingbat.Collection.Tasks.fetch();
         },
 
 
@@ -43,7 +43,7 @@ $(function() {
 
 
         showNoTasksMessage: function() {
-            if (Selleck.Collection.Tasks.length == 0) {
+            if (Dingbat.Collection.Tasks.length == 0) {
                 this.$('.no-tasks').slideDown();
             }
         }

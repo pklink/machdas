@@ -1,12 +1,11 @@
 <?php
 
 
-namespace Selleck\Todo\Action\Task;
+namespace Dingbat\Action\Task;
 
 
-use Selleck\Todo\Action;
-use Selleck\Todo\Model\Task;
-use Selleck\Todo;
+use Dingbat\Action;
+use Dingbat\Model\Task;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Index extends Action
