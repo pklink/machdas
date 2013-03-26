@@ -54,10 +54,12 @@ Initial version
 ## Credits
 
 * [Backbone.js](http://backbonejs.org/)
+* [backbone.layoutmanager](https://github.com/tbranyen/backbone.layoutmanager)
 * [Foundation](http://foundation.zurb.com/)
+* [JShrink](http://github.com/tedivm/JShrink)
 * [jQuery](http://jquery.com/)
 * [jQuery UI](http://jqueryui.com/)
 * [json2.js](http://github.com/douglascrockford/JSON-js)
-* [Phormium](https://github.com/ihabunek/phormium)
+* [Phormium](http://github.com/ihabunek/phormium)
 * [Silex](http://silex.sensiolabs.org/)
 * [Underscore.js](http://underscorejs.org/)
