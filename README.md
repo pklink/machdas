@@ -30,10 +30,7 @@ You can use the following shorttags for setting priority:
 
 - [ ] add several lists (e.g. job, private ...)
 - [ ] add hashtags (e.g. #project #blah ...)
-- [x] <del>add priority (high, normal, low)</del> (added in version 0.2.0)
-- [x] <del>add shorttags (e.g. @high, @normal, @low)</del> (added in version 0.2.0)
 - [ ] improve code
-- [ ] remove twig
 
 
 ## Changelog
@@ -42,6 +39,7 @@ You can use the following shorttags for setting priority:
 
 * Added slidable sidebar
 * Removed .htaccess for an easier configuration
+* Removed [Twig](http://twig.sensiolabs.org/)
 
 ### 0.2.0
 
@@ -62,5 +60,4 @@ Initial version
 * [json2.js](http://github.com/douglascrockford/JSON-js)
 * [Phormium](https://github.com/ihabunek/phormium)
 * [Silex](http://silex.sensiolabs.org/)
-* [Twig](http://twig.sensiolabs.org/)
 * [Underscore.js](http://underscorejs.org/)

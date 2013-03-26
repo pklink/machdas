@@ -68,11 +68,6 @@ class Todo
         });
 
 
-        // register twig
-        $this->silex->register(new TwigServiceProvider(), array(
-            'twig.path' => $this->config->get('rootDirectory') . '/themes/default'
-        ));
-
         // register url-generator
         $this->silex->register(new UrlGeneratorServiceProvider());
 
@@ -86,11 +81,6 @@ class Todo
      */
     protected function addRoutes()
     {
-        // index / default route
-        $this->silex->match('/', function() {
-            return (new Todo\Action\App\Start())->run();
-        })->bind('home');
-
         // add task
         $this->silex->post('/task', function() {
             return (new Todo\Action\Task\Add())->run();

@@ -13,7 +13,7 @@ $config = [
         'password' => DBPASS,
         'name'     => DBNAME,
     ],
-    'debugging' => true,
+    'debugging' => false,
 ];
 
 \Selleck\Todo::app(__DIR__, $config)->run();

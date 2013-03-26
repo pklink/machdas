@@ -12,7 +12,7 @@ $(function() {
         priorityName: 'normal',
 
 
-        urlRoot: 'index.php/task',
+        urlRoot: 'api.php/task',
 
         initialize: function() {
             this.listenTo(this, 'change:priority', this.setPriorityName);
