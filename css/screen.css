@@ -1,5 +1,6 @@
 body {
     padding-top: 25px;
+    overflow-x: hidden;
 }
 
 #add-task input {
