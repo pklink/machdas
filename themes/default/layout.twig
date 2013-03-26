@@ -14,7 +14,7 @@
 
     <script src="js/vendor/custom.modernizr.js"></script>
     <script src="js/vendor/jquery-1.9.1.min.js"></script>
-    <script src="js/vendor/jquery-ui-1.10.2.shake.min.js"></script>
+    <script src="js/vendor/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="js/vendor/foundation.js"></script>
 
     <script src="js/vendor/json2-min.js"></script>
@@ -28,6 +28,7 @@
     <script src="js/View/task.js"></script>
     <script src="js/View/list.js"></script>
     <script src="js/View/footer.js"></script>
+    <script src="js/View/sidebar.js"></script>
     <script src="js/View/app.js"></script>
     <script src="js/selleck.js"></script>
 
@@ -97,9 +98,30 @@
 
 
     <script type="text/template" id="footer-template">
-        selleck.todo 0.1.0 -
+        selleck.todo 0.2.1 -
         <a href="https://github.com/pklink/Selleck-Todo" target="_blank">pow</a>,
         <a href="https://sourceforge.net/projects/selleck-todo/" target="_blank">pow</a>, pow!
     </script>
+
+
+    <script type="text/template" id="sidebar-template">
+        <div id="sidebar">
+            <div class="icons">
+                <i class="foundicon-idea help"></i>
+            </div>
+            <div class="content help">
+                <h3>Shorttags</h3>
+                <p>You can set the priority of a task by typing <code>@high</code>, <code>@normal</code> or <code>@low</code>.</p>
+                <p>The default priority is <code>@normal</code>.</p>
+
+                <h3>Hints</h3>
+                <p>Double click on a task to edit it.</p>
+                <p>Press <kbd>ESC</kbd> in the input field to cancel updating a task.</p>
+                <p>Press <kbd>Enter</kbd> in a input field to save it.</p>
+            </div>
+            <br style="clear: both" />
+        </div>
+    </script>
+
 </body>
 </html>

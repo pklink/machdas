@@ -42,6 +42,22 @@ You can use the following shorttags for setting priority:
 - [ ] remove twig
 
 
+## Changelog
+
+### 0.2.1
+
+* Added slidable sidebar
+
+### 0.2.0
+
+* Added priorities for tasks
+* Added shorttags for tasks (@high, @normal,@low)
+
+### 0.1.0
+
+Initial version
+
+
 ## Credits
 
 * [Backbone.js](http://backbonejs.org/)

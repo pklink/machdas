@@ -14,6 +14,9 @@ $(function() {
         list: null,
 
 
+        sidebar: new Selleck.View.Sidebar(),
+
+
         views: {
             '.form':  new Selleck.View.Form(),
             '.list':  new Selleck.View.List(),
@@ -22,10 +25,12 @@ $(function() {
 
 
         initialize:  function() {
+            // save views
             this.form = this.getView('.form');
             this.footer = this.getView('footer');
             this.list = this.getView('.list');
 
+            // hide views
             this.form.$el.hide();
             this.list.$el.hide();
             this.footer.$el.hide();
@@ -39,6 +44,7 @@ $(function() {
             this.form.$el.slideDown();
             this.list.$el.fadeIn();
             this.footer.$el.fadeIn();
+            this.sidebar.render().$el.appendTo('body').hide().fadeIn();
         }
 
     });

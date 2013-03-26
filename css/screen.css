@@ -109,3 +109,57 @@ footer {
     height: 59px;
     background: url(app-loader.gif) no-repeat;
 }
+
+#sidebar {
+    font-size: 1.5em;
+    position: absolute;
+    top: 15px;
+    right: -175px;
+    z-index: 100;
+    opacity: 0.9;
+}
+
+#sidebar div {
+    float: left;
+    width: 30px;
+}
+
+#sidebar .icons {
+    margin-top: 17px;
+    border-radius: 7px 0 0 7px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+#sidebar .icons i {
+    line-height: 1.5em;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+#sidebar .content {
+    float:right;
+    width: 175px;
+    background-color: #000;
+    border-radius: 7px 0 0 7px;
+    color: #eee;
+    position: relative;
+}
+
+#sidebar .content h3 {
+    margin: 15px;
+    color: #fff;
+    font-size: .8em;
+}
+
+#sidebar .content p {
+    margin: 15px;
+    font-size: 0.6em;
+    line-height: 1.3em;
+}
+
+#sidebar .content code {
+    color: #eee;
+}
+
