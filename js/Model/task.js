@@ -18,6 +18,17 @@ $(function() {
             this.listenTo(this, 'change:priority', this.setPriorityName);
             this.listenToOnce(this, 'add', this.setPriorityName);
             this.listenTo(this, 'change:name', this.setPriority);
+            this.listenTo(this, 'change:name', this.setMarked);
+        },
+
+
+        setMarked: function() {
+            var name = this.get('name');
+
+            if (name.search(/@done/) != -1) {
+                this.set('marked', 1);
+                this.set('name', $.trim(name.replace(/@done/, '')));
+            }
         },
 
 

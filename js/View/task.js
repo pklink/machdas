@@ -46,6 +46,20 @@ $(function() {
         },
 
 
+        initialize: function() {
+            var view = this;
+
+            this.listenTo(this.model, 'change:marked', function(model) {
+                if (model.get('marked') == 1) {
+                    view.mark();
+                }
+                else {
+                    view.unmark();
+                }
+            });
+        },
+
+
         mark:  function() {
             this.model.set('marked', 1);
 
@@ -98,9 +112,9 @@ $(function() {
 
 
         update: function() {
-            var value = this.$(':text:first').val();
+            this.model.set('name', this.$(':text:first').val());
 
-            if (this.model.set('name', value).save()) {
+            if (this.model.save()) {
                 this.$('.name').text( this.model.get('name') );
                 this.$el.attr('class', 'prio-' + this.model.priorityName);
                 this.hideForm();

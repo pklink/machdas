@@ -32,7 +32,8 @@ class Add extends Action
         $request = App::instance()->getRequest();
 
         $task = new Task();
-        $task->name = $request->get('name');
+        $task->name     = $request->get('name');
+        $task->marked   = $request->get('marked', false);
         $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
         $task->save();
 
