@@ -3,7 +3,6 @@
 
 namespace Dingbat\Action\Task;
 
-
 use Dingbat\App;
 use Dingbat\Action;
 use Dingbat\Model\Task;

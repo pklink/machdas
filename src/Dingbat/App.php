@@ -3,14 +3,8 @@
 
 namespace Dingbat;
 
-use Assetic\Asset\AssetCollection;
-use Assetic\Asset\FileAsset;
-use Assetic\Asset\GlobAsset;
-use Assetic\AssetManager;
-use Assetic\FilterManager;
 use Dotor\Dotor;
 use Silex\Application;
-use SilexAssetic\AsseticExtension;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;

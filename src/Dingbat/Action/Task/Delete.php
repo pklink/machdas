@@ -3,7 +3,6 @@
 
 namespace Dingbat\Action\Task;
 
-
 use Dingbat\Action;
 use Dingbat\Model\Task;
 use Symfony\Component\HttpFoundation\JsonResponse;

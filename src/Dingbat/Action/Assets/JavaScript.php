@@ -2,14 +2,14 @@
 
 namespace Dingbat\Action\Assets;
 
-
 use Assetic\Asset\AssetCache;
 use Assetic\Asset\AssetCollection;
 use Assetic\Asset\FileAsset;
 use Assetic\Cache\FilesystemCache;
 use Dingbat\App;
+use Dingbat\Action;
 
-class JavaScript extends \Dingbat\Action
+class JavaScript extends Action
 {
 
     public function run()
