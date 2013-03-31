@@ -14,11 +14,9 @@ VALUES
 	(3, 'hug yourself', 0, 0);
 
 
-CREATE TABLE `tasks` (
+CREATE TABLE `cards` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `marked` tinyint(1) NOT NULL DEFAULT '0',
-  `priority` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
