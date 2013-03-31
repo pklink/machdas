@@ -13,6 +13,7 @@ A simple todo manager as PHP-Single-Page-App
 
 * import `setup/install.sql`
 * edit `config.php`
+* chmod tmp/cache to 777
 
 
 ## Shorttags

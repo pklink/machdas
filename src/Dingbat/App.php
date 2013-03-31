@@ -3,9 +3,14 @@
 
 namespace Dingbat;
 
+use Assetic\Asset\AssetCollection;
+use Assetic\Asset\FileAsset;
+use Assetic\Asset\GlobAsset;
+use Assetic\AssetManager;
+use Assetic\FilterManager;
 use Dotor\Dotor;
 use Silex\Application;
-use Silex\Provider\UrlGeneratorServiceProvider;
+use SilexAssetic\AsseticExtension;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
@@ -76,6 +81,8 @@ class App
             $this->request = $request;
         });
 
+
+
         $this->setupDatabase();
         $this->addRoutes();
     }
@@ -86,9 +93,9 @@ class App
      */
     protected function addRoutes()
     {
-        // minify js
-        $this->silex->get('/min/js', function() {
-            return $this->prepareAction(new Action\Minifier\JavaScript())->run();
+        // js
+        $this->silex->get('/assets/js', function() {
+            return $this->prepareAction(new Action\Assets\JavaScript())->run();
         });
 
         // add task

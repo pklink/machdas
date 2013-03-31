@@ -8,8 +8,7 @@ return [
         'name'     => 'selleck',
     ],
 
-    'minifier' => [
-        'path'    => __DIR__ . '/js',
+    'assets' => [
         'scripts' => [
             'vendor/custom.modernizr',
             'vendor/jquery-1.9.1.min',
@@ -31,5 +30,5 @@ return [
         ],
     ],
 
-    'debugging' => false,
+    'debugging' => true,
 ];
