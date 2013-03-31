@@ -8,6 +8,7 @@ use Assetic\Asset\FileAsset;
 use Assetic\Cache\FilesystemCache;
 use Dingbat\App;
 use Dingbat\Action;
+use Symfony\Component\HttpFoundation\Response;
 
 class JavaScript extends Action
 {
@@ -28,7 +29,7 @@ class JavaScript extends Action
         $cachePath = new FilesystemCache($cachePath);
         $cache     = new AssetCache($collection, $cachePath);
 
-        return $cache->dump();
+        return new Response($cache->dump(), 200, ['Content-Type' => 'application/javascript']);
     }
 
 }
