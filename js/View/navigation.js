@@ -8,13 +8,21 @@ $(function() {
         events: {
             'click .cancel': 'hideForm',
             'click .add'   : 'showForm',
-            'submit form'  : 'createCard'
+            'submit form'  : 'createCard',
+            'keyup input'  : 'cancel'
         },
 
 
         addCard: function(card) {
             var view = new Dingbat.View.Card({model: card});
             view.render().$el.appendTo(this.$('.list')).hide().fadeIn();
+        },
+
+
+        cancel: function(event) {
+            if (event.which == 27) {
+                this.hideForm();
+            }
         },
 
 
