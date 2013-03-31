@@ -76,10 +76,6 @@ class App
             $this->request = $request;
         });
 
-
-        // register url-generator
-        $this->silex->register(new UrlGeneratorServiceProvider());
-
         $this->setupDatabase();
         $this->addRoutes();
     }
