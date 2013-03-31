@@ -90,30 +90,30 @@ class App
      */
     protected function addRoutes()
     {
-        // add task
+        // minify js
         $this->silex->get('/min/js', function() {
-            return (new Action\Minifier\JavaScript())->run();
+            return $this->prepareAction(new Action\Minifier\JavaScript())->run();
         });
 
         // add task
         $this->silex->post('/task', function() {
-            return (new Action\Task\Add())->run();
-        })->bind('task');
+            return $this->prepareAction(new Action\Task\Add())->run();
+        });
 
         // delete
         $this->silex->delete('/task/{id}', function($id) {
-            return (new Action\Task\Delete())->run($id);
+            return $this->prepareAction(new Action\Task\Delete())->run($id);
         });
 
         // update
         $this->silex->put('/task/{id}', function($id) {
-            return (new Action\Task\Update())->run($id);
+            return $this->prepareAction(new Action\Task\Update())->run($id);
         });
 
         // index
         $this->silex->get('/tasks', function() {
-            return (new Action\Task\Index())->run();
-        })->bind('tasks');
+            return $this->prepareAction(new Action\Task\Index())->run();
+        });
     }
 
 
@@ -163,6 +163,17 @@ class App
     public function getSilex()
     {
         return $this->silex;
+    }
+
+
+    /**
+     * @param Action $action
+     * @return Action
+     */
+    public function prepareAction(Action $action)
+    {
+        $action->setRequest($this->getRequest());
+        return $action;
     }
 
 

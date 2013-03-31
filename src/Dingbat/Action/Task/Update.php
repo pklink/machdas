@@ -30,7 +30,7 @@ class Update extends Action
      */
     public function run($id)
     {
-        $request = App::instance()->getRequest();
+        $request = $this->request;
 
         /* @var Task $task */
         $task = Task::get($id);

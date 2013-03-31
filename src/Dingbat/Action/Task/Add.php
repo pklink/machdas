@@ -29,7 +29,7 @@ class Add extends Action
      */
     public function run()
     {
-        $request = App::instance()->getRequest();
+        $request = $this->request;
 
         $task = new Task();
         $task->name     = $request->get('name');
