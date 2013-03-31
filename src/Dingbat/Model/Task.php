@@ -55,4 +55,10 @@ class Task extends Model
      */
     public $priority = self::PRIORITY_NORMAL;
 
+
+    /**
+     * @var int
+     */
+    public $cardId = 1;
+
 }

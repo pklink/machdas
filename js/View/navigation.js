@@ -5,6 +5,9 @@ $(function() {
         template: '#navigation-template',
 
 
+        activeCard: null,
+
+
         events: {
             'click .cancel': 'hideForm',
             'click .add'   : 'showForm',
@@ -14,7 +17,15 @@ $(function() {
 
 
         addCard: function(card) {
+            // create card-view
             var view = new Dingbat.View.Card({model: card});
+
+            // set card as active if no activeCard set
+            if (this.activeCard == null) {
+                view.activate();
+            }
+
+            // render view
             view.render().$el.appendTo(this.$('.list')).hide().fadeIn();
         },
 
@@ -44,6 +55,11 @@ $(function() {
         },
 
 
+        getActiveCard: function() {
+            return this.activeCard;
+        },
+
+
         hideForm: function() {
             this.$('input').val('');
             this.$('input').animate({
@@ -53,6 +69,15 @@ $(function() {
             });
             this.$('.cancel').hide();
             this.$('.add').fadeIn();
+        },
+
+
+        setActiveCard: function(card) {
+            if (this.activeCard != null) {
+                this.activeCard.deactivate();
+            }
+
+            this.activeCard = card;
         },
 
 

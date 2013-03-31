@@ -23,6 +23,7 @@ $(function() {
 
             // save model
             model.set('name', this.$(':text.name').val());
+            model.set('cardId', Dingbat.View.App.navigation.getActiveCard().model.get('id'));
             model.save();
 
             return false;

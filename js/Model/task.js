@@ -5,7 +5,8 @@ $(function() {
         defaults: {
             'name':     '',
             'marked':   false,
-            'priority': 1
+            'priority': 1,
+            'cardId':   ''
         },
 
 
@@ -13,6 +14,7 @@ $(function() {
 
 
         urlRoot: 'api.php/task',
+
 
         initialize: function() {
             this.listenTo(this, 'change:priority', this.setPriorityName);
