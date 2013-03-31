@@ -27,7 +27,7 @@ class Index extends Action
     public function run()
     {
         $cards = [];
-        foreach (Card::objects()->orderBy('name', 'asc')->fetch() as $card) {
+        foreach (Card::objects()->orderBy('id', 'asc')->fetch() as $card) {
             $cards[] = [
                 'id'       => $card->id,
                 'name'     => $card->name,
