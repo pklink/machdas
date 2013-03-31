@@ -17,7 +17,38 @@
 
 <div id="ajax-loader"></div>
 
+<script type="text/template" id="navigation-template">
+    <nav class="top-bar">
+        <section class="top-bar-section">
+            <ul class="left list"></ul>
+            <ul class="right">
+                <li class="has-form">
+                    <div class="row collapse">
+                        <div class="small-10 columns">
+                            <form>
+                                <input type="text" />
+                            </form>
+                        </div>
+                        <div class="small-2 text-center columns">
+                            <i class="foundicon-plus add"></i>
+                            <i class="foundicon-remove cancel"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </nav>
+</script>
+
+
+<script type="text/template" id="card-template">
+    <a href="#card/<%- id %>"><%- name %></a>
+</script>
+
+
 <script type="text/template" id="app">
+    <div class="navigation"></div>
+
     <div class="row">
         <div class="small-10 large-10 large-centered small-centered columns">
 
