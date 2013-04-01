@@ -34,7 +34,7 @@ $(function() {
         /**
          * @type Dingbat.View.Sidebar
          */
-        sidebar: null,
+        Sidebar: null,
 
 
         initialize:  function() {
@@ -43,7 +43,7 @@ $(function() {
             this.List       = new Dingbat.View.List();
             this.Footer     = new Dingbat.View.Footer();
             this.Navigation = new Dingbat.View.Navigation();
-            this.sidebar    = new Dingbat.View.Sidebar();
+            this.Sidebar    = new Dingbat.View.Sidebar();
 
             // set views to layout/application
             this.setView('.form', this.Form);
@@ -67,7 +67,7 @@ $(function() {
             this.Form.$el.slideDown();
             this.List.$el.fadeIn();
             this.Footer.$el.fadeIn();
-            this.sidebar.render().$el.appendTo('body').hide().fadeIn();
+            this.Sidebar.render().$el.appendTo('body').hide().fadeIn();
         }
 
     });
