@@ -34,7 +34,7 @@ class Add extends Action
         $task->name     = $request->get('name');
         $task->marked   = $request->get('marked', false);
         $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
-        $task->cardId   = $request->get('cardId', 1);
+        $task->cardid   = $request->get('cardId', 1);
         $task->save();
 
         $return = [

@@ -36,6 +36,7 @@ class Update extends Action
         $task->name     = $request->get('name');
         $task->marked   = $request->get('marked');
         $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
+        $task->cardid   = $request->get('cardId');
         $task->update();
 
         return JsonResponse::create(['success' => 1]);

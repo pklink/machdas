@@ -49,9 +49,17 @@ $(function() {
         Tasks: null,
 
 
-        run:  function() {
-            this.Cards = new Dingbat.Collection.Cards();
-            this.Tasks = new Dingbat.Collection.Tasks();
+        /**
+         * @type Dingbat.Collection.List
+         */
+        CardTasks: null,
+
+
+        run: function() {
+            // create collections
+            this.Cards     = new Dingbat.Collection.Cards();
+            this.Tasks     = new Dingbat.Collection.Tasks();
+            this.CardTasks = new Dingbat.Collection.List();
 
             // create views
             this.Form       = new Dingbat.View.Form();
@@ -59,6 +67,11 @@ $(function() {
             this.Footer     = new Dingbat.View.Footer();
             this.Navigation = new Dingbat.View.Navigation();
             this.Sidebar    = new Dingbat.View.Sidebar();
+
+            // set listener
+            this.Navigation.setListener();
+            this.CardTasks.setListener();
+            this.List.setListener();
 
             // set views to layout/application
             this.setView('.form', this.Form);
@@ -73,10 +86,14 @@ $(function() {
             this.Footer.$el.hide();
 
             this.listenToOnce(this.Tasks, 'sync', this.showApp);
+
+            this.Tasks.fetch();
         },
 
 
         showApp: function() {
+            Dingbat.App.Cards.fetch();
+
             this.$('#app-loader').hide();
             this.Navigation.$el.fadeIn();
             this.Form.$el.slideDown();

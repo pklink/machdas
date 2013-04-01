@@ -17,6 +17,12 @@ $(function() {
         urlRoot: 'api.php/task',
 
 
+        /**
+         * @type {Dingbat.View.Task}
+         */
+        view: null,
+
+
         initialize: function() {
             this.listenTo(this, 'change:priority', this.setPriorityName);
             this.listenToOnce(this, 'add', this.setPriorityName);

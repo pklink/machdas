@@ -79,6 +79,12 @@ $(function() {
             }
 
             this.activeCard = card;
+            this.trigger('change:active', card);
+        },
+
+
+        setListener: function() {
+            this.listenTo(Dingbat.App.Cards, 'add', this.addCard);
         },
 
 
@@ -89,13 +95,6 @@ $(function() {
             }, 200).focus();
             this.$('.add').hide();
             this.$('.cancel').fadeIn();
-        },
-
-
-        initialize: function() {
-            this.listenTo(Dingbat.App.Cards, 'add', this.addCard);
-
-            Dingbat.App.Cards.fetch();
         }
 
     });

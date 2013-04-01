@@ -22,6 +22,7 @@ return [
             'Model/card',
             'Collection/tasks',
             'Collection/cards',
+            'Collection/list',
             'View/card',
             'View/navigation',
             'View/form',

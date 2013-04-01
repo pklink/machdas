@@ -32,7 +32,8 @@ class Index extends Action
                 'id'       => $task->id,
                 'name'     => $task->name,
                 'marked'   => $task->marked,
-                'priority' => $task->priority
+                'priority' => $task->priority,
+                'cardId'   => $task->cardid
             ];
         }
 

@@ -39,6 +39,11 @@ $(function() {
         },
 
 
+        hide: function() {
+            this.$el.slideUp();
+        },
+
+
         hideForm: function() {
             this.$(':text.name').hide();
             this.$('.cancel').hide();
@@ -70,7 +75,7 @@ $(function() {
 
 
         render: function() {
-            this.$el.html(this.template(this.model.toJSON()));
+            this.$el.html(this.template(this.model.toJSON())).hide();
             this.$el.attr('class', 'prio-' +  this.model.priorityName);
             this.hideForm();
 
@@ -79,6 +84,11 @@ $(function() {
             }
 
             return this;
+        },
+
+
+        show: function() {
+            this.$el.slideDown();
         },
 
 

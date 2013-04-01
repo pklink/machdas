@@ -6,29 +6,18 @@ $(function() {
         template: '#list-template',
 
 
-        isStarted: false,
-
-
+        /**
+         * @param {Dingbat.Model.Task} task
+         */
         addTask: function(task) {
+            // create view
             var view = new Dingbat.View.Task({model: task});
-            view.render().$el.hide().prependTo(this.$('form.list'));
 
-            if (this.isStarted) {
-                view.$el.slideDown();
-            }
-            else {
-                view.$el.show();
-            }
-        },
+            // set view to model
+            task.view = view;
 
-
-        initialize:  function() {
-            this.listenTo(Dingbat.App.Tasks, 'add', this.addTask);
-            this.listenTo(Dingbat.App.Tasks, 'add', this.hideNoTasksMessage);
-            this.listenTo(Dingbat.App.Tasks, 'remove', this.showNoTasksMessage);
-            this.listenTo(Dingbat.App.Tasks, 'sync', this.showList);
-
-            Dingbat.App.Tasks.fetch();
+            // render & show task
+            view.render().$el.prependTo(this.$('form.list')).slideDown();
         },
 
 
@@ -37,14 +26,21 @@ $(function() {
         },
 
 
-        showList: function() {
-            this.$el.slideDown();
-            this.isStarted = true;
+        hideTask: function(task) {
+            task.view.hide();
+        },
+
+
+        setListener: function() {
+            this.listenTo(Dingbat.App.CardTasks, 'add', this.addTask);
+            this.listenTo(Dingbat.App.CardTasks, 'add', this.hideNoTasksMessage);
+            this.listenTo(Dingbat.App.CardTasks, 'remove', this.hideTask);
+            this.listenTo(Dingbat.App.CardTasks, 'refresh', this.showNoTasksMessage);
         },
 
 
         showNoTasksMessage: function() {
-            if (Dingbat.App.Tasks.length == 0) {
+            if (Dingbat.App.CardTasks.length == 0) {
                 this.$('.no-tasks').slideDown();
             }
         }

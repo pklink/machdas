@@ -181,3 +181,7 @@ nav .right i {
 nav .right i.cancel {
     display: none;
 }
+
+nav li.active a {
+    text-decoration: underline;
+}
