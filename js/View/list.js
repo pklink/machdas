@@ -1,4 +1,5 @@
 $(function() {
+    'use strict';
 
     Dingbat.View.List = Backbone.Layout.extend({
 

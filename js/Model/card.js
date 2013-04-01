@@ -1,4 +1,5 @@
 $(function() {
+    'use strict';
 
     Dingbat.Model.Card = Backbone.Model.extend({
 

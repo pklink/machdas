@@ -1,4 +1,5 @@
 $(function() {
+    'use strict';
 
     Dingbat.View.Form = Backbone.Layout.extend({
 

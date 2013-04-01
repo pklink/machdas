@@ -1,4 +1,5 @@
 $(function() {
+    'use strict';
 
     Dingbat.View.Task = Backbone.View.extend({
 

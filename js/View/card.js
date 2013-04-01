@@ -1,10 +1,7 @@
 $(function() {
+    'use strict';
 
     Dingbat.View.Card = Backbone.View.extend({
-
-        events: {
-        },
-
 
         model: null,
 
