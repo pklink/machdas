@@ -18,7 +18,7 @@ $(function() {
 
 
         activate: function() {
-            Dingbat.View.App.navigation.setActiveCard(this);
+            Dingbat.View.App.Navigation.setActiveCard(this);
             this.$el.attr('class', 'active');
         },
 

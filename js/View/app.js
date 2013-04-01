@@ -10,7 +10,7 @@ $(function() {
         /**
          * @type Dingbat.View.Navigation
          */
-        navigation: null,
+        Navigation: null,
 
 
         /**
@@ -42,17 +42,17 @@ $(function() {
             this.form       = new Dingbat.View.Form();
             this.list       = new Dingbat.View.List();
             this.footer     = new Dingbat.View.Footer();
-            this.navigation = new Dingbat.View.Navigation();
+            this.Navigation = new Dingbat.View.Navigation();
             this.sidebar    = new Dingbat.View.Sidebar();
 
             // set views to layout/application
             this.setView('.form', this.form);
             this.setView('.list', this.list);
             this.setView('footer', this.footer);
-            this.setView('.navigation', this.navigation);
+            this.setView('.navigation', this.Navigation);
 
             // hide views
-            this.navigation.$el.hide();
+            this.Navigation.$el.hide();
             this.form.$el.hide();
             this.list.$el.hide();
             this.footer.$el.hide();
@@ -63,7 +63,7 @@ $(function() {
 
         showApp: function() {
             this.$('#app-loader').hide();
-            this.navigation.$el.fadeIn();
+            this.Navigation.$el.fadeIn();
             this.form.$el.slideDown();
             this.list.$el.fadeIn();
             this.footer.$el.fadeIn();
