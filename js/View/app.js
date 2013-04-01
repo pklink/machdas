@@ -7,35 +7,49 @@ $(function() {
         template: '#app',
 
 
+        /**
+         * @type Dingbat.View.Navigation
+         */
         navigation: null,
 
 
+        /**
+         * @type Dingbat.View.Form
+         */
         form: null,
 
 
+        /**
+         * @type Dingbat.View.Footer
+         */
         footer: null,
 
 
+        /**
+         * @type Dingbat.View.List
+         */
         list: null,
 
 
-        sidebar: new Dingbat.View.Sidebar(),
-
-
-        views: {
-            '.form'      : new Dingbat.View.Form(),
-            '.list'      : new Dingbat.View.List(),
-            'footer'     : new Dingbat.View.Footer(),
-            '.navigation': new Dingbat.View.Navigation()
-        },
+        /**
+         * @type Dingbat.View.Sidebar
+         */
+        sidebar: null,
 
 
         initialize:  function() {
-            // save views
-            this.navigation = this.getView('.navigation');
-            this.form = this.getView('.form');
-            this.footer = this.getView('footer');
-            this.list = this.getView('.list');
+            // create views
+            this.form       = new Dingbat.View.Form();
+            this.list       = new Dingbat.View.List();
+            this.footer     = new Dingbat.View.Footer();
+            this.navigation = new Dingbat.View.Navigation();
+            this.sidebar    = new Dingbat.View.Sidebar();
+
+            // set views to layout/application
+            this.setView('.form', this.form);
+            this.setView('.list', this.list);
+            this.setView('footer', this.footer);
+            this.setView('.navigation', this.navigation);
 
             // hide views
             this.navigation.$el.hide();
