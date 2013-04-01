@@ -7,7 +7,7 @@ CREATE TABLE `cards` (
 
 INSERT INTO `cards` (`id`, `name`)
 VALUES
-	(1, 'First List');
+	(1, 'first list');
 
 ALTER TABLE `tasks` ADD COLUMN `cardId` int(11) NOT NULL;
 
