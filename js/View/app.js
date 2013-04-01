@@ -72,7 +72,7 @@ $(function() {
 
     });
 
-    Dingbat.View.App = new App();
+    Dingbat.App = new App();
 
 })
 

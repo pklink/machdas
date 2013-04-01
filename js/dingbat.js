@@ -15,6 +15,6 @@ $(function() {
         $('#ajax-loader').fadeOut();
     });
 
-    Dingbat.View.App.$el.appendTo('body');
-    Dingbat.View.App.render();
+    Dingbat.App.$el.appendTo('body');
+    Dingbat.App.render();
 });
