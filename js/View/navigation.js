@@ -73,8 +73,16 @@ $(function() {
         },
 
 
+        /**
+         *
+         * @param {Dingbat.View.Card} card
+         */
         setActiveCard: function(card) {
             if (this.activeCard != null) {
+                if (card.model.id == this.activeCard.model.id) {
+                    return false;
+                }
+
                 this.activeCard.deactivate();
             }
 

@@ -183,5 +183,6 @@ nav .right i.cancel {
 }
 
 nav li.active a {
+    cursor: default;
     text-decoration: underline;
 }
