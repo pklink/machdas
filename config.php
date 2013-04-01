@@ -30,6 +30,7 @@ return [
             'View/list',
             'View/footer',
             'View/sidebar',
+            'router',
             'View/app',
             'dingbat'
         ],

@@ -55,6 +55,17 @@ $(function() {
         CardTasks: null,
 
 
+        /**
+         * @type {Dingbat.Router}
+         */
+        Router: null,
+
+
+        loadCards: function() {
+            this.Cards.fetch();
+        },
+
+
         run: function() {
             // create collections
             this.Cards     = new Dingbat.Collection.Cards();
@@ -85,22 +96,30 @@ $(function() {
             this.List.$el.hide();
             this.Footer.$el.hide();
 
-            this.listenToOnce(this.Tasks, 'sync', this.showApp);
+            this.listenToOnce(this.Tasks, 'sync', this.loadCards);
+            this.listenToOnce(this.Cards, 'sync', this.showApp);
+            this.listenToOnce(this.Cards, 'sync', this.startRouter);
 
+            // load tasks
             this.Tasks.fetch();
         },
 
 
         showApp: function() {
-            Dingbat.App.Cards.fetch();
-
             this.$('#app-loader').hide();
             this.Navigation.$el.fadeIn();
             this.Form.$el.slideDown();
             this.List.$el.fadeIn();
             this.Footer.$el.fadeIn();
             this.Sidebar.render().$el.appendTo('body').hide().fadeIn();
+        },
+
+
+        startRouter: function() {
+            this.Router = new Dingbat.Router();
+            Backbone.history.start();
         }
+
 
     });
 

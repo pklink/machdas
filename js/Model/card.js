@@ -11,8 +11,10 @@ $(function() {
         urlRoot: 'api.php/card',
 
 
-        initialize: function() {
-        }
+        /**
+         * @type {Dingbat.View.Card}
+         */
+        view: null
 
     });
 

@@ -17,14 +17,16 @@ $(function() {
         },
 
 
+        /**
+         *
+         * @param {Dingbat.Model.Card} card
+         */
         addCard: function(card) {
             // create card-view
             var view = new Dingbat.View.Card({model: card});
 
-            // set card as active if no activeCard set
-            if (this.activeCard == null) {
-                view.activate();
-            }
+            // set view to model
+            card.view = view;
 
             // render view
             view.render().$el.appendTo(this.$('.list')).hide().fadeIn();

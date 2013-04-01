@@ -1,7 +1,6 @@
 var Dingbat = {
     View:       {},
     Model:      {},
-    Router:     {},
     Collection: {}
 };
 
