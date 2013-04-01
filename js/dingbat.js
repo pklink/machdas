@@ -1,4 +1,4 @@
-Dingbat = {
+var Dingbat = {
     View:       {},
     Model:      {},
     Router:     {},
@@ -6,6 +6,7 @@ Dingbat = {
 };
 
 $(function() {
+    'use strict';
 
     $(document).ajaxStart(function() {
         $('#ajax-loader').fadeIn();
