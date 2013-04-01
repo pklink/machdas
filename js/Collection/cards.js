@@ -1,16 +1,13 @@
 $(function() {
     'use strict';
 
-    var Cards = Backbone.Collection.extend({
+    Dingbat.Collection.Cards = Backbone.Collection.extend({
 
         model: Dingbat.Model.Card,
 
         url: 'api.php/cards'
 
     });
-
-
-    Dingbat.Collection.Cards = new Cards();
 
 });
 

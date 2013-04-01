@@ -23,12 +23,12 @@ $(function() {
 
 
         initialize:  function() {
-            this.listenTo(Dingbat.Collection.Tasks, 'add', this.addTask);
-            this.listenTo(Dingbat.Collection.Tasks, 'add', this.hideNoTasksMessage);
-            this.listenTo(Dingbat.Collection.Tasks, 'remove', this.showNoTasksMessage);
-            this.listenTo(Dingbat.Collection.Tasks, 'sync', this.showList);
+            this.listenTo(Dingbat.App.Tasks, 'add', this.addTask);
+            this.listenTo(Dingbat.App.Tasks, 'add', this.hideNoTasksMessage);
+            this.listenTo(Dingbat.App.Tasks, 'remove', this.showNoTasksMessage);
+            this.listenTo(Dingbat.App.Tasks, 'sync', this.showList);
 
-            Dingbat.Collection.Tasks.fetch();
+            Dingbat.App.Tasks.fetch();
         },
 
 
@@ -44,7 +44,7 @@ $(function() {
 
 
         showNoTasksMessage: function() {
-            if (Dingbat.Collection.Tasks.length == 0) {
+            if (Dingbat.App.Tasks.length == 0) {
                 this.$('.no-tasks').slideDown();
             }
         }

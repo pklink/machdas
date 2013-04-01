@@ -93,9 +93,9 @@ $(function() {
 
 
         initialize: function() {
-            this.listenTo(Dingbat.Collection.Cards, 'add', this.addCard);
+            this.listenTo(Dingbat.App.Cards, 'add', this.addCard);
 
-            Dingbat.Collection.Cards.fetch();
+            Dingbat.App.Cards.fetch();
         }
 
     });

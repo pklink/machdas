@@ -32,7 +32,7 @@ $(function() {
 
 
         addToCollection: function(model) {
-            Dingbat.Collection.Tasks.add(model);
+            Dingbat.App.Tasks.add(model);
         },
 
 

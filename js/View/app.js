@@ -37,7 +37,22 @@ $(function() {
         Sidebar: null,
 
 
-        initialize:  function() {
+        /**
+         * @type Dingbat.Collection.Cards
+         */
+        Cards: null,
+
+
+        /**
+         * @type Dingbat.Collection.Tasks
+         */
+        Tasks: null,
+
+
+        run:  function() {
+            this.Cards = new Dingbat.Collection.Cards();
+            this.Tasks = new Dingbat.Collection.Tasks();
+
             // create views
             this.Form       = new Dingbat.View.Form();
             this.List       = new Dingbat.View.List();
@@ -57,7 +72,7 @@ $(function() {
             this.List.$el.hide();
             this.Footer.$el.hide();
 
-            this.listenToOnce(Dingbat.Collection.Tasks, 'sync', this.showApp);
+            this.listenToOnce(this.Tasks, 'sync', this.showApp);
         },
 
 
@@ -73,6 +88,7 @@ $(function() {
     });
 
     Dingbat.App = new App();
+    Dingbat.App.run();
 
 })
 
