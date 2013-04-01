@@ -22,7 +22,7 @@ $(function() {
         /**
          * @type Dingbat.View.Footer
          */
-        footer: null,
+        Footer: null,
 
 
         /**
@@ -41,21 +41,21 @@ $(function() {
             // create views
             this.form       = new Dingbat.View.Form();
             this.list       = new Dingbat.View.List();
-            this.footer     = new Dingbat.View.Footer();
+            this.Footer     = new Dingbat.View.Footer();
             this.Navigation = new Dingbat.View.Navigation();
             this.sidebar    = new Dingbat.View.Sidebar();
 
             // set views to layout/application
             this.setView('.form', this.form);
             this.setView('.list', this.list);
-            this.setView('footer', this.footer);
+            this.setView('footer', this.Footer);
             this.setView('.navigation', this.Navigation);
 
             // hide views
             this.Navigation.$el.hide();
             this.form.$el.hide();
             this.list.$el.hide();
-            this.footer.$el.hide();
+            this.Footer.$el.hide();
 
             this.listenToOnce(Dingbat.Collection.Tasks, 'sync', this.showApp);
         },
@@ -66,7 +66,7 @@ $(function() {
             this.Navigation.$el.fadeIn();
             this.form.$el.slideDown();
             this.list.$el.fadeIn();
-            this.footer.$el.fadeIn();
+            this.Footer.$el.fadeIn();
             this.sidebar.render().$el.appendTo('body').hide().fadeIn();
         }
 
