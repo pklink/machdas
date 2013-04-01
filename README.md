@@ -54,10 +54,10 @@ Initial version
 
 ## Credits
 
+* [Assetic](http://github.com/kriswallsmith/assetic)
 * [Backbone.js](http://backbonejs.org/)
 * [backbone.layoutmanager](https://github.com/tbranyen/backbone.layoutmanager)
 * [Foundation](http://foundation.zurb.com/)
-* [JShrink](http://github.com/tedivm/JShrink)
 * [jQuery](http://jquery.com/)
 * [jQuery UI](http://jqueryui.com/)
 * [json2.js](http://github.com/douglascrockford/JSON-js)
