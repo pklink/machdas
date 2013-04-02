@@ -29,12 +29,16 @@ You can use the following shorttags for setting priority:
 
 ## Todos
 
-- [ ] add several lists (e.g. job, private ...)
 - [ ] add hashtags (e.g. #project #blah ...)
 - [ ] improve code
 
 
 ## Changelog
+
+### 0.3.0
+
+* Added cards/lists
+* Added routes for cards like "#card/1" etc.
 
 ### 0.2.1
 
