@@ -79,6 +79,7 @@ Initial version
 * [jQuery](http://jquery.com/)
 * [jQuery UI](http://jqueryui.com/)
 * [json2.js](http://github.com/douglascrockford/JSON-js)
+* [Keycut](http://github.com/duncannz/keycut)
 * [Phormium](http://github.com/ihabunek/phormium)
 * [Silex](http://silex.sensiolabs.org/)
 * [Underscore.js](http://underscorejs.org/)

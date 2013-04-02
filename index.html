@@ -30,7 +30,7 @@
                             </form>
                         </div>
                         <div class="small-2 text-center columns">
-                            <i class="foundicon-plus add"></i>
+                            <i class="foundicon-plus add" data-key="c"></i>
                             <i class="foundicon-remove cancel"></i>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
     <form id="add-task" class="custom">
         <div class="row collapse">
             <div class="small-11 columns">
-                <input type="text" class="name" placeholder="New Task" />
+                <input type="text" class="name" placeholder="New Task" data-key="n" />
             </div>
             <div class="small-1 columns">
                 <input type="submit" class="button prefix secondary" value="+" />
@@ -126,7 +126,9 @@
 
             <h3>Hints</h3>
             <p>Double click on a task to edit it.</p>
-            <p>Press <kbd>ESC</kbd> in an input field to cancel updating it.</p>
+            <p>Press <kbd>N</kbd> to focus the input field for creating a new task.</p>
+            <p>Press <kbd>C</kbd> to create a new card/list.</p>
+            <p>Press <kbd>ESC</kbd> in an input field to cancel whatever you do.</p>
             <p>Press <kbd>Enter</kbd> in an input field to save it.</p>
         </div>
         <br style="clear: both" />

@@ -18,6 +18,7 @@ return [
             'vendor/underscore-min',
             'vendor/backbone-min',
             'vendor/backbone.layoutmanager',
+            'vendor/jquery.keycut.min',
             'Model/task',
             'Model/card',
             'Collection/tasks',

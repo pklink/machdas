@@ -9,7 +9,7 @@ $(function() {
             'click .cancel':   'hideForm',
             'click .delete':   'delete',
             'click .checkbox': 'toggleMarked',
-            'keyup :text':     'cancel',
+            'keydown :text':     'cancel',
             'submit form':     'update'
         },
 

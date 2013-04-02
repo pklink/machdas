@@ -7,6 +7,8 @@ var Dingbat = {
 $(function() {
     'use strict';
 
+    $(document).keycut();
+
     $(document).ajaxStart(function() {
         $('#ajax-loader').fadeIn();
     })

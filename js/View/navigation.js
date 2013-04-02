@@ -13,7 +13,7 @@ $(function() {
             'click .cancel': 'hideForm',
             'click .add'   : 'showForm',
             'submit form'  : 'createCard',
-            'keyup input'  : 'cancel'
+            'keydown input'  : 'cancel'
         },
 
 
