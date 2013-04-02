@@ -35,6 +35,10 @@ You can use the following shorttags for setting priority:
 
 ## Changelog
 
+### 0.3.0.2
+
+* Bugfix: Card/List doesn't work after adding
+
 ### 0.3.0.1
 
 * Bugfix: Remove tasks doesn't work correctly
