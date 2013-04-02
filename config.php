@@ -14,7 +14,7 @@ return [
             'vendor/jquery-1.9.1.min',
             'vendor/foundation.min',
             'vendor/json2.min',
-            'vendor/underscore-min',
+            'vendor/underscore.min',
             'vendor/backbone-min',
             'vendor/backbone.layoutmanager.min',
             'vendor/jquery.keycut.min',
