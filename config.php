@@ -5,7 +5,7 @@ return [
         'host'     => 'localhost',
         'username' => 'root',
         'password' => 'bitnami',
-        'name'     => 'selleck',
+        'name'     => 'dingbat',
     ],
 
     'assets' => [
@@ -36,5 +36,5 @@ return [
         ],
     ],
 
-    'debugging' => false,
+    'debugging' => true,
 ];
