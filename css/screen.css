@@ -43,7 +43,7 @@ body {
 }
 
 .prio-low {
-    border-left: 8px rgb(255, 240, 240) solid;
+    border-left: 8px rgb(255, 235, 235) solid;
 }
 
 
@@ -73,7 +73,7 @@ form {
 }
 
 .list > div:nth-child(even) {
-    background-color: #fafafa;
+    background-color: #f9f9f9;
 }
 
 .task label {
