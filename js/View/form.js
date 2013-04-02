@@ -7,7 +7,8 @@ $(function() {
 
 
         events: {
-            'submit': 'add'
+            'submit'        : 'add',
+            'keydown :text' : 'cancel'
         },
 
 
@@ -33,6 +34,17 @@ $(function() {
 
         addToCollection: function(model) {
             Dingbat.App.Tasks.add(model);
+        },
+
+
+        /**
+         *
+         * @param {Event} event
+         */
+        cancel: function(event) {
+            if (event.which == 27) {
+                this.$(':text').val('');
+            }
         },
 
 
