@@ -43,6 +43,8 @@ You can use the following shorttags for setting priority:
     * C: Create new card/list
     * N: Create new task
     * H: Toggle helping box
+* Removed [jQuery UI](http://jqueryui.com/)
+* Added [jquery.shake](http://github.com/pklink/jquery.shake)
 
 ### 0.3.0.2
 
@@ -85,7 +87,7 @@ Initial version
 * [Backbone.js](http://backbonejs.org/)
 * [backbone.layoutmanager](https://github.com/tbranyen/backbone.layoutmanager)
 * [Foundation](http://foundation.zurb.com/)
-* [jQuery](http://jquery.com/)
+* [jquery.shake](http://github.com/pklink/jquery.shake)
 * [jQuery UI](http://jqueryui.com/)
 * [json2.js](http://github.com/douglascrockford/JSON-js)
 * [Keycut](http://github.com/duncannz/keycut)
