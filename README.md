@@ -35,6 +35,13 @@ You can use the following shorttags for setting priority:
 
 ## Changelog
 
+### 0.3.1
+
+* Added some shortcuts
+    * C: Create new card/list
+    * N: Create new task
+    * H: Toggle helping box
+
 ### 0.3.0.2
 
 * Fixed version number in footer
