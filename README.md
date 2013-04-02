@@ -37,6 +37,10 @@ You can use the following shorttags for setting priority:
 
 ### 0.3.0.2
 
+* Fixed version number in footer
+
+### 0.3.0.2
+
 * Bugfix: Card/List doesn't work after adding
 
 ### 0.3.0.1
