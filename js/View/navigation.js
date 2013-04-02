@@ -40,6 +40,9 @@ $(function() {
 
             // "redirect" to card
             Dingbat.App.Router.navigate('card/' + model.id, {trigger: true});
+
+            // focus task-form
+            Dingbat.App.Form.$(':text').focus();
         },
 
 
