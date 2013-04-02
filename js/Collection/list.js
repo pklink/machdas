@@ -15,6 +15,15 @@ $(function() {
 
 
         /**
+         * @param {Dingbat.Model.Task} model
+         * @returns {*}
+         */
+        comparator: function(model) {
+            return model.get('priority');
+        },
+
+
+        /**
          *
          * @param {Dingbat.View.Card} card
          */

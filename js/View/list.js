@@ -10,14 +10,26 @@ $(function() {
          * @param {Dingbat.Model.Task} task
          */
         addTask: function(task) {
+            var position = Dingbat.App.CardTasks.length - Dingbat.App.CardTasks.indexOf(task);
+
             // create view
             var view = new Dingbat.View.Task({model: task});
 
             // set view to model
             task.view = view;
 
+            //alert(position);
+
             // render & show task
-            view.render().$el.prependTo(this.$('form.list')).slideDown();
+            if (position == 1) {
+                view.render().$el.prependTo(this.$('form.list')).slideDown();
+            }
+            else if (position == Dingbat.App.CardTasks.length) {
+                view.render().$el.appendTo(this.$('form.list')).slideDown();
+            }
+            else {
+                view.render().$el.insertBefore(this.$('form.list > div:nth-child(' + position + ')')).slideDown();
+            }
         },
 
 
