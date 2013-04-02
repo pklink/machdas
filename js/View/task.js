@@ -131,6 +131,8 @@ $(function() {
                 this.$('.name').text( this.model.get('name') );
                 this.$el.attr('class', 'prio-' + this.model.priorityName);
                 this.hideForm();
+            } else {
+                this.$('input.name').parent().shake();
             }
 
             return false;
