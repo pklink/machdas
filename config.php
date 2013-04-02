@@ -12,7 +12,6 @@ return [
         'scripts' => [
             'vendor/custom.modernizr',
             'vendor/jquery-1.9.1.min',
-            'vendor/jquery-ui-1.10.2.custom.min',
             'vendor/foundation.min',
             'vendor/json2.min',
             'vendor/underscore-min',
