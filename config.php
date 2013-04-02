@@ -15,7 +15,7 @@ return [
             'vendor/foundation.min',
             'vendor/json2.min',
             'vendor/underscore.min',
-            'vendor/backbone-min',
+            'vendor/backbone.min',
             'vendor/backbone.layoutmanager.min',
             'vendor/jquery.keycut.min',
             'vendor/jquery.shake.min',
