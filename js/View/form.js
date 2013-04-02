@@ -58,11 +58,7 @@ $(function() {
 
 
         shake: function() {
-            this.$el.effect({
-                effect: 'shake',
-                distance: 3,
-                times: 2
-            });
+            this.$el.shake();
         }
 
     });

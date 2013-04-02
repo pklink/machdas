@@ -113,16 +113,7 @@ $(function() {
 
 
         error: function() {
-            this.$(':text').animate({
-                backgroundColor: 'red'
-            }, {
-                duration: 100,
-                done: function() {
-                    $(this).animate({
-                        backgroundColor: 'white'
-                    });
-                }
-            });
+            this.$(':text').parent().shake();
         },
 
 
