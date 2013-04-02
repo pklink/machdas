@@ -37,6 +37,7 @@ You can use the following shorttags for setting priority:
 
 ### 0.3.1
 
+* Added message if javascript disabled
 * Added sorting tasks by priority
 * Added some shortcuts
     * C: Create new card/list

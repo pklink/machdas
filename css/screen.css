@@ -186,3 +186,7 @@ nav li.active a {
     cursor: default;
     text-decoration: underline;
 }
+
+.noscript {
+    margin-top: 25px;
+}
