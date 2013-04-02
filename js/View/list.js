@@ -35,7 +35,7 @@ $(function() {
             this.listenTo(Dingbat.App.CardTasks, 'add', this.addTask);
             this.listenTo(Dingbat.App.CardTasks, 'add', this.hideNoTasksMessage);
             this.listenTo(Dingbat.App.CardTasks, 'remove', this.hideTask);
-            this.listenTo(Dingbat.App.CardTasks, 'refresh', this.showNoTasksMessage);
+            this.listenTo(Dingbat.App.CardTasks, 'remove', this.showNoTasksMessage);
         },
 
 

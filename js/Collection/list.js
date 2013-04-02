@@ -19,13 +19,16 @@ $(function() {
          * @param {Dingbat.View.Card} card
          */
         refresh: function(card) {
-            this.remove(this.toArray());
+            var oldTasks = this.toArray();
+            var newTasks = Dingbat.App.Tasks.where({cardId: card.model.id});
 
-            var tasks = Dingbat.App.Tasks.where({cardId: card.model.id});
-
-            _.each(tasks, function(task) {
+            // add new tasks
+            _.each(newTasks, function(task) {
                this.addTask(task);
             }, this);
+
+            // remove old tasks
+            this.remove(oldTasks);
 
             this.trigger('refresh');
         },
