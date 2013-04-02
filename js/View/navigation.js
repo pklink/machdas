@@ -18,21 +18,34 @@ $(function() {
 
 
         /**
-         *
-         * @param {Dingbat.Model.Card} card
+         * @param {Dingbat.Model.Card} model
          */
-        addCard: function(card) {
+        addCard: function(model) {
             // create card-view
-            var view = new Dingbat.View.Card({model: card});
+            var view = new Dingbat.View.Card({model: model});
 
             // set view to model
-            card.view = view;
+            model.view = view;
 
             // render view
             view.render().$el.appendTo(this.$('.list')).hide().fadeIn();
         },
 
 
+        /**
+         * @param {Dingbat.Model.Card} model
+         */
+        addCardToCollection: function(model) {
+            Dingbat.App.Cards.add(model);
+
+            // "redirect" to card
+            Dingbat.App.Router.navigate('card/' + model.id, {trigger: true});
+        },
+
+
+        /**
+         * @param {Event} event
+         */
         cancel: function(event) {
             if (event.which == 27) {
                 this.hideForm();
@@ -44,8 +57,8 @@ $(function() {
             // create model
             var model = new Dingbat.Model.Card();
 
-            // add model to collection after saving
-            this.listenToOnce(model, 'sync', this.addCard);
+            // add model to collection and layout after saving
+            this.listenToOnce(model, 'sync', this.addCardToCollection);
 
             // set properties and save
             model.set('name', this.$('input').val());
@@ -76,20 +89,19 @@ $(function() {
 
 
         /**
-         *
-         * @param {Dingbat.View.Card} card
+         * @param {Dingbat.View.Card} view
          */
-        setActiveCard: function(card) {
+        setActiveCard: function(view) {
             if (this.activeCard != null) {
-                if (card.model.id == this.activeCard.model.id) {
+                if (view.model.id == this.activeCard.model.id) {
                     return false;
                 }
 
                 this.activeCard.deactivate();
             }
 
-            this.activeCard = card;
-            this.trigger('change:active', card);
+            this.activeCard = view;
+            this.trigger('change:active', view);
         },
 
 
