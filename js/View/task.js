@@ -40,7 +40,9 @@ $(function() {
 
 
         hide: function() {
-            this.$el.slideUp();
+            this.$el.slideUp(function() {
+                $(this).appendTo('body');
+            });
         },
 
 
