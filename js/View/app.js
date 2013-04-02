@@ -108,10 +108,13 @@ $(function() {
         showApp: function() {
             this.$('#app-loader').hide();
             this.Navigation.$el.fadeIn();
-            this.Form.$el.slideDown();
+            this.Form.$el.fadeIn();
             this.List.$el.fadeIn();
             this.Footer.$el.fadeIn();
             this.Sidebar.render().$el.appendTo('body').hide().fadeIn();
+
+            // focus form for adding tasks
+            this.Form.$(':text').focus();
         },
 
 
