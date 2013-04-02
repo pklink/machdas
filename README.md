@@ -40,6 +40,7 @@ You can use the following shorttags for setting priority:
 * Added cards/lists
 * Added routes for cards like "#card/1" etc.
 * Added [Assetic](http://github.com/kriswallsmith/assetic)
+* Added @done-shorttag
 
 ### 0.2.1
 
