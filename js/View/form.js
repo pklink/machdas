@@ -13,7 +13,6 @@ $(function() {
 
 
         add: function() {
-
             // create model
             var model = new Dingbat.Model.Task();
 
@@ -38,7 +37,6 @@ $(function() {
 
 
         /**
-         *
          * @param {Event} event
          */
         cancel: function(event) {
@@ -62,7 +60,6 @@ $(function() {
         shake: function() {
             this.$el.effect({
                 effect: 'shake',
-                easing: 'easeInOutCirc',
                 distance: 3,
                 times: 2
             });

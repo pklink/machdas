@@ -78,7 +78,7 @@ $(function() {
 
         validate: function(attributes, options) {
             if (attributes.name.length < 1) {
-                return "no task is given";
+                return "no name is given";
             }
         }
 

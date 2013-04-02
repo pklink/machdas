@@ -14,7 +14,14 @@ $(function() {
         /**
          * @type {Dingbat.View.Card}
          */
-        view: null
+        view: null,
+
+
+        validate: function(attributes, options) {
+            if (attributes.name.length < 1) {
+                return "no name is given";
+            }
+        }
 
     });
 

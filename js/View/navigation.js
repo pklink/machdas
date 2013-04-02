@@ -10,10 +10,10 @@ $(function() {
 
 
         events: {
-            'click .cancel': 'hideForm',
-            'click .add'   : 'showForm',
-            'submit form'  : 'createCard',
-            'keydown input'  : 'cancel'
+            'click .cancel' : 'hideForm',
+            'click .add'    : 'showForm',
+            'submit form'   : 'createCard',
+            'keydown input' : 'cancel'
         },
 
 
@@ -62,13 +62,12 @@ $(function() {
 
             // add model to collection and layout after saving
             this.listenToOnce(model, 'sync', this.addCardToCollection);
+            this.listenToOnce(model, 'sync', this.hideForm);
+            this.listenToOnce(model, 'invalid', this.error);
 
             // set properties and save
             model.set('name', this.$('input').val());
             model.save();
-
-            // hide form
-            this.hideForm();
 
             return false;
         },
@@ -110,6 +109,20 @@ $(function() {
 
         setListener: function() {
             this.listenTo(Dingbat.App.Cards, 'add', this.addCard);
+        },
+
+
+        error: function() {
+            this.$(':text').animate({
+                backgroundColor: 'red'
+            }, {
+                duration: 100,
+                done: function() {
+                    $(this).animate({
+                        backgroundColor: 'white'
+                    });
+                }
+            });
         },
 
 
