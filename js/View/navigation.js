@@ -63,7 +63,6 @@ $(function() {
             // add model to collection and layout after saving
             this.listenToOnce(model, 'sync', this.addCardToCollection);
             this.listenToOnce(model, 'sync', this.hideForm);
-            this.listenToOnce(model, 'invalid', this.error);
 
             // set properties and save
             model.set('name', this.$('input').val());
@@ -109,11 +108,6 @@ $(function() {
 
         setListener: function() {
             this.listenTo(Dingbat.App.Cards, 'add', this.addCard);
-        },
-
-
-        error: function() {
-            this.$(':text').parent().shake();
         },
 
 

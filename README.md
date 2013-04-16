@@ -35,6 +35,11 @@ You can use the following shorttags for setting priority:
 
 ## Changelog
 
+### 0.3.2
+
+* removed jquery.shake
+* added required-attribute to the forms
+
 ### 0.3.1
 
 * Added message if javascript disabled

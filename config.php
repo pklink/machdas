@@ -18,7 +18,6 @@ return [
             'vendor/backbone.min',
             'vendor/backbone.layoutmanager.min',
             'vendor/jquery.keycut.min',
-            'vendor/jquery.shake.min',
             'Model/task',
             'Model/card',
             'Collection/tasks',

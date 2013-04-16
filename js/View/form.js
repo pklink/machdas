@@ -20,7 +20,6 @@ $(function() {
             this.listenToOnce(model, 'request', this.disable);
             this.listenToOnce(model, 'sync', this.enable);
             this.listenToOnce(model, 'sync', this.addToCollection);
-            this.listenToOnce(model, 'invalid', this.shake);
 
             // save model
             model.set('name', this.$(':text.name').val());
@@ -54,11 +53,6 @@ $(function() {
         enable: function() {
             this.$('input').removeAttr('disabled');
             this.$(':text').val('').focus();
-        },
-
-
-        shake: function() {
-            this.$el.shake();
         }
 
     });
