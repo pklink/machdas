@@ -36,6 +36,12 @@ You can use the following shorttags for setting priority:
 
 ## Changelog
 
+### 0.4.0
+
+* renamed index.html to index.php
+* added I18N-support
+** added German
+
 ### 0.3.2.1
 
 * updated version number
