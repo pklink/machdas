@@ -98,7 +98,6 @@ Initial version
 * [Backbone.js](http://backbonejs.org/)
 * [backbone.layoutmanager](https://github.com/tbranyen/backbone.layoutmanager)
 * [Foundation](http://foundation.zurb.com/)
-* [jquery.shake](http://github.com/pklink/jquery.shake)
 * [jQuery UI](http://jqueryui.com/)
 * [json2.js](http://github.com/douglascrockford/JSON-js)
 * [Keycut](http://github.com/duncannz/keycut)
