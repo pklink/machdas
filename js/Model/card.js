@@ -8,7 +8,7 @@ $(function() {
         },
 
 
-        urlRoot: 'api.php/card',
+        urlRoot: 'index.php/card',
 
 
         /**

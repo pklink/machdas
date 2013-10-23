@@ -5,7 +5,7 @@ $(function() {
 
         model: Dingbat.Model.Card,
 
-        url: 'api.php/cards'
+        url: 'index.php/cards'
 
     });
 

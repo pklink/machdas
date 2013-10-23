@@ -13,7 +13,7 @@ $(function() {
             return model.get('priority');
         },
 
-        url: 'api.php/tasks'
+        url: 'index.php/tasks'
 
     });
 

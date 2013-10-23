@@ -11,7 +11,7 @@ return [
         'name'     => 'dingbat',
     ],
 
-    'language' => 'de', // or 'de'
+    'language' => 'en', // or 'de'
 
     // EDIT END
 

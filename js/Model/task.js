@@ -14,7 +14,7 @@ $(function() {
         priorityName: 'normal',
 
 
-        urlRoot: 'api.php/task',
+        urlRoot: 'index.php/task',
 
 
         /**

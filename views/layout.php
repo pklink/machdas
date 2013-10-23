@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/screen.css" />
     <link rel="stylesheet" href="css/icons/general_enclosed_foundicons.css" />
     <link rel="stylesheet" href="css/icons/general_enclosed_foundicons_ie7.css" />
-    <script src="api.php/assets/js"></script>
+    <script src="index.php/assets/js"></script>
 </head>
 <body class="antialiased">
 
