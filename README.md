@@ -38,7 +38,7 @@ You can use the following shorttags for setting priority:
 
 ### 0.4.0
 
-* renamed index.html to index.php
+* renamed `index.html` to `index.php`
 * added I18N-support
 ** added German
 
