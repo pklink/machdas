@@ -5,10 +5,10 @@ namespace Dingbat;
 
 use Dotor\Dotor;
 use Silex\Application;
+use Silex\Provider\TranslationServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\Routing\Generator\UrlGenerator;
 use Phormium\DB;
+use Symfony\Component\Translation\Loader\YamlFileLoader;
 
 /**
  * Class App
@@ -65,6 +65,22 @@ class App
         $this->silex          = new Application();
         $this->silex['debug'] = $this->config->getBool('debugging', false);
 
+        // register i18n service
+        $this->silex->register(new TranslationServiceProvider(), array(
+            'locale_fallbacks' => array('en'),
+            'locale'           => $this->config->get('language'),
+        ));
+
+        // add translations
+        $this->silex['translator'] = $this->silex->share($this->silex->extend('translator', function($translator) {
+            $translator->addLoader('yaml', new YamlFileLoader());
+
+            $translator->addResource('yaml', __DIR__.'/../res/locales/en.yml', 'en');
+            $translator->addResource('yaml', __DIR__.'/../res/locales/de.yml', 'de');
+
+            return $translator;
+        }));
+
         // set instance of Request
         $this->silex->before(function (Request $request) {
             if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
@@ -74,8 +90,6 @@ class App
 
             $this->request = $request;
         });
-
-
 
         $this->setupDatabase();
         $this->addRoutes();
@@ -87,6 +101,15 @@ class App
      */
     protected function addRoutes()
     {
+        // layout
+        $this->silex->get('/', function() {
+            $locale = $this->silex['translator'];
+
+            ob_start();
+            require(__DIR__ . '/../../views/layout.php');
+            return ob_get_clean();
+        });
+
         // js
         $this->silex->get('/assets/js', function() {
             return $this->prepareAction(new Action\Assets\JavaScript())->run();

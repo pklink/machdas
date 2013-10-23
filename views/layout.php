@@ -1,3 +1,5 @@
+<?php /* @var \Symfony\Component\Translation\Translator $locale */ ?>
+
 <!DOCTYPE html>
 <!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
@@ -66,7 +68,7 @@
     <form id="add-task" class="custom">
         <div class="row collapse">
             <div class="small-11 columns">
-                <input type="text" class="name" placeholder="New Task" data-key="n" required />
+                <input type="text" class="name" placeholder="<?php echo $locale->trans('new-task') ?>" data-key="n" required />
             </div>
             <div class="small-1 columns">
                 <input type="submit" class="button prefix secondary" value="+" />
@@ -80,7 +82,7 @@
     <form class="custom list"></form>
     <div class="row no-tasks">
         <div class="small-12 columns">
-            no tasks! nothin' to do?
+            <?php echo $locale->trans('no-tasks') ?>
         </div>
     </div>
 </script>
@@ -119,18 +121,18 @@
             <i class="foundicon-idea help" data-key="h"></i>
         </div>
         <div class="content help">
-            <h3>Shorttags</h3>
-            <p>You can set the priority of a task by typing <code>@high</code>, <code>@normal</code> or <code>@low</code>.</p>
-            <p>The default priority is <code>@normal</code>.</p>
-            <p>You can mark a task as completed by typing <code>@done</code>.</p>
+            <h3><?php echo $locale->trans('shortcut') ?></h3>
+            <p><?php echo $locale->trans('priority-desc') ?></p>
+            <p><?php echo $locale->trans('priority-default') ?></p>
+            <p><?php echo $locale->trans('priority-done') ?></p>
 
-            <h3>Hints</h3>
-            <p>Double click on a task to edit it.</p>
-            <p>Press <kbd>N</kbd> to focus the input field for creating a new task.</p>
-            <p>Press <kbd>C</kbd> to create a new card/list.</p>
-            <p>Press <kbd>H</kbd> to toggle this helping box.</p>
-            <p>Press <kbd>ESC</kbd> in an input field to cancel whatever you do.</p>
-            <p>Press <kbd>Enter</kbd> in an input field to save it.</p>
+            <h3><?php echo $locale->trans('hints') ?></h3>
+            <p><?php echo $locale->trans('hint-dbl-click') ?></p>
+            <p><?php echo $locale->trans('hint-new-task') ?></p>
+            <p><?php echo $locale->trans('hint-new-card') ?></p>
+            <p><?php echo $locale->trans('hint-help') ?></p>
+            <p><?php echo $locale->trans('hint-cancel') ?></p>
+            <p><?php echo $locale->trans('hint-save') ?></p>
         </div>
         <br style="clear: both" />
     </div>

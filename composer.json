@@ -2,6 +2,11 @@
     "autoload": {
         "psr-0": {
             "Dingbat": "src/"
+        },
+        "autoload": {
+            "files": [
+                "src/res/i18n/en.php"
+            ]
         }
     },
     "require": {
@@ -9,6 +14,9 @@
         "pklink/dotor": "0.*@stable",
         "phormium/phormium": "0.*@stable",
         "tedivm/jshrink": "v0.5.1",
-        "kriswallsmith/assetic": "v1.1.2"
+        "kriswallsmith/assetic": "v1.1.2",
+        "symfony/translation": "~2.3",
+        "symfony/config": "~2.3",
+        "symfony/yaml": "~2.3"
     }
 }

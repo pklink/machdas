@@ -1,12 +1,19 @@
 <?php
 
 return [
+
+    // EDIT START
+
     'database' => [
         'host'     => 'localhost',
         'username' => 'root',
         'password' => 'bitnami',
         'name'     => 'dingbat',
     ],
+
+    'language' => 'de', // or 'de'
+
+    // EDIT END
 
     'assets' => [
         'scripts' => [
