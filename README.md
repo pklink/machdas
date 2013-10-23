@@ -31,14 +31,20 @@ You can use the following shorttags for setting priority:
 
 - [ ] add hashtags (e.g. #project #blah ...)
 - [ ] improve code
+- [ ] edit & remove lists
 
 
 ## Changelog
+
+### 0.3.2.1
+
+* updated version number
 
 ### 0.3.2
 
 * removed jquery.shake
 * added required-attribute to the forms
+* updated configuration of phormium/phormium
 
 ### 0.3.1
 
