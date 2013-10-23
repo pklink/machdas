@@ -5,10 +5,10 @@
         }
     },
     "require": {
-        "silex/silex": "1.0.*@dev",
-        "pklink/dotor": "0.*",
-        "phormium/phormium": "dev-master",
+        "silex/silex": "v1.1.1",
+        "pklink/dotor": "0.*@stable",
+        "phormium/phormium": "0.*@stable",
         "tedivm/jshrink": "v0.5.1",
-        "kriswallsmith/assetic": "v1.0.4"
+        "kriswallsmith/assetic": "v1.1.2"
     }
 }

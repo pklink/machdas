@@ -199,10 +199,12 @@ class App
     protected function setupDatabase()
     {
         DB::configure([
-            'todo' => [
-                'dsn'      => sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
-                'username' => $this->config->get('database.username'),
-                'password' => $this->config->get('database.password'),
+            'databases' => [
+                'todo' => [
+                    'dsn'      => sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
+                    'username' => $this->config->get('database.username'),
+                    'password' => $this->config->get('database.password'),
+                ]
             ]
         ]);
     }
