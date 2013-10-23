@@ -40,7 +40,7 @@ You can use the following shorttags for setting priority:
 
 * renamed `index.html` to `index.php`
 * added I18N-support
-** added German
+* added German translation
 
 ### 0.3.2.1
 
