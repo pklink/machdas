@@ -6,8 +6,8 @@ use Assetic\Asset\AssetCache;
 use Assetic\Asset\AssetCollection;
 use Assetic\Asset\FileAsset;
 use Assetic\Cache\FilesystemCache;
-use Dingbat\App;
 use Dingbat\Action;
+use Dingbat\App;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

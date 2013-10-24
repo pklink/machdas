@@ -3,7 +3,7 @@
 
 namespace Dingbat\Model;
 
-use \Phormium\Model;
+use Phormium\Model;
 
 /**
  * Class Task

@@ -3,11 +3,9 @@
 
 namespace Dingbat\Action\Task;
 
-use Dingbat\App;
 use Dingbat\Action;
 use Dingbat\Model\Task;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class Add

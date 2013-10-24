@@ -3,11 +3,9 @@
 
 namespace Dingbat\Action\Card;
 
-use Dingbat\App;
 use Dingbat\Action;
 use Dingbat\Model\Card;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class Add
