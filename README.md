@@ -1,7 +1,10 @@
 # Dingbat
 
-A simple todo manager as PHP-Single-Page-App
+A simple todo manager
 
+## Demo
+
+http://dingbat.einself.net/ (will be reset every hour)
 
 ## Requirements
 
@@ -36,6 +39,11 @@ You can use the following shorttags for setting priority:
 
 
 ## Changelog
+
+### 0.4.0.1
+
+* renamed `config.php` to `config.php.sample`
+* added demo
 
 ### 0.4.0
 

@@ -109,7 +109,7 @@
 
 
 <script type="text/template" id="footer-template">
-    Dingbat 0.4.0 -
+    Dingbat 0.4.0.1 -
     <a href="https://github.com/pklink/Dingbat" target="_blank">pow</a>,
     <a href="https://sourceforge.net/projects/dingbat/" target="_blank">pow</a>, pow!
 </script>
