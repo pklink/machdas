@@ -24,7 +24,6 @@ abstract class Action
      */
     protected $request;
 
-
     /**
      * @param Request $request
      */

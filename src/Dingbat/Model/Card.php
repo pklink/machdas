@@ -26,12 +26,10 @@ class Card extends Model
         'pk'       => 'id'
     ];
 
-
     /**
      * @var int
      */
     public $id;
-
 
     /**
      * @var string

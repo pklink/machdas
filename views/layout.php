@@ -1,4 +1,9 @@
-<?php /* @var \Symfony\Component\Translation\Translator $locale */ ?>
+<?php
+
+/* @var \Symfony\Component\Translation\Translator $locale */
+$locale = $this->silex['translator'];
+
+?>
 
 <!DOCTYPE html>
 <!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en"> <![endif]-->

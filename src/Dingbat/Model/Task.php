@@ -21,7 +21,6 @@ class Task extends Model
     const PRIORITY_NORMAL = 1;
     const PRIORITY_HIGH   = 2;
 
-
     /**
      * @var array
      */
@@ -31,30 +30,25 @@ class Task extends Model
         'pk'       => 'id'
     ];
 
-
     /**
      * @var int
      */
     public $id;
-
 
     /**
      * @var string
      */
     public $name;
 
-
     /**
      * @var boolean
      */
     public $marked = false;
 
-
     /**
      * @var int
      */
     public $priority = self::PRIORITY_NORMAL;
-
 
     /**
      * @var int

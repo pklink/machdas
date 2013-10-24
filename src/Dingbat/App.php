@@ -9,6 +9,7 @@ use Silex\Provider\TranslationServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Phormium\DB;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
+use Symfony\Component\Translation\Translator;
 
 /**
  * Class App
@@ -27,30 +28,23 @@ class App
      */
     protected $config;
 
-
     /**
      * @var App
      */
     protected static $instance;
-
 
     /**
      * @var Request
      */
     protected $request;
 
-
     /**
      * @var \Silex\Application
      */
     protected $silex;
 
-
     /**
-     * Constructor
-     *
-     * @param string $rootDirectory Root of application (normally where the
-     * index.html is found)
+     * @param string $rootDirectory Root of application (normally where the index.html is found)
      * @param array  $config        configuration of application
      */
     protected function __construct($rootDirectory, array $config = [])
@@ -73,10 +67,12 @@ class App
 
         // add translations
         $this->silex['translator'] = $this->silex->share($this->silex->extend('translator', function($translator) {
+            /* @var Translator $translator */
             $translator->addLoader('yaml', new YamlFileLoader());
 
-            $translator->addResource('yaml', __DIR__.'/../res/locales/en.yml', 'en');
-            $translator->addResource('yaml', __DIR__.'/../res/locales/de.yml', 'de');
+            $localePath = $this->config->get('rootDirectory', 'bla') . '/src/res/locales';
+            $translator->addResource('yaml', $localePath . '/en.yml', 'en');
+            $translator->addResource('yaml', $localePath . '/de.yml', 'de');
 
             return $translator;
         }));
@@ -91,20 +87,96 @@ class App
             $this->request = $request;
         });
 
-        $this->setupDatabase();
-        $this->addRoutes();
+        $this->prepareDatabase();
+        $this->setRoutes();
     }
 
+    /**
+     * @param string $projectRoot path to root path of project
+     * @param array $config
+     * @return App
+     * @throws \InvalidArgumentException
+     */
+    public static function instance($projectRoot = null, array $config = [])
+    {
+        if (!(self::$instance instanceof App))
+        {
+            if (is_null($projectRoot))
+            {
+                throw new \InvalidArgumentException('At first call of Dingbat::instance() is the $projectPath-parameter required');
+            }
+
+            self::$instance = new static($projectRoot, $config);
+        }
+
+        return self::$instance;
+    }
+
+    /**
+     * @return Dotor
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return Application
+     */
+    public function getSilex()
+    {
+        return $this->silex;
+    }
+
+    /**
+     * @param Action $action
+     * @return Action
+     */
+    public function prepareAction(Action $action)
+    {
+        $action->setRequest($this->getRequest());
+        return $action;
+    }
 
     /**
      * @return void
      */
-    protected function addRoutes()
+    protected function prepareDatabase()
+    {
+        DB::configure([
+            'databases' => [
+                'todo' => [
+                    'dsn'      => sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
+                    'username' => $this->config->get('database.username'),
+                    'password' => $this->config->get('database.password'),
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @return void
+     */
+    public function run()
+    {
+        $this->silex->run();
+    }
+
+    /**
+     * @return void
+     */
+    protected function setRoutes()
     {
         // layout
         $this->silex->get('/', function() {
-            $locale = $this->silex['translator'];
-
             ob_start();
             require(__DIR__ . '/../../views/layout.php');
             return ob_get_clean();
@@ -144,92 +216,6 @@ class App
         $this->silex->post('/card', function() {
             return $this->prepareAction(new Action\Card\Add())->run();
         });
-    }
-
-
-    /**
-     * @param string $projectRoot path to root path of project
-     * @param array $config
-     * @return App
-     * @throws \InvalidArgumentException
-     */
-    public static function instance($projectRoot = null, array $config = [])
-    {
-        if (!(self::$instance instanceof App))
-        {
-            if (is_null($projectRoot))
-            {
-                throw new \InvalidArgumentException('At first call of Dingbat::instance() is the $projectPath-parameter required');
-            }
-
-            self::$instance = new static($projectRoot, $config);
-        }
-
-        return self::$instance;
-    }
-
-
-    /**
-     * @return Dotor
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\Request
-     */
-    public function getRequest()
-    {
-        return $this->request;
-    }
-
-
-    /**
-     * @return Application
-     */
-    public function getSilex()
-    {
-        return $this->silex;
-    }
-
-
-    /**
-     * @param Action $action
-     * @return Action
-     */
-    public function prepareAction(Action $action)
-    {
-        $action->setRequest($this->getRequest());
-        return $action;
-    }
-
-
-    /**
-     * @return void
-     */
-    public function run()
-    {
-        $this->silex->run();
-    }
-
-
-    /**
-     * @return void
-     */
-    protected function setupDatabase()
-    {
-        DB::configure([
-            'databases' => [
-                'todo' => [
-                    'dsn'      => sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
-                    'username' => $this->config->get('database.username'),
-                    'password' => $this->config->get('database.password'),
-                ]
-            ]
-        ]);
     }
 
 }

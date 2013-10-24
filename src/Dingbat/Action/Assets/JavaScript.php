@@ -10,6 +10,15 @@ use Dingbat\App;
 use Dingbat\Action;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class JavaScript
+ *
+ * @category Action
+ * @package  Dingbat\Action\Task
+ * @author   Pierre Klink <dev@klinks.info>
+ * @license  MIT http://opensource.org/licenses/MIT
+ * @link     https://github.com/pklink/Dingbat
+ */
 class JavaScript extends Action
 {
 

@@ -23,7 +23,6 @@ class Delete extends Action
      * Remove task with ID $id
      *
      * @param integer $id ID of task
-     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function run($id)
