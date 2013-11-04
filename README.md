@@ -17,7 +17,7 @@ http://dingbat.einself.net/ (will be reset every hour)
 ### Pre-Built (downloaded from SourceForge)
 
 * import `setup/install.sql`
-* copy `config.php.sample` to `config.php`
+* copy `config.sample.php` to `config.php`
 * edit `config.php`
 * chmod `tmp/cache` to `777`
 
@@ -36,6 +36,13 @@ http://dingbat.einself.net/ (will be reset every hour)
 * _Optional:_ switch to a specified version/tag `git checkout tags/<name of tag>`; for example: `git checkout tags/0.4.0`
 * `php composer.phar install`
 * see the installation instructions of the pre-built version above
+
+
+## Upgrade
+
+### to 0.4.1
+
+* add key/config `name` to your `config.php` (default value is `Dingbat`)
 
 
 ## Shorttags
@@ -57,6 +64,13 @@ You can use the following shorttags for setting priority:
 
 
 ## Changelog
+
+### 0.4.1
+
+* Enh [#2](https://github.com/pklink/Dingbat/issues/2): Make list names editable
+* Enh [#3](https://github.com/pklink/Dingbat/issues/3): Add configuration for name of app
+* Enh: Added advanced installation instructions to README
+* New: Added link to http://blog.einself.net to footer
 
 ### 0.4.0.1
 
