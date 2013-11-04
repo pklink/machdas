@@ -1,7 +1,7 @@
 <?php
 
 /* @var \Symfony\Component\Translation\Translator $locale */
-$locale = $this->silex['translator'];
+/* @var String                                    $appName */
 
 ?>
 
@@ -12,7 +12,7 @@ $locale = $this->silex['translator'];
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Dingbat</title>
+    <title><?php echo $appName ?></title>
     <link rel="stylesheet" href="css/normalize.min.css" />
     <link rel="stylesheet" href="css/foundation.min.css" />
     <link rel="stylesheet" href="css/screen.css" />

@@ -4,6 +4,8 @@ return [
 
     // EDIT START
 
+    'name' => 'Dingbat',
+
     'database' => [
         'host'     => 'localhost',
         'username' => 'root',

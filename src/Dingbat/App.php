@@ -178,6 +178,10 @@ class App
         // layout
         $this->silex->get('/', function() {
             ob_start();
+
+            $appName = $this->config->get('name', 'Dingbat');
+            $locale  = $this->silex['translator'];
+
             require(__DIR__ . '/../../views/layout.php');
             return ob_get_clean();
         });
