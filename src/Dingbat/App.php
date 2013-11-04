@@ -192,29 +192,34 @@ class App
             return $this->prepareAction(new Action\Task\Add())->run();
         });
 
-        // delete
+        // delete task
         $this->silex->delete('/task/{id}', function($id) {
             return $this->prepareAction(new Action\Task\Delete())->run($id);
         });
 
-        // update
+        // update task
         $this->silex->put('/task/{id}', function($id) {
             return $this->prepareAction(new Action\Task\Update())->run($id);
         });
 
-        // index
+        // index task
         $this->silex->get('/tasks', function() {
             return $this->prepareAction(new Action\Task\Index())->run();
         });
 
-        // list: index
+        // card: index
         $this->silex->get('/cards', function() {
             return $this->prepareAction(new Action\Card\Index())->run();
         });
 
-        // list: add
+        // card: add
         $this->silex->post('/card', function() {
             return $this->prepareAction(new Action\Card\Add())->run();
+        });
+
+        // card: update
+        $this->silex->put('/card/{id}', function($id) {
+            return $this->prepareAction(new Action\Card\Update())->run($id);
         });
     }
 

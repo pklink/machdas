@@ -7,7 +7,7 @@ priority-default: The default priority is <code>@normal</code>.
 priority-done   : You can mark a task as completed by typing <code>@done</code>.
 
 hints         : Hints
-hint-dbl-click: Double click on a task to edit it.
+hint-dbl-click: Double click on a task or list to edit it.
 hint-new-task : Press <kbd>N</kbd> to focus the input field for creating a new task.
 hint-new-card : Press <kbd>C</kbd> to create a new card/list.
 hint-help     : Press <kbd>H</kbd> to toggle this helping box.

@@ -7,7 +7,7 @@ priority-default: Die voreingestellte Priorität ist <code>@normal</code>.
 priority-done   : Durch ein <code>@done</code> kannst du eine Aufgabe als abgeschlossen markieren.
 
 hints         : Tipps
-hint-dbl-click: Durch Doppelklicken auf eine Aufgabe kannst du diese bearbeiten.
+hint-dbl-click: Durch Doppelklicken auf eine Aufgabe oder Liste kannst du diese bearbeiten.
 hint-new-task : Drücke <kbd>N</kbd> um in das Feld zur Erstellung einer neuen Aufgabe zu fokussieren.
 hint-new-card : Drücke <kbd>C</kbd> um eine neue Liste zu erstellen.
 hint-help     : Drücke <kbd>H</kbd> um die Hilfe ein- bzw. auszublenden.

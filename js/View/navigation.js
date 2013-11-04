@@ -10,10 +10,10 @@ $(function() {
 
 
         events: {
-            'click .cancel' : 'hideForm',
-            'click .add'    : 'showForm',
-            'submit form'   : 'createCard',
-            'keydown input' : 'cancel'
+            'click .cancel'       : 'hideForm',
+            'click .add'          : 'showForm',
+            'submit .right form'  : 'createCard',
+            'keydown .right input': 'cancel'
         },
 
 
