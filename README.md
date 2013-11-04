@@ -65,6 +65,10 @@ You can use the following shorttags for setting priority:
 
 ## Changelog
 
+### 0.4.1.1
+
+* Bug: Fixed configuration of Phormium
+
 ### 0.4.1
 
 * Enh [#2](https://github.com/pklink/Dingbat/issues/2): Make list names editable
