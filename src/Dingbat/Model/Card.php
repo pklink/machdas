@@ -20,7 +20,7 @@ class Card extends Model
     /**
      * @var array
      */
-    protected static $_meta = [
+    protected static $meta = [
         'database' => 'todo',
         'table'    => 'cards',
         'pk'       => 'id'

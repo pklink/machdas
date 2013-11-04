@@ -24,7 +24,7 @@ class Task extends Model
     /**
      * @var array
      */
-    protected static $_meta = [
+    protected static $meta = [
         'database' => 'todo',
         'table'    => 'tasks',
         'pk'       => 'id'
