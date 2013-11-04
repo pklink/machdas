@@ -33,7 +33,7 @@ http://dingbat.einself.net/ (will be reset every hour)
 * `mkdir dingbat`
 * `cd dingbat/`
 * `git clone https://github.com/pklink/Dingbat.git .`
-* _Optional_ switch to a specified version/tag `git checkout tags/<name of tag>`; for example: `git checkout tags/0.4.0`
+* _Optional:_ switch to a specified version/tag `git checkout tags/<name of tag>`; for example: `git checkout tags/0.4.0`
 * `php composer.phar install`
 * see the installation instuctions of the pre-built version above
 
