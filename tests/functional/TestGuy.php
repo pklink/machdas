@@ -5,9 +5,10 @@
 
 
 use \Codeception\Maybe;
-use Codeception\Module\Filesystem;
+use Codeception\Module\PhpBrowser;
+use Codeception\Module\REST;
 use Codeception\Module\TestHelper;
-use Codeception\Module\Selenium2;
+use Codeception\Module\Db;
 
 /**
  * Inherited methods
@@ -33,15 +34,49 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Enters a directory In local filesystem.
-     * Project root directory is used by default
+     * Submits a form located on page.
+     * Specify the form by it's css or xpath selector.
+     * Fill the form fields values as array.
      *
-     * @param $path
-     * @see Codeception\Module\Filesystem::amInPath()
+     * Skipped fields will be filled by their values from page.
+     * You don't need to click the 'Submit' button afterwards.
+     * This command itself triggers the request to form's action.
+     *
+     * Examples:
+     *
+     * ``` php
+     * <?php
+     * $I->submitForm('#login', array('login' => 'davert', 'password' => '123456'));
+     *
+     * ```
+     *
+     * For sample Sign Up form:
+     *
+     * ``` html
+     * <form action="/sign_up">
+     *     Login: <input type="text" name="user[login]" /><br/>
+     *     Password: <input type="password" name="user[password]" /><br/>
+     *     Do you agree to out terms? <input type="checkbox" name="user[agree]" /><br/>
+     *     Select pricing plan <select name="plan"><option value="1">Free</option><option value="2" selected="selected">Paid</option></select>
+     *     <input type="submit" value="Submit" />
+     * </form>
+     * ```
+     * I can write this:
+     *
+     * ``` php
+     * <?php
+     * $I->submitForm('#userForm', array('user' => array('login' => 'Davert', 'password' => '123456', 'agree' => true)));
+     *
+     * ```
+     * Note, that pricing plan will be set to Paid, as it's selected on page.
+     *
+     * @param $selector
+     * @param $params
+     * @see Codeception\Module\PhpBrowser::submitForm()
      * @return \Codeception\Maybe
      */
-    public function amInPath($path) {
-        $this->scenario->addStep(new \Codeception\Step\Condition('amInPath', func_get_args()));
+    public function submitForm($selector, $params) {
+        $this->scenario->addStep(new \Codeception\Step\Action('submitForm', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -55,23 +90,29 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Opens a file and stores it's content.
+     * If your page triggers an ajax request, you can perform it manually.
+     * This action sends a POST ajax request with specified params.
+     * Additional params can be passed as array.
      *
-     * Usage:
+     * Example:
+     *
+     * Imagine that by clicking checkbox you trigger ajax request which updates user settings.
+     * We emulate that click by running this ajax request manually.
      *
      * ``` php
      * <?php
-     * $I->openFile('composer.json');
-     * $I->seeInThisFile('codeception/codeception');
-     * ?>
+     * $I->sendAjaxPostRequest('/updateSettings', array('notifications' => true); // POST
+     * $I->sendAjaxGetRequest('/updateSettings', array('notifications' => true); // GET
+     *
      * ```
      *
-     * @param $filename
-     * @see Codeception\Module\Filesystem::openFile()
+     * @param $uri
+     * @param $params
+     * @see Codeception\Module\PhpBrowser::sendAjaxPostRequest()
      * @return \Codeception\Maybe
      */
-    public function openFile($filename) {
-        $this->scenario->addStep(new \Codeception\Step\Action('openFile', func_get_args()));
+    public function sendAjaxPostRequest($uri, $params = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendAjaxPostRequest', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -85,20 +126,18 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Deletes a file
+     * If your page triggers an ajax request, you can perform it manually.
+     * This action sends a GET ajax request with specified params.
      *
-     * ``` php
-     * <?php
-     * $I->deleteFile('composer.lock');
-     * ?>
-     * ```
+     * See ->sendAjaxPostRequest for examples.
      *
-     * @param $filename
-     * @see Codeception\Module\Filesystem::deleteFile()
+     * @param $uri
+     * @param $params
+     * @see Codeception\Module\PhpBrowser::sendAjaxGetRequest()
      * @return \Codeception\Maybe
      */
-    public function deleteFile($filename) {
-        $this->scenario->addStep(new \Codeception\Step\Action('deleteFile', func_get_args()));
+    public function sendAjaxGetRequest($uri, $params = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendAjaxGetRequest', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -112,79 +151,13 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Deletes directory with all subdirectories
-     *
-     * ``` php
-     * <?php
-     * $I->deleteDir('vendor');
-     * ?>
-     * ```
-     *
-     * @param $dirname
-     * @see Codeception\Module\Filesystem::deleteDir()
-     * @return \Codeception\Maybe
-     */
-    public function deleteDir($dirname) {
-        $this->scenario->addStep(new \Codeception\Step\Action('deleteDir', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Copies directory with all contents
-     *
-     * ``` php
-     * <?php
-     * $I->copyDir('vendor','old_vendor');
-     * ?>
-     * ```
-     *
-     * @param $src
-     * @param $dst
-     * @see Codeception\Module\Filesystem::copyDir()
-     * @return \Codeception\Maybe
-     */
-    public function copyDir($src, $dst) {
-        $this->scenario->addStep(new \Codeception\Step\Action('copyDir', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks If opened file has `text` in it.
-     *
-     * Usage:
-     *
-     * ``` php
-     * <?php
-     * $I->openFile('composer.json');
-     * $I->seeInThisFile('codeception/codeception');
-     * ?>
-     * ```
-     *
-     * @param $text
+     * Asserts that current page has 404 response status code.
     * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Filesystem::seeInThisFile()
+     * @see Codeception\Module\PhpBrowser::seePageNotFound()
      * @return \Codeception\Maybe
      */
-    public function canSeeInThisFile($text) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInThisFile', func_get_args()));
+    public function canSeePageNotFound() {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seePageNotFound', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -196,23 +169,12 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Checks If opened file has `text` in it.
-     *
-     * Usage:
-     *
-     * ``` php
-     * <?php
-     * $I->openFile('composer.json');
-     * $I->seeInThisFile('codeception/codeception');
-     * ?>
-     * ```
-     *
-     * @param $text
-     * @see Codeception\Module\Filesystem::seeInThisFile()
+     * Asserts that current page has 404 response status code.
+     * @see Codeception\Module\PhpBrowser::seePageNotFound()
      * @return \Codeception\Maybe
      */
-    public function seeInThisFile($text) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInThisFile', func_get_args()));
+    public function seePageNotFound() {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seePageNotFound', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -226,25 +188,15 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Checks the strict matching of file contents.
-     * Unlike `seeInThisFile` will fail if file has something more then expected lines.
-     * Better to use with HEREDOC strings.
-     * Matching is done after removing "\r" chars from file content.
+     * Checks response code equals to provided value.
      *
-     * ``` php
-     * <?php
-     * $I->openFile('process.pid');
-     * $I->seeFileContentsEqual('3192');
-     * ?>
-     * ```
-     *
-     * @param $text
+     * @param $code
     * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Filesystem::seeFileContentsEqual()
+     * @see Codeception\Module\REST::seeResponseCodeIs()
      * @return \Codeception\Maybe
      */
-    public function canSeeFileContentsEqual($text) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeFileContentsEqual', func_get_args()));
+    public function canSeeResponseCodeIs($code) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeResponseCodeIs', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -256,24 +208,14 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Checks the strict matching of file contents.
-     * Unlike `seeInThisFile` will fail if file has something more then expected lines.
-     * Better to use with HEREDOC strings.
-     * Matching is done after removing "\r" chars from file content.
+     * Checks response code equals to provided value.
      *
-     * ``` php
-     * <?php
-     * $I->openFile('process.pid');
-     * $I->seeFileContentsEqual('3192');
-     * ?>
-     * ```
-     *
-     * @param $text
-     * @see Codeception\Module\Filesystem::seeFileContentsEqual()
+     * @param $code
+     * @see Codeception\Module\REST::seeResponseCodeIs()
      * @return \Codeception\Maybe
      */
-    public function seeFileContentsEqual($text) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeFileContentsEqual', func_get_args()));
+    public function seeResponseCodeIs($code) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeResponseCodeIs', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -287,151 +229,15 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Checks If opened file doesn't contain `text` in it
+     * Adds HTTP authentication via username/password.
      *
-     * ``` php
-     * <?php
-     * $I->openFile('composer.json');
-     * $I->dontSeeInThisFile('codeception/codeception');
-     * ?>
-     * ```
-     *
-     * @param $text
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Filesystem::dontSeeInThisFile()
+     * @param $username
+     * @param $password
+     * @see Codeception\Module\REST::amHttpAuthenticated()
      * @return \Codeception\Maybe
      */
-    public function cantSeeInThisFile($text) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInThisFile', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks If opened file doesn't contain `text` in it
-     *
-     * ``` php
-     * <?php
-     * $I->openFile('composer.json');
-     * $I->dontSeeInThisFile('codeception/codeception');
-     * ?>
-     * ```
-     *
-     * @param $text
-     * @see Codeception\Module\Filesystem::dontSeeInThisFile()
-     * @return \Codeception\Maybe
-     */
-    public function dontSeeInThisFile($text) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInThisFile', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Deletes a file
-     * @see Codeception\Module\Filesystem::deleteThisFile()
-     * @return \Codeception\Maybe
-     */
-    public function deleteThisFile() {
-        $this->scenario->addStep(new \Codeception\Step\Action('deleteThisFile', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks if file exists in path.
-     * Opens a file when it's exists
-     *
-     * ``` php
-     * <?php
-     * $I->seeFileFound('UserModel.php','app/models');
-     * ?>
-     * ```
-     *
-     * @param $filename
-     * @param string $path
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Filesystem::seeFileFound()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeFileFound($filename, $path = null) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeFileFound', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks if file exists in path.
-     * Opens a file when it's exists
-     *
-     * ``` php
-     * <?php
-     * $I->seeFileFound('UserModel.php','app/models');
-     * ?>
-     * ```
-     *
-     * @param $filename
-     * @param string $path
-     * @see Codeception\Module\Filesystem::seeFileFound()
-     * @return \Codeception\Maybe
-     */
-    public function seeFileFound($filename, $path = null) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeFileFound', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Erases directory contents
-     *
-     * ``` php
-     * <?php
-     * $I->cleanDir('logs');
-     * ?>
-     * ```
-     *
-     * @param $dirname
-     * @see Codeception\Module\Filesystem::cleanDir()
-     * @return \Codeception\Maybe
-     */
-    public function cleanDir($dirname) {
-        $this->scenario->addStep(new \Codeception\Step\Action('cleanDir', func_get_args()));
+    public function amHttpAuthenticated($username, $password) {
+        $this->scenario->addStep(new \Codeception\Step\Condition('amHttpAuthenticated', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -446,24 +252,34 @@ class TestGuy extends \Codeception\AbstractGuy
      * ----------------------------------------------
      *
      * Low-level API method.
-     * If Codeception commands are not enough, use Selenium WebDriver methods directly
+     * If Codeception commands are not enough, use [Guzzle HTTP Client](http://guzzlephp.org/) methods directly
+     *
+     * Example:
      *
      * ``` php
-     * $I->executeInSelenium(function(\WebDriver\Session $webdriver) {
-     *   $webdriver->back();
+     * <?php
+     * // from the official Guzzle manual
+     * $I->amGoingTo('Sign all requests with OAuth');
+     * $I->executeInGuzzle(function (\Guzzle\Http\Client $client) {
+     *      $client->addSubscriber(new Guzzle\Plugin\Oauth\OauthPlugin(array(
+     *                  'consumer_key'    => '***',
+     *                  'consumer_secret' => '***',
+     *                  'token'           => '***',
+     *                  'token_secret'    => '***'
+     *      )));
      * });
+     * ?>
      * ```
      *
-     * Use [WebDriver Session API](https://github.com/facebook/php-webdriver)
      * Not recommended this command too be used on regular basis.
-     * If Codeception lacks important Selenium methods implement then and submit patches.
+     * If Codeception lacks important Guzzle Client methods implement then and submit patches.
      *
      * @param callable $function
-     * @see Codeception\Module\Selenium2::executeInSelenium()
+     * @see Codeception\Module\PhpBrowser::executeInGuzzle()
      * @return \Codeception\Maybe
      */
-    public function executeInSelenium($function) {
-        $this->scenario->addStep(new \Codeception\Step\Action('executeInSelenium', func_get_args()));
+    public function executeInGuzzle($function) {
+        $this->scenario->addStep(new \Codeception\Step\Action('executeInGuzzle', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -477,123 +293,26 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Perform a click on link or button.
-     * Link or button are found by their names or CSS selector.
-     * Submits a form if button is a submit type.
+     * Assert if the specified checkbox is checked.
+     * Use css selector or xpath to match.
      *
-     * If link is an image it's found by alt attribute value of image.
-     * If button is image button is found by it's value
-     * If link or button can't be found by name they are searched by CSS selector.
-     *
-     * The second parameter is a context: CSS or XPath locator to narrow the search.
-     *
-     * Examples:
+     * Example:
      *
      * ``` php
      * <?php
-     * // simple link
-     * $I->click('Logout');
-     * // button of form
-     * $I->click('Submit');
-     * // CSS button
-     * $I->click('#form input[type=submit]');
-     * // XPath
-     * $I->click('//form/*[@type=submit]')
-     * // link in context
-     * $I->click('Logout', '#nav');
+     * $I->seeCheckboxIsChecked('#agree'); // I suppose user agreed to terms
+     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user agreed to terms, If there is only one checkbox in form.
+     * $I->seeCheckboxIsChecked('//form/input[@type=checkbox and @name=agree]');
      * ?>
      * ```
-     * @param $link
-     * @param $context
-     * @see Codeception\Module\Selenium2::click()
-     * @return \Codeception\Maybe
-     */
-    public function click($link, $context = null, $strict = null) {
-        $this->scenario->addStep(new \Codeception\Step\Action('click', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
      *
-     * Accept alert or confirm popup
-     *
-     * Example:
-     * ``` php
-     * <?php
-     * $I->click('Show alert popup');
-     * $I->acceptPopup();
-     *
-     * ```
-     * @see Codeception\Module\Selenium2::acceptPopup()
-     * @return \Codeception\Maybe
-     */
-    public function acceptPopup() {
-        $this->scenario->addStep(new \Codeception\Step\Action('acceptPopup', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Dismiss alert or confirm popup
-     *
-     * Example:
-     * ``` php
-     * <?php
-     * $I->click('Show confirm popup');
-     * $I->cancelPopup();
-     *
-     * ```
-     * @see Codeception\Module\Selenium2::cancelPopup()
-     * @return \Codeception\Maybe
-     */
-    public function cancelPopup() {
-        $this->scenario->addStep(new \Codeception\Step\Action('cancelPopup', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks if popup contains the $text
-     *
-     * Example:
-     * ``` php
-     * <?php
-     * $I->click('Show alert popup');
-     * $I->seeInPopup('Error message');
-     *
-     * ```
-     *
-     * @param string $text
+     * @param $checkbox
     * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Selenium2::seeInPopup()
+     * @see Codeception\Module\PhpBrowser::seeCheckboxIsChecked()
      * @return \Codeception\Maybe
      */
-    public function canSeeInPopup($text) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInPopup', func_get_args()));
+    public function canSeeCheckboxIsChecked($checkbox) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeCheckboxIsChecked', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -605,22 +324,25 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Checks if popup contains the $text
+     * Assert if the specified checkbox is checked.
+     * Use css selector or xpath to match.
      *
      * Example:
+     *
      * ``` php
      * <?php
-     * $I->click('Show alert popup');
-     * $I->seeInPopup('Error message');
-     *
+     * $I->seeCheckboxIsChecked('#agree'); // I suppose user agreed to terms
+     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user agreed to terms, If there is only one checkbox in form.
+     * $I->seeCheckboxIsChecked('//form/input[@type=checkbox and @name=agree]');
+     * ?>
      * ```
      *
-     * @param string $text
-     * @see Codeception\Module\Selenium2::seeInPopup()
+     * @param $checkbox
+     * @see Codeception\Module\PhpBrowser::seeCheckboxIsChecked()
      * @return \Codeception\Maybe
      */
-    public function seeInPopup($text) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInPopup', func_get_args()));
+    public function seeCheckboxIsChecked($checkbox) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeCheckboxIsChecked', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -634,23 +356,25 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Check if popup don't contains the $text
+     * Assert if the specified checkbox is unchecked.
+     * Use css selector or xpath to match.
      *
      * Example:
+     *
      * ``` php
      * <?php
-     * $I->click();
-     * $I->dontSeeInPopup('Error message');
-     *
+     * $I->dontSeeCheckboxIsChecked('#agree'); // I suppose user didn't agree to terms
+     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user didn't check the first checkbox in form.
+     * ?>
      * ```
      *
-     * @param string $text
+     * @param $checkbox
     * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Selenium2::dontSeeInPopup()
+     * @see Codeception\Module\PhpBrowser::dontSeeCheckboxIsChecked()
      * @return \Codeception\Maybe
      */
-    public function cantSeeInPopup($text) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInPopup', func_get_args()));
+    public function cantSeeCheckboxIsChecked($checkbox) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeCheckboxIsChecked', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -662,662 +386,24 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Check if popup don't contains the $text
-     *
-     * Example:
-     * ``` php
-     * <?php
-     * $I->click();
-     * $I->dontSeeInPopup('Error message');
-     *
-     * ```
-     *
-     * @param string $text
-     * @see Codeception\Module\Selenium2::dontSeeInPopup()
-     * @return \Codeception\Maybe
-     */
-    public function dontSeeInPopup($text) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInPopup', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Switch to another window identified by its name.
-     * 
-     * The window can only be identified by its name. If the $name parameter is blank it will switch to the parent window.
-     *
-     * Example:
-     * ``` html
-     * <input type="button" value="Open window" onclick="window.open('http://example.com', 'another_window')">
-     * ```
-     *
-     * ``` php
-     * <?php
-     * $I->click("Open window");
-     * # switch to another window
-     * $I->switchToWindow("another_window");
-     * # switch to parent window
-     * $I->switchToWindow();
-     * ?>
-     * ```
-     *
-     * If the window has no name, the only way to access it is via the `executeInSelenium()` method like so:
-     * 
-     * ```
-     * <?php
-     * $I->executeInSelenium(function (\Webdriver\Session $webdriver) {
-     * $handles=$webdriver->window_handles();
-     * $last_window = end($handles);
-     * $webdriver->focusWindow($last_window);
-     * });
-     * ?>
-     * ```
-     * 
-     * @param string|null $name
-     * @see Codeception\Module\Selenium2::switchToWindow()
-     * @return \Codeception\Maybe
-     */
-    public function switchToWindow($name = null) {
-        $this->scenario->addStep(new \Codeception\Step\Action('switchToWindow', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Switch to another frame
-     *
-     * Example:
-     * ``` html
-     * <iframe name="another_frame" src="http://example.com">
-     *
-     * ```
-     *
-     * ``` php
-     * <?php
-     * # switch to iframe
-     * $I->switchToIFrame("another_frame");
-     * # switch to parent page
-     * $I->switchToIFrame();
-     *
-     * ```
-     *
-     * @param string|null $name
-     * @see Codeception\Module\Selenium2::switchToIFrame()
-     * @return \Codeception\Maybe
-     */
-    public function switchToIFrame($name = null) {
-        $this->scenario->addStep(new \Codeception\Step\Action('switchToIFrame', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Resize current window
-     *
-     * Example:
-     * ``` php
-     * <?php
-     * $I->resizeWindow(800, 600);
-     *
-     * ```
-     *
-     * @param int    $width
-     * @param int    $height
-     * @author Jaik Dean <jaik@jaikdean.com>
-     * @see Codeception\Module\Selenium2::resizeWindow()
-     * @return \Codeception\Maybe
-     */
-    public function resizeWindow($width, $height) {
-        $this->scenario->addStep(new \Codeception\Step\Action('resizeWindow', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks that page title contains text.
-     *
-     * ``` php
-     * <?php
-     * $I->seeInTitle('Blog - Post #1');
-     * ?>
-     * ```
-     *
-     * @param $title
-     * @return mixed
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Selenium2::seeInTitle()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeInTitle($title) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInTitle', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks that page title contains text.
-     *
-     * ``` php
-     * <?php
-     * $I->seeInTitle('Blog - Post #1');
-     * ?>
-     * ```
-     *
-     * @param $title
-     * @return mixed
-     * @see Codeception\Module\Selenium2::seeInTitle()
-     * @return \Codeception\Maybe
-     */
-    public function seeInTitle($title) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInTitle', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks that page title does not contain text.
-     *
-     * @param $title
-     * @return mixed
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\Selenium2::dontSeeInTitle()
-     * @return \Codeception\Maybe
-     */
-    public function cantSeeInTitle($title) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInTitle', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks that page title does not contain text.
-     *
-     * @param $title
-     * @return mixed
-     * @see Codeception\Module\Selenium2::dontSeeInTitle()
-     * @return \Codeception\Maybe
-     */
-    public function dontSeeInTitle($title) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInTitle', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Ticks a checkbox.
-     * For radio buttons use `selectOption` method.
+     * Assert if the specified checkbox is unchecked.
+     * Use css selector or xpath to match.
      *
      * Example:
      *
      * ``` php
      * <?php
-     * $I->checkOption('#agree');
+     * $I->dontSeeCheckboxIsChecked('#agree'); // I suppose user didn't agree to terms
+     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user didn't check the first checkbox in form.
      * ?>
      * ```
      *
-     * @param $option
-     * @see Codeception\Util\MinkJS::checkOption()
+     * @param $checkbox
+     * @see Codeception\Module\PhpBrowser::dontSeeCheckboxIsChecked()
      * @return \Codeception\Maybe
      */
-    public function checkOption($option) {
-        $this->scenario->addStep(new \Codeception\Step\Action('checkOption', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Unticks a checkbox.
-     *
-     * Example:
-     *
-     * ``` php
-     * <?php
-     * $I->uncheckOption('#notify');
-     * ?>
-     * ```
-     *
-     * @param $option
-     * @see Codeception\Util\MinkJS::uncheckOption()
-     * @return \Codeception\Maybe
-     */
-    public function uncheckOption($option) {
-        $this->scenario->addStep(new \Codeception\Step\Action('uncheckOption', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Double clicks on link or button or any node found by CSS or XPath
-     *
-     * @param $link
-     * @see Codeception\Util\MinkJS::doubleClick()
-     * @return \Codeception\Maybe
-     */
-    public function doubleClick($link) {
-        $this->scenario->addStep(new \Codeception\Step\Action('doubleClick', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Clicks with right button on link or button or any node found by CSS or XPath
-     *
-     * @param $link
-     * @see Codeception\Util\MinkJS::clickWithRightButton()
-     * @return \Codeception\Maybe
-     */
-    public function clickWithRightButton($link) {
-        $this->scenario->addStep(new \Codeception\Step\Action('clickWithRightButton', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Moves mouse over link or button or any node found by CSS or XPath
-     *
-     * @param $link
-     * @see Codeception\Util\MinkJS::moveMouseOver()
-     * @return \Codeception\Maybe
-     */
-    public function moveMouseOver($link) {
-        $this->scenario->addStep(new \Codeception\Step\Action('moveMouseOver', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Moves focus to link or button or any node found by CSS or XPath
-     *
-     * @param $el
-     * @see Codeception\Util\MinkJS::focus()
-     * @return \Codeception\Maybe
-     */
-    public function focus($el) {
-        $this->scenario->addStep(new \Codeception\Step\Action('focus', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Removes focus from link or button or any node found by CSS or XPath
-     * XPath or CSS selectors are accepted.
-     *
-     * @param $el
-     * @see Codeception\Util\MinkJS::blur()
-     * @return \Codeception\Maybe
-     */
-    public function blur($el) {
-        $this->scenario->addStep(new \Codeception\Step\Action('blur', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Drag first element to second
-     * XPath or CSS selectors are accepted.
-     *
-     * @param $el1
-     * @param $el2
-     * @see Codeception\Util\MinkJS::dragAndDrop()
-     * @return \Codeception\Maybe
-     */
-    public function dragAndDrop($el1, $el2) {
-        $this->scenario->addStep(new \Codeception\Step\Action('dragAndDrop', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks element visibility.
-     * Fails if element exists but is invisible to user.
-     * Eiter CSS or XPath can be used.
-     *
-     * Example:
-     * 
-     * ``` php
-     * <?php
-     * $I->seeElement("//input[@type='button']");
-     * ?>
-     * ``` 
-     * 
-     * @param $selector
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Util\MinkJS::seeElement()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeElement($selector) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeElement', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Checks element visibility.
-     * Fails if element exists but is invisible to user.
-     * Eiter CSS or XPath can be used.
-     *
-     * Example:
-     * 
-     * ``` php
-     * <?php
-     * $I->seeElement("//input[@type='button']");
-     * ?>
-     * ``` 
-     * 
-     * @param $selector
-     * @see Codeception\Util\MinkJS::seeElement()
-     * @return \Codeception\Maybe
-     */
-    public function seeElement($selector) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeElement', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Presses key on element found by css, xpath is focused
-     * A char and modifier (ctrl, alt, shift, meta) can be provided.
-     *
-     * Example:
-     *
-     * ``` php
-     * <?php
-     * $I->pressKey('#page','u');
-     * $I->pressKey('#page','u','ctrl');
-     * $I->pressKey('descendant-or-self::*[@id='page']','u');
-     * ?>
-     * ```
-     *
-     * @param $element
-     * @param $char char can be either char ('b') or char-code (98)
-     * @param null $modifier keyboard modifier (could be 'ctrl', 'alt', 'shift' or 'meta')
-     * @see Codeception\Util\MinkJS::pressKey()
-     * @return \Codeception\Maybe
-     */
-    public function pressKey($element, $char, $modifier = null) {
-        $this->scenario->addStep(new \Codeception\Step\Action('pressKey', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Presses key up on element found by CSS or XPath.
-     *
-     * For example see 'pressKey'.
-     *
-     * @param $element
-     * @param $char char can be either char ('b') or char-code (98)
-     * @param null $modifier keyboard modifier (could be 'ctrl', 'alt', 'shift' or 'meta')
-     * @see Codeception\Util\MinkJS::pressKeyUp()
-     * @return \Codeception\Maybe
-     */
-    public function pressKeyUp($element, $char, $modifier = null) {
-        $this->scenario->addStep(new \Codeception\Step\Action('pressKeyUp', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Presses key down on element found by CSS or XPath.
-     *
-     * For example see 'pressKey'.
-     *
-     * @param $element
-     * @param $char char can be either char ('b') or char-code (98)
-     * @param null $modifier keyboard modifier (could be 'ctrl', 'alt', 'shift' or 'meta')
-     * @see Codeception\Util\MinkJS::pressKeyDown()
-     * @return \Codeception\Maybe
-     */
-    public function pressKeyDown($element, $char, $modifier = null) {
-        $this->scenario->addStep(new \Codeception\Step\Action('pressKeyDown', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Wait for x milliseconds
-     *
-     * Example:
-     * 
-     * ``` php
-     * <?php
-     * $I->wait(1000);	// waits 1000 milliseconds (one second)
-     * ?>
-     * ```
-     * 
-     * @param $milliseconds
-     * @see Codeception\Util\MinkJS::wait()
-     * @return \Codeception\Maybe
-     */
-    public function wait($milliseconds) {
-        $this->scenario->addStep(new \Codeception\Step\Action('wait', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Waits for x milliseconds or until a given JS condition turns true.
-     * The function will keep asserting the javascript condition, but will
-     * continue regardless of its validity once the x milliseconds time has
-     * been passed.
-     * 
-     * See the example below on how to embed javascript functions as the
-     * condition.
-     *
-     * Example:
-     * 
-     * ``` php
-     * <?php
-     * $I->waitForJS(1000, "(function myJavascriptFunction() {
-     * 		// Javascript function code
-     * 		if (some statement) {
-     *			return true;	// waitForJS() function will finish
-     *		} else {
-     *			return false;	// keep asserting (some statement)
-     *		}
-     *	})()");
-     * ?>
-     * ```
-     * 
-     * @param $milliseconds
-     * @param $jsCondition
-     * @see Codeception\Util\MinkJS::waitForJS()
-     * @return \Codeception\Maybe
-     */
-    public function waitForJS($milliseconds, $jsCondition) {
-        $this->scenario->addStep(new \Codeception\Step\Action('waitForJS', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Executes any JS code.
-     *
-     * @param $jsCode
-     * @see Codeception\Util\MinkJS::executeJs()
-     * @return \Codeception\Maybe
-     */
-    public function executeJs($jsCode) {
-        $this->scenario->addStep(new \Codeception\Step\Action('executeJs', func_get_args()));
+    public function dontSeeCheckboxIsChecked($checkbox) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeCheckboxIsChecked', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -1618,6 +704,105 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
+     * Perform a click on link or button.
+     * Link or button are found by their names or CSS selector.
+     * Submits a form if button is a submit type.
+     *
+     * If link is an image it's found by alt attribute value of image.
+     * If button is image button is found by it's value
+     * If link or button can't be found by name they are searched by CSS selector.
+     *
+     * The second parameter is a context: CSS or XPath locator to narrow the search.
+     *
+     * Examples:
+     *
+     * ``` php
+     * <?php
+     * // simple link
+     * $I->click('Logout');
+     * // button of form
+     * $I->click('Submit');
+     * // CSS button
+     * $I->click('#form input[type=submit]');
+     * // XPath
+     * $I->click('//form/*[@type=submit]')
+     * // link in context
+     * $I->click('Logout', '#nav');
+     * ?>
+     * ```
+     * @param $link
+     * @param $context
+     * @see Codeception\Util\Mink::click()
+     * @return \Codeception\Maybe
+     */
+    public function click($link, $context = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('click', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks if element exists on a page, matching it by CSS or XPath
+     *
+     * ``` php
+     * <?php
+     * $I->seeElement('.error');
+     * $I->seeElement('//form/input[1]');
+     * ?>
+     * ```
+     * @param $selector
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Util\Mink::seeElement()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeElement($selector) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeElement', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks if element exists on a page, matching it by CSS or XPath
+     *
+     * ``` php
+     * <?php
+     * $I->seeElement('.error');
+     * $I->seeElement('//form/input[1]');
+     * ?>
+     * ```
+     * @param $selector
+     * @see Codeception\Util\Mink::seeElement()
+     * @return \Codeception\Maybe
+     */
+    public function seeElement($selector) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeElement', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
      * Checks if element does not exist (or is visible) on a page, matching it by CSS or XPath
      *
      * Example:
@@ -1789,6 +974,65 @@ class TestGuy extends \Codeception\AbstractGuy
      */
     public function selectOption($select, $option) {
         $this->scenario->addStep(new \Codeception\Step\Action('selectOption', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Ticks a checkbox.
+     * For radio buttons use `selectOption` method.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $I->checkOption('#agree');
+     * ?>
+     * ```
+     *
+     * @param $option
+     * @see Codeception\Util\Mink::checkOption()
+     * @return \Codeception\Maybe
+     */
+    public function checkOption($option) {
+        $this->scenario->addStep(new \Codeception\Step\Action('checkOption', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Unticks a checkbox.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $I->uncheckOption('#notify');
+     * ?>
+     * ```
+     *
+     * @param $option
+     * @see Codeception\Util\Mink::uncheckOption()
+     * @return \Codeception\Maybe
+     */
+    public function uncheckOption($option) {
+        $this->scenario->addStep(new \Codeception\Step\Action('uncheckOption', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -2467,130 +1711,6 @@ class TestGuy extends \Codeception\AbstractGuy
      * Documentation taken from corresponding module.
      * ----------------------------------------------
      *
-     * Assert if the specified checkbox is checked.
-     * Use css selector or xpath to match.
-     *
-     * Example:
-     *
-     * ``` php
-     * <?php
-     * $I->seeCheckboxIsChecked('#agree'); // I suppose user agreed to terms
-     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user agreed to terms, If there is only one checkbox in form.
-     * $I->seeCheckboxIsChecked('//form/input[@type=checkbox and @name=agree]');
-     * ?>
-     * ```
-     *
-     * @param $checkbox
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Util\Mink::seeCheckboxIsChecked()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeCheckboxIsChecked($checkbox) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeCheckboxIsChecked', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Assert if the specified checkbox is checked.
-     * Use css selector or xpath to match.
-     *
-     * Example:
-     *
-     * ``` php
-     * <?php
-     * $I->seeCheckboxIsChecked('#agree'); // I suppose user agreed to terms
-     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user agreed to terms, If there is only one checkbox in form.
-     * $I->seeCheckboxIsChecked('//form/input[@type=checkbox and @name=agree]');
-     * ?>
-     * ```
-     *
-     * @param $checkbox
-     * @see Codeception\Util\Mink::seeCheckboxIsChecked()
-     * @return \Codeception\Maybe
-     */
-    public function seeCheckboxIsChecked($checkbox) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeCheckboxIsChecked', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Assert if the specified checkbox is unchecked.
-     * Use css selector or xpath to match.
-     *
-     * Example:
-     *
-     * ``` php
-     * <?php
-     * $I->dontSeeCheckboxIsChecked('#agree'); // I suppose user didn't agree to terms
-     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user didn't check the first checkbox in form.
-     * ?>
-     * ```
-     *
-     * @param $checkbox
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Util\Mink::dontSeeCheckboxIsChecked()
-     * @return \Codeception\Maybe
-     */
-    public function cantSeeCheckboxIsChecked($checkbox) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeCheckboxIsChecked', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     * Assert if the specified checkbox is unchecked.
-     * Use css selector or xpath to match.
-     *
-     * Example:
-     *
-     * ``` php
-     * <?php
-     * $I->dontSeeCheckboxIsChecked('#agree'); // I suppose user didn't agree to terms
-     * $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user didn't check the first checkbox in form.
-     * ?>
-     * ```
-     *
-     * @param $checkbox
-     * @see Codeception\Util\Mink::dontSeeCheckboxIsChecked()
-     * @return \Codeception\Maybe
-     */
-    public function dontSeeCheckboxIsChecked($checkbox) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeCheckboxIsChecked', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
      * Checks that an input field or textarea contains value.
      * Field is matched either by label or CSS or Xpath
      *
@@ -2780,6 +1900,1074 @@ class TestGuy extends \Codeception\AbstractGuy
      */
     public function grabValueFrom($field) {
         $this->scenario->addStep(new \Codeception\Step\Action('grabValueFrom', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks that page title contains text.
+     *
+     * ``` php
+     * <?php
+     * $I->seeInTitle('Blog - Post #1');
+     * ?>
+     * ```
+     *
+     * @param $title
+     * @return mixed
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Util\Mink::seeInTitle()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeInTitle($title) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks that page title contains text.
+     *
+     * ``` php
+     * <?php
+     * $I->seeInTitle('Blog - Post #1');
+     * ?>
+     * ```
+     *
+     * @param $title
+     * @return mixed
+     * @see Codeception\Util\Mink::seeInTitle()
+     * @return \Codeception\Maybe
+     */
+    public function seeInTitle($title) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks that page title does not contain text.
+     *
+     * @param $title
+     * @return mixed
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Util\Mink::dontSeeInTitle()
+     * @return \Codeception\Maybe
+     */
+    public function cantSeeInTitle($title) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks that page title does not contain text.
+     *
+     * @param $title
+     * @return mixed
+     * @see Codeception\Util\Mink::dontSeeInTitle()
+     * @return \Codeception\Maybe
+     */
+    public function dontSeeInTitle($title) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sets HTTP header
+     *
+     * @param $name
+     * @param $value
+     * @see Codeception\Module\REST::haveHttpHeader()
+     * @return \Codeception\Maybe
+     */
+    public function haveHttpHeader($name, $value) {
+        $this->scenario->addStep(new \Codeception\Step\Action('haveHttpHeader', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks over the given HTTP header and (optionally)
+     * its value, asserting that are there
+     *
+     * @param $name
+     * @param $value
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::seeHttpHeader()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeHttpHeader($name, $value = null) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeHttpHeader', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks over the given HTTP header and (optionally)
+     * its value, asserting that are there
+     *
+     * @param $name
+     * @param $value
+     * @see Codeception\Module\REST::seeHttpHeader()
+     * @return \Codeception\Maybe
+     */
+    public function seeHttpHeader($name, $value = null) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeHttpHeader', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks over the given HTTP header and (optionally)
+     * its value, asserting that are not there
+     *
+     * @param $name
+     * @param $value
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::dontSeeHttpHeader()
+     * @return \Codeception\Maybe
+     */
+    public function cantSeeHttpHeader($name, $value = null) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeHttpHeader', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks over the given HTTP header and (optionally)
+     * its value, asserting that are not there
+     *
+     * @param $name
+     * @param $value
+     * @see Codeception\Module\REST::dontSeeHttpHeader()
+     * @return \Codeception\Maybe
+     */
+    public function dontSeeHttpHeader($name, $value = null) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeHttpHeader', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Returns the value of the specified header name
+     *
+     * @param $name
+     * @param Boolean $first  Whether to return the first value or all header values
+     *
+     * @return string|array The first header value if $first is true, an array of values otherwise
+     * @see Codeception\Module\REST::grabHttpHeader()
+     * @return \Codeception\Maybe
+     */
+    public function grabHttpHeader($name, $first = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('grabHttpHeader', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Adds Digest authentication via username/password.
+	 *
+	 * @param $username
+	 * @param $password
+     * @see Codeception\Module\REST::amDigestAuthenticated()
+     * @return \Codeception\Maybe
+     */
+    public function amDigestAuthenticated($username, $password) {
+        $this->scenario->addStep(new \Codeception\Step\Condition('amDigestAuthenticated', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sends a POST request to given uri.
+     *
+     * Parameters and files (as array of filenames) can be provided.
+     *
+     * @param $url
+     * @param array $params
+     * @param array $files
+     * @see Codeception\Module\REST::sendPOST()
+     * @return \Codeception\Maybe
+     */
+    public function sendPOST($url, $params = null, $files = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendPOST', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sends a GET request to given uri.
+     *
+     * @param $url
+     * @param array $params
+     * @see Codeception\Module\REST::sendGET()
+     * @return \Codeception\Maybe
+     */
+    public function sendGET($url, $params = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendGET', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sends PUT request to given uri.
+     *
+     * @param $url
+     * @param array $params
+     * @param array $files
+     * @see Codeception\Module\REST::sendPUT()
+     * @return \Codeception\Maybe
+     */
+    public function sendPUT($url, $params = null, $files = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendPUT', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sends PATCH request to given uri.
+     *
+     * @param       $url
+     * @param array $params
+     * @param array $files
+     * @see Codeception\Module\REST::sendPATCH()
+     * @return \Codeception\Maybe
+     */
+    public function sendPATCH($url, $params = null, $files = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendPATCH', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sends DELETE request to given uri.
+     *
+     * @param $url
+     * @param array $params
+     * @param array $files
+     * @see Codeception\Module\REST::sendDELETE()
+     * @return \Codeception\Maybe
+     */
+    public function sendDELETE($url, $params = null, $files = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendDELETE', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sends LINK request to given uri.
+     *
+     * @param       $url
+     * @param array $linkEntries (entry is array with keys "uri" and "link-param")
+     *
+     * @link http://tools.ietf.org/html/rfc2068#section-19.6.2.4
+     *
+     * @author samva.ua@gmail.com
+     * @see Codeception\Module\REST::sendLINK()
+     * @return \Codeception\Maybe
+     */
+    public function sendLINK($url, $linkEntries) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendLINK', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Sends UNLINK request to given uri.
+     *
+     * @param       $url
+     * @param array $linkEntries (entry is array with keys "uri" and "link-param")
+     *
+     * @link http://tools.ietf.org/html/rfc2068#section-19.6.2.4
+     *
+     * @author samva.ua@gmail.com
+     * @see Codeception\Module\REST::sendUNLINK()
+     * @return \Codeception\Maybe
+     */
+    public function sendUNLINK($url, $linkEntries) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendUNLINK', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether last response was valid JSON.
+     * This is done with json_last_error function.
+     *
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::seeResponseIsJson()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeResponseIsJson() {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeResponseIsJson', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether last response was valid JSON.
+     * This is done with json_last_error function.
+     *
+     * @see Codeception\Module\REST::seeResponseIsJson()
+     * @return \Codeception\Maybe
+     */
+    public function seeResponseIsJson() {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeResponseIsJson', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether last response was valid XML.
+     * This is done with libxml_get_last_error function.
+     *
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::seeResponseIsXml()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeResponseIsXml() {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeResponseIsXml', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether last response was valid XML.
+     * This is done with libxml_get_last_error function.
+     *
+     * @see Codeception\Module\REST::seeResponseIsXml()
+     * @return \Codeception\Maybe
+     */
+    public function seeResponseIsXml() {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeResponseIsXml', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether the last response contains text.
+     *
+     * @param $text
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::seeResponseContains()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeResponseContains($text) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeResponseContains', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether the last response contains text.
+     *
+     * @param $text
+     * @see Codeception\Module\REST::seeResponseContains()
+     * @return \Codeception\Maybe
+     */
+    public function seeResponseContains($text) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeResponseContains', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether last response do not contain text.
+     *
+     * @param $text
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::dontSeeResponseContains()
+     * @return \Codeception\Maybe
+     */
+    public function cantSeeResponseContains($text) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeResponseContains', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether last response do not contain text.
+     *
+     * @param $text
+     * @see Codeception\Module\REST::dontSeeResponseContains()
+     * @return \Codeception\Maybe
+     */
+    public function dontSeeResponseContains($text) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeResponseContains', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether the last JSON response contains provided array.
+     * The response is converted to array with json_decode($response, true)
+     * Thus, JSON is represented by associative array.
+     * This method matches that response array contains provided array.
+     *
+     * Examples:
+     *
+     * ``` php
+     * <?php
+     * // response: {name: john, email: john@gmail.com}
+     * $I->seeResponseContainsJson(array('name' => 'john'));
+     *
+     * // response {user: john, profile: { email: john@gmail.com }}
+     * $I->seeResponseContainsJson(array('email' => 'john@gmail.com'));
+     *
+     * ?>
+     * ```
+     *
+     * This method recursively checks if one array can be found inside of another.
+     *
+     * @param array $json
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::seeResponseContainsJson()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeResponseContainsJson($json = null) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeResponseContainsJson', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks whether the last JSON response contains provided array.
+     * The response is converted to array with json_decode($response, true)
+     * Thus, JSON is represented by associative array.
+     * This method matches that response array contains provided array.
+     *
+     * Examples:
+     *
+     * ``` php
+     * <?php
+     * // response: {name: john, email: john@gmail.com}
+     * $I->seeResponseContainsJson(array('name' => 'john'));
+     *
+     * // response {user: john, profile: { email: john@gmail.com }}
+     * $I->seeResponseContainsJson(array('email' => 'john@gmail.com'));
+     *
+     * ?>
+     * ```
+     *
+     * This method recursively checks if one array can be found inside of another.
+     *
+     * @param array $json
+     * @see Codeception\Module\REST::seeResponseContainsJson()
+     * @return \Codeception\Maybe
+     */
+    public function seeResponseContainsJson($json = null) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeResponseContainsJson', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Returns current response so that it can be used in next scenario steps.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $user_id = $I->grabResponse();
+     * $I->sendPUT('/user', array('id' => $user_id, 'name' => 'davert'));
+     * ?>
+     * ```
+     *
+     * @version 1.1
+     * @return string
+     * @see Codeception\Module\REST::grabResponse()
+     * @return \Codeception\Maybe
+     */
+    public function grabResponse() {
+        $this->scenario->addStep(new \Codeception\Step\Action('grabResponse', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Returns data from the current JSON response using specified path
+     * so that it can be used in next scenario steps
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $user_id = $I->grabDataFromJsonResponse('user.user_id');
+     * $I->sendPUT('/user', array('id' => $user_id, 'name' => 'davert'));
+     * ?>
+     * ```
+     *
+     * @param string $path
+     *
+     * @since 1.1.2
+     * @return string
+     *
+     * @author tiger.seo@gmail.com
+     * @see Codeception\Module\REST::grabDataFromJsonResponse()
+     * @return \Codeception\Maybe
+     */
+    public function grabDataFromJsonResponse($path) {
+        $this->scenario->addStep(new \Codeception\Step\Action('grabDataFromJsonResponse', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Opposite to seeResponseContainsJson
+     *
+     * @param array $json
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::dontSeeResponseContainsJson()
+     * @return \Codeception\Maybe
+     */
+    public function cantSeeResponseContainsJson($json = null) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeResponseContainsJson', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Opposite to seeResponseContainsJson
+     *
+     * @param array $json
+     * @see Codeception\Module\REST::dontSeeResponseContainsJson()
+     * @return \Codeception\Maybe
+     */
+    public function dontSeeResponseContainsJson($json = null) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeResponseContainsJson', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks if response is exactly the same as provided.
+     *
+     * @param $response
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::seeResponseEquals()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeResponseEquals($response) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeResponseEquals', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks if response is exactly the same as provided.
+     *
+     * @param $response
+     * @see Codeception\Module\REST::seeResponseEquals()
+     * @return \Codeception\Maybe
+     */
+    public function seeResponseEquals($response) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeResponseEquals', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks that response code is not equal to provided value.
+     *
+     * @param $code
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\REST::dontSeeResponseCodeIs()
+     * @return \Codeception\Maybe
+     */
+    public function cantSeeResponseCodeIs($code) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeResponseCodeIs', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks that response code is not equal to provided value.
+     *
+     * @param $code
+     * @see Codeception\Module\REST::dontSeeResponseCodeIs()
+     * @return \Codeception\Maybe
+     */
+    public function dontSeeResponseCodeIs($code) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeResponseCodeIs', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Inserts SQL record into database. This record will be erased after the test.
+     *
+     * ``` php
+     * <?php
+     * $I->haveInDatabase('users', array('name' => 'miles', 'email' => 'miles@davis.com'));
+     * ?>
+     * ```
+     *
+     * @param $table
+     * @param array $data
+     * @return integer $id
+     * @see Codeception\Module\Db::haveInDatabase()
+     * @return \Codeception\Maybe
+     */
+    public function haveInDatabase($table, $data) {
+        $this->scenario->addStep(new \Codeception\Step\Action('haveInDatabase', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks if a row with given column values exists.
+     * Provide table name and column values.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $I->seeInDatabase('users', array('name' => 'Davert', 'email' => 'davert@mail.com'));
+     *
+     * ```
+     * Will generate:
+     *
+     * ``` sql
+     * SELECT COUNT(*) FROM `users` WHERE `name` = 'Davert' AND `email` = 'davert@mail.com'
+     * ```
+     * Fails if no such user found.
+     *
+     * @param $table
+     * @param array $criteria
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\Db::seeInDatabase()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeInDatabase($table, $criteria = null) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInDatabase', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Checks if a row with given column values exists.
+     * Provide table name and column values.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $I->seeInDatabase('users', array('name' => 'Davert', 'email' => 'davert@mail.com'));
+     *
+     * ```
+     * Will generate:
+     *
+     * ``` sql
+     * SELECT COUNT(*) FROM `users` WHERE `name` = 'Davert' AND `email` = 'davert@mail.com'
+     * ```
+     * Fails if no such user found.
+     *
+     * @param $table
+     * @param array $criteria
+     * @see Codeception\Module\Db::seeInDatabase()
+     * @return \Codeception\Maybe
+     */
+    public function seeInDatabase($table, $criteria = null) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInDatabase', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Effect is opposite to ->seeInDatabase
+     *
+     * Checks if there is no record with such column values in database.
+     * Provide table name and column values.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $I->dontSeeInDatabase('users', array('name' => 'Davert', 'email' => 'davert@mail.com'));
+     *
+     * ```
+     * Will generate:
+     *
+     * ``` sql
+     * SELECT COUNT(*) FROM `users` WHERE `name` = 'Davert' AND `email` = 'davert@mail.com'
+     * ```
+     * Fails if such user was found.
+     *
+     * @param $table
+     * @param array $criteria
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\Db::dontSeeInDatabase()
+     * @return \Codeception\Maybe
+     */
+    public function cantSeeInDatabase($table, $criteria = null) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInDatabase', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Effect is opposite to ->seeInDatabase
+     *
+     * Checks if there is no record with such column values in database.
+     * Provide table name and column values.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $I->dontSeeInDatabase('users', array('name' => 'Davert', 'email' => 'davert@mail.com'));
+     *
+     * ```
+     * Will generate:
+     *
+     * ``` sql
+     * SELECT COUNT(*) FROM `users` WHERE `name` = 'Davert' AND `email` = 'davert@mail.com'
+     * ```
+     * Fails if such user was found.
+     *
+     * @param $table
+     * @param array $criteria
+     * @see Codeception\Module\Db::dontSeeInDatabase()
+     * @return \Codeception\Maybe
+     */
+    public function dontSeeInDatabase($table, $criteria = null) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInDatabase', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * Fetches a single column value from a database.
+     * Provide table name, desired column and criteria.
+     *
+     * Example:
+     *
+     * ``` php
+     * <?php
+     * $mail = $I->grabFromDatabase('users', 'email', array('name' => 'Davert'));
+     *
+     * ```
+     *
+     * @version 1.1
+     * @param $table
+     * @param $column
+     * @param array $criteria
+     * @return mixed
+     * @see Codeception\Module\Db::grabFromDatabase()
+     * @return \Codeception\Maybe
+     */
+    public function grabFromDatabase($table, $column, $criteria = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('grabFromDatabase', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);

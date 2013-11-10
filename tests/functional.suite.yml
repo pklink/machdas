@@ -8,11 +8,10 @@
 
 class_name: TestGuy
 modules:
-    enabled: [Filesystem, TestHelper, Selenium2]
+    enabled: [PhpBrowser, REST, TestHelper, Db]
     config:
-        Selenium2:
-            url: 'http://localhost:8080/Dingbat/'
-            browser: firefox
-            delay: 1000
-            capabilities:
-                javascriptEnabled: true
+        PhpBrowser:
+            url: 'http://localhost:8080/Dingbat'
+        REST:
+            url: 'http://localhost:8080/Dingbat/index.php'
+            timeout: 3

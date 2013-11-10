@@ -36,8 +36,7 @@ class Add extends Action
         $task->save();
 
         $return = [
-            'id'   => $task->id,
-            'name' => $task->name,
+            'id'   => (int) $task->id,
         ];
 
         return JsonResponse::create($return);
