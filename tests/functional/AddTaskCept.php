@@ -9,4 +9,5 @@ $guy->sendPOST('/task', [
     'name'     => 'something',
     'priority' => 1
 ]);
-$guy->seeResponseContainsJson(['id' => 86]);
+$guy->seeResponseIsJson();
+$guy->seeResponseEquals('{"id":86}');

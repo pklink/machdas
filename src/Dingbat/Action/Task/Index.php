@@ -29,11 +29,11 @@ class Index extends Action
         $tasks = [];
         foreach (Task::objects()->orderBy('id', 'asc')->fetch() as $task) {
             $tasks[] = [
-                'id'       => $task->id,
+                'id'       => (int) $task->id,
                 'name'     => $task->name,
-                'marked'   => $task->marked,
-                'priority' => $task->priority,
-                'cardId'   => $task->cardid
+                'marked'   => (bool) $task->marked,
+                'priority' => (int) $task->priority,
+                'cardId'   => (int) $task->cardid
             ];
         }
 
