@@ -5,10 +5,13 @@ php:
 install:
   - mysql -e 'CREATE DATABASE dingbat;'
   - mysql dingbat < setup/install.sql
-  - sed 's/root/travis/g' config.sample.php > config.php.1
-  - sed 's/bitnami//g' config.php.1 > config.php.2
-  - mv config.php.2 config.php
-  - rm config.php.1
+  - cp config.sample.php config.php
+  - sed -i 's/root/travis/g' config.php
+  - sed -i 's/bitnami//g' config.php
+  - sed -i 's/root/travis/g' codeception.yml
+  - sed -i 's/bitnami//g' codeception.yml
+  - sed -i 's/Dingbat//g' tests/functional.suite.yml
+  - php -S localhost:8080 &
   - composer install --dev
 script:
   - php vendor/bin/codecept run functional
