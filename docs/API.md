@@ -73,7 +73,7 @@ POST to `index.php/task` with payload:
 * URL: `index.php/task/<id>`
 * Method: `GET`
 * Params:
-	* `id`:
+	* `id`: in URL
 		* type: `integer`
 		* required: yep
 		* description: ID of the task
@@ -247,3 +247,41 @@ PUT to `index.php/task/1` with payload:
 	}
 
 ***
+
+### Delete a task
+
+#### Request
+
+* URL: `index.php/task/<id>`
+* Method: `DELETE`
+* Params:
+	*  `id` in URL
+		* type: `integer`
+		* description: id of the task
+		
+#### Response
+
+* `code`
+	* type: `integer`
+	* possible values:
+		* `0`: all fine
+		* `1`: task does not exist
+		* `999`: unknown error
+* `message`:
+	* type: `string`
+
+			
+#### Example
+
+##### Request
+
+DELETE to `index.php/task/1`
+
+	
+##### Response
+
+	{
+		"code": 0,
+		"message": "all fine"
+	}
+

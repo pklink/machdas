@@ -19,6 +19,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class Delete extends Action
 {
 
+    const CODE_ALL_FINE = 0;
+    const CODE_TASK_DOES_NOT_EXIST = 1;
+    const CODE_UNKNOW_ERROR = 999;
+
+
     /**
      * Remove task with ID $id
      *
@@ -27,8 +32,32 @@ class Delete extends Action
      */
     public function run($id)
     {
-        Task::get($id)->delete();
-        return JsonResponse::create(['success' => 1]);
+        $task = null;
+
+        // get task
+        try {
+            $task = Task::get($id);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'code'    => Delete::CODE_TASK_DOES_NOT_EXIST,
+                'message' => sprintf('task with `id` `%d` does not exist', $id)
+            ]);
+        }
+
+        // delete task
+        try {
+            $task->delete();
+
+            return JsonResponse::create([
+                'code'    => Delete::CODE_ALL_FINE,
+                'message' => 'all fine'
+            ]);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'code'    => Delete::CODE_UNKNOW_ERROR,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
 }
