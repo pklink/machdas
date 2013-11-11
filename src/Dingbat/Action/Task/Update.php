@@ -5,6 +5,7 @@ namespace Dingbat\Action\Task;
 
 use Dingbat\Action;
 use Dingbat\Model\Task;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -23,22 +24,26 @@ class Update extends Action
      * Update a task
      *
      * @param int $id ID of task
-     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function run($id)
     {
         $request = $this->request;
 
-        /* @var Task $task */
-        $task = Task::get($id);
-        $task->name     = $request->get('name');
-        $task->marked   = $request->get('marked');
-        $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
-        $task->cardid   = $request->get('cardId');
-        $task->update();
+        try
+        {
+            /* @var Task $task */
+            $task = Task::get($id);
+            $task->name     = $request->get('name');
+            $task->marked   = $request->get('marked');
+            $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
+            $task->cardid   = $request->get('cardId');
+            $task->update();
 
-        return JsonResponse::create(['success' => 1]);
+            return JsonResponse::create(['success' => true]);
+        } catch (\Exception $e) {
+            return JsonResponse::create(['success' => false, 'message' => 'task does not exist']);
+        }
     }
 
 }
