@@ -1,5 +1,6 @@
 <?php
 
+/*
 $guy = new TestGuy($scenario);
 $guy->wantTo('edit a task');
 
@@ -17,3 +18,4 @@ $guy->seeResponseEquals('{"success":true}');
 // edit not existing task
 $guy->sendPUT('/task/4', $args);
 $guy->seeResponseEquals('{"success":false,"message":"task does not exist"}');
+*/

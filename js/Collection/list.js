@@ -19,7 +19,15 @@ $(function() {
          * @returns {*}
          */
         comparator: function(model) {
-            return model.get('priority');
+            if (model.get('priority') == 'normal') {
+                return 0;
+            }
+            else if (model.get('priority') == 'high') {
+                return 1;
+            }
+            else {
+                return -1;
+            }
         },
 
 

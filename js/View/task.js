@@ -78,7 +78,7 @@ $(function() {
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON())).hide();
-            this.$el.attr('class', 'prio-' +  this.model.priorityName);
+            this.$el.attr('class', 'prio-' +  this.model.get('priority'));
             this.hideForm();
 
             if (this.model.get('marked') == 1) {
@@ -129,7 +129,7 @@ $(function() {
 
             if (this.model.save()) {
                 this.$('.name').text( this.model.get('name') );
-                this.$el.attr('class', 'prio-' + this.model.priorityName);
+                this.$el.attr('class', 'prio-' + this.model.get('priority'));
                 this.hideForm();
             }
 

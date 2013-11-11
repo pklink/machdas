@@ -17,9 +17,9 @@ use Phormium\Model;
 class Task extends Model
 {
 
-    const PRIORITY_LOW    = 0;
-    const PRIORITY_NORMAL = 1;
-    const PRIORITY_HIGH   = 2;
+    const PRIORITY_LOW    = 'low';
+    const PRIORITY_NORMAL = 'normal';
+    const PRIORITY_HIGH   = 'high';
 
     /**
      * @var array
@@ -46,9 +46,9 @@ class Task extends Model
     public $marked = false;
 
     /**
-     * @var int
+     * @var string
      */
-    public $priority = self::PRIORITY_NORMAL;
+    public $priority = Task::PRIORITY_NORMAL;
 
     /**
      * @var int

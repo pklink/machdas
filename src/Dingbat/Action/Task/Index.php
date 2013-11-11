@@ -32,7 +32,7 @@ class Index extends Action
                 'id'       => (int) $task->id,
                 'name'     => $task->name,
                 'marked'   => (bool) $task->marked,
-                'priority' => (int) $task->priority,
+                'priority' => $task->priority,
                 'cardId'   => (int) $task->cardid
             ];
         }

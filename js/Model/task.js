@@ -6,12 +6,9 @@ $(function() {
         defaults: {
             'name':     '',
             'marked':   false,
-            'priority': 1,
+            'priority': 'normal',
             'cardId':   ''
         },
-
-
-        priorityName: 'normal',
 
 
         urlRoot: 'index.php/task',
@@ -24,10 +21,15 @@ $(function() {
 
 
         initialize: function() {
-            this.listenTo(this, 'change:priority', this.setPriorityName);
-            this.listenToOnce(this, 'add', this.setPriorityName);
             this.listenTo(this, 'change:name', this.setPriority);
             this.listenTo(this, 'change:name', this.setMarked);
+        },
+
+
+        parse: function(response, options) {
+            delete response.code;
+            delete response.message;
+            return response;
         },
 
 
@@ -45,34 +47,19 @@ $(function() {
             var name = this.get('name');
 
             if (name.search(/@high/) != -1) {
-                this.set('priority', 2);
+                this.set('priority', 'high');
                 this.set('name', $.trim(name.replace(/@high/, '')));
             }
             else if (name.search(/@normal/) != -1) {
-                this.set('priority', 1);
+                this.set('priority', 'normal');
                 this.set('name', $.trim(name.replace(/@normal/, '')));
             }
             else if (name.search(/@low/) != -1) {
-                this.set('priority', 0);
+                this.set('priority', 'low');
                 this.set('name', $.trim(name.replace(/@low/, '')));
             }
 
             this.listenToOnce(this, 'change:name', this.setPriority);
-        },
-
-
-        setPriorityName: function() {
-            if (this.get('priority') == 0) {
-                this.priorityName = 'low';
-            }
-
-            else if (this.get('priority') == 1) {
-                this.priorityName = 'normal';
-            }
-
-            else if (this.get('priority') == 2) {
-                this.priorityName = 'high';
-            }
         },
 
 

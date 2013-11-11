@@ -1,6 +1,6 @@
 # Changelog
 
-## Next version
+## 0.5.0
 
 * New: Added acceptance tests
 * New: Added functional tests

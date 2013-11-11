@@ -29,7 +29,7 @@ class Index extends Action
         $cards = [];
         foreach (Card::objects()->orderBy('id', 'asc')->fetch() as $card) {
             $cards[] = [
-                'id'       => $card->id,
+                'id'       => (int) $card->id,
                 'name'     => $card->name,
             ];
         }

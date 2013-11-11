@@ -4,6 +4,7 @@
 namespace Dingbat\Action\Task;
 
 use Dingbat\Action;
+use Dingbat\Model\Card;
 use Dingbat\Model\Task;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -19,6 +20,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class Add extends Action
 {
 
+    const CODE_ALL_FINE = 0;
+    const CODE_CARD_ID_IS_NOT_GIVEN = 1;
+    const CODE_CARD_DOES_NOT_EXIST = 2;
+    const CODE_NAME_IS_NOT_GIVEN = 3;
+    const CODE_PRIORITY_IS_INVALID = 4;
+    const CODE_UNKNOWN_ERROR = 999;
+
     /**
      * Create new task
      *
@@ -28,18 +36,68 @@ class Add extends Action
     {
         $request = $this->request;
 
-        $task = new Task();
-        $task->name     = $request->get('name');
-        $task->marked   = $request->get('marked', false);
-        $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
-        $task->cardid   = $request->get('cardId', 1);
-        $task->save();
+        // check if cardId is set
+        if ($request->get('cardId', false) === false)
+        {
+            return JsonResponse::create([
+                'id'      => null,
+                'code'    => Add::CODE_CARD_ID_IS_NOT_GIVEN,
+                'message' => 'param `cardId` is required'
+            ]);
+        }
 
-        $return = [
-            'id'   => (int) $task->id,
-        ];
+        // check if cardId is exist
+        try {
+            Card::get($request->get('cardId'));
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'id'      => null,
+                'code'    => Add::CODE_CARD_DOES_NOT_EXIST,
+                'message' => sprintf('card with id `%d` does not exist', $request->get('cardId'))
+            ]);
+        }
 
-        return JsonResponse::create($return);
+        // check if `name` is set
+        if ($request->get('name', false) === false)
+        {
+            return JsonResponse::create([
+                'id'      => null,
+                'code'    => Add::CODE_NAME_IS_NOT_GIVEN,
+                'message' => 'param `name` is required'
+            ]);
+        }
+
+        // check if `priority` value
+        if (!in_array($request->get('priority', 'normal'), ['normal', 'high', 'low']))
+        {
+            return JsonResponse::create([
+                'id'      => null,
+                'code'    => Add::CODE_PRIORITY_IS_INVALID,
+                'message' => 'param `priority` must be `normal`, `high` or `low`'
+            ]);
+        }
+
+        // save task
+        try {
+            $task = new Task();
+            $task->name     = $request->get('name');
+            $task->marked   = $request->get('marked', false);
+            $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
+            $task->cardid   = $request->get('cardId', 1);
+            $task->save();
+
+            return JsonResponse::create([
+                'id'      => (int) $task->id,
+                'code'    => Add::CODE_ALL_FINE,
+                'message' => 'all fine'
+            ]);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'id'      => null,
+                'code'    => Add::CODE_UNKNOWN_ERROR,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
 }
