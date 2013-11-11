@@ -122,3 +122,67 @@ GET to `index.php/task/1`
 	}
 
 ***
+
+### Update a task
+
+#### Request
+
+* URL: `index.php/task/<id>`
+* Method: `PUT`
+* Params:
+	*  `id` in URL
+		* type: `integer`
+		* description: id of the task
+	* `cardId`: 
+		* type: `integer`
+		* required: yep
+		* example: `1`
+	* `name`: 
+		* type: `string`
+		* required: yep
+	* `marked`: 
+		* type: `boolean` 
+		* required: nop
+		* default: `false`
+	* `priority`: 
+		* type: `string` 
+		* required: nop
+		* available values: `normal`, `high`, `low`
+		
+#### Response
+
+* `code`
+	* type: `integer`
+	* possible values:
+		* `0`: all fine
+		* `1`: task does not exist
+		* `2`: `cardId` is not given in request
+		* `3`: card with id `cardId` does not exist
+		* `4`: `name` is not given in request
+		* `5`: given `priority` is invalid
+		* `999`: unknown error
+* `message`:
+	* type: `string`
+
+			
+#### Example
+
+##### Request
+
+PUT to `index.php/task/1` with payload:
+
+	{
+		"name": "blah",
+		"marked": false,
+		"priority": "high",
+		"cardId": 1
+	}
+	
+##### Response
+
+	{
+		"code": 0,
+		"message": "all fine"
+	}
+
+***
