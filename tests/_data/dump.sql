@@ -23,5 +23,5 @@ CREATE TABLE `tasks` (
 INSERT INTO `tasks` (`id`, `name`, `marked`, `priority`, `cardId`)
   VALUES
   (1, 'save a whale', 0, 'normal', 1),
-  (2, 'kiss a chicken', 0, 'normal', 1),
-  (3, 'hug yourself', 0, 'normal', 1);
+  (2, 'kiss a chicken', 0, 'high', 1),
+  (3, 'hug yourself', 0, 'low', 1);
