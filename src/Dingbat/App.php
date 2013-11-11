@@ -198,7 +198,7 @@ class App
 
         // get a task
         $this->silex->get('/task/{id}', function($id) {
-            return $this->prepareAction(new Action\Task\Get())->run($id);
+            return $this->prepareAction(new Action\Task\GetOne())->run($id);
         });
 
         // delete task
@@ -213,7 +213,7 @@ class App
 
         // index task
         $this->silex->get('/tasks', function() {
-            return $this->prepareAction(new Action\Task\Index())->run();
+            return $this->prepareAction(new Action\Task\GetAll())->run();
         });
 
         // card: index

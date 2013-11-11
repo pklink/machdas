@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class Get extends Action
+class GetOne extends Action
 {
 
     const CODE_ALL_FINE = 0;
@@ -45,7 +45,7 @@ class Get extends Action
                 'name'     => $task->name,
                 'marked'   => (bool) $task->marked,
                 'priority' => $task->priority,
-                'code'     => Get::CODE_ALL_FINE,
+                'code'     => GetOne::CODE_ALL_FINE,
                 'message'  => 'all fine'
             ]);
         } catch (\Exception $e) {
@@ -55,7 +55,7 @@ class Get extends Action
                 'name'     => null,
                 'marked'   => null,
                 'priority' => null,
-                'code'     => Get::CODE_TASK_DOES_NOT_EXIST,
+                'code'     => GetOne::CODE_TASK_DOES_NOT_EXIST,
                 'message'  => sprintf('task with `id` `%s` does not exist', $id)
             ]);
         }
