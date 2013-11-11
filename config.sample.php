@@ -45,5 +45,5 @@ return [
         ],
     ],
 
-    'debugging' => true,
+    'debugging' => false,
 ];
