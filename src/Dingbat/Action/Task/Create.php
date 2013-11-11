@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class Add extends Action
+class Create extends Action
 {
 
     const CODE_ALL_FINE = 0;
@@ -41,7 +41,7 @@ class Add extends Action
         {
             return JsonResponse::create([
                 'id'      => null,
-                'code'    => Add::CODE_CARD_ID_IS_NOT_GIVEN,
+                'code'    => Create::CODE_CARD_ID_IS_NOT_GIVEN,
                 'message' => 'param `cardId` is required'
             ]);
         }
@@ -51,7 +51,7 @@ class Add extends Action
         {
             return JsonResponse::create([
                 'id'      => null,
-                'code'    => Add::CODE_CARD_DOES_NOT_EXIST,
+                'code'    => Create::CODE_CARD_DOES_NOT_EXIST,
                 'message' => sprintf('card with id `%d` does not exist', $request->get('cardId'))
             ]);
         }
@@ -61,7 +61,7 @@ class Add extends Action
         {
             return JsonResponse::create([
                 'id'      => null,
-                'code'    => Add::CODE_NAME_IS_NOT_GIVEN,
+                'code'    => Create::CODE_NAME_IS_NOT_GIVEN,
                 'message' => 'param `name` is required'
             ]);
         }
@@ -71,7 +71,7 @@ class Add extends Action
         {
             return JsonResponse::create([
                 'id'      => null,
-                'code'    => Add::CODE_PRIORITY_IS_INVALID,
+                'code'    => Create::CODE_PRIORITY_IS_INVALID,
                 'message' => 'param `priority` must be `normal`, `high` or `low`'
             ]);
         }
@@ -87,13 +87,13 @@ class Add extends Action
 
             return JsonResponse::create([
                 'id'      => (int) $task->id,
-                'code'    => Add::CODE_ALL_FINE,
+                'code'    => Create::CODE_ALL_FINE,
                 'message' => 'all fine'
             ]);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'id'      => null,
-                'code'    => Add::CODE_UNKNOWN_ERROR,
+                'code'    => Create::CODE_UNKNOWN_ERROR,
                 'message' => $e->getMessage()
             ]);
         }

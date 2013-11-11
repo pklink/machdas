@@ -193,7 +193,7 @@ class App
 
         // create task
         $this->silex->post('/task', function() {
-            return $this->prepareAction(new Action\Task\Add())->run();
+            return $this->prepareAction(new Action\Task\Create())->run();
         });
 
         // get a task
