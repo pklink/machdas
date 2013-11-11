@@ -1,5 +1,8 @@
 <?php
 
+/* @var \Codeception\Scenario $scenario */
+$scenario->groups(['tasks', 'delete']);
+
 $guy = new TestGuy($scenario);
 $guy->wantTo('delete a task');
 

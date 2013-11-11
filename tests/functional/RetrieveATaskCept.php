@@ -1,5 +1,8 @@
 <?php
 
+/* @var \Codeception\Scenario $scenario */
+$scenario->groups(['tasks', 'retrieve']);
+
 $guy = new TestGuy($scenario);
 $guy->wantTo('get a task');
 
