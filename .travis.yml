@@ -1,0 +1,8 @@
+language: php
+php:
+  - 5.5
+  - 5.4
+install:
+  - composer install --dev
+script:
+  - php vendor/bin/codecept run functional
