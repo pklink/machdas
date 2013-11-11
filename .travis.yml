@@ -14,4 +14,4 @@ install:
   - php -S localhost:8080 &
   - composer install --dev
 script:
-  - php vendor/bin/codecept run functional
+  - php vendor/bin/codecept run functional --debug
