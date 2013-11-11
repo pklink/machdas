@@ -16,3 +16,4 @@ modules:
             user: 'root'
             password: 'bitnami'
             dump: tests/_data/dump.sql
+            cleanup: true

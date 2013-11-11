@@ -123,6 +123,67 @@ GET to `index.php/task/1`
 
 ***
 
+### Retrieve all tasks
+
+#### Request
+
+* URL: `index.php/tasks`
+* Method: `GET`
+* Params: *none*
+		
+#### Response
+
+Array with tasks as elements. Every task has this structure:
+
+* `id`:
+	* type: `integer`
+	* description: ID of the task
+* `cardId`
+	* type: `integer`
+	* description: ID of the card
+* `name`:
+	* type: `string`
+	* description: name of the task	
+* `marked`:
+	* type: `boolean`
+* `priority`:
+	* type: `string`
+	* possible values: `normal`, `high`, `low`
+		
+#### Example
+
+##### Request
+
+GET to `index.php/tasks`
+
+##### Response
+
+	[
+		{
+			"id": 1,
+			"cardId": 1,
+			"name": "save a whale",
+			"marked": false,
+			"priority": "high",
+		},
+		{
+			"id": 2,
+			"cardId": 1,
+			"name": "kiss a chicken",
+			"marked": false,
+			"priority": "normal",
+		},
+			"id": 3,
+			"cardId": 1,
+			"name": "do something",
+			"marked": false,
+			"priority": "low",
+		}
+	]
+
+***
+
+
 ### Update a task
 
 #### Request
