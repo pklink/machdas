@@ -211,9 +211,13 @@ class App
             return $this->prepareAction(new Action\Task\Update())->run($id);
         });
 
-        // index task
+        // get all tasks
         $this->silex->get('/tasks', function() {
             return $this->prepareAction(new Action\Task\GetAll())->run();
+        });
+
+        $this->silex->get('/tasks/{filter}', function($filter) {
+            return $this->prepareAction(new Action\Task\GetAll())->run($filter);
         });
 
         // card: index

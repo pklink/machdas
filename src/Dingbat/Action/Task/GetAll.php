@@ -20,14 +20,51 @@ class GetAll extends Action
 {
 
     /**
-     * Get all task
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param string $filter attribute=value;otherattribute=value
+     * @return \Symfony\Component\HttpFoundation\Response|static
      */
-    public function run()
+    public function run($filter = null)
     {
+        $objects = Task::objects();
+
+        // filter
+        if ($filter != null)
+        {
+            $conditions = explode(';', $filter);
+
+            foreach ($conditions as $condition)
+            {
+                $splits = explode('=', $condition);
+
+                if (!isset($splits[1])) {
+                    continue;
+                }
+
+                $attribute = $splits[0];
+                $value     = $splits[1];
+
+                switch ($attribute)
+                {
+                    case 'id':
+                    case 'priority':
+                    case 'cardid':
+                        $objects = $objects->filter($attribute, '=', $value);
+                        break;
+
+                    case 'marked':
+                        $value = ($value == 'true' ? true : false);
+                        $objects = $objects->filter($attribute, '=', $value);
+                        break;
+
+                    case 'name':
+                        $objects = $objects->filter($attribute, 'LIKE', '%' . $value . '%');
+                        break;
+                }
+            }
+        }
+
         $tasks = [];
-        foreach (Task::objects()->orderBy('id', 'asc')->fetch() as $task) {
+        foreach ($objects->orderBy('id', 'asc')->fetch() as $task) {
             $tasks[] = [
                 'id'       => (int) $task->id,
                 'name'     => $task->name,

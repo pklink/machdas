@@ -127,9 +127,14 @@ GET to `index.php/task/1`
 
 #### Request
 
-* URL: `index.php/tasks`
+* URL: `index.php/tasks/(<filter>)`
 * Method: `GET`
-* Params: *none*
+* Params: 
+	* type: `string`
+	* required: nop
+	* possible values: search terms as `<attribute name>/<search value>` separated by `;`
+	* example: `index.php/tasks/name=kiss;marked=false`
+	
 		
 #### Response
 
