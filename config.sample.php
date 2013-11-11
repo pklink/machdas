@@ -7,7 +7,7 @@ return [
     'name' => 'Dingbat',
 
     'database' => [
-        'host'     => 'localhost',
+        'host'     => '127.0.0.1',
         'username' => 'root',
         'password' => 'bitnami',
         'name'     => 'dingbat',
