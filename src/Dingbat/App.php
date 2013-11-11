@@ -191,9 +191,14 @@ class App
             return $this->prepareAction(new Action\Assets\JavaScript())->run();
         });
 
-        // add task
+        // create task
         $this->silex->post('/task', function() {
             return $this->prepareAction(new Action\Task\Add())->run();
+        });
+
+        // get a task
+        $this->silex->get('/task/{id}', function($id) {
+            return $this->prepareAction(new Action\Task\Get())->run($id);
         });
 
         // delete task
