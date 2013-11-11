@@ -3,6 +3,12 @@ php:
   - 5.5
   - 5.4
 install:
+  - mysql -e 'CREATE DATABASE dingbat;'
+  - mysql < setup/install.sql
+  - sed 's/root/travis/g' config.sample.php > config.php.1
+  - sed 's/bitnami//g' config.php.1 > config.php.2
+  - mv config.php.2 config.php
+  - rm config.php.1
   - composer install --dev
 script:
   - php vendor/bin/codecept run functional
