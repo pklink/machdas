@@ -47,9 +47,8 @@ class Add extends Action
         }
 
         // check if cardId is exist
-        try {
-            Card::get($request->get('cardId'));
-        } catch (\Exception $e) {
+        if (!Card::exists($request->get('cardId')))
+        {
             return JsonResponse::create([
                 'id'      => null,
                 'code'    => Add::CODE_CARD_DOES_NOT_EXIST,
