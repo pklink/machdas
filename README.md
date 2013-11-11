@@ -1,4 +1,4 @@
-# Dingbat
+# Dingbat [![Build Status](https://travis-ci.org/pklink/Dingbat.png?branch=master)](https://travis-ci.org/pklink/Dingbat)
 
 A simple todo manager
 
