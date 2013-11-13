@@ -11,7 +11,6 @@ install:
   - sed -i 's/false/true/g' config.php
   - sed -i 's/root/travis/g' codeception.yml
   - sed -i 's/bitnami//g' codeception.yml
-  - sed -i 's/\/Dingbat//g' tests/functional.suite.yml
   - php -S localhost:8080 &
   - composer install --dev
 script:
