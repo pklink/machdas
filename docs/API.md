@@ -340,3 +340,48 @@ POST to `index.php/card` with payload:
 ***
 
 
+### Retrieve a card
+
+#### Request
+
+* URL: `index.php/card/<id>`
+* Method: `GET`
+* Params:
+	* `id`: in URL
+		* type: `integer`
+		* required: yep
+		* description: ID of the card
+		* example: `1`
+
+#### Response
+
+* `id`:
+	* type: `integer` or `null` on error
+	* description: ID of the task
+* `name`:
+	* type: `string` or `null` on error
+	* description: name of the card
+* `code`:
+	* type: `integer`
+	* possible values:
+		* `0`: all fine
+		* `1`: card with given ID does not exist
+* `message`:
+	* type: `string`
+
+#### Example
+
+##### Request
+
+GET to `index.php/card/1`
+
+##### Response
+
+	{
+		"id": 1,
+		"name": "blah",
+		"code": 0,
+		"message": "all fine"
+	}
+
+***
