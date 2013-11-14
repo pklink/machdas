@@ -290,3 +290,53 @@ DELETE to `index.php/task/1`
 		"message": "all fine"
 	}
 
+
+## Cards / Lists
+
+### Create a new card
+
+#### Request
+
+* URL: `index.php/card`
+* Method: `POST`
+* Params:
+	* `name`:
+		* type: `string`
+		* required: yep
+
+#### Response
+
+* `id`
+	* type: `integer` or `null` on error
+	* decription: ID of the new card
+* `code`
+	* type: `integer`
+	* possible values:
+		* `0`: all fine
+		* `1`: `name` is not given in request
+		* `999`: unknown error
+* `message`:
+	* type: `string`
+
+
+#### Example
+
+##### Request
+
+POST to `index.php/card` with payload:
+
+	{
+		"name": "job",
+	}
+
+##### Response
+
+	{
+		"id": 4,
+		"code": 0,
+		"message": "all fine"
+	}
+
+***
+
+

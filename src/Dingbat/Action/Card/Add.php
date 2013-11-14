@@ -19,6 +19,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class Add extends Action
 {
 
+    const CODE_ALL_FINE = 0;
+    const CODE_NAME_IS_REQUIRED = 1;
+    const CODE_UNKNOWN_ERROR = 999;
+
     /**
      * Create new task
      *
@@ -28,16 +32,34 @@ class Add extends Action
     {
         $request = $this->request;
 
-        $card = new Card();
-        $card->name = $request->get('name');
-        $card->save();
+        // check name
+        if ($request->get('name', false) === false)
+        {
+            return JsonResponse::create([
+                'id'      => null,
+                'code'    => Add::CODE_NAME_IS_REQUIRED,
+                'message' => '`name` is required',
+            ]);
+        }
 
-        $return = [
-            'id'   => $card->id,
-            'name' => $card->name,
-        ];
+        // save card
+        try {
+            $card = new Card();
+            $card->name = $request->get('name');
+            $card->save();
 
-        return JsonResponse::create($return);
+            return JsonResponse::create([
+                'id'      => (int) $card->id,
+                'code'    => Add::CODE_ALL_FINE,
+                'message' => 'all fine',
+            ]);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'id'      => null,
+                'code'    => Add::CODE_UNKNOWN_ERROR,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 
 }
