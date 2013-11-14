@@ -5,7 +5,6 @@ namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
 use Dingbat\Model\Card;
-use Dingbat\Model\Task;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
