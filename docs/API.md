@@ -435,3 +435,50 @@ GET to `index.php/cards`
 	]
 
 ***
+
+
+### Update a card
+
+#### Request
+
+* URL: `index.php/card/<id>`
+* Method: `PUT`
+* Params:
+	*  `id` in URL
+		* type: `integer`
+		* description: id of the task
+	* `name`:
+		* type: `string`
+		* required: yep
+
+#### Response
+
+* `code`
+	* type: `integer`
+	* possible values:
+		* `0`: all fine
+		* `1`: card does not exist
+		* `2`: `name` is not given in request
+		* `999`: unknown error
+* `message`:
+	* type: `string`
+
+
+#### Example
+
+##### Request
+
+PUT to `index.php/card/1` with payload:
+
+	{
+		"name": "blah",
+	}
+
+##### Response
+
+	{
+		"code": 0,
+		"message": "all fine"
+	}
+
+***
