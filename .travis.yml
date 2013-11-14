@@ -11,7 +11,7 @@ install:
   - sed -i 's/false/true/g' config.php
   - sed -i 's/root/travis/g' codeception.yml
   - sed -i 's/bitnami//g' codeception.yml
-  - php -S localhost:8080 &
+  - php -S localhost:8000 &
   - composer install --dev
 script:
   - php vendor/bin/codecept run functional --debug
