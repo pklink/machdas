@@ -11,7 +11,7 @@ $guy->sendPOST('/card', [
     'name'     => 'project a',
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 2, 'code' => 0]);
+$guy->seeResponseContainsJson(['id' => 3, 'code' => 0]);
 $guy->seeResponseContains('"message":');
 
 // no name

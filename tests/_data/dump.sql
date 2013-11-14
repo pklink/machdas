@@ -7,7 +7,8 @@ CREATE TABLE `cards` (
 
 INSERT INTO `cards` (`id`, `name`)
   VALUES
-  (1, 'first list');
+  (1, 'first list'),
+  (2, '2nd list');
 
 
 CREATE TABLE `tasks` (
