@@ -193,7 +193,7 @@ class App
 
         // cards
         $this->silex->post('/card', function() {
-            return $this->prepareAction(new Action\Card\Add())->run();
+            return $this->prepareAction(new Action\Card\Create())->run();
         });
 
         $this->silex->get('/card/{id}', function($id) {
