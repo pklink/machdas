@@ -201,7 +201,11 @@ class App
         });
 
         $this->silex->get('/cards', function() {
-            return $this->prepareAction(new Action\Card\Index())->run();
+            return $this->prepareAction(new Action\Card\GetAll())->run();
+        });
+
+        $this->silex->get('/cards/{filter}', function($filter) {
+            return $this->prepareAction(new Action\Card\GetAll())->run($filter);
         });
 
         $this->silex->put('/card/{id}', function($id) {

@@ -123,11 +123,11 @@ GET to `index.php/task/1`
 
 ***
 
-### Retrieve all tasks
+### Retrieve all/more tasks
 
 #### Request
 
-* URL: `index.php/tasks/(<filter>)`
+* URL: `index.php/tasks(/<filter>)`
 * Method: `GET`
 * Params: 
 	* type: `string`
@@ -169,20 +169,21 @@ GET to `index.php/tasks`
 			"cardId": 1,
 			"name": "save a whale",
 			"marked": false,
-			"priority": "high",
+			"priority": "high"
 		},
 		{
 			"id": 2,
 			"cardId": 1,
 			"name": "kiss a chicken",
 			"marked": false,
-			"priority": "normal",
+			"priority": "normal"
 		},
+		{
 			"id": 3,
 			"cardId": 1,
 			"name": "do something",
 			"marked": false,
-			"priority": "low",
+			"priority": "low"
 		}
 	]
 
@@ -383,5 +384,54 @@ GET to `index.php/card/1`
 		"code": 0,
 		"message": "all fine"
 	}
+
+***
+
+### Retrieve all/more cards
+
+#### Request
+
+* URL: `index.php/cards(/<filter>)`
+* Method: `GET`
+* Params:
+	* type: `string`
+	* required: nop
+	* possible values: search terms as `<attribute name>/<search value>` separated by `;`
+	* example: `index.php/cards/name=kiss;marked=false`
+
+
+#### Response
+
+Array with cards as elements. Every card has this structure:
+
+* `id`:
+	* type: `integer`
+	* description: ID of the task
+* `name`:
+	* type: `string`
+	* description: name of the task
+
+#### Example
+
+##### Request
+
+GET to `index.php/cards`
+
+##### Response
+
+	[
+		{
+			"id": 1,
+			"name": "private"
+		},
+		{
+			"id": 2,
+			"name": "job"
+        }
+		},
+			"id": 3,
+			"name": "blah"
+		}
+	]
 
 ***
