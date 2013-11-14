@@ -212,6 +212,10 @@ class App
             return $this->prepareAction(new Action\Card\Update())->run($id);
         });
 
+        $this->silex->delete('/card/{id}', function($id) {
+            return $this->prepareAction(new Action\Card\Delete())->run($id);
+        });
+
 
         // tasks
         $this->silex->post('/task', function() {

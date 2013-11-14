@@ -482,3 +482,41 @@ PUT to `index.php/card/1` with payload:
 	}
 
 ***
+
+
+### Delete a card
+
+#### Request
+
+* URL: `index.php/card/<id>`
+* Method: `DELETE`
+* Params:
+	*  `id` in URL
+		* type: `integer`
+		* description: id of the card
+
+#### Response
+
+* `code`
+	* type: `integer`
+	* possible values:
+		* `0`: all fine
+		* `1`: card does not exist
+		* `999`: unknown error
+* `message`:
+	* type: `string`
+
+
+#### Example
+
+##### Request
+
+DELETE to `index.php/card/1`
+
+
+##### Response
+
+	{
+		"code": 0,
+		"message": "all fine"
+	}
