@@ -8,16 +8,20 @@ $guy->wantTo('get all cards');
 
 // all tasks
 $guy->sendGET('/cards');
-$guy->seeResponseEquals('[{"id":1,"name":"first list"},{"id":2,"name":"2nd list"}]');
+$guy->seeResponseIsJson();
+$guy->seeResponseEquals('[{"id":1,"name":"first list"},{"id":2,"name":"second list"}]');
 
 // with one filter
 $guy->sendGET('/cards/name=first');
+$guy->seeResponseIsJson();
 $guy->seeResponseEquals('[{"id":1,"name":"first list"}]');
 
 // by id
 $guy->sendGET('/cards/id=2');
-$guy->seeResponseEquals('[{"id":2,"name":"2nd list"}]');
+$guy->seeResponseIsJson();
+$guy->seeResponseEquals('[{"id":2,"name":"second list"}]');
 
 // no results
 $guy->sendGET('/tasks/name=noresult');
+$guy->seeResponseIsJson();
 $guy->seeResponseEquals('[]');

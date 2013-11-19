@@ -1,13 +1,15 @@
 CREATE TABLE `cards` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
+  `slug` varchar(255) CHARACTER SET ascii NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `name` (`name`)
+  UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-INSERT INTO `cards` (`id`, `name`)
-VALUES
-	(1, 'first list');
+INSERT INTO `cards` (`id`, `name`, `slug`)
+  VALUES
+  (1, 'first list', 'first-list');
+
 
 
 CREATE TABLE `tasks` (

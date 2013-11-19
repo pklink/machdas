@@ -36,4 +36,9 @@ class Card extends Model
      */
     public $name;
 
+    /**
+     * @var string
+     */
+    public $slug;
+
 }
