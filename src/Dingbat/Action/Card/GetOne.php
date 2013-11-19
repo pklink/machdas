@@ -19,36 +19,32 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class GetOne extends Action
 {
 
-    const CODE_ALL_FINE = 0;
     const CODE_TASK_DOES_NOT_EXIST = 1;
 
 
     /**
-     * @param int $id
+     * @param string $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function run($id)
+    public function run($slug)
     {
         $request  = $this->request;
 
         // get card
         try {
             /* @var Card $card */
-            $card = Card::get($id);
+            $card = Card::objects()->filter('slug', '=', $slug)->single();
 
             return JsonResponse::create([
-                'id'       => (int) $card->id,
-                'name'     => $card->name,
-                'code'     => GetOne::CODE_ALL_FINE,
-                'message'  => 'all fine'
+                'id'   => (int) $card->id,
+                'name' => $card->name,
+                'slug' => $card->slug
             ]);
         } catch (\Exception $e) {
             return JsonResponse::create([
-                'id'       => null,
-                'name'     => null,
                 'code'     => GetOne::CODE_TASK_DOES_NOT_EXIST,
-                'message'  => sprintf('card with `id` `%s` does not exist', $id)
-            ]);
+                'message'  => 'card does not exist'
+            ], 404);
         }
 
     }

@@ -57,10 +57,13 @@ class GetAll extends Action
         }
 
         $cards = [];
-        foreach ($objects->orderBy('id', 'asc')->fetch() as $task) {
+        foreach ($objects->orderBy('id', 'asc')->fetch() as $card) {
+            /* @var \Dingbat\Model\Card $card */
+
             $cards[] = [
-                'id'       => (int) $task->id,
-                'name'     => $task->name,
+                'id'   => (int) $card->id,
+                'name' => $card->name,
+                'slug' => $card->slug
             ];
         }
 

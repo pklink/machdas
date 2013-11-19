@@ -196,17 +196,19 @@ class App
             return $this->prepareAction(new Action\Card\Create())->run();
         });
 
-        $this->silex->get('/card/{id}', function($id) {
-            return $this->prepareAction(new Action\Card\GetOne())->run($id);
+        $this->silex->get('/cards/{slug}', function($slug) {
+            return $this->prepareAction(new Action\Card\GetOne())->run($slug);
         });
 
         $this->silex->get('/cards', function() {
             return $this->prepareAction(new Action\Card\GetAll())->run();
         });
 
+        /*
         $this->silex->get('/cards/{filter}', function($filter) {
             return $this->prepareAction(new Action\Card\GetAll())->run($filter);
         });
+        */
 
         $this->silex->put('/card/{id}', function($id) {
             return $this->prepareAction(new Action\Card\Update())->run($id);
