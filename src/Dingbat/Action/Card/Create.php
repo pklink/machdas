@@ -81,9 +81,12 @@ class Create extends Action
             $card->slug = $slug;
             $card->save();
 
+            // addition location header
+            $header = ['Location' => sprintf('/cards/%s', $slug)];
+
             return JsonResponse::create([
                 'id' => (int) $card->id
-            ], 201);
+            ], 201, $header);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'code'    => Create::CODE_UNKNOWN_ERROR,

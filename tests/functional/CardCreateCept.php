@@ -12,6 +12,7 @@ $guy->sendPOST('/cards', [
     'slug' => 'project-a'
 ]);
 $guy->seeResponseCodeIs(201);
+$guy->seeHttpHeader('Location', '/cards/project-a');
 $guy->seeResponseIsJson();
 $guy->seeResponseEquals('{"id":3}');
 
