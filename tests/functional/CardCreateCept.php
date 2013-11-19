@@ -7,15 +7,16 @@ $guy = new TestGuy($scenario);
 $guy->wantTo('create a card');
 
 // create valid task
-$guy->sendPOST('/card', [
+$guy->sendPOST('/cards', [
     'name'     => 'project a',
 ]);
+$guy->seeResponseCodeIs(201);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 3, 'code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseEquals('{"id":3}');
 
 // no name
-$guy->sendPOST('/task', []);
+$guy->sendPOST('/cards', []);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => null, 'code' => 1]);
+$guy->seeResponseContainsJson(['code' => 1]);
 $guy->seeResponseContains('"message":');

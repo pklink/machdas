@@ -19,7 +19,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class Create extends Action
 {
 
-    const CODE_ALL_FINE = 0;
     const CODE_NAME_IS_REQUIRED = 1;
     const CODE_UNKNOWN_ERROR = 999;
 
@@ -39,7 +38,7 @@ class Create extends Action
                 'id'      => null,
                 'code'    => Create::CODE_NAME_IS_REQUIRED,
                 'message' => '`name` is required',
-            ]);
+            ], 400);
         }
 
         // save card
@@ -49,16 +48,13 @@ class Create extends Action
             $card->save();
 
             return JsonResponse::create([
-                'id'      => (int) $card->id,
-                'code'    => Create::CODE_ALL_FINE,
-                'message' => 'all fine',
-            ]);
+                'id'      => (int) $card->id
+            ], 201);
         } catch (\Exception $e) {
             return JsonResponse::create([
-                'id'      => null,
                 'code'    => Create::CODE_UNKNOWN_ERROR,
                 'message' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
 

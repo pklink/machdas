@@ -192,7 +192,7 @@ class App
         });
 
         // cards
-        $this->silex->post('/card', function() {
+        $this->silex->post('/cards', function() {
             return $this->prepareAction(new Action\Card\Create())->run();
         });
 
