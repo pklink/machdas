@@ -6,7 +6,7 @@ namespace Dingbat\Action\Card;
 use Dingbat\Action;
 use Dingbat\Model\Card;
 use Dingbat\Model\Task;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class Delete
@@ -20,31 +20,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class Delete extends Action
 {
 
-    const CODE_ALL_FINE = 0;
-    const CODE_CARD_DOES_NOT_EXIST = 1;
-    const CODE_UNKNOW_ERROR = 999;
-
-
     /**
-     * @param integer $id
+     * @param string $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function run($id)
+    public function run($slug)
     {
-        $card = null;
-
-        // get card
+        // get card and delete it
         try {
-            $card = Card::get($id);
-        } catch (\Exception $e) {
-            return JsonResponse::create([
-                'code'    => Delete::CODE_CARD_DOES_NOT_EXIST,
-                'message' => sprintf('card with `id` `%d` does not exist', $id)
-            ]);
-        }
+            /* @var Card $card */
+            $card = Card::objects()->filter('slug', '=', $slug)->single();
 
-        // delete card
-        try {
             // delete all tasks of the card
             $tasks = Task::objects()->filter('cardid', '=', $card->id)->fetch();
 
@@ -56,17 +42,9 @@ class Delete extends Action
 
             // delete card
             $card->delete();
+        } catch (\Exception $e) { }
 
-            return JsonResponse::create([
-                'code'    => Delete::CODE_ALL_FINE,
-                'message' => 'all fine'
-            ]);
-        } catch (\Exception $e) {
-            return JsonResponse::create([
-                'code'    => Delete::CODE_UNKNOW_ERROR,
-                'message' => $e->getMessage()
-            ]);
-        }
+        return Response::create(null, 204);
     }
 
 }
