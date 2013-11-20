@@ -196,13 +196,25 @@ class App
             return $this->prepareAction(new Action\Card\Create())->run();
         });
 
+        $this->silex->get('/cards', function() {
+            return $this->prepareAction(new Action\Card\GetAll())->run();
+        });
+
         $this->silex->get('/cards/{slug}', function($slug) {
             return $this->prepareAction(new Action\Card\GetOne())->run($slug);
         });
 
-        $this->silex->get('/cards', function() {
-            return $this->prepareAction(new Action\Card\GetAll())->run();
+        $this->silex->put('/cards/{slug}', function($slug) {
+            return $this->prepareAction(new Action\Card\Update())->run($slug);
         });
+
+        $this->silex->delete('/cards/{slug}', function($slug) {
+            return $this->prepareAction(new Action\Card\Delete())->run($slug);
+        });
+
+
+
+
 
         /*
         $this->silex->get('/cards/{filter}', function($filter) {
@@ -210,13 +222,6 @@ class App
         });
         */
 
-        $this->silex->put('/card/{id}', function($id) {
-            return $this->prepareAction(new Action\Card\Update())->run($id);
-        });
-
-        $this->silex->delete('/cards/{slug}', function($slug) {
-            return $this->prepareAction(new Action\Card\Delete())->run($slug);
-        });
 
 
         // tasks

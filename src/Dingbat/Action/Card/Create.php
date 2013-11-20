@@ -4,6 +4,7 @@
 namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
+use Dingbat\Helper\SlugHelper;
 use Dingbat\Model\Card;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -44,18 +45,8 @@ class Create extends Action
             ], 400);
         }
 
-        // remove invalid character from slug
-        for ($i = 0; $i < strlen($slug); $i++)
-        {
-            if (preg_match('/[a-z\d\-\+]/', $slug{$i}) === 0)
-            {
-                $slug{$i} = chr(0);
-            }
-        }
-
-        $slug =  str_replace(chr(0), '', $slug); // remove all NULs
-
         // check slug
+        $slug = SlugHelper::convert($slug);
         if (strlen($slug) == 0)
         {
             return JsonResponse::create([
