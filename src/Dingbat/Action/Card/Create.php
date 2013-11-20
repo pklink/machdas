@@ -32,7 +32,7 @@ class Create extends Action
      */
     public function run()
     {
-        $request = $this->request;
+        $request = $this->request->request;
         $name    = $request->get('name', false);
         $slug    = strtolower($request->get('slug', ''));
 

@@ -33,7 +33,7 @@ class Update extends Action
      */
     public function run($slug)
     {
-        $request = $this->request;
+        $request = $this->request->request;
 
         /* @var Card $card */
         $card = null;
@@ -50,7 +50,7 @@ class Update extends Action
 
         // get name and slug from payload
         $name = $request->get('name', false);
-        $slug = $request->request->get('slug', false);
+        $slug = $request->get('slug', false);
 
         // set name
         if ($name !== false)
@@ -64,7 +64,7 @@ class Update extends Action
                 ], 400);
             }
 
-            $card->name = $request->get('name');
+            $card->name = $name;
         }
 
         // set slug
