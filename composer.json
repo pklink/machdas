@@ -20,6 +20,6 @@
         "symfony/yaml": "~2.3"
     },
     "require-dev": {
-        "codeception/codeception": "1.7.2"
+        "codeception/codeception": "1.8.0.1"
     }
 }
