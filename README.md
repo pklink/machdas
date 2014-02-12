@@ -60,3 +60,6 @@ See `CHANGELOG.md`
 * [Phormium](http://github.com/ihabunek/phormium)
 * [Silex](http://silex.sensiolabs.org/)
 * [Underscore.js](http://underscorejs.org/)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pklink/dingbat/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
