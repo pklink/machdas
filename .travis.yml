@@ -1,13 +1,15 @@
 language: php
 php:
+  - 5.6
   - 5.5
-  - 5.4
 install:
   - mysql -e 'CREATE DATABASE dingbat;'
   - mysql dingbat < setup/install.sql
   - cp config.sample.php config.php
+  - sed -i 's/root/travis/g' config.php
   - sed -i 's/bitnami//g' config.php
   - sed -i 's/false/true/g' config.php
+  - sed -i 's/root/travis/g' codeception.yml
   - sed -i 's/bitnami//g' codeception.yml
   - sed -i 's/192.168.99.100/127.0.0.1/g' codeception.yml
   - composer install --dev
