@@ -1,10 +1,10 @@
 # Upgrade
 
-## to 0.5.0
+## to 0.4.2
 
 * write down your set priorities
-* execute `setup/update-to-0.5.0.sql`
-* set your priorities again - sorry ;-)
+* execute `setup/update-to-0.4.2.sql`
+* set your priorities again - sorry
 
 ## to 0.4.1
 

@@ -1,10 +1,11 @@
 # Changelog
 
-## 0.5.0
+## 0.4.2
 
-* New: Added acceptance tests
 * New: Added functional tests
 * Enh: Normalised API
+* Chg: Updated dependencies
+* Chg: Replaced most of the js- and css-libraries by cdnjs.com
 
 ## 0.4.1.1
 
