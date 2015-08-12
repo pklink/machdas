@@ -10,7 +10,7 @@ install:
   - sed -i 's/bitnami//g' config.php
   - sed -i 's/false/true/g' config.php
   - sed -i 's/root/travis/g' codeception.yml
-  - sed -i 's/bitnami//g' codeception.yml
+  - sed -i 's/\'password\'//g' codeception.yml
   - sed -i 's/192.168.99.100/127.0.0.1/g' codeception.yml
   - composer install --dev
   - php vendor/bin/codecept build
