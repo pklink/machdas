@@ -10,11 +10,4 @@
 
 class_name: WebGuy
 modules:
-    enabled: [ WebHelper, WebDriver, Db ]
-    config:
-        WebDriver:
-            url: 'http://localhost:8080/Dingbat/'
-            browser: firefox
-            wait: 1
-            capabilities:
-                javascriptEnabled: true
+    enabled: [ ]

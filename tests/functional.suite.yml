@@ -8,10 +8,15 @@
 
 class_name: TestGuy
 modules:
-    enabled: [PhpBrowser, REST, TestHelper, Db]
+    enabled:
+        - PhpBrowser
+        - REST
+        - TestHelper
+        - Db
     config:
         PhpBrowser:
-            url: 'http://localhost:8000/'
+            url: 'http://localhost:8080/'
         REST:
-            url: 'http://localhost:8000/index.php'
+            depends: PhpBrowser
+            url: 'http://localhost:8080/index.php'
             timeout: 3

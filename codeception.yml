@@ -12,8 +12,8 @@ settings:
 modules:
     config:
         Db:
-            dsn: 'mysql:dbname=dingbat;host=127.0.0.1'
+            dsn: 'mysql:dbname=dingbat;host=192.168.99.100'
             user: 'root'
-            password: 'bitnami'
+            password: 'password'
             dump: tests/_data/dump.sql
             cleanup: true
