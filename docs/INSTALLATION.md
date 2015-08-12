@@ -1,13 +1,13 @@
 # Installation
 
-## Pre-Built (downloaded from SourceForge)
+## Pre-Built
 
+* download & extract [latest release](https://github.com/pklink/Dingbat/releases)
 * import `setup/install.sql`
 * copy `config.sample.php` to `config.php`
 * edit `config.php`
-* chmod `tmp/cache` to `777`
 
-## Build your own release (clone from GitHub)
+## Build your own release
 
 ### Requirements
 
@@ -19,7 +19,6 @@
 * `mkdir dingbat`
 * `cd dingbat/`
 * `git clone https://github.com/pklink/Dingbat.git .`
-* _Optional:_ switch to a specified version/tag `git checkout tags/<name of tag>`; for example: `git checkout tags/0.4.0`
 * `php composer.phar install`
 * see the installation instructions of the pre-built version above
 

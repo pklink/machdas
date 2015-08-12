@@ -1,0 +1,25 @@
+{
+  "name": "dingbat",
+  "version": "0.4.2",
+  "description": "A simple todo manager",
+  "main": "js/dingbat.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pklink/Dingbat.git"
+  },
+  "author": "Pierre Klink <dev@einself.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pklink/Dingbat/issues"
+  },
+  "homepage": "https://github.com/pklink/Dingbat#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^0.13.0",
+    "grunt-contrib-copy": "^0.8.0"
+  }
+}
