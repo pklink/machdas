@@ -10,7 +10,8 @@ install:
   - sed -i 's/false/true/g' config.php
   - sed -i 's/bitnami//g' codeception.yml
   - sed -i 's/192.168.99.100/127.0.0.1/g' codeception.yml
-  - php -S localhost:8080 &
   - composer install --dev
+  - php vendor/bin/codecept build
+  - php -S localhost:8080 &
 script:
   - php vendor/bin/codecept run --debug
