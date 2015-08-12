@@ -31,10 +31,7 @@ class GetOne extends Action
      */
     public function run($id)
     {
-        $request  = $this->request;
-
         // get task
-
         try {
             /* @var Task $task */
             $task = Task::get($id);

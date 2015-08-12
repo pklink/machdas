@@ -28,8 +28,6 @@ class GetOne extends Action
      */
     public function run($slug)
     {
-        $request  = $this->request;
-
         // get card
         try {
             /* @var Card $card */
