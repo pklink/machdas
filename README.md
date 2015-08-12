@@ -2,9 +2,9 @@
 
 A simple todo manager
 
-## Demo
+## Screenshots
 
-http://dingbat.einself.net/ (will be reset every hour)
+![Screenshot](docs/screens/screen-1.png)
 
 ## Requirements
 
