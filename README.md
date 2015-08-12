@@ -8,7 +8,7 @@ http://dingbat.einself.net/ (will be reset every hour)
 
 ## Requirements
 
-* PHP 5.4 and higher
+* PHP 5.5 and higher
 * MySQL 5.1 and higher
 
 

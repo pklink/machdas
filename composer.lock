@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "08fd8a77e1d86f9dd43132f6e76c311e",
+    "hash": "3e2924f7fe4f300d9cf8767aacdc7e22",
     "packages": [
         {
             "name": "kriswallsmith/assetic",
@@ -180,23 +180,23 @@
         },
         {
             "name": "pklink/dotor",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pklink/dotor.git",
-                "reference": "a66ce3d83e7cbcfac2c01ceca525d6ac96565cfe"
+                "reference": "2c7ea619002b6383e82d4ea0a6fdd910fe757adb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pklink/dotor/zipball/a66ce3d83e7cbcfac2c01ceca525d6ac96565cfe",
-                "reference": "a66ce3d83e7cbcfac2c01ceca525d6ac96565cfe",
+                "url": "https://api.github.com/repos/pklink/dotor/zipball/2c7ea619002b6383e82d4ea0a6fdd910fe757adb",
+                "reference": "2c7ea619002b6383e82d4ea0a6fdd910fe757adb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.31"
+                "phpunit/phpunit": "~4.1"
             },
             "type": "library",
             "autoload": {
@@ -225,7 +225,7 @@
                 "dot",
                 "dot-notation"
             ],
-            "time": "2014-02-16 21:08:55"
+            "time": "2014-06-27 09:16:20"
         },
         {
             "name": "psr/log",
@@ -2489,6 +2489,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.5.0"
+    },
     "platform-dev": []
 }
