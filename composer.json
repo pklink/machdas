@@ -10,7 +10,7 @@
         }
     },
     "require": {
-        "silex/silex": "v1.1.2",
+        "silex/silex": "~1.3.0",
         "pklink/dotor": "0.2",
         "phormium/phormium": "0.5",
         "tedivm/jshrink": "v0.5.1",
