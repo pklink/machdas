@@ -71,7 +71,7 @@ $(function() {
         mark:  function() {
             this.model.set('marked', 1);
 
-            this.$('.checkbox').addClass('checked');
+            this.$('.checkbox').removeClass('fa-square-o').addClass('fa-check-square');
             this.$('.name').wrap('<del />');
         },
 
@@ -119,7 +119,7 @@ $(function() {
         unmark: function() {
             this.model.set('marked', 0);
 
-            this.$('.checkbox').removeClass('checked');
+            this.$('.checkbox').removeClass('fa-check-square').addClass('fa-square-o');
             this.$('.name').unwrap();
         },
 
@@ -138,5 +138,5 @@ $(function() {
 
     });
 
-})
+});
 

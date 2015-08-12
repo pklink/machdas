@@ -13,19 +13,40 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title><?php echo $appName ?></title>
-    <link rel="stylesheet" href="css/normalize.min.css" />
-    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/css/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/css/foundation.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/screen.css" />
-    <link rel="stylesheet" href="css/icons/general_enclosed_foundicons.css" />
-    <link rel="stylesheet" href="css/icons/general_enclosed_foundicons_ie7.css" />
-    <script src="index.php/assets/js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/js/vendor/custom.modernizr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/js/vendor/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/js/foundation.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.layoutmanager/0.9.7/backbone.layoutmanager.min.js"></script>
+    <script src="/js/vendor/jquery.keycut.min.js"></script>
+    <script src="js/Model/task.js"></script>
+    <script src="js/Model/card.js"></script>
+    <script src="js/Collection/tasks.js"></script>
+    <script src="js/Collection/cards.js"></script>
+    <script src="js/Collection/list.js"></script>
+    <script src="js/View/card.js"></script>
+    <script src="js/View/navigation.js"></script>
+    <script src="js/View/form.js"></script>
+    <script src="js/View/task.js"></script>
+    <script src="js/View/list.js"></script>
+    <script src="js/View/footer.js"></script>
+    <script src="js/View/sidebar.js"></script>
+    <script src="js/View/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/dingbat.js"></script>
 </head>
 <body class="antialiased">
 
 <div id="ajax-loader"></div>
 
 <script type="text/template" id="navigation-template">
-    <nav class="top-bar">
+    <nav class="top-bar" data-topbar role="navigation">
         <section class="top-bar-section">
             <ul class="left list"></ul>
             <ul class="right">
@@ -37,8 +58,8 @@
                             </form>
                         </div>
                         <div class="small-2 text-center columns">
-                            <i class="foundicon-plus add" data-key="c"></i>
-                            <i class="foundicon-remove cancel"></i>
+                            <i class="fa fa-plus add" data-key="c"></i>
+                            <i class="fa fa-ban cancel"></i>
                         </div>
                     </div>
                 </li>
@@ -57,6 +78,7 @@
     <div class="navigation"></div>
 
     <div class="row">
+        <br />
         <div class="small-10 large-10 large-centered small-centered columns">
 
             <div class="form"></div>
@@ -97,7 +119,7 @@
     <div class="row task">
         <div class="small-10 columns">
             <label>
-                <span class="custom checkbox"></span>
+                <i class="checkbox fa fa-square-o"></i>
                 <span class="name"><%- name %></span>
             </label>
             <form>
@@ -105,9 +127,9 @@
             </form>
         </div>
         <div class="small-2 columns actions">
-            <i class="foundicon-remove cancel"></i>
-            <i class="foundicon-edit update"></i>
-            <i class="foundicon-trash delete"></i>
+            <i class="fa fa-ban cancel"></i>
+            <i class="fa fa-pencil update"></i>
+            <i class="fa fa-trash delete"></i>
         </div>
     </div>
 </script>
@@ -124,7 +146,7 @@
 <script type="text/template" id="sidebar-template">
     <div id="sidebar">
         <div class="icons">
-            <i class="foundicon-idea help" data-key="h"></i>
+            <i class="fa fa-lightbulb-o help" data-key="h"></i>
         </div>
         <div class="content help">
             <h3><?php echo $locale->trans('shortcut') ?></h3>

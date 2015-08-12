@@ -47,7 +47,7 @@ body {
 }
 
 
-.task span.checkbox {
+.task .checkbox {
     margin-right: 10px;
     cursor: pointer;
 }

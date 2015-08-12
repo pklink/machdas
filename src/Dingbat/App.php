@@ -186,11 +186,6 @@ class App
             return ob_get_clean();
         });
 
-        // js
-        $this->silex->get('/assets/js', function() {
-            return $this->prepareAction(new Action\Assets\JavaScript())->run();
-        });
-
         // cards
         $this->silex->post('/cards', function() {
             return $this->prepareAction(new Action\Card\Create())->run();

@@ -129,5 +129,5 @@ $(function() {
     Dingbat.App = new App();
     Dingbat.App.run();
 
-})
+});
 
