@@ -1,8 +1,8 @@
 <?php
 
-/* @var \Codeception\Scenario $scenario */
-$scenario->groups(['tasks', 'delete']);
+// @group cards delete
 
+/* @var \Codeception\Scenario $scenario */
 $guy = new TestGuy($scenario);
 $guy->wantTo('delete a task');
 

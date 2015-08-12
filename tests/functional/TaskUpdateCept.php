@@ -1,8 +1,8 @@
 <?php
 
-/* @var \Codeception\Scenario $scenario */
-$scenario->groups(['tasks', 'update']);
+// @group cards update
 
+/* @var \Codeception\Scenario $scenario */
 $guy = new TestGuy($scenario);
 $guy->wantTo('update a task');
 

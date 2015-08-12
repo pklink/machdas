@@ -1,8 +1,8 @@
 <?php
 
-/* @var \Codeception\Scenario $scenario */
-$scenario->groups(['cards', 'retrieve']);
+// @group cards retrieve
 
+/* @var \Codeception\Scenario $scenario */
 $guy = new TestGuy($scenario);
 $guy->wantTo('get a card');
 
