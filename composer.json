@@ -2,11 +2,6 @@
     "autoload": {
         "psr-0": {
             "Dingbat": "src/"
-        },
-        "autoload": {
-            "files": [
-                "src/res/i18n/en.php"
-            ]
         }
     },
     "require": {
