@@ -11,13 +11,13 @@
     },
     "require": {
         "silex/silex": "~1.3.0",
-        "pklink/dotor": "0.2",
-        "phormium/phormium": "0.5",
-        "tedivm/jshrink": "v0.5.1",
-        "kriswallsmith/assetic": "v1.1.2",
-        "symfony/translation": "v2.4.0",
-        "symfony/config": "v2.4.0",
-        "symfony/yaml": "v2.4.0"
+        "pklink/dotor": "~1.0.0",
+        "phormium/phormium": "~0.8.0",
+        "tedivm/jshrink": "~1.1.0",
+        "kriswallsmith/assetic": "~1.2.0",
+        "symfony/translation": "~2.6.0",
+        "symfony/config": "~2.6.0",
+        "symfony/yaml": "~2.6.0"
     },
     "require-dev": {
         "codeception/codeception": "~2.1.0"
