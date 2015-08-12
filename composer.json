@@ -9,8 +9,6 @@
         "silex/silex": "~1.3",
         "pklink/dotor": "~1.1",
         "phormium/phormium": "~0.8",
-        "tedivm/jshrink": "~1.1",
-        "kriswallsmith/assetic": "~1.2",
         "symfony/translation": "~2.6",
         "symfony/config": "~2.6",
         "symfony/yaml": "~2.6"
