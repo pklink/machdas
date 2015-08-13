@@ -39,7 +39,9 @@ class Update extends Action
 
         // get card
         try {
-            $card = Card::objects()->filter('slug', '=', $slug)->single();
+            /* @var \Phormium\QuerySet $query */
+            $query = Card::objects()->filter('slug', '=', $slug);
+            $card = $query->single();
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'code'    => Update::CODE_CARD_DOES_NOT_EXIST,
@@ -82,7 +84,9 @@ class Update extends Action
             }
 
             // check if slug is duplicate
-            $sluggedCard = Card::objects()->filter('slug', '=', $slug)->single(true);
+            /* @var \Phormium\QuerySet $query */
+            $query = Card::objects()->filter('slug', '=', $slug);
+            $sluggedCard = $query->single(true);
 
             if ($sluggedCard instanceof Card && $sluggedCard->id != $card->id)
             {

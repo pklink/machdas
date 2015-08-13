@@ -29,10 +29,14 @@ class Delete extends Action
         // get card and delete it
         try {
             /* @var Card $card */
-            $card = Card::objects()->filter('slug', '=', $slug)->single();
+            /* @var \Phormium\QuerySet $query */
+            $query = Card::objects()->filter('slug', '=', $slug);
+            $card = $query->single();
 
             // delete all tasks of the card
-            $tasks = Task::objects()->filter('cardid', '=', $card->id)->fetch();
+            /* @var \Phormium\QuerySet $query */
+            $query = Task::objects()->filter('cardid', '=', $card->id);
+            $tasks = $query->fetch();
 
             foreach ($tasks as $task)
             {

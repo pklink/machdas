@@ -56,7 +56,9 @@ class Create extends Action
         }
 
         // duplicate slug
-        if (Card::objects()->filter('slug', '=', $slug)->single(true) instanceof Card)
+        /* @var \Phormium\QuerySet $query */
+        $query = Card::objects()->filter('slug', '=', $slug);
+        if ($query->single(true) instanceof Card)
         {
             return JsonResponse::create([
                 'code'    => Create::CODE_SLUG_DUPLICATE,

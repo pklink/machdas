@@ -31,7 +31,9 @@ class GetOne extends Action
         // get card
         try {
             /* @var Card $card */
-            $card = Card::objects()->filter('slug', '=', $slug)->single();
+            /* @var \Phormium\QuerySet $query */
+            $query = Card::objects()->filter('slug', '=', $slug);
+            $card = $query->single();
 
             return JsonResponse::create([
                 'id'   => (int) $card->id,
