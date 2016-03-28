@@ -136,7 +136,7 @@
 
 
 <script type="text/template" id="footer-template">
-    <a href="https://github.com/pklink/Dingbat" target="_blank">Dingbat 0.4.2</a>
+    <a href="https://github.com/pklink/Dingbat" target="_blank">Dingbat 0.4.3</a>
 </script>
 
 
