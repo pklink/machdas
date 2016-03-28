@@ -6,7 +6,6 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "pklink/dotor": "^2.0",
         "illuminate/database": "^5.2",
         "slim/slim": "^3."
     },

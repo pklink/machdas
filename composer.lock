@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "97faf45807a1b6f7ab5a2ebb5c024714",
-    "content-hash": "0f6b273a357310ca5ecff935ed4dd1ad",
+    "hash": "e942e2f115c46c8aabb57f6d20fe8557",
+    "content-hash": "df248a5cf356f3aa5f6f91b4c674b4ff",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -485,55 +485,6 @@
                 "dependency injection"
             ],
             "time": "2015-09-11 15:10:35"
-        },
-        {
-            "name": "pklink/dotor",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pklink/dotor.git",
-                "reference": "0b7f8f19007f80758bbd30f04915adc3a5977c6f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pklink/dotor/zipball/0b7f8f19007f80758bbd30f04915adc3a5977c6f",
-                "reference": "0b7f8f19007f80758bbd30f04915adc3a5977c6f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Dotor": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Pierre Klink",
-                    "email": "dev@klink.xyz",
-                    "homepage": "http://www.klink.xyz"
-                }
-            ],
-            "description": "Easy access to array values using dot notation. Useful for handling configurations or something like that",
-            "homepage": "https://github.com/pklink/dotor",
-            "keywords": [
-                "Settings",
-                "array",
-                "config",
-                "configuration",
-                "dot",
-                "dot-notation"
-            ],
-            "time": "2016-01-03 18:10:27"
         },
         {
             "name": "psr/http-message",
