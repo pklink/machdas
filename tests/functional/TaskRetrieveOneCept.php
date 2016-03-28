@@ -7,7 +7,7 @@ $guy = new TestGuy($scenario);
 $guy->wantTo('get a task');
 
 // get a task
-$guy->sendGET('/task/1');
+$guy->sendGET('/tasks/1');
 $guy->seeResponseIsJson();
 $guy->seeResponseContainsJson([
     'id'       => 1,
@@ -20,7 +20,7 @@ $guy->seeResponseContainsJson([
 $guy->seeResponseContains('"message":');
 
 // get a non existing task
-$guy->sendGET('/task/9');
+$guy->sendGET('/tasks/9');
 $guy->seeResponseIsJson();
 $guy->seeResponseContainsJson([
     'id'       => null,

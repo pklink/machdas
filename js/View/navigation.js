@@ -39,7 +39,7 @@ $(function() {
             Dingbat.App.Cards.add(model);
 
             // "redirect" to card
-            Dingbat.App.Router.navigate('card/' + model.id, {trigger: true});
+            Dingbat.App.Router.navigate('cards/' + model.id, {trigger: true});
 
             // focus task-form
             Dingbat.App.Form.$(':text').focus();
@@ -66,6 +66,7 @@ $(function() {
 
             // set properties and save
             model.set('name', this.$('input').val());
+            model.set('slug', this.$('input').val());
             model.save();
 
             return false;

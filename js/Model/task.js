@@ -11,7 +11,7 @@ $(function() {
         },
 
 
-        urlRoot: 'index.php/task',
+        urlRoot: 'index.php/tasks',
 
 
         /**

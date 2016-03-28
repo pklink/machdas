@@ -4,8 +4,8 @@ $(function() {
     Dingbat.Router = Backbone.Router.extend({
 
         routes: {
-            "card/:id": "setCard",
-            '*action' : 'default'
+            "cards/:id": "setCard",
+            '*action'  : 'default'
         },
 
 

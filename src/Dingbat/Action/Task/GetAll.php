@@ -25,46 +25,8 @@ class GetAll extends Action
      */
     public function run($filter = null)
     {
-        $objects = Task::query();
-
-        // filter
-        if ($filter != null)
-        {
-            $conditions = explode(';', $filter);
-
-            foreach ($conditions as $condition)
-            {
-                $splits = explode('=', $condition);
-
-                if (!isset($splits[1])) {
-                    continue;
-                }
-
-                $attribute = $splits[0];
-                $value     = $splits[1];
-
-                switch ($attribute)
-                {
-                    case 'id':
-                    case 'priority':
-                    case 'cardid':
-                        $objects = $objects->where($attribute, '=', $value);
-                        break;
-
-                    case 'marked':
-                        $value = ($value == 'true' ? true : false);
-                        $objects = $objects->where($attribute, '=', $value);
-                        break;
-
-                    case 'name':
-                        $objects = $objects->where($attribute, 'LIKE', '%' . $value . '%');
-                        break;
-                }
-            }
-        }
-
         $tasks = [];
-        foreach ($objects->orderBy('id', 'asc')->get() as $task) {
+        foreach (Task::query()->orderBy('id', 'asc')->get() as $task) {
             $tasks[] = [
                 'id'       => (int) $task->id,
                 'name'     => $task->name,

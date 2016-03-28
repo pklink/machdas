@@ -70,7 +70,7 @@
 
 
 <script type="text/template" id="card-template">
-    <a href="#card/<%- id %>"><%- name %></a>
+    <a href="#cards/<%- id %>"><%- name %></a>
 </script>
 
 

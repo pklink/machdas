@@ -212,24 +212,12 @@ class App
             return $this->prepareAction(new Action\Card\Delete())->run($slug);
         });
 
-
-
-
-
-        /*
-        $this->silex->get('/cards/{filter}', function($filter) {
-            return $this->prepareAction(new Action\Card\GetAll())->run($filter);
-        });
-        */
-
-
-
         // tasks
-        $this->silex->post('/task', function() {
+        $this->silex->post('/tasks', function() {
             return $this->prepareAction(new Action\Task\Create())->run();
         });
 
-        $this->silex->get('/task/{id}', function($id) {
+        $this->silex->get('/tasks/{id}', function($id) {
             return $this->prepareAction(new Action\Task\GetOne())->run($id);
         });
 
@@ -237,15 +225,11 @@ class App
             return $this->prepareAction(new Action\Task\GetAll())->run();
         });
 
-        $this->silex->get('/tasks/{filter}', function($filter) {
-            return $this->prepareAction(new Action\Task\GetAll())->run($filter);
-        });
-
-        $this->silex->put('/task/{id}', function($id) {
+        $this->silex->put('/tasks/{id}', function($id) {
             return $this->prepareAction(new Action\Task\Update())->run($id);
         });
 
-        $this->silex->delete('/task/{id}', function($id) {
+        $this->silex->delete('/tasks/{id}', function($id) {
             return $this->prepareAction(new Action\Task\Delete())->run($id);
         });
 
