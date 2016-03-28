@@ -47,7 +47,7 @@ class Create extends Action
         }
 
         // check if cardId is exist
-        if (!Card::exists($request->get('cardId')))
+        if (Card::query()->find($request->get('cardId')) === null)
         {
             return JsonResponse::create([
                 'id'      => null,
@@ -82,7 +82,7 @@ class Create extends Action
             $task->name     = $request->get('name');
             $task->marked   = $request->get('marked', false);
             $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
-            $task->cardid   = $request->get('cardId', 1);
+            $task->cardId   = $request->get('cardId', 1);
             $task->save();
 
             return JsonResponse::create([

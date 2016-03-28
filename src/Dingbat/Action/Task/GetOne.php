@@ -34,11 +34,11 @@ class GetOne extends Action
         // get task
         try {
             /* @var Task $task */
-            $task = Task::get($id);
+            $task = Task::query()->findOrFail($id);
 
             return JsonResponse::create([
                 'id'       => (int) $task->id,
-                'cardId'   => (int) $task->cardid,
+                'cardId'   => (int) $task->cardId,
                 'name'     => $task->name,
                 'marked'   => (bool) $task->marked,
                 'priority' => $task->priority,

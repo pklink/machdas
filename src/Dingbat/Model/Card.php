@@ -3,7 +3,8 @@
 
 namespace Dingbat\Model;
 
-use Phormium\Model;
+use Illuminate\Database\Eloquent\Model;
+
 
 /**
  * Class Task
@@ -13,32 +14,24 @@ use Phormium\Model;
  * @author   Pierre Klink <dev@klinks.info>
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
+ *
+ * @property int id
+ * @property string name
+ * @property string slug
+ * @property int created_at
+ * @property int updated_at
  */
 class Card extends Model
 {
 
     /**
-     * @var array
-     */
-    protected static $_meta = [
-        'database' => 'todo',
-        'table'    => 'cards',
-        'pk'       => 'id'
-    ];
-
-    /**
-     * @var int
-     */
-    public $id;
-
-    /**
      * @var string
      */
-    public $name;
+    protected $table = 'cards';
 
     /**
-     * @var string
+     * @var bool
      */
-    public $slug;
+    public $timestamps = false;
 
 }

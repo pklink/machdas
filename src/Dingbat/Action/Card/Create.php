@@ -56,9 +56,7 @@ class Create extends Action
         }
 
         // duplicate slug
-        /* @var \Phormium\QuerySet $query */
-        $query = Card::objects()->filter('slug', '=', $slug);
-        if ($query->single(true) instanceof Card)
+        if (Card::query()->where('slug', $slug)->first() instanceof Card)
         {
             return JsonResponse::create([
                 'code'    => Create::CODE_SLUG_DUPLICATE,
@@ -72,7 +70,7 @@ class Create extends Action
             $card = new Card();
             $card->name = $name;
             $card->slug = $slug;
-            $card->save();
+            $card->saveOrFail();
 
             // addition location header
             $header = ['Location' => sprintf('/cards/%s', $slug)];

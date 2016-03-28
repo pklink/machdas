@@ -25,7 +25,7 @@ class GetAll extends Action
      */
     public function run($filter = null)
     {
-        $objects = Task::objects();
+        $objects = Task::query();
 
         // filter
         if ($filter != null)
@@ -48,29 +48,29 @@ class GetAll extends Action
                     case 'id':
                     case 'priority':
                     case 'cardid':
-                        $objects = $objects->filter($attribute, '=', $value);
+                        $objects = $objects->where($attribute, '=', $value);
                         break;
 
                     case 'marked':
                         $value = ($value == 'true' ? true : false);
-                        $objects = $objects->filter($attribute, '=', $value);
+                        $objects = $objects->where($attribute, '=', $value);
                         break;
 
                     case 'name':
-                        $objects = $objects->filter($attribute, 'LIKE', '%' . $value . '%');
+                        $objects = $objects->where($attribute, 'LIKE', '%' . $value . '%');
                         break;
                 }
             }
         }
 
         $tasks = [];
-        foreach ($objects->orderBy('id', 'asc')->fetch() as $task) {
+        foreach ($objects->orderBy('id', 'asc')->get() as $task) {
             $tasks[] = [
                 'id'       => (int) $task->id,
                 'name'     => $task->name,
                 'marked'   => (bool) $task->marked,
                 'priority' => $task->priority,
-                'cardId'   => (int) $task->cardid
+                'cardId'   => (int) $task->cardId
             ];
         }
 

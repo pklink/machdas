@@ -26,23 +26,12 @@ class Delete extends Action
      */
     public function run($slug)
     {
-        // get card and delete it
         try {
-            /* @var Card $card */
-            /* @var \Phormium\QuerySet $query */
-            $query = Card::objects()->filter('slug', '=', $slug);
-            $card = $query->single();
+            // find card
+            $card = Card::query()->where('slug', $slug)->firstOrFail();
 
-            // delete all tasks of the card
-            /* @var \Phormium\QuerySet $query */
-            $query = Task::objects()->filter('cardid', '=', $card->id);
-            $tasks = $query->fetch();
-
-            foreach ($tasks as $task)
-            {
-                /* @var \Dingbat\Model\Task $task */
-                $task->delete();
-            }
+            // delete tasks of card
+            Task::query()->where('cardid', $card->id);
 
             // delete card
             $card->delete();

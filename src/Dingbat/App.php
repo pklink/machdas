@@ -4,7 +4,7 @@
 namespace Dingbat;
 
 use Dotor\Dotor;
-use Phormium\DB;
+use Illuminate\Database\Capsule\Manager;
 use Silex\Application;
 use Silex\Provider\TranslationServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
@@ -151,15 +151,20 @@ class App
      */
     protected function prepareDatabase()
     {
-        DB::configure([
-            'databases' => [
-                'todo' => [
-                    'dsn'      => sprintf('mysql:host=%s;dbname=%s', $this->config->get('database.host'), $this->config->get('database.name')),
-                    'username' => $this->config->get('database.username'),
-                    'password' => $this->config->get('database.password'),
-                ]
-            ]
+        $capsule = new Manager();
+        $capsule->addConnection([
+            'driver'    => 'mysql',
+            'host'      => $this->config->get('database.host'),
+            'database'  => $this->config->get('database.name'),
+            'username'  => $this->config->get('database.username'),
+            'password'  => $this->config->get('database.password'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
         ]);
+
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
     }
 
     /**

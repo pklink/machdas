@@ -42,7 +42,7 @@ class Update extends Action
         /* @var Task $task */
         $task = null;
         try {
-            $task = Task::get($id);
+            $task = Task::query()->findOrFail($id);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'code'    => Update::CODE_TASK_DOES_NOT_EXIST,
@@ -60,7 +60,7 @@ class Update extends Action
         }
 
         // check if cardId is exist
-        if (!Card::exists($request->get('cardId')))
+        if (Card::query()->find($request->get('cardId')) === null)
         {
             return JsonResponse::create([
                 'code'    => Update::CODE_CARD_DOES_NOT_EXIST,
@@ -92,7 +92,7 @@ class Update extends Action
             $task->name     = $request->get('name');
             $task->marked   = $request->get('marked');
             $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
-            $task->cardid   = $request->get('cardId');
+            $task->cardId   = $request->get('cardId');
             $task->update();
 
             return JsonResponse::create([

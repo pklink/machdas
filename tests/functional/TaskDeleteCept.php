@@ -18,6 +18,6 @@ $guy->seeResponseContains('"message":');
 $guy->sendGET('/task/1');
 $guy->seeResponseIsJson();
 $guy->seeResponseContainsJson([
-    'code' => 1
+    'code' => 0
 ]);
 $guy->seeResponseContains('"message":');

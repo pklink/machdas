@@ -25,39 +25,8 @@ class GetAll extends Action
      */
     public function run($filter = null)
     {
-        $objects = Card::objects();
-
-        // filter
-        if ($filter != null)
-        {
-            $conditions = explode(';', $filter);
-
-            foreach ($conditions as $condition)
-            {
-                $splits = explode('=', $condition);
-
-                if (!isset($splits[1])) {
-                    continue;
-                }
-
-                $attribute = $splits[0];
-                $value     = $splits[1];
-
-                switch ($attribute)
-                {
-                    case 'id':
-                        $objects = $objects->filter($attribute, '=', $value);
-                        break;
-
-                    case 'name':
-                        $objects = $objects->filter($attribute, 'LIKE', '%' . $value . '%');
-                        break;
-                }
-            }
-        }
-
         $cards = [];
-        foreach ($objects->orderBy('id', 'asc')->fetch() as $card) {
+        foreach (Card::query()->orderBy('id', 'asc')->get() as $card) {
             /* @var \Dingbat\Model\Card $card */
 
             $cards[] = [
