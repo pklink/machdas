@@ -17,7 +17,7 @@
 * Chg: Upgraded silex/silex to version 1.3.5
 * Chg: Upgraded pklink/dotor to version 2.0.0
 * Chg: Upgraded symfony/translation to version 3.0.3
-* Chg: Replaced phormium/phormium by phormium/phormium (Eloquent ORM)
+* Chg: Replaced phormium/phormium by illuminate/database (Eloquent ORM)
 
 ## 0.4.2
 
