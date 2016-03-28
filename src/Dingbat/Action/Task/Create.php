@@ -8,7 +8,6 @@ use Dingbat\Model\Card;
 use Dingbat\Model\Task;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class Add
@@ -49,7 +48,7 @@ class Create implements Action
                 ->withJson([
                     'id' => null,
                     'code' => Create::CODE_CARD_DOES_NOT_EXIST,
-                    'message' => sprintf('card with id `%d` does not exist', $request->getParsedBody('cardId'))
+                    'message' => sprintf('card with id `%d` does not exist', $request->getParsedBodyParam('cardId'))
                 ]);
         }
 
