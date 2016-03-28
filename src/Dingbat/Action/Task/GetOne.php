@@ -5,7 +5,8 @@ namespace Dingbat\Action\Task;
 
 use Dingbat\Action;
 use Dingbat\Model\Task;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class Get
@@ -23,20 +24,16 @@ class GetOne extends Action
     const CODE_TASK_DOES_NOT_EXIST = 1;
 
 
-    /**
-     * Update a task
-     *
-     * @param int $id ID of task
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function run($id)
+    public function run(Request $request, Response $response, array $args)
     {
+        $id = $args['id'];
+
         // get task
         try {
             /* @var Task $task */
             $task = Task::query()->findOrFail($id);
 
-            return JsonResponse::create([
+            return $response->withJson([
                 'id'       => (int) $task->id,
                 'cardId'   => (int) $task->cardId,
                 'name'     => $task->name,
@@ -46,17 +43,11 @@ class GetOne extends Action
                 'message'  => 'all fine'
             ]);
         } catch (\Exception $e) {
-            return JsonResponse::create([
-                'id'       => null,
-                'cardId'   => null,
-                'name'     => null,
-                'marked'   => null,
-                'priority' => null,
+            return $response->withStatus(404)->withJson([
                 'code'     => GetOne::CODE_TASK_DOES_NOT_EXIST,
                 'message'  => sprintf('task with `id` `%s` does not exist', $id)
             ]);
         }
-
     }
 
 }

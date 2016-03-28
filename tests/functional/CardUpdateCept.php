@@ -10,32 +10,24 @@ $guy->wantTo('update a card');
 $guy->sendPUT('/cards/first-list', [
     'name' => 'something',
 ]);
-$guy->seeResponseCodeIs(200);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['uri' => '/cards/first-list']);
+$guy->seeResponseCodeIs(204);
 
 // update slug
 $guy->sendPUT('/cards/first-list', [
     'slug' => 'something',
 ]);
-$guy->seeResponseCodeIs(200);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['uri' => '/cards/something']);
+$guy->seeResponseCodeIs(204);
 
 // update name and slug
 $guy->sendPUT('/cards/something', [
     'name' => 'another thing',
     'slug' => 'another-thing',
 ]);
-$guy->seeResponseCodeIs(200);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['uri' => '/cards/another-thing']);
+$guy->seeResponseCodeIs(204);
 
 // no attributes
 $guy->sendPUT('/cards/second-list', []);
-$guy->seeResponseCodeIs(200);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['uri' => '/cards/second-list']);
+$guy->seeResponseCodeIs(204);
 
 // duplicate slug
 $guy->sendPUT('/cards/second-list', [
@@ -50,9 +42,7 @@ $guy->seeResponseContains('"message":');
 $guy->sendPUT('/cards/second-list', [
     'slug' => 'second-list'
 ]);
-$guy->seeResponseCodeIs(200);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['uri' => '/cards/second-list']);
+$guy->seeResponseCodeIs(204);
 
 // non existing card
 $guy->sendPUT('/cards/blabla', [

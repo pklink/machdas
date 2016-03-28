@@ -5,7 +5,9 @@ namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
 use Dingbat\Model\Card;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class Index
@@ -20,12 +22,14 @@ class GetAll extends Action
 {
 
     /**
-     * @param string $filter attribute=value;otherattribute=value
-     * @return \Symfony\Component\HttpFoundation\Response|static
+     * @param Request $request
+     * @param Response $response
+     * @return Response
      */
-    public function run($filter = null)
+    public function run(Request $request, Response $response)
     {
         $cards = [];
+        /** @noinspection PhpUndefinedMethodInspection */
         foreach (Card::query()->orderBy('id', 'asc')->get() as $card) {
             /* @var \Dingbat\Model\Card $card */
 
@@ -36,7 +40,7 @@ class GetAll extends Action
             ];
         }
 
-        return JsonResponse::create($cards);
+        return $response->withJson($cards);
     }
 
 }

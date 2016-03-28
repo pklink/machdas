@@ -23,11 +23,6 @@ $guy->seeResponseContains('"message":');
 $guy->sendGET('/tasks/9');
 $guy->seeResponseIsJson();
 $guy->seeResponseContainsJson([
-    'id'       => null,
-    'cardId'   => null,
-    'name'     => null,
-    'marked'   => null,
-    'priority' => null,
     'code'     => 1
 ]);
 $guy->seeResponseContains('"message":');

@@ -6,7 +6,9 @@ namespace Dingbat\Action\Card;
 use Dingbat\Action;
 use Dingbat\Helper\SlugHelper;
 use Dingbat\Model\Card;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class Add
@@ -22,48 +24,44 @@ class Create extends Action
 
     const CODE_NAME_IS_REQUIRED = 1;
     const CODE_SLUG_IS_REQUIRED = 2;
-    const CODE_SLUG_DUPLICATE   = 3;
+    const CODE_SLUG_DUPLICATE = 3;
     const CODE_UNKNOWN_ERROR = 999;
 
-    /**
-     * Create new task
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function run()
+    public function run(Request $request, Response $response)
     {
-        $request = $this->request->request;
-        $name    = $request->get('name', false);
-        $slug    = strtolower($request->get('slug', ''));
+        $name = $request->getParsedBodyParam('name', false);
+        $slug = strtolower($request->getParsedBodyParam('slug', ''));
 
         // check name
-        if ($name === false)
-        {
-            return JsonResponse::create([
-                'code'    => Create::CODE_NAME_IS_REQUIRED,
-                'message' => '`name` is required',
-            ], 400);
+        if ($name === false) {
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'code' => Create::CODE_NAME_IS_REQUIRED,
+                    'message' => '`name` is required',
+                ]);
         }
 
         // check slug
         $slug = SlugHelper::convert($slug);
-        if (strlen($slug) == 0)
-        {
-            return JsonResponse::create([
-                'code'    => Create::CODE_SLUG_IS_REQUIRED,
-                'message' => '`slug` is required'
-            ], 400);
+        if (strlen($slug) == 0) {
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'code' => Create::CODE_SLUG_IS_REQUIRED,
+                    'message' => '`slug` is required'
+                ]);
         }
 
         // duplicate slug
-        if (Card::query()->where('slug', $slug)->first() instanceof Card)
-        {
-            return JsonResponse::create([
-                'code'    => Create::CODE_SLUG_DUPLICATE,
-                'message' => 'duplicate entry for `slug`'
-            ], 409);
+        if (Card::query()->where('slug', $slug)->first() instanceof Card) {
+            return $response
+                ->withStatus(409)
+                ->withJson([
+                    'code' => Create::CODE_SLUG_DUPLICATE,
+                    'message' => 'duplicate entry for `slug`'
+                ]);
         }
-
 
         // save card
         try {
@@ -75,14 +73,19 @@ class Create extends Action
             // addition location header
             $header = ['Location' => sprintf('/cards/%s', $slug)];
 
-            return JsonResponse::create([
-                'id' => (int) $card->id
-            ], 201, $header);
+            return $response
+                ->withStatus(201)
+                ->withHeader('Location', sprintf('/cards/%s', $slug))
+                ->withJson([
+                    'id' => (int)$card->id
+                ]);
         } catch (\Exception $e) {
-            return JsonResponse::create([
-                'code'    => Create::CODE_UNKNOWN_ERROR,
-                'message' => $e->getMessage(),
-            ], 500);
+            return $response
+                ->withStatus(500)
+                ->withJson([
+                    'code' => Create::CODE_UNKNOWN_ERROR,
+                    'message' => $e->getMessage(),
+                ]);
         }
     }
 

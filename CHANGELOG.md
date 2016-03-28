@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+
+* Chg: Replaced Silex by Slim Framework
+* Chg: RESTify resource URIs (e.g. `/task/1` to `/tasks/1`)
+* Chg: Set required version of PHP to >= 5.6
+
 ## 0.4.4
 
 * Fix: #6 jquery.keycut.min.js doesn't load if Dingbat installed in a subdirectory
@@ -24,8 +30,8 @@
 
 ## 0.4.1
 
-* Enh [#2](https://github.com/pklink/Dingbat/issues/2): Make list names editable
-* Enh [#3](https://github.com/pklink/Dingbat/issues/3): Add configuration for name of app
+* Enh: #2 Make list names editable
+* Enh: # 3Add configuration for name of app
 * Enh: Added advanced installation instructions to README
 * New: Added link to http://blog.einself.net to footer
 

@@ -5,6 +5,8 @@ namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
 use Dingbat\Model\Card;
+use Slim\Http\Request;
+use Slim\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -22,27 +24,28 @@ class GetOne extends Action
     const CODE_TASK_DOES_NOT_EXIST = 1;
 
 
-    /**
-     * @param string $slug
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function run($slug)
+    public function run(Request $request, Response $response, array $args)
     {
+        $slug = $args['slug'];
+
         // get card
         try {
             /* @var Card $card */
             $card = Card::query()->where('slug', '=', $slug)->firstOrFail();
 
-            return JsonResponse::create([
-                'id'   => (int) $card->id,
-                'name' => $card->name,
-                'slug' => $card->slug
-            ]);
+            return $response
+                ->withJson([
+                    'id'   => (int) $card->id,
+                    'name' => $card->name,
+                    'slug' => $card->slug
+                ]);
         } catch (\Exception $e) {
-            return JsonResponse::create([
-                'code'     => GetOne::CODE_TASK_DOES_NOT_EXIST,
-                'message'  => 'card does not exist'
-            ], 404);
+            return $response
+                ->withStatus(404)
+                ->withJson([
+                    'code'     => GetOne::CODE_TASK_DOES_NOT_EXIST,
+                    'message'  => 'card does not exist'
+                ]);
         }
 
     }

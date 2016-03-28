@@ -6,7 +6,8 @@ namespace Dingbat\Action\Task;
 use Dingbat\Action;
 use Dingbat\Model\Card;
 use Dingbat\Model\Task;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class Update
@@ -29,81 +30,84 @@ class Update extends Action
     const CODE_UNKNOWN_ERROR = 999;
 
 
-    /**
-     * Update a task
-     *
-     * @param int $id ID of task
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function run($id)
+    public function run(Request $request, Response $response, array $args)
     {
-        $request = $this->request;
+        $id = $args['id'];
 
         /* @var Task $task */
         $task = null;
         try {
             $task = Task::query()->findOrFail($id);
         } catch (\Exception $e) {
-            return JsonResponse::create([
-                'code'    => Update::CODE_TASK_DOES_NOT_EXIST,
-                'message' => sprintf('task with `id` `%d` does not exist', $id)
-            ]);
+            return $response
+                ->withStatus(404)
+                ->withJson([
+                    'code'    => Update::CODE_TASK_DOES_NOT_EXIST,
+                    'message' => sprintf('task with `id` `%d` does not exist', $id)
+                ]);
         }
 
         // check if cardId is set
-        if ($request->get('cardId', false) === false)
+        if ($request->getParsedBodyParam('cardId', false) === false)
         {
-            return JsonResponse::create([
-                'code'    => Update::CODE_CARD_ID_IS_NOT_GIVEN,
-                'message' => 'param `cardId` is required'
-            ]);
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'code'    => Update::CODE_CARD_ID_IS_NOT_GIVEN,
+                    'message' => 'param `cardId` is required'
+                ]);
         }
 
         // check if cardId is exist
-        if (Card::query()->find($request->get('cardId')) === null)
+        if (Card::query()->find($request->getParsedBodyParam('cardId')) === null)
         {
-            return JsonResponse::create([
-                'code'    => Update::CODE_CARD_DOES_NOT_EXIST,
-                'message' => sprintf('card with id `%d` does not exist', $request->get('cardId'))
-            ]);
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'code'    => Update::CODE_CARD_DOES_NOT_EXIST,
+                    'message' => sprintf('card with id `%d` does not exist', $request->getParsedBodyParam('cardId'))
+                ]);
         }
 
         // check if `name` is set
-        if ($request->get('name', false) === false)
+        if ($request->getParsedBodyParam('name', false) === false)
         {
-            return JsonResponse::create([
-                'code'    => Update::CODE_NAME_IS_NOT_GIVEN,
-                'message' => 'param `name` is required'
-            ]);
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'code'    => Update::CODE_NAME_IS_NOT_GIVEN,
+                    'message' => 'param `name` is required'
+                ]);
         }
 
         // check if `priority` value
-        if (!in_array($request->get('priority', 'normal'), ['normal', 'high', 'low']))
+        if (!in_array($request->getParsedBodyParam('priority', 'normal'), ['normal', 'high', 'low']))
         {
-            return JsonResponse::create([
-                'code'    => Update::CODE_PRIORITY_IS_INVALID,
-                'message' => 'param `priority` must be `normal`, `high` or `low`'
-            ]);
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'code'    => Update::CODE_PRIORITY_IS_INVALID,
+                    'message' => 'param `priority` must be `normal`, `high` or `low`'
+                ]);
         }
 
         // save task
         try
         {
-            $task->name     = $request->get('name');
-            $task->marked   = $request->get('marked');
-            $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
-            $task->cardId   = $request->get('cardId');
-            $task->update();
+            $task->name     = $request->getParsedBodyParam('name');
+            $task->marked   = $request->getParsedBodyParam('marked');
+            $task->priority = $request->getParsedBodyParam('priority', Task::PRIORITY_NORMAL);
+            $task->cardId   = $request->getParsedBodyParam('cardId');
+            $task->saveOrFail();
 
-            return JsonResponse::create([
-                'code'    => Update::CODE_ALL_FINE,
-                'message' => 'all fine'
-            ]);
+            return $response->withStatus(204);
         } catch (\Exception $e) {
-            return JsonResponse::create([
-                'code'    => Update::CODE_UNKNOWN_ERROR,
-                'message' => $e->getMessage()
-            ]);
+            return $response
+                ->withStatus(500)
+                ->withJson([
+                    'code'    => Update::CODE_UNKNOWN_ERROR,
+                    'message' => $e->getMessage()
+                ]);
         }
     }
 

@@ -8,16 +8,8 @@ $guy->wantTo('delete a task');
 
 // delete a task
 $guy->sendDELETE('/tasks/1');
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson([
-    'code' => 0,
-]);
-$guy->seeResponseContains('"message":');
+$guy->canSeeResponseCodeIs(204);
 
 // delete a non existing task
-$guy->sendGET('/tasks/1');
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson([
-    'code' => 0
-]);
-$guy->seeResponseContains('"message":');
+$guy->sendDELETE('/tasks/1');
+$guy->canSeeResponseCodeIs(204);

@@ -4,7 +4,9 @@
 namespace Dingbat\Action\Task;
 
 use Dingbat\Action;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Dingbat\Model\Task;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class Delete
@@ -23,24 +25,10 @@ class Delete extends Action
     const CODE_UNKNOW_ERROR = 999;
 
 
-    /**
-     * Remove task with ID $id
-     *
-     * @param integer $id ID of task
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function run($id)
+    public function run(Request $request, Response $response, array $args)
     {
-        /*
-        try {
-            Task::query()->find($id)->delete();
-        } catch (\Exception $e) { }
-        */
-
-        return JsonResponse::create([
-            'code' => Delete::CODE_ALL_FINE,
-            'message' => 'all fine'
-        ]);
+        Task::destroy($args['id']);
+        return $response->withStatus(204);
     }
 
 }

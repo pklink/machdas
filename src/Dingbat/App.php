@@ -3,11 +3,9 @@
 
 namespace Dingbat;
 
+use Codeception\Step\Action;
 use Dotor\Dotor;
 use Illuminate\Database\Capsule\Manager;
-use Silex\Application;
-use Silex\Provider\TranslationServiceProvider;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
 
@@ -41,7 +39,7 @@ class App
     /**
      * @var \Silex\Application
      */
-    protected $silex;
+    protected $slim;
 
     /**
      * @param string $rootDirectory Root of application (normally where the index.html is found)
@@ -56,29 +54,16 @@ class App
         $this->config = new Dotor($config);
 
         // create app
-        $this->silex          = new Application();
-        $this->silex['debug'] = $this->config->getBool('debugging', false);
-
-        // register i18n service
-        $this->silex->register(new TranslationServiceProvider(), array(
-            'locale_fallbacks' => array('en'),
-            'locale'           => $this->config->get('language'),
-        ));
-
-        // add translations
-        $this->silex['translator'] = $this->silex->share($this->silex->extend('translator', function($translator) {
-            /* @var Translator $translator */
-            $translator->addLoader('yaml', new YamlFileLoader());
-
-            $localePath = $this->config->get('rootDirectory', 'bla') . '/src/res/locales';
-            $translator->addResource('yaml', $localePath . '/en.yml', 'en');
-            $translator->addResource('yaml', $localePath . '/de.yml', 'de');
-
-            return $translator;
-        }));
+        $this->slim          = new \Slim\App([
+            'settings' => [
+                'displayErrorDetails' => true
+            ]
+        ]);
+        //$this->slim['debug'] = $this->config->getBool('debugging', false);
 
         // set instance of Request
-        $this->silex->before(function (Request $request) {
+        /*
+        $this->slim->before(function (Request $request) {
             if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
                 $data = json_decode($request->getContent(), true);
                 $request->request->replace(is_array($data) ? $data : array());
@@ -86,6 +71,7 @@ class App
 
             $this->request = $request;
         });
+        */
 
         $this->prepareDatabase();
         $this->setRoutes();
@@ -131,9 +117,9 @@ class App
     /**
      * @return Application
      */
-    public function getSilex()
+    public function getSlim()
     {
-        return $this->silex;
+        return $this->slim;
     }
 
     /**
@@ -172,7 +158,7 @@ class App
      */
     public function run()
     {
-        $this->silex->run();
+        $this->slim->run();
     }
 
     /**
@@ -181,58 +167,31 @@ class App
     protected function setRoutes()
     {
         // layout
-        $this->silex->get('/', function() {
+        /*
+        $this->slim->get('/', function() {
             ob_start();
 
             $appName = $this->config->get('name', 'Dingbat');
-            $locale  = $this->silex['translator'];
+            $locale  = $this->slim['translator'];
 
             require(__DIR__ . '/../../views/layout.php');
             return ob_get_clean();
         });
+        */
 
         // cards
-        $this->silex->post('/cards', function() {
-            return $this->prepareAction(new Action\Card\Create())->run();
-        });
-
-        $this->silex->get('/cards', function() {
-            return $this->prepareAction(new Action\Card\GetAll())->run();
-        });
-
-        $this->silex->get('/cards/{slug}', function($slug) {
-            return $this->prepareAction(new Action\Card\GetOne())->run($slug);
-        });
-
-        $this->silex->put('/cards/{slug}', function($slug) {
-            return $this->prepareAction(new Action\Card\Update())->run($slug);
-        });
-
-        $this->silex->delete('/cards/{slug}', function($slug) {
-            return $this->prepareAction(new Action\Card\Delete())->run($slug);
-        });
+        $this->slim->post('/cards', \Dingbat\Action\Card\Create::class . ':run');
+        $this->slim->get('/cards', \Dingbat\Action\Card\GetAll::class . ':run');
+        $this->slim->get('/cards/{slug}', \Dingbat\Action\Card\GetOne::class . ':run');
+        $this->slim->delete('/cards/{slug}', \Dingbat\Action\Card\Delete::class . ':run');
+        $this->slim->put('/cards/{slug}', \Dingbat\Action\Card\Update::class . ':run');
 
         // tasks
-        $this->silex->post('/tasks', function() {
-            return $this->prepareAction(new Action\Task\Create())->run();
-        });
-
-        $this->silex->get('/tasks/{id}', function($id) {
-            return $this->prepareAction(new Action\Task\GetOne())->run($id);
-        });
-
-        $this->silex->get('/tasks', function() {
-            return $this->prepareAction(new Action\Task\GetAll())->run();
-        });
-
-        $this->silex->put('/tasks/{id}', function($id) {
-            return $this->prepareAction(new Action\Task\Update())->run($id);
-        });
-
-        $this->silex->delete('/tasks/{id}', function($id) {
-            return $this->prepareAction(new Action\Task\Delete())->run($id);
-        });
-
+        $this->slim->post('/tasks', \Dingbat\Action\Task\Create::class . ':run');
+        $this->slim->get('/tasks/{id}', \Dingbat\Action\Task\GetOne::class . ':run');
+        $this->slim->get('/tasks', \Dingbat\Action\Task\GetAll::class . ':run');
+        $this->slim->put('/tasks/{id}', \Dingbat\Action\Task\Update::class . ':run');
+        $this->slim->delete('/tasks/{id}', \Dingbat\Action\Task\Delete::class . ':run');
     }
 
 }

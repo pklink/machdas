@@ -13,9 +13,7 @@ $guy->sendPUT('/tasks/1', [
     'marked'   => false,
     'priority' => 'normal'
 ]);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(204);
 
 // check `marked`: true
 $guy->sendPUT('/tasks/1', [
@@ -24,9 +22,7 @@ $guy->sendPUT('/tasks/1', [
     'marked'   => true,
     'priority' => 'normal'
 ]);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(204);
 
 // check without `marked`
 $guy->sendPUT('/tasks/1', [
@@ -34,10 +30,7 @@ $guy->sendPUT('/tasks/1', [
     'name'     => 'something',
     'priority' => 'normal'
 ]);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 0]);
-$guy->seeResponseContains('"message":');
-
+$guy->seeResponseCodeIs(204);
 // check `priority`: "low"
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
@@ -45,9 +38,7 @@ $guy->sendPUT('/tasks/1', [
     'marked'   => false,
     'priority' => 'low'
 ]);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(204);
 
 // check `priority`: "high"
 $guy->sendPUT('/tasks/1', [
@@ -56,9 +47,7 @@ $guy->sendPUT('/tasks/1', [
     'marked'   => false,
     'priority' => 'high'
 ]);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(204);
 
 // check without `priority`
 $guy->sendPUT('/tasks/1', [
@@ -66,9 +55,7 @@ $guy->sendPUT('/tasks/1', [
     'name'     => 'something',
     'marked'   => false,
 ]);
-$guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(204);
 
 // non existing task
 $guy->sendPUT('/tasks/9', [

@@ -6,7 +6,8 @@ namespace Dingbat\Action\Card;
 use Dingbat\Action;
 use Dingbat\Model\Card;
 use Dingbat\Model\Task;
-use Symfony\Component\HttpFoundation\Response;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class Delete
@@ -20,12 +21,10 @@ use Symfony\Component\HttpFoundation\Response;
 class Delete extends Action
 {
 
-    /**
-     * @param string $slug
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function run($slug)
+    public function run(Request $request, Response $response, array $args)
     {
+        $slug = $args['slug'];
+
         try {
             // find card
             $card = Card::query()->where('slug', $slug)->firstOrFail();
@@ -37,7 +36,7 @@ class Delete extends Action
             $card->delete();
         } catch (\Exception $e) { }
 
-        return Response::create(null, 204);
+        return $response->withStatus(204);
     }
 
 }

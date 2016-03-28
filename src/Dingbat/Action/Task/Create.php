@@ -6,6 +6,8 @@ namespace Dingbat\Action\Task;
 use Dingbat\Action;
 use Dingbat\Model\Card;
 use Dingbat\Model\Task;
+use Slim\Http\Request;
+use Slim\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -27,75 +29,76 @@ class Create extends Action
     const CODE_PRIORITY_IS_INVALID = 4;
     const CODE_UNKNOWN_ERROR = 999;
 
-    /**
-     * Create new task
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function run()
+    public function run(Request $request, Response $response)
     {
-        $request = $this->request;
-
         // check if cardId is set
-        if ($request->get('cardId', false) === false)
-        {
-            return JsonResponse::create([
-                'id'      => null,
-                'code'    => Create::CODE_CARD_ID_IS_NOT_GIVEN,
-                'message' => 'param `cardId` is required'
-            ]);
+        if ($request->getParsedBodyParam('cardId', false) === false) {
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'id' => null,
+                    'code' => Create::CODE_CARD_ID_IS_NOT_GIVEN,
+                    'message' => 'param `cardId` is required'
+                ]);
         }
 
         // check if cardId is exist
-        if (Card::query()->find($request->get('cardId')) === null)
-        {
-            return JsonResponse::create([
-                'id'      => null,
-                'code'    => Create::CODE_CARD_DOES_NOT_EXIST,
-                'message' => sprintf('card with id `%d` does not exist', $request->get('cardId'))
-            ]);
+        if (Card::query()->find($request->getParsedBodyParam('cardId')) === null) {
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'id' => null,
+                    'code' => Create::CODE_CARD_DOES_NOT_EXIST,
+                    'message' => sprintf('card with id `%d` does not exist', $request->getParsedBody('cardId'))
+                ]);
         }
 
         // check if `name` is set
-        if ($request->get('name', false) === false)
-        {
-            return JsonResponse::create([
-                'id'      => null,
-                'code'    => Create::CODE_NAME_IS_NOT_GIVEN,
-                'message' => 'param `name` is required'
-            ]);
+        if ($request->getParsedBodyParam('name', false) === false) {
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'id' => null,
+                    'code' => Create::CODE_NAME_IS_NOT_GIVEN,
+                    'message' => 'param `name` is required'
+                ]);
         }
 
         // check if `priority` value
-        if (!in_array($request->get('priority', 'normal'), ['normal', 'high', 'low']))
-        {
-            return JsonResponse::create([
-                'id'      => null,
-                'code'    => Create::CODE_PRIORITY_IS_INVALID,
-                'message' => 'param `priority` must be `normal`, `high` or `low`'
-            ]);
+        if (!in_array($request->getParsedBodyParam('priority', 'normal'), ['normal', 'high', 'low'])) {
+            return $response
+                ->withStatus(400)
+                ->withJson([
+                    'id'      => null,
+                    'code'    => Create::CODE_PRIORITY_IS_INVALID,
+                    'message' => 'param `priority` must be `normal`, `high` or `low`'
+                ]);
         }
 
         // save task
         try {
-            $task = new Task();
-            $task->name     = $request->get('name');
-            $task->marked   = $request->get('marked', false);
-            $task->priority = $request->get('priority', Task::PRIORITY_NORMAL);
-            $task->cardId   = $request->get('cardId', 1);
-            $task->save();
+            $task           = new Task();
+            $task->name     = $request->getParsedBodyParam('name');
+            $task->marked   = $request->getParsedBodyParam('marked', false);
+            $task->priority = $request->getParsedBodyParam('priority', Task::PRIORITY_NORMAL);
+            $task->cardId   = $request->getParsedBodyParam('cardId', 1);
+            $task->saveOrFail();
 
-            return JsonResponse::create([
-                'id'      => (int) $task->id,
-                'code'    => Create::CODE_ALL_FINE,
-                'message' => 'all fine'
-            ]);
+            return $response
+                ->withStatus(201)
+                ->withJson([
+                    'id' => (int)$task->id,
+                    'code' => Create::CODE_ALL_FINE,
+                    'message' => 'all fine'
+                ]);
         } catch (\Exception $e) {
-            return JsonResponse::create([
-                'id'      => null,
-                'code'    => Create::CODE_UNKNOWN_ERROR,
-                'message' => $e->getMessage()
-            ]);
+            return $response
+                ->withStatus(500)
+                ->withJson([
+                    'id' => null,
+                    'code' => Create::CODE_UNKNOWN_ERROR,
+                    'message' => $e->getMessage()
+                ]);
         }
     }
 

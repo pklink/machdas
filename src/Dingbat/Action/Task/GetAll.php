@@ -5,6 +5,8 @@ namespace Dingbat\Action\Task;
 
 use Dingbat\Action;
 use Dingbat\Model\Task;
+use Slim\Http\Request;
+use Slim\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -19,11 +21,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class GetAll extends Action
 {
 
-    /**
-     * @param string $filter attribute=value;otherattribute=value
-     * @return \Symfony\Component\HttpFoundation\Response|static
-     */
-    public function run($filter = null)
+    public function run(Request $request, Response $response)
     {
         $tasks = [];
         foreach (Task::query()->orderBy('id', 'asc')->get() as $task) {
@@ -36,7 +34,7 @@ class GetAll extends Action
             ];
         }
 
-        return JsonResponse::create($tasks);
+        return $response->withJson($tasks);
     }
 
 }
