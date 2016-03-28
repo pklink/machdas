@@ -8,7 +8,7 @@ $(function() {
         },
 
 
-        urlRoot: 'index.php/cards',
+        urlRoot: 'api/index.php/cards',
 
 
         /**
@@ -17,7 +17,7 @@ $(function() {
         view: null,
 
 
-        validate: function(attributes, options) {
+        validate: function(attributes) {
             if (attributes.name.length < 1) {
                 return "no name is given";
             }

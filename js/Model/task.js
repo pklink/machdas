@@ -11,7 +11,7 @@ $(function() {
         },
 
 
-        urlRoot: 'index.php/tasks',
+        urlRoot: 'api/index.php/tasks',
 
 
         /**
@@ -26,7 +26,7 @@ $(function() {
         },
 
 
-        parse: function(response, options) {
+        parse: function(response) {
             delete response.code;
             delete response.message;
             return response;
@@ -63,7 +63,7 @@ $(function() {
         },
 
 
-        validate: function(attributes, options) {
+        validate: function(attributes) {
             if (attributes.name.length < 1) {
                 return "no name is given";
             }

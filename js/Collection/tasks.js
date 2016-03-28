@@ -21,7 +21,7 @@ $(function() {
             }
         },
 
-        url: 'index.php/tasks'
+        url: 'api/index.php/tasks'
 
     });
 
