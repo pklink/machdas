@@ -78,14 +78,6 @@ class App
     }
 
     /**
-     * @return Dotor
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
      * @return \Slim\App
      */
     public function getSlim()
