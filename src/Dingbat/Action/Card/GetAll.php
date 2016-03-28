@@ -18,15 +18,10 @@ use Slim\Http\Response;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class GetAll extends Action
+class GetAll implements Action
 {
 
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @return Response
-     */
-    public function run(Request $request, Response $response)
+    public function run(Request $request, Response $response, array $args)
     {
         $cards = [];
         /** @noinspection PhpUndefinedMethodInspection */

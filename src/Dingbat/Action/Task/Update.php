@@ -18,7 +18,7 @@ use Slim\Http\Response;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class Update extends Action
+class Update implements Action
 {
 
     const CODE_ALL_FINE = 0;

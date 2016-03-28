@@ -19,7 +19,7 @@ use Slim\Http\Response;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class Create extends Action
+class Create implements Action
 {
 
     const CODE_NAME_IS_REQUIRED = 1;
@@ -27,7 +27,7 @@ class Create extends Action
     const CODE_SLUG_DUPLICATE = 3;
     const CODE_UNKNOWN_ERROR = 999;
 
-    public function run(Request $request, Response $response)
+    public function run(Request $request, Response $response, array $args)
     {
         $name = $request->getParsedBodyParam('name', false);
         $slug = strtolower($request->getParsedBodyParam('slug', ''));

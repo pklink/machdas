@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class Create extends Action
+class Create implements Action
 {
 
     const CODE_ALL_FINE = 0;
@@ -29,7 +29,7 @@ class Create extends Action
     const CODE_PRIORITY_IS_INVALID = 4;
     const CODE_UNKNOWN_ERROR = 999;
 
-    public function run(Request $request, Response $response)
+    public function run(Request $request, Response $response, array $args)
     {
         // check if cardId is set
         if ($request->getParsedBodyParam('cardId', false) === false) {

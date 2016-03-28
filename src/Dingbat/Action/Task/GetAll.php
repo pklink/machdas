@@ -18,10 +18,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class GetAll extends Action
+class GetAll implements Action
 {
 
-    public function run(Request $request, Response $response)
+    public function run(Request $request, Response $response, array $args)
     {
         $tasks = [];
         foreach (Task::query()->orderBy('id', 'asc')->get() as $task) {

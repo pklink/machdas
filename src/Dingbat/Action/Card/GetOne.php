@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @license  MIT http://opensource.org/licenses/MIT
  * @link     https://github.com/pklink/Dingbat
  */
-class GetOne extends Action
+class GetOne implements Action
 {
 
     const CODE_TASK_DOES_NOT_EXIST = 1;
