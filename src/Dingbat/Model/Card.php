@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int id
  * @property string name
- * @property string slug
  * @property int created_at
  * @property int updated_at
  */

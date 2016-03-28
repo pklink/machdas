@@ -23,15 +23,15 @@ class Delete implements Action
 
     public function run(Request $request, Response $response, array $args)
     {
-        $slug = $args['slug'];
+        $id = $args['id'];
 
         try {
             // find card
             /* @var Card $card */
-            $card = Card::query()->where('slug', $slug)->firstOrFail();
+            $card = Card::query()->findOrFail($id);
 
             // delete tasks of card
-            Task::query()->where('cardid', $card->id);
+            Task::query()->where('cardId', $card->id);
 
             // delete card
             $card->delete();

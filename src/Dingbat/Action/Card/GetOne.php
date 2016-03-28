@@ -22,18 +22,17 @@ class GetOne implements Action
 
     public function run(Request $request, Response $response, array $args)
     {
-        $slug = $args['slug'];
+        $id = $args['id'];
 
         // get card
         try {
             /* @var Card $card */
-            $card = Card::query()->where('slug', '=', $slug)->firstOrFail();
+            $card = Card::query()->findOrFail($id);
 
             return $response
                 ->withJson([
                     'id'   => (int) $card->id,
                     'name' => $card->name,
-                    'slug' => $card->slug
                 ]);
         } catch (\Exception $e) {
             return $response

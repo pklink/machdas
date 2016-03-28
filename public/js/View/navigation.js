@@ -66,7 +66,6 @@ $(function() {
 
             // set properties and save
             model.set('name', this.$('input').val());
-            model.set('slug', this.$('input').val());
             model.save();
 
             return false;
@@ -123,5 +122,5 @@ $(function() {
 
     });
 
-})
+});
 

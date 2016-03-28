@@ -32,9 +32,9 @@ $capsule->bootEloquent();
 // routing
 $app->post('/cards', \Dingbat\Action\Card\Create::class . ':run');
 $app->get('/cards', \Dingbat\Action\Card\GetAll::class . ':run');
-$app->get('/cards/{slug}', \Dingbat\Action\Card\GetOne::class . ':run');
-$app->delete('/cards/{slug}', \Dingbat\Action\Card\Delete::class . ':run');
-$app->put('/cards/{slug}', \Dingbat\Action\Card\Update::class . ':run');
+$app->get('/cards/{id}', \Dingbat\Action\Card\GetOne::class . ':run');
+$app->delete('/cards/{id}', \Dingbat\Action\Card\Delete::class . ':run');
+$app->put('/cards/{id}', \Dingbat\Action\Card\Update::class . ':run');
 
 $app->post('/tasks', \Dingbat\Action\Task\Create::class . ':run');
 $app->get('/tasks/{id}', \Dingbat\Action\Task\GetOne::class . ':run');

@@ -30,7 +30,6 @@ class GetAll implements Action
             $cards[] = [
                 'id'   => (int) $card->id,
                 'name' => $card->name,
-                'slug' => $card->slug
             ];
         }
 
