@@ -5,6 +5,7 @@
 * Chg: Replaced Silex by Slim Framework
 * Chg: RESTify resource URIs (e.g. `/task/1` to `/tasks/1`)
 * Chg: Set required version of PHP to >= 5.6
+* Chg: Moved backend to `api`-resource
 
 ## 0.4.4
 
