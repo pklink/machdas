@@ -27,6 +27,7 @@ class Delete implements Action
 
         try {
             // find card
+            /* @var Card $card */
             $card = Card::query()->where('slug', $slug)->firstOrFail();
 
             // delete tasks of card

@@ -69,9 +69,6 @@ class Create implements Action
             $card->slug = $slug;
             $card->saveOrFail();
 
-            // addition location header
-            $header = ['Location' => sprintf('/cards/%s', $slug)];
-
             return $response
                 ->withStatus(201)
                 ->withHeader('Location', sprintf('/cards/%s', $slug))

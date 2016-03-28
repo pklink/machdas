@@ -23,6 +23,7 @@ class GetAll implements Action
     public function run(Request $request, Response $response, array $args)
     {
         $tasks = [];
+        /** @noinspection PhpUndefinedMethodInspection */
         foreach (Task::query()->orderBy('id', 'asc')->get() as $task) {
             $tasks[] = [
                 'id'       => (int) $task->id,
