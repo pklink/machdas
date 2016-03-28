@@ -3,7 +3,6 @@
 
 namespace Dingbat;
 
-use Codeception\Step\Action;
 use Dotor\Dotor;
 use Illuminate\Database\Capsule\Manager;
 
@@ -30,12 +29,7 @@ class App
     protected static $instance;
 
     /**
-     * @var Request
-     */
-    protected $request;
-
-    /**
-     * @var \Silex\Application
+     * @var \Slim\App
      */
     protected $slim;
 
@@ -57,19 +51,6 @@ class App
                 'displayErrorDetails' => true
             ]
         ]);
-        //$this->slim['debug'] = $this->config->getBool('debugging', false);
-
-        // set instance of Request
-        /*
-        $this->slim->before(function (Request $request) {
-            if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-                $data = json_decode($request->getContent(), true);
-                $request->request->replace(is_array($data) ? $data : array());
-            }
-
-            $this->request = $request;
-        });
-        */
 
         $this->prepareDatabase();
         $this->setRoutes();
@@ -105,29 +86,11 @@ class App
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Request
-     */
-    public function getRequest()
-    {
-        return $this->request;
-    }
-
-    /**
-     * @return Application
+     * @return \Slim\App
      */
     public function getSlim()
     {
         return $this->slim;
-    }
-
-    /**
-     * @param Action $action
-     * @return Action
-     */
-    public function prepareAction(Action $action)
-    {
-        $action->setRequest($this->getRequest());
-        return $action;
     }
 
     /**
@@ -164,32 +127,19 @@ class App
      */
     protected function setRoutes()
     {
-        // layout
-        /*
-        $this->slim->get('/', function() {
-            ob_start();
-
-            $appName = $this->config->get('name', 'Dingbat');
-            $locale  = $this->slim['translator'];
-
-            require(__DIR__ . '/../../views/layout.php');
-            return ob_get_clean();
-        });
-        */
-
         // cards
-        $this->slim->post('/cards', \Dingbat\Action\Card\Create::class . ':run');
-        $this->slim->get('/cards', \Dingbat\Action\Card\GetAll::class . ':run');
-        $this->slim->get('/cards/{slug}', \Dingbat\Action\Card\GetOne::class . ':run');
-        $this->slim->delete('/cards/{slug}', \Dingbat\Action\Card\Delete::class . ':run');
-        $this->slim->put('/cards/{slug}', \Dingbat\Action\Card\Update::class . ':run');
+        $this->slim->post('/cards', Action\Card\Create::class . ':run');
+        $this->slim->get('/cards', Action\Card\GetAll::class . ':run');
+        $this->slim->get('/cards/{slug}', Action\Card\GetOne::class . ':run');
+        $this->slim->delete('/cards/{slug}', Action\Card\Delete::class . ':run');
+        $this->slim->put('/cards/{slug}', Action\Card\Update::class . ':run');
 
         // tasks
-        $this->slim->post('/tasks', \Dingbat\Action\Task\Create::class . ':run');
-        $this->slim->get('/tasks/{id}', \Dingbat\Action\Task\GetOne::class . ':run');
-        $this->slim->get('/tasks', \Dingbat\Action\Task\GetAll::class . ':run');
-        $this->slim->put('/tasks/{id}', \Dingbat\Action\Task\Update::class . ':run');
-        $this->slim->delete('/tasks/{id}', \Dingbat\Action\Task\Delete::class . ':run');
+        $this->slim->post('/tasks', Action\Task\Create::class . ':run');
+        $this->slim->get('/tasks/{id}', Action\Task\GetOne::class . ':run');
+        $this->slim->get('/tasks', Action\Task\GetAll::class . ':run');
+        $this->slim->put('/tasks/{id}', Action\Task\Update::class . ':run');
+        $this->slim->delete('/tasks/{id}', Action\Task\Delete::class . ':run');
     }
 
 }
