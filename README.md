@@ -48,16 +48,3 @@ See `docs/API.md`
 
 See `CHANGELOG.md`
 
-## Credits
-
-* [Assetic](http://github.com/kriswallsmith/assetic)
-* [Backbone.js](http://backbonejs.org/)
-* [backbone.layoutmanager](https://github.com/tbranyen/backbone.layoutmanager)
-* [Foundation](http://foundation.zurb.com/)
-* [jQuery UI](http://jqueryui.com/)
-* [json2.js](http://github.com/douglascrockford/JSON-js)
-* [Keycut](http://github.com/duncannz/keycut)
-* [Phormium](http://github.com/ihabunek/phormium)
-* [Silex](http://silex.sensiolabs.org/)
-* [Underscore.js](http://underscorejs.org/)
-
