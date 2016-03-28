@@ -20,10 +20,6 @@ use Slim\Http\Response;
 class Delete implements Action
 {
 
-    const CODE_ALL_FINE = 0;
-    const CODE_TASK_DOES_NOT_EXIST = 1;
-    const CODE_UNKNOW_ERROR = 999;
-
     public function run(Request $request, Response $response, array $args)
     {
         Task::destroy($args['id']);

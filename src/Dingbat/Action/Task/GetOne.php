@@ -20,10 +20,6 @@ use Slim\Http\Response;
 class GetOne implements Action
 {
 
-    const CODE_ALL_FINE = 0;
-    const CODE_TASK_DOES_NOT_EXIST = 1;
-
-
     public function run(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
@@ -38,15 +34,12 @@ class GetOne implements Action
                 'cardId'   => (int) $task->cardId,
                 'name'     => $task->name,
                 'marked'   => (bool) $task->marked,
-                'priority' => $task->priority,
-                'code'     => GetOne::CODE_ALL_FINE,
-                'message'  => 'all fine'
+                'priority' => $task->priority
             ]);
         } catch (\Exception $e) {
-            return $response->withStatus(404)->withJson([
-                'code'     => GetOne::CODE_TASK_DOES_NOT_EXIST,
-                'message'  => sprintf('task with `id` `%s` does not exist', $id)
-            ]);
+            return $response
+                ->withStatus(404)
+                ->withJson(['message'  => sprintf('task with `id` `%s` does not exist', $id)]);
         }
     }
 

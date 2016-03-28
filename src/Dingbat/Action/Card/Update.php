@@ -21,12 +21,6 @@ use Slim\Http\Response;
 class Update implements Action
 {
 
-    const CODE_CARD_DOES_NOT_EXIST = 1;
-    const CODE_NAME_CANNOT_BE_EMPTY = 2;
-    const CODE_SLUG_CANNOT_BE_EMPTY = 3;
-    const CODE_SLUG_DUPLICATE = 4;
-    const CODE_UNKNOWN_ERROR = 999;
-
     public function run(Request $request, Response $response, array $args)
     {
         $slug = $args['slug'];
@@ -40,10 +34,7 @@ class Update implements Action
         } catch (\Exception $e) {
             return $response
                 ->withStatus(404)
-                ->withJson([
-                    'code' => Update::CODE_CARD_DOES_NOT_EXIST,
-                    'message' => 'card does not exist'
-                ]);
+                ->withJson(['message' => 'card does not exist']);
         }
 
         // get name and slug from payload
@@ -55,10 +46,7 @@ class Update implements Action
             if (strlen($name) === 0) {
                 return $response
                     ->withStatus(400)
-                    ->withJson([
-                        'code' => Update::CODE_NAME_CANNOT_BE_EMPTY,
-                        'message' => '`name` cannot be empty'
-                    ]);
+                    ->withJson(['message' => '`name` cannot be empty']);
             }
 
             $card->name = $name;
@@ -73,10 +61,7 @@ class Update implements Action
             if (strlen($slug) == 0) {
                 return $response
                     ->withStatus(400)
-                    ->withJson([
-                        'code' => Update::CODE_SLUG_CANNOT_BE_EMPTY,
-                        'message' => '`name` cannot be empty'
-                    ]);
+                    ->withJson(['message' => '`name` cannot be empty']);
             }
 
             // check if slug is duplicate
@@ -85,10 +70,7 @@ class Update implements Action
             if ($sluggedCard instanceof Card && $sluggedCard->id != $card->id) {
                 return $response
                     ->withStatus(409)
-                    ->withJson([
-                        'code' => Update::CODE_SLUG_DUPLICATE,
-                        'message' => 'duplicate entry for `slug`'
-                    ]);
+                    ->withJson(['message' => 'duplicate entry for `slug`']);
             }
 
             $card->slug = $slug;
@@ -102,10 +84,7 @@ class Update implements Action
         } catch (\Exception $e) {
             return $response
                 ->withStatus(500)
-                ->withJson([
-                    'code' => Update::CODE_UNKNOWN_ERROR,
-                    'message' => $e->getMessage()
-                ]);
+                ->withJson(['message' => $e->getMessage()]);
         }
     }
 

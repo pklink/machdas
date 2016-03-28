@@ -35,7 +35,6 @@ $guy->sendPUT('/cards/second-list', [
 ]);
 $guy->seeResponseCodeIs(409);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 4]);
 $guy->seeResponseContains('"message":');
 
 // duplicate slug
@@ -50,5 +49,4 @@ $guy->sendPUT('/cards/blabla', [
 ]);
 $guy->seeResponseCodeIs(404);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 1]);
 $guy->seeResponseContains('"message":');

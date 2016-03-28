@@ -22,7 +22,6 @@ $guy->sendPOST('/cards', [
 ]);
 $guy->seeResponseCodeIs(400);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 1]);
 $guy->seeResponseContains('"message":');
 
 // no slug
@@ -31,7 +30,6 @@ $guy->sendPOST('/cards', [
 ]);
 $guy->seeResponseCodeIs(400);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 2]);
 $guy->seeResponseContains('"message":');
 
 // duplicate slug
@@ -40,7 +38,6 @@ $guy->sendPOST('/cards', [
     'slug' => 'project-a'
 ]);
 $guy->seeResponseCodeIs(409);
-$guy->seeResponseContainsJson(['code' => 3]);
 $guy->seeResponseContains('"message":');
 
 // invalid slug

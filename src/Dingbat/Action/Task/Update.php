@@ -21,15 +21,6 @@ use Slim\Http\Response;
 class Update implements Action
 {
 
-    const CODE_ALL_FINE = 0;
-    const CODE_TASK_DOES_NOT_EXIST = 1;
-    const CODE_CARD_ID_IS_NOT_GIVEN = 2;
-    const CODE_CARD_DOES_NOT_EXIST = 3;
-    const CODE_NAME_IS_NOT_GIVEN = 4;
-    const CODE_PRIORITY_IS_INVALID = 5;
-    const CODE_UNKNOWN_ERROR = 999;
-
-
     public function run(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
@@ -41,10 +32,7 @@ class Update implements Action
         } catch (\Exception $e) {
             return $response
                 ->withStatus(404)
-                ->withJson([
-                    'code'    => Update::CODE_TASK_DOES_NOT_EXIST,
-                    'message' => sprintf('task with `id` `%d` does not exist', $id)
-                ]);
+                ->withJson(['message' => sprintf('task with `id` `%d` does not exist', $id)]);
         }
 
         // check if cardId is set
@@ -52,21 +40,16 @@ class Update implements Action
         {
             return $response
                 ->withStatus(400)
-                ->withJson([
-                    'code'    => Update::CODE_CARD_ID_IS_NOT_GIVEN,
-                    'message' => 'param `cardId` is required'
-                ]);
+                ->withJson(['message' => 'param `cardId` is required']);
         }
 
         // check if cardId is exist
-        if (Card::query()->find($request->getParsedBodyParam('cardId')) === null)
+        $cardId = $request->getParsedBodyParam('cardId');
+        if (Card::query()->find($cardId) === null)
         {
             return $response
                 ->withStatus(400)
-                ->withJson([
-                    'code'    => Update::CODE_CARD_DOES_NOT_EXIST,
-                    'message' => sprintf('card with id `%d` does not exist', $request->getParsedBodyParam('cardId'))
-                ]);
+                ->withJson(['message' => sprintf('card with id `%d` does not exist', $cardId)]);
         }
 
         // check if `name` is set
@@ -74,10 +57,7 @@ class Update implements Action
         {
             return $response
                 ->withStatus(400)
-                ->withJson([
-                    'code'    => Update::CODE_NAME_IS_NOT_GIVEN,
-                    'message' => 'param `name` is required'
-                ]);
+                ->withJson(['message' => 'param `name` is required']);
         }
 
         // check if `priority` value
@@ -85,10 +65,7 @@ class Update implements Action
         {
             return $response
                 ->withStatus(400)
-                ->withJson([
-                    'code'    => Update::CODE_PRIORITY_IS_INVALID,
-                    'message' => 'param `priority` must be `normal`, `high` or `low`'
-                ]);
+                ->withJson(['message' => 'param `priority` must be `normal`, `high` or `low`']);
         }
 
         // save task
@@ -97,17 +74,14 @@ class Update implements Action
             $task->name     = $request->getParsedBodyParam('name');
             $task->marked   = $request->getParsedBodyParam('marked');
             $task->priority = $request->getParsedBodyParam('priority', Task::PRIORITY_NORMAL);
-            $task->cardId   = $request->getParsedBodyParam('cardId');
+            $task->cardId   = $cardId;
             $task->saveOrFail();
 
             return $response->withStatus(204);
         } catch (\Exception $e) {
             return $response
                 ->withStatus(500)
-                ->withJson([
-                    'code'    => Update::CODE_UNKNOWN_ERROR,
-                    'message' => $e->getMessage()
-                ]);
+                ->withJson(['message' => $e->getMessage()]);
         }
     }
 

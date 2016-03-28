@@ -15,14 +15,10 @@ $guy->seeResponseContainsJson([
     'name'     => 'save a whale',
     'marked'   => false,
     'priority' => 'normal',
-    'code'     => 0
 ]);
-$guy->seeResponseContains('"message":');
 
 // get a non existing task
 $guy->sendGET('/tasks/9');
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson([
-    'code'     => 1
-]);
+$guy->seeResponseCodeIs(404);
 $guy->seeResponseContains('"message":');

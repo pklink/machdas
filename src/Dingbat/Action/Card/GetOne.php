@@ -20,9 +20,6 @@ use Slim\Http\Response;
 class GetOne implements Action
 {
 
-    const CODE_TASK_DOES_NOT_EXIST = 1;
-
-
     public function run(Request $request, Response $response, array $args)
     {
         $slug = $args['slug'];
@@ -41,10 +38,7 @@ class GetOne implements Action
         } catch (\Exception $e) {
             return $response
                 ->withStatus(404)
-                ->withJson([
-                    'code'     => GetOne::CODE_TASK_DOES_NOT_EXIST,
-                    'message'  => 'card does not exist'
-                ]);
+                ->withJson(['message' => 'card does not exist']);
         }
 
     }

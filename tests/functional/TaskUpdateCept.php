@@ -65,7 +65,7 @@ $guy->sendPUT('/tasks/9', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 1]);
+$guy->seeResponseCodeIs(404);
 $guy->seeResponseContains('"message":');
 
 // no `cardId`
@@ -75,7 +75,7 @@ $guy->sendPUT('/tasks/1', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 2]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');
 
 // invalid cardId
@@ -86,7 +86,7 @@ $guy->sendPUT('/tasks/1', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 3]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');
 
 // no name
@@ -96,7 +96,7 @@ $guy->sendPUT('/tasks/1', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 4]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');
 
 // invalid `priority`
@@ -107,5 +107,5 @@ $guy->sendPUT('/tasks/1', [
     'priority' => 'bla'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['code' => 5]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');

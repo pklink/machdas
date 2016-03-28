@@ -14,8 +14,8 @@ $guy->sendPOST('/tasks', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 4, 'code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(201);
+$guy->seeResponseContainsJson(['id' => 4]);
 
 // check `marked`: true
 $guy->sendPOST('/tasks', [
@@ -25,8 +25,8 @@ $guy->sendPOST('/tasks', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 5, 'code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(201);
+$guy->seeResponseContainsJson(['id' => 5]);
 
 // check without `marked`
 $guy->sendPOST('/tasks', [
@@ -35,8 +35,8 @@ $guy->sendPOST('/tasks', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 6, 'code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(201);
+$guy->seeResponseContainsJson(['id' => 6]);
 
 // check `priority`: "low"
 $guy->sendPOST('/tasks', [
@@ -46,8 +46,8 @@ $guy->sendPOST('/tasks', [
     'priority' => 'low'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 7, 'code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(201);
+$guy->seeResponseContainsJson(['id' => 7]);
 
 // check `priority`: "high"
 $guy->sendPOST('/tasks', [
@@ -57,8 +57,8 @@ $guy->sendPOST('/tasks', [
     'priority' => 'high'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 8, 'code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(201);
+$guy->seeResponseContainsJson(['id' => 8]);
 
 // check without `priority`
 $guy->sendPOST('/tasks', [
@@ -67,8 +67,8 @@ $guy->sendPOST('/tasks', [
     'marked'   => false,
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => 9, 'code' => 0]);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseCodeIs(201);
+$guy->seeResponseContainsJson(['id' => 9]);
 
 
 // no cardId
@@ -78,7 +78,7 @@ $guy->sendPOST('/tasks', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => null, 'code' => 1]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');
 
 // invalid cardId
@@ -89,7 +89,7 @@ $guy->sendPOST('/tasks', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => null, 'code' => 2]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');
 
 // no name
@@ -99,7 +99,7 @@ $guy->sendPOST('/tasks', [
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => null, 'code' => 3]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');
 
 // invalid `priority`
@@ -110,5 +110,5 @@ $guy->sendPOST('/tasks', [
     'priority' => 'bla'
 ]);
 $guy->seeResponseIsJson();
-$guy->seeResponseContainsJson(['id' => null, 'code' => 4]);
+$guy->seeResponseCodeIs(400);
 $guy->seeResponseContains('"message":');
