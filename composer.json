@@ -8,7 +8,7 @@
         "php": ">=5.5.0",
         "silex/silex": "~1.3",
         "pklink/dotor": "^2.0",
-        "symfony/translation": "~2.6",
+        "symfony/translation": "^3.0",
         "illuminate/database": "^5.2"
     },
     "require-dev": {
