@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.4
+
+* Fix: #6 jquery.keycut.min.js doesn't load if Dingbat installed in a subdirectory
+
 ## 0.4.3
 
 * Chg: Upgraded silex/silex to version 1.3.5

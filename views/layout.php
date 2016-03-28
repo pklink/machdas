@@ -24,7 +24,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.layoutmanager/0.9.7/backbone.layoutmanager.min.js"></script>
-    <script src="/js/vendor/jquery.keycut.min.js"></script>
+    <script src="js/vendor/jquery.keycut.min.js"></script>
     <script src="js/Model/task.js"></script>
     <script src="js/Model/card.js"></script>
     <script src="js/Collection/tasks.js"></script>
