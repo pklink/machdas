@@ -6,6 +6,7 @@
 * import `setup/install.sql`
 * copy `config.sample.php` to `config.php`
 * edit `config.php`
+* configure your webserver to point to `<root-directory>/public`
 
 ## Build your own release
 
