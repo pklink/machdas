@@ -24,24 +24,15 @@ class App
     protected $config;
 
     /**
-     * @var App
-     */
-    protected static $instance;
-
-    /**
      * @var \Slim\App
      */
     protected $slim;
 
     /**
-     * @param string $rootDirectory Root of application (normally where the index.html is found)
-     * @param array  $config        configuration of application
+     * @param array  $config configuration of application
      */
-    protected function __construct($rootDirectory, array $config = [])
+    public function __construct(array $config = [])
     {
-        // add route directory to $config
-        $config['rootDirectory'] = $rootDirectory;
-
         // create config
         $this->config = new Dotor($config);
 
@@ -54,35 +45,6 @@ class App
 
         $this->prepareDatabase();
         $this->setRoutes();
-    }
-
-    /**
-     * @param string $projectRoot path to root path of project
-     * @param array $config
-     * @return App
-     * @throws \InvalidArgumentException
-     */
-    public static function instance($projectRoot = null, array $config = [])
-    {
-        if (!(self::$instance instanceof App))
-        {
-            if (is_null($projectRoot))
-            {
-                throw new \InvalidArgumentException('At first call of Dingbat::instance() is the $projectPath-parameter required');
-            }
-
-            self::$instance = new static($projectRoot, $config);
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * @return \Slim\App
-     */
-    public function getSlim()
-    {
-        return $this->slim;
     }
 
     /**
