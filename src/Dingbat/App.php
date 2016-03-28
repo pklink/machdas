@@ -6,8 +6,6 @@ namespace Dingbat;
 use Codeception\Step\Action;
 use Dotor\Dotor;
 use Illuminate\Database\Capsule\Manager;
-use Symfony\Component\Translation\Loader\YamlFileLoader;
-use Symfony\Component\Translation\Translator;
 
 /**
  * Class App

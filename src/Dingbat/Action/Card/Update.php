@@ -5,11 +5,9 @@ namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
 use Dingbat\Helper\SlugHelper;
-use     Dingbat\Model\Card;
+use Dingbat\Model\Card;
 use Slim\Http\Request;
-use Slim\Http\RequestBody;
 use Slim\Http\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class Update

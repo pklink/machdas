@@ -7,7 +7,6 @@ use Dingbat\Action;
 use Dingbat\Model\Card;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class Get

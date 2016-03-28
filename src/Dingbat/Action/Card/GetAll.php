@@ -5,7 +5,6 @@ namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
 use Dingbat\Model\Card;
-use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 

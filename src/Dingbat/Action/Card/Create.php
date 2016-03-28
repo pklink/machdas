@@ -6,7 +6,6 @@ namespace Dingbat\Action\Card;
 use Dingbat\Action;
 use Dingbat\Helper\SlugHelper;
 use Dingbat\Model\Card;
-use Psr\Http\Message\ServerRequestInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 

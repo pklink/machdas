@@ -7,7 +7,6 @@ use Dingbat\Action;
 use Dingbat\Model\Task;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class Index
