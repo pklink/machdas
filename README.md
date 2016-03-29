@@ -14,8 +14,22 @@ A simple todo manager
 
 ## Installation
 
-See `docs/INSTALLATION.md`
+### Requirements
 
+* [Git](http://git-scm.com/)
+* [Composer](http://getcomposer.org/)
+
+### Instructions
+
+Import `setup/install.sql` to your MySQL database
+
+```sh
+git clone https://github.com/pklink/Dingbat.git
+composer install
+cp config.sample.php config.php
+vim config.php
+php -S localhost:8080 -t ./public/
+```
 
 ## Upgrade
 
