@@ -26,7 +26,9 @@ class Delete implements Action
 
             // delete card
             $card->delete();
-        } catch (\Exception $e) { }
+        } catch (\Exception $e) {
+            // not needed. respose code is always 204
+        }
 
         return $response->withStatus(204);
     }
