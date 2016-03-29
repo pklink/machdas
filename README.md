@@ -28,12 +28,20 @@ git clone https://github.com/pklink/Dingbat.git
 composer install
 cp config.sample.php config.php
 vim config.php
-php -S localhost:8080 -t ./public/
+php -S localhost:8080 -t ./public
 ```
 
 ## Upgrade
 
 See `docs/UPGRADE.md`
+
+## Running test
+
+```sh
+composer install
+php -S localhost:8080 -t ./public &
+php vendor/bin/codecept run
+```
 
 
 ## Shorttags
