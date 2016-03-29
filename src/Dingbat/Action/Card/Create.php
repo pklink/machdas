@@ -31,7 +31,7 @@ class Create implements Action
             return $response
                 ->withStatus(201)
                 ->withHeader('Location', sprintf('/cards/%s', $card->id))
-                ->withJson(['id' => (int)$card->id]);
+                ->withJson(['id' => (int) $card->id]);
         } catch (\Exception $e) {
             return $response
                 ->withStatus(500)
