@@ -7,7 +7,7 @@ install:
   - mysql dingbat < setup/install.sql
   - cp config.sample.php config.php
   - sed -i 's/root/travis/g' config.php
-  - sed -i 's/bitnami//g' config.php
+  - sed -i 's/password//g' config.php
   - sed -i 's/false/true/g' config.php
   - sed -i 's/root/travis/g' codeception.yml
   - sed -i "s/'password'//g" codeception.yml
