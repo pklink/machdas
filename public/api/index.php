@@ -24,10 +24,8 @@ $container['db'] = function($container) {
 };
 
 // add error handler
-$container['notFoundHandler'] = function($container) {
-    return function() use ($container) {
-        /* @var \Slim\Http\Response $response */
-        $response = $container['response'];
+$container['notFoundHandler'] = function() {
+    return function($request, \Slim\Http\Response $response) {
         return $response
             ->withStatus(404)
             ->withHeader('Content-Type', 'text/html')
@@ -35,10 +33,8 @@ $container['notFoundHandler'] = function($container) {
     };
 };
 
-$container['notAllowedHandler'] = function($container) {
-    return function() use ($container) {
-        /* @var \Slim\Http\Response $response */
-        $response = $container['response'];
+$container['notAllowedHandler'] = function() {
+    return function($request, \Slim\Http\Response $response, array $methods) {
         return $response
             ->withStatus(405)
             ->withHeader('Allow', implode(', ', $methods))
@@ -47,7 +43,7 @@ $container['notAllowedHandler'] = function($container) {
 };
 
 $container['errorHandler'] = function($container) {
-    return function(\Slim\Http\Request $request, \Slim\Http\Response $response, Exception $exception) use ($container) {
+    return function($request, \Slim\Http\Response $response, Exception $exception) use ($container) {
         $payload = ['message' => 'Something went wrong!'];
 
         // if debugging enabled add trace to response
