@@ -11,7 +11,7 @@ use Slim\Http\Response;
 class Create implements Action
 {
 
-    public function run(Request $request, Response $response, array $args)
+    function __invoke(Request $request, Response $response, array $args)
     {
         $name = $request->getParsedBodyParam('name', false);
 
@@ -38,6 +38,7 @@ class Create implements Action
                 ->withJson(['message' => $e->getMessage()]);
         }
     }
+
 
 }
 

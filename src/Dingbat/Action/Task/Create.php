@@ -12,7 +12,7 @@ use Slim\Http\Response;
 class Create implements Action
 {
 
-    public function run(Request $request, Response $response, array $args)
+    function __invoke(Request $request, Response $response, array $args)
     {
         // check if cardId is set
         if ($request->getParsedBodyParam('cardId', false) === false) {

@@ -31,20 +31,20 @@ $capsule->bootEloquent();
 // routing
 $app->group('/cards', function() {
     /* @var \Slim\App $this */
-    $this->post('', \Dingbat\Action\Card\Create::class . ':run');
-    $this->get('', \Dingbat\Action\Card\GetAll::class . ':run');
-    $this->get('/{id:\d+}', \Dingbat\Action\Card\GetOne::class . ':run');
-    $this->put('/{id:\d+}', \Dingbat\Action\Card\Update::class . ':run');
-    $this->delete('/{id:\d+}', \Dingbat\Action\Card\Delete::class . ':run');
+    $this->post('', \Dingbat\Action\Card\Create::class);
+    $this->get('', \Dingbat\Action\Card\GetAll::class);
+    $this->get('/{id:\d+}', \Dingbat\Action\Card\GetOne::class);
+    $this->put('/{id:\d+}', \Dingbat\Action\Card\Update::class);
+    $this->delete('/{id:\d+}', \Dingbat\Action\Card\Delete::class);
 });
 
 $app->group('/tasks', function() {
     /* @var \Slim\App $this */
-    $this->post('', \Dingbat\Action\Task\Create::class . ':run');
-    $this->get('', \Dingbat\Action\Task\GetAll::class . ':run');
-    $this->get('/{id:\d+}', \Dingbat\Action\Task\GetOne::class . ':run');
-    $this->put('/{id:\d+}', \Dingbat\Action\Task\Update::class . ':run');
-    $this->delete('/{id:\d+}', \Dingbat\Action\Task\Delete::class . ':run');
+    $this->post('', \Dingbat\Action\Task\Create::class);
+    $this->get('', \Dingbat\Action\Task\GetAll::class);
+    $this->get('/{id:\d+}', \Dingbat\Action\Task\GetOne::class);
+    $this->put('/{id:\d+}', \Dingbat\Action\Task\Update::class);
+    $this->delete('/{id:\d+}', \Dingbat\Action\Task\Delete::class);
 });
 
 

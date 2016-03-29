@@ -11,7 +11,7 @@ use Slim\Http\Response;
 class GetOne implements Action
 {
 
-    public function run(Request $request, Response $response, array $args)
+    function __invoke(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
 

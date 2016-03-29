@@ -11,7 +11,7 @@ use Slim\Http\Response;
 class Delete implements Action
 {
 
-    public function run(Request $request, Response $response, array $args)
+    function __invoke(Request $request, Response $response, array $args)
     {
         Task::destroy($args['id']);
         return $response->withStatus(204);

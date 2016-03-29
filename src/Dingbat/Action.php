@@ -14,6 +14,6 @@ interface Action
      * @param array    $args
      * @return Response
      */
-    public function run(Request $request, Response $response, array $args);
+    public function __invoke(Request $request, Response $response, array $args);
 
 }
