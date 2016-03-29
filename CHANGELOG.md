@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.1
+
+* Enh: improved code
+* Enh: improved tests
+
 ## 0.5.0
 
 * Chg: Replaced Silex by Slim Framework

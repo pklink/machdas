@@ -6,27 +6,25 @@ require __DIR__ . '/../../vendor/autoload.php';
 // load config
 $config = require __DIR__ . '/../../config.php';
 
-// create app
-$app = new \Slim\App([
+// create DI-container
+$container = new \Slim\Container([
     'settings' => [
-        'displayErrorDetails' => $config['debugging']
+        'displayErrorDetails' => $config['debugging'],
+        'db'                  => $config['db']
     ]
 ]);
 
-// prepare database
-$capsule = new \Illuminate\Database\Capsule\Manager();
-$capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => $config['database']['host'],
-    'database'  => $config['database']['name'],
-    'username'  => $config['database']['username'],
-    'password'  => $config['database']['password'],
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-]);
+// prepare eloquent
+$container['db'] = function ($container) {
+    $capsule = new \Illuminate\Database\Capsule\Manager();
+    $capsule->addConnection($container['settings']['db']);
+    $capsule->setAsGlobal();
+    $capsule->bootEloquent();
+    return $capsule;
+};
 
-$capsule->bootEloquent();
+// create app
+$app = new \Slim\App($container);
 
 // routing
 $app->group('/cards', function() {
@@ -47,6 +45,8 @@ $app->group('/tasks', function() {
     $this->delete('/{id:\d+}', \Dingbat\Action\Task\Delete::class);
 });
 
+// initialize eloquent
+$container->get('db');
 
 // start app
 $app->run();

@@ -1,5 +1,16 @@
 # Upgrade
 
+## to 0.5.1
+
+* change the following keys in your `config.php`
+    * `database` to `db`
+    * `db.name` to `db.database`
+* add the following keys and values to your `config.php`
+    * key: `driver` value: `'mysql'`
+    * key: `charset` value: `'utf8'`
+    * key: `collation` value: `'utf8_unicode_ci'`
+    * key: `prefix` value: `''`
+
 ## to 0.4.2
 
 * write down your set priorities
