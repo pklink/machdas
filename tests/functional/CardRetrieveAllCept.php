@@ -9,4 +9,14 @@ $guy->wantTo('get all cards');
 // all tasks
 $guy->sendGET('/cards');
 $guy->seeResponseIsJson();
-$guy->seeResponseEquals('[{"id":1,"name":"first list"},{"id":2,"name":"second list"}]');
+$guy->seeResponseCodeIs(200);
+$guy->seeResponseContainsJson([
+    [
+        'id'   => 1,
+        'name' => 'first list'
+    ],
+    [
+        'id'   => 2,
+        'name' => 'second list'
+    ]
+]);

@@ -8,6 +8,7 @@ $guy->wantTo('get a task');
 
 // get a task
 $guy->sendGET('/tasks/1');
+$guy->seeResponseCodeIs(200);
 $guy->seeResponseIsJson();
 $guy->seeResponseContainsJson([
     'id'       => 1,
@@ -21,4 +22,4 @@ $guy->seeResponseContainsJson([
 $guy->sendGET('/tasks/9');
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(404);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseJsonMatchesJsonPath('$.message');

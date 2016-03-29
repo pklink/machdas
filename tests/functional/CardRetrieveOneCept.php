@@ -19,4 +19,4 @@ $guy->seeResponseContainsJson([
 $guy->sendGET('/cards/23123');
 $guy->seeResponseCodeIs(404);
 $guy->seeResponseIsJson();
-$guy->seeResponseContains('"message":');
+$guy->seeResponseJsonMatchesJsonPath('$.message');

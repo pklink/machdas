@@ -66,7 +66,7 @@ $guy->sendPUT('/tasks/9', [
 ]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(404);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseJsonMatchesJsonPath('$.message');
 
 // no `cardId`
 $guy->sendPUT('/tasks/1', [
@@ -76,7 +76,7 @@ $guy->sendPUT('/tasks/1', [
 ]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(400);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseJsonMatchesJsonPath('$.message');
 
 // invalid cardId
 $guy->sendPUT('/tasks/1', [
@@ -87,7 +87,7 @@ $guy->sendPUT('/tasks/1', [
 ]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(400);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseJsonMatchesJsonPath('$.message');
 
 // no name
 $guy->sendPUT('/tasks/1', [
@@ -97,7 +97,7 @@ $guy->sendPUT('/tasks/1', [
 ]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(400);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseJsonMatchesJsonPath('$.message');
 
 // invalid `priority`
 $guy->sendPUT('/tasks/1', [
@@ -108,4 +108,4 @@ $guy->sendPUT('/tasks/1', [
 ]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(400);
-$guy->seeResponseContains('"message":');
+$guy->seeResponseJsonMatchesJsonPath('$.message');
