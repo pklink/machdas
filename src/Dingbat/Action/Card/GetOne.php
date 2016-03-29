@@ -5,6 +5,7 @@ namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
 use Dingbat\Model\Card;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -17,20 +18,25 @@ class GetOne implements Action
 
         // get card
         try {
-            /* @var Card $card */
-            $card = Card::query()->findOrFail($id);
+            /* @var Card $model */
+            $model = Card::query()->findOrFail($id);
 
             return $response
                 ->withJson([
-                    'id'   => (int) $card->id,
-                    'name' => $card->name,
+                    'id'   => (int) $model->id,
+                    'name' => $model->name,
                 ]);
-        } catch (\Exception $e) {
+        } catch (ModelNotFoundException $e) {
+            // card not fou8nd
             return $response
                 ->withStatus(404)
                 ->withJson(['message' => 'card does not exist']);
+        } catch (\Exception $e) {
+            // unexpected error
+            return $response
+                ->withStatus(500)
+                ->withJson(['message' => $e->getMessage()]);
         }
-
     }
 
 }

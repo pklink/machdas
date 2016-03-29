@@ -5,6 +5,7 @@ namespace Dingbat\Action\Task;
 
 use Dingbat\Action;
 use Dingbat\Model\Task;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -27,10 +28,14 @@ class GetOne implements Action
                 'marked'   => (bool) $task->marked,
                 'priority' => $task->priority
             ]);
-        } catch (\Exception $e) {
+        } catch (ModelNotFoundException $e) {
             return $response
                 ->withStatus(404)
                 ->withJson(['message'  => sprintf('task with `id` `%s` does not exist', $id)]);
+        } catch (\Exception $e) {
+            return $response
+                ->withStatus(500)
+                ->withJson(['message'  => $e->getMessage()]);
         }
     }
 

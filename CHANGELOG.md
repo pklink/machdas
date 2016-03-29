@@ -4,6 +4,7 @@
 
 * Enh: improved code
 * Enh: improved tests
+* Enh: added respect/validation
 
 ## 0.5.0
 

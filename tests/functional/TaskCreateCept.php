@@ -106,6 +106,6 @@ $guy->sendPOST('/tasks', $request);
 $guy->seeResponseCodeIs(201);
 $guy->seeResponseIsJson();
 $guy->seeResponseContainsJson(['id' => 10]);
-$request['marked'] = false;
+$request['marked'] = true;
 $guy->sendGET('/tasks/10');
 $guy->seeResponseContainsJson($request);

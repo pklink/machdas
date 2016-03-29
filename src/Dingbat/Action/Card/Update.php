@@ -5,6 +5,8 @@ namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
 use Dingbat\Model\Card;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -14,37 +16,32 @@ class Update implements Action
 
     public function __invoke(Request $request, Response $response, array $args)
     {
-        $id = $args['id'];
-
-        /* @var Card $card */
-        $card = null;
-
-        // get card
         try {
-            $card = Card::query()->findOrFail($id);
-        } catch (\Exception $e) {
+            // retrieve and fill model
+            /* @var Card $model */
+            $model       = Card::query()->findOrFail($args['id']);
+            $model->name = $request->getParsedBodyParam('name', $model->name);
+
+            // validation
+            Card::validators()['name']->assert($model->name);
+
+            // save
+            $model->saveOrFail();
+
+            // response
+            return $response->withStatus(204);
+        } catch (NestedValidationException $e) {
+            // validation error
+            return $response
+                ->withStatus(400)
+                ->withJson(['message' => $e->getFullMessage()]);
+        } catch (ModelNotFoundException $e) {
+            // model not found
             return $response
                 ->withStatus(404)
                 ->withJson(['message' => 'card does not exist']);
-        }
-
-        // set name and check if name is not empty
-        $name = $request->getParsedBodyParam('name', false);
-        if ($name !== false) {
-            if (strlen($name) === 0) {
-                return $response
-                    ->withStatus(400)
-                    ->withJson(['message' => '`name` cannot be empty']);
-            }
-
-            $card->name = $name;
-        }
-
-        // save card
-        try {
-            $card->saveOrFail();
-            return $response->withStatus(204);
         } catch (\Exception $e) {
+            // enexpected error
             return $response
                 ->withStatus(500)
                 ->withJson(['message' => $e->getMessage()]);

@@ -4,6 +4,7 @@
 namespace Dingbat\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Respect\Validation\Validator;
 
 
 /**
@@ -12,6 +13,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Card extends Model
 {
+
+    /**
+     * @return Validator[]
+     */
+    public static function validators()
+    {
+        return [
+            'name' => Validator::stringType()->notEmpty()->setName('name')
+        ];
+    }
 
     /**
      * @var string
