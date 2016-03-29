@@ -10,6 +10,7 @@
     * key: `charset` value: `'utf8'`
     * key: `collation` value: `'utf8_unicode_ci'`
     * key: `prefix` value: `''`
+* execute `setup/update-to-0.5.1.sql`
 
 ## to 0.4.2
 
