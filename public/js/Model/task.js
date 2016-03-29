@@ -26,13 +26,6 @@ $(function() {
         },
 
 
-        parse: function(response) {
-            delete response.code;
-            delete response.message;
-            return response;
-        },
-
-
         setMarked: function() {
             var name = this.get('name');
 
