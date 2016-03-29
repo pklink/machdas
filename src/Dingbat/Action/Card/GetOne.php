@@ -8,15 +8,6 @@ use Dingbat\Model\Card;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Class Get
- *
- * @category Action
- * @package  Dingbat\Action\Card
- * @author   Pierre Klink <dev@klinks.info>
- * @license  MIT http://opensource.org/licenses/MIT
- * @link     https://github.com/pklink/Dingbat
- */
 class GetOne implements Action
 {
 

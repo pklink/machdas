@@ -6,14 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 
 /**
- * Class Task
- *
- * @category Model
- * @package  Dingbat\Model
- * @author   Pierre Klink <dev@klinks.info>
- * @license  MIT http://opensource.org/licenses/MIT
- * @link     https://github.com/pklink/Dingbat
- *
  * @property int     id
  * @property string  name
  * @property boolean marked

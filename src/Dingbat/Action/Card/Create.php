@@ -8,15 +8,6 @@ use Dingbat\Model\Card;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Class Add
- *
- * @category Action
- * @package  Dingbat\Action\Card
- * @author   Pierre Klink <dev@klinks.info>
- * @license  MIT http://opensource.org/licenses/MIT
- * @link     https://github.com/pklink/Dingbat
- */
 class Create implements Action
 {
 
@@ -33,14 +24,14 @@ class Create implements Action
 
         // save card
         try {
-            $card = new Card();
+            $card       = new Card();
             $card->name = $name;
             $card->saveOrFail();
 
             return $response
                 ->withStatus(201)
                 ->withHeader('Location', sprintf('/cards/%s', $card->id))
-                ->withJson(['id' => (int) $card->id]);
+                ->withJson(['id' => (int)$card->id]);
         } catch (\Exception $e) {
             return $response
                 ->withStatus(500)
