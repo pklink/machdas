@@ -12,7 +12,7 @@ use Slim\Http\Response;
 class Delete implements Action
 {
 
-    function __invoke(Request $request, Response $response, array $args)
+    public function __invoke(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
 
