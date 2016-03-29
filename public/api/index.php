@@ -30,6 +30,7 @@ $capsule->bootEloquent();
 
 // routing
 $app->group('/cards', function() {
+    /* @var \Slim\App $this */
     $this->post('', \Dingbat\Action\Card\Create::class . ':run');
     $this->get('', \Dingbat\Action\Card\GetAll::class . ':run');
     $this->get('/{id:\d+}', \Dingbat\Action\Card\GetOne::class . ':run');
@@ -38,6 +39,7 @@ $app->group('/cards', function() {
 });
 
 $app->group('/tasks', function() {
+    /* @var \Slim\App $this */
     $this->post('', \Dingbat\Action\Task\Create::class . ':run');
     $this->get('', \Dingbat\Action\Task\GetAll::class . ':run');
     $this->get('/{id:\d+}', \Dingbat\Action\Task\GetOne::class . ':run');
