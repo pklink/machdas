@@ -8,10 +8,16 @@ use Dingbat\Model\Card;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class GetAll implements Action
+class GetAll extends Action\AbstractImpl
 {
 
-    public function __invoke(Request $request, Response $response, array $args)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
+    public function run(Request $request, Response $response, array $args)
     {
         $cards = [];
         /** @noinspection PhpUndefinedMethodInspection */

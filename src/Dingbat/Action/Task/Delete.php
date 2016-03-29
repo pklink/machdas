@@ -8,10 +8,16 @@ use Dingbat\Model\Task;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class Delete implements Action
+class Delete extends Action\AbstractImpl
 {
 
-    public function __invoke(Request $request, Response $response, array $args)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
+    public function run(Request $request, Response $response, array $args)
     {
         Task::destroy($args['id']);
         return $response->withStatus(204);

@@ -11,41 +11,32 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 
-class Update implements Action
+class Update extends Action\AbstractImpl
 {
 
-    public function __invoke(Request $request, Response $response, array $args)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     * @throws ModelNotFoundException
+     * @throws NestedValidationException
+     */
+    public function run(Request $request, Response $response, array $args)
     {
-        try {
-            // retrieve and fill model
-            /* @var Card $model */
-            $model       = Card::query()->findOrFail($args['id']);
-            $model->name = $request->getParsedBodyParam('name', $model->name);
+        // retrieve and fill model
+        /* @var Card $model */
+        $model       = Card::query()->findOrFail($args['id']);
+        $model->name = $request->getParsedBodyParam('name', $model->name);
 
-            // validation
-            Card::validators()['name']->assert($model->name);
+        // validation
+        Card::validators()['name']->assert($model->name);
 
-            // save
-            $model->saveOrFail();
+        // save
+        $model->saveOrFail();
 
-            // response
-            return $response->withStatus(204);
-        } catch (NestedValidationException $e) {
-            // validation error
-            return $response
-                ->withStatus(400)
-                ->withJson(['message' => $e->getFullMessage()]);
-        } catch (ModelNotFoundException $e) {
-            // model not found
-            return $response
-                ->withStatus(404)
-                ->withJson(['message' => 'card does not exist']);
-        } catch (\Exception $e) {
-            // enexpected error
-            return $response
-                ->withStatus(500)
-                ->withJson(['message' => $e->getMessage()]);
-        }
+        // response
+        return $response->withStatus(204);
     }
 
 }

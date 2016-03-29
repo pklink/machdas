@@ -9,40 +9,35 @@ use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class Create implements Action
+class Create extends Action\AbstractImpl
 {
 
-    public function __invoke(Request $request, Response $response, array $args)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     * @throws NestedValidationException
+     */
+    public function run(Request $request, Response $response, array $args)
     {
-        try {
-            // create model
-            $model       = new Card();
-            $model->name = $request->getParsedBodyParam('name', false);
+        // create model
+        $model       = new Card();
+        $model->name = $request->getParsedBodyParam('name', false);
 
-            // validation
-            Card::validators()['name']->assert($model->name);
+        // validation
+        Card::validators()['name']->assert($model->name);
 
-            // create
-            $model->saveOrFail();
+        // create
+        $model->saveOrFail();
 
-            // response
-            return $response
-                ->withStatus(201)
-                ->withHeader('Location', sprintf('/cards/%s', $model->id))
-                ->withJson(['id' => (int) $model->id]);
-        } catch (NestedValidationException $e) {
-            // validation error
-            return $response
-                ->withStatus(400)
-                ->withJson(['message' => $e->getFullMessage()]);
-        } catch (\Exception $e) {
-            // unexpected error
-            return $response
-                ->withStatus(500)
-                ->withJson(['message' => $e->getMessage()]);
-        }
+        // response
+        return $response
+            ->withStatus(201)
+            ->withHeader('Location', sprintf('/cards/%s', $model->id))
+            ->withJson(['id' => (int) $model->id]);
+
     }
-
 
 }
 
