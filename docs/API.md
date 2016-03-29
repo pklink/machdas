@@ -6,7 +6,7 @@
 
 #### Request
 
-* URL: `index.php/task`
+* URL: `api/index.php/tasks`
 * Method: `POST`
 * Params:
 	* `cardId`: 
@@ -30,24 +30,13 @@
 * `id`
 	* type: `integer` or `null` on error
 	* decription: ID of the new task
-* `code`
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`: `cardId` is not given in request
-		* `2`: card with id `cardId` does not exist
-		* `3`: `name` is not given in request
-		* `4`: given `priority` is invalid
-		* `999`: unknown error
-* `message`:
-	* type: `string`
 
 			
 #### Example
 
 ##### Request
 
-POST to `index.php/task` with payload:
+POST to `api/index.php/tasks` with payload:
 
 	{
 		"name": "blah",
@@ -60,8 +49,6 @@ POST to `index.php/task` with payload:
 
 	{
 		"id": 4,
-		"code": 0,
-		"message": "all fine"
 	}
 
 ***
@@ -70,7 +57,7 @@ POST to `index.php/task` with payload:
 
 #### Request
 
-* URL: `index.php/task/<id>`
+* URL: `api/index.php/tasks/<id>`
 * Method: `GET`
 * Params:
 	* `id`: in URL
@@ -95,19 +82,12 @@ POST to `index.php/task` with payload:
 * `priority`:
 	* type: `string` or `null` on error
 	* possible values: `normal`, `high`, `low`
-* `code`:
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`:  task with given ID does not exist
-* `message`:
-	* type: `string`
 		
 #### Example
 
 ##### Request
 
-GET to `index.php/task/1`
+GET to `api/index.php/tasks/1`
 
 ##### Response
 
@@ -117,8 +97,6 @@ GET to `index.php/task/1`
 		"name": "blah",
 		"marked": false,
 		"priority": "high",
-		"code": 0,
-		"message": "all fine"
 	}
 
 ***
@@ -127,13 +105,8 @@ GET to `index.php/task/1`
 
 #### Request
 
-* URL: `index.php/tasks(/<filter>)`
+* URL: `api/index.php/tasks`
 * Method: `GET`
-* Params: 
-	* type: `string`
-	* required: nop
-	* possible values: search terms as `<attribute name>/<search value>` separated by `;`
-	* example: `index.php/tasks/name=kiss;marked=false`
 	
 		
 #### Response
@@ -159,7 +132,7 @@ Array with tasks as elements. Every task has this structure:
 
 ##### Request
 
-GET to `index.php/tasks`
+GET to `api/index.php/tasks`
 
 ##### Response
 
@@ -194,7 +167,7 @@ GET to `index.php/tasks`
 
 #### Request
 
-* URL: `index.php/task/<id>`
+* URL: `api/index.php/tasks/<id>`
 * Method: `PUT`
 * Params:
 	*  `id` in URL
@@ -218,25 +191,11 @@ GET to `index.php/tasks`
 		
 #### Response
 
-* `code`
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`: task does not exist
-		* `2`: `cardId` is not given in request
-		* `3`: card with id `cardId` does not exist
-		* `4`: `name` is not given in request
-		* `5`: given `priority` is invalid
-		* `999`: unknown error
-* `message`:
-	* type: `string`
-
-			
 #### Example
 
 ##### Request
 
-PUT to `index.php/task/1` with payload:
+PUT to `api/index.php/tasks/1` with payload:
 
 	{
 		"name": "blah",
@@ -248,7 +207,6 @@ PUT to `index.php/task/1` with payload:
 ##### Response
 
 	{
-		"code": 0,
 		"message": "all fine"
 	}
 
@@ -258,7 +216,7 @@ PUT to `index.php/task/1` with payload:
 
 #### Request
 
-* URL: `index.php/task/<id>`
+* URL: `api/index.php/tasks/<id>`
 * Method: `DELETE`
 * Params:
 	*  `id` in URL
@@ -266,30 +224,15 @@ PUT to `index.php/task/1` with payload:
 		* description: id of the task
 		
 #### Response
-
-* `code`
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`: task does not exist
-		* `999`: unknown error
-* `message`:
-	* type: `string`
-
 			
 #### Example
 
 ##### Request
 
-DELETE to `index.php/task/1`
+DELETE to `api/index.php/tasks/1`
 
 	
 ##### Response
-
-	{
-		"code": 0,
-		"message": "all fine"
-	}
 
 
 ## Cards / Lists
@@ -298,7 +241,7 @@ DELETE to `index.php/task/1`
 
 #### Request
 
-* URL: `index.php/card`
+* URL: `api/index.php/cards`
 * Method: `POST`
 * Params:
 	* `name`:
@@ -310,12 +253,6 @@ DELETE to `index.php/task/1`
 * `id`
 	* type: `integer` or `null` on error
 	* decription: ID of the new card
-* `code`
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`: `name` is not given in request
-		* `999`: unknown error
 * `message`:
 	* type: `string`
 
@@ -324,7 +261,7 @@ DELETE to `index.php/task/1`
 
 ##### Request
 
-POST to `index.php/card` with payload:
+POST to `api/index.php/cards` with payload:
 
 	{
 		"name": "job",
@@ -334,8 +271,6 @@ POST to `index.php/card` with payload:
 
 	{
 		"id": 4,
-		"code": 0,
-		"message": "all fine"
 	}
 
 ***
@@ -345,7 +280,7 @@ POST to `index.php/card` with payload:
 
 #### Request
 
-* URL: `index.php/card/<id>`
+* URL: `api/index.php/cards/<id>`
 * Method: `GET`
 * Params:
 	* `id`: in URL
@@ -362,42 +297,28 @@ POST to `index.php/card` with payload:
 * `name`:
 	* type: `string` or `null` on error
 	* description: name of the card
-* `code`:
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`: card with given ID does not exist
-* `message`:
-	* type: `string`
 
 #### Example
 
 ##### Request
 
-GET to `index.php/card/1`
+GET to `api/index.php/cards/1`
 
 ##### Response
 
 	{
 		"id": 1,
 		"name": "blah",
-		"code": 0,
-		"message": "all fine"
 	}
 
 ***
 
-### Retrieve all/more cards
+### Retrieve all cards
 
 #### Request
 
-* URL: `index.php/cards(/<filter>)`
+* URL: `api/index.php/cards`
 * Method: `GET`
-* Params:
-	* type: `string`
-	* required: nop
-	* possible values: search terms as `<attribute name>/<search value>` separated by `;`
-	* example: `index.php/cards/name=kiss;marked=false`
 
 
 #### Response
@@ -415,7 +336,7 @@ Array with cards as elements. Every card has this structure:
 
 ##### Request
 
-GET to `index.php/cards`
+GET to `api/index.php/cards`
 
 ##### Response
 
@@ -441,7 +362,7 @@ GET to `index.php/cards`
 
 #### Request
 
-* URL: `index.php/card/<id>`
+* URL: `api/index.php/cards/<id>`
 * Method: `PUT`
 * Params:
 	*  `id` in URL
@@ -453,33 +374,18 @@ GET to `index.php/cards`
 
 #### Response
 
-* `code`
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`: card does not exist
-		* `2`: `name` is not given in request
-		* `999`: unknown error
-* `message`:
-	* type: `string`
-
 
 #### Example
 
 ##### Request
 
-PUT to `index.php/card/1` with payload:
+PUT to `api/index.php/cards/1` with payload:
 
 	{
 		"name": "blah",
 	}
 
 ##### Response
-
-	{
-		"code": 0,
-		"message": "all fine"
-	}
 
 ***
 
@@ -488,7 +394,7 @@ PUT to `index.php/card/1` with payload:
 
 #### Request
 
-* URL: `index.php/card/<id>`
+* URL: `api/index.php/cards/<id>`
 * Method: `DELETE`
 * Params:
 	*  `id` in URL
@@ -497,26 +403,10 @@ PUT to `index.php/card/1` with payload:
 
 #### Response
 
-* `code`
-	* type: `integer`
-	* possible values:
-		* `0`: all fine
-		* `1`: card does not exist
-		* `999`: unknown error
-* `message`:
-	* type: `string`
-
-
 #### Example
 
 ##### Request
 
-DELETE to `index.php/card/1`
-
+DELETE to `api/index.php/cards/1`
 
 ##### Response
-
-	{
-		"code": 0,
-		"message": "all fine"
-	}
