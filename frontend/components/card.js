@@ -12,9 +12,9 @@ export default Vue.extend({
     },
 
     init: function() {
-        this.$on('tasks.+', (model) => {
-            this.models.push(model);
-        });
+        let refresh = () => this.refresh();
+        this.$on('tasks.+', refresh);
+        this.$on('tasks.updated', refresh)
     },
 
     data: function() {
@@ -23,16 +23,28 @@ export default Vue.extend({
         }
     },
 
-    route: {
-
-        data: function() {
+    methods: {
+        loadModels: function() {
             let params = {
                 id: this.$route.params.id,
                 'order-by': 'priority,desc'
             };
-            return TasksResource.queryByCardId(params).then(response => {
-                return { models: response.data }
+
+            return TasksResource.queryByCardId(params);
+        },
+        refresh: function() {
+            this.loadModels().then(response => {
+                this.models = response.data;
             });
+        }
+    },
+
+    route: {
+
+        data: function() {
+            return this.loadModels().then(response => {
+                return { models: response.data };
+            })
         },
 
         canReuse: false

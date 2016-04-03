@@ -7,6 +7,12 @@ export default Vue.extend({
     props:    ['models'],
     components: {
         task: Task
+    },
+
+    init: function() {
+        this.$on('tasks.-', model => {
+            this.models.splice(this.models.indexOf(model), 1);
+        });
     }
 
 });

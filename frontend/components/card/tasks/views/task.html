@@ -1,7 +1,18 @@
-<a class="item" @click="toggle">
-    <div class="ui red horizontal label" v-if="model.priority == 'high'">hi</div>
-    <div class="ui orange horizontal label" v-if="model.priority == 'normal'">mi</div>
-    <div class="ui yellow horizontal label" v-if="model.priority == 'low'">lo</div>
-    <span v-show="!model.marked">{{ model.name }}</span>
-    <del v-show="model.marked">{{ model.name }}</del>
+<a class="item">
+    <div class="right floated content" v-show="!editMode">
+        <i class="write icon" @click="edit"></i>
+        <i class="trash icon" @click="delete"></i>
+    </div>
+    <div class="content" @click="toggle">
+        <div class="ui red horizontal label" v-show="!editMode" v-if="model.priority == 'high'">hi</div>
+        <div class="ui orange horizontal label" v-show="!editMode" v-if="model.priority == 'normal'">mi</div>
+        <div class="ui yellow horizontal label" v-show="!editMode" v-if="model.priority == 'low'">lo</div>
+        <div class="ui small transparent fluid input" v-show="editMode">
+            <label>
+                <input type="text" v-model="model.name" @keyup.enter="save" @keyup.esc="cancel">
+            </label>
+        </div>
+        <span v-show="!model.marked && !editMode">{{ model.name }}</span>
+        <del v-show="model.marked && !editMode">{{ model.name }}</del>
+    </div>
 </a>

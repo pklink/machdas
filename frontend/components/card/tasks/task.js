@@ -7,15 +7,32 @@ export default Vue.extend({
     props:    ['model'],
 
     data: function() {
-        return {
-            isChecked: false
-        }
+        return { editMode: false };
     },
 
     methods: {
         toggle: function() {
             this.model.marked = !this.model.marked;
-            TasksResource.update({ id: this.model.id }, this.model);
+            this.save();
+        },
+        delete: function () {
+            TasksResource.delete({ id: this.model.id }).then(() => {
+                this.$dispatch('tasks.-', this.model);
+            });
+        },
+        edit: function() {
+            this.editMode = true;
+            this.$nextTick(() => {
+                this.$el.getElementsByTagName('input')[0].focus();
+            });
+        },
+        cancel: function() {
+            this.editMode = false;
+        },
+        save: function() {
+            TasksResource.update({ id: this.model.id }, this.model).then(() => {
+                this.$dispatch('tasks.updated');
+            });
         }
     }
 
