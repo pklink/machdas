@@ -1,0 +1,36 @@
+{
+  "name": "dingbat",
+  "version": "0.5.2",
+  "description": "A simple todo manager",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server",
+    "typings": "typings",
+    "postinstall": "typings install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pklink/Dingbat.git"
+  },
+  "author": "Pierre Klink <dev@klink.xyz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pklink/Dingbat/issues"
+  },
+  "homepage": "https://github.com/pklink/Dingbat#readme",
+  "devDependencies": {
+    "babel-core": "^6.7.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "raw-loader": "^0.5.1",
+    "vue": "^1.0.20",
+    "vue-resource": "^0.7.0",
+    "vue-router": "^0.7.11",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

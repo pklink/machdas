@@ -1,0 +1,7 @@
+<a class="item" @click="toggle">
+    <div class="ui red horizontal label" v-if="model.priority == 'high'">hi</div>
+    <div class="ui orange horizontal label" v-if="model.priority == 'normal'">mi</div>
+    <div class="ui yellow horizontal label" v-if="model.priority == 'low'">lo</div>
+    <span v-show="!model.marked">{{ model.name }}</span>
+    <del v-show="model.marked">{{ model.name }}</del>
+</a>
