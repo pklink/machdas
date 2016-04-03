@@ -24,7 +24,7 @@ class GetAllTasks extends Action\AbstractImpl
         $builder = Task::query()->where('cardId', '=', $args['id']);
 
         // sorting
-        if ($request->getParam('order-by', false) !== false) {
+        if (!is_null($request->getParam('order-by'))) {
             list($attribute, $direction) = explode(',', $request->getParam('order-by'));
             $direction = DatabaseUtils::ensureOrderDirection($direction);
 
