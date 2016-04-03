@@ -1,15 +1,16 @@
 <?php
 
 
-namespace Dingbat\Action\Task;
+namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
+use Dingbat\Model\Card;
 use Dingbat\Model\Task;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class Create extends Action\AbstractImpl
+class CreateTask extends Action\AbstractImpl
 {
 
     /**
@@ -21,18 +22,20 @@ class Create extends Action\AbstractImpl
      */
     public function run(Request $request, Response $response, array $args)
     {
+        /* @var Card $card */
+        $card = Card::query()->findOrFail($args['id']);
+
         // create task
         $model           = new Task();
         $model->name     = $request->getParsedBodyParam('name');
         $model->marked   = (bool) $request->getParsedBodyParam('marked', false);
         $model->priority = $request->getParsedBodyParam('priority', Task::PRIORITY_NORMAL);
-        $model->cardId   = (int) $request->getParsedBodyParam('cardId');
+        $model->cardId   = $card->id;
 
         // validation
         Task::validators()['name']->assert($model->name);
         Task::validators()['marked']->assert($model->marked);
         Task::validators()['priority']->assert($model->priority);
-        Task::validators()['cardId']->assert($model->cardId);
 
         // save
         $model->saveOrFail();
@@ -41,7 +44,7 @@ class Create extends Action\AbstractImpl
         return $response
             ->withStatus(201)
             ->withHeader('Location', sprintf('/tasks/%d', $model->id))
-            ->withJson(['id' => (int) $model->id]);
+            ->withJson($model);
     }
 
 }

@@ -64,6 +64,7 @@ $app = new \Slim\App($container);
 $app->group('/cards', function() {
     /* @var \Slim\App $this */
     $this->post('', \Dingbat\Action\Card\Create::class);
+    $this->post('/{id:\d+}/tasks', \Dingbat\Action\Card\CreateTask::class);
     $this->get('', \Dingbat\Action\Card\GetAll::class);
     $this->get('/{id:\d+}', \Dingbat\Action\Card\GetOne::class);
     $this->get('/{id:\d+}/tasks', \Dingbat\Action\Card\GetAllTasks::class);
@@ -73,7 +74,6 @@ $app->group('/cards', function() {
 
 $app->group('/tasks', function() {
     /* @var \Slim\App $this */
-    $this->post('', \Dingbat\Action\Task\Create::class);
     $this->get('', \Dingbat\Action\Task\GetAll::class);
     $this->get('/{id:\d+}', \Dingbat\Action\Task\GetOne::class);
     $this->put('/{id:\d+}', \Dingbat\Action\Task\Update::class);
