@@ -13,11 +13,13 @@ var router = new VueRouter();
 router.map({
     '/cards': {
         name: 'cards',
-        component: Cards
-    },
-    '/cards/:id': {
-        name: 'card',
-        component: Card
+        component: Cards,
+        subRoutes: {
+            '/:id': {
+                name: 'card',
+                component: Card
+            }
+        }
     }
 });
 

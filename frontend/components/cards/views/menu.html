@@ -1,0 +1,8 @@
+<div class="ui vertical menu">
+    <a class="item"
+       v-link="{ name: 'card', params: { id: model.id }, activeClass: 'active' }"
+       v-for="model in models">
+        {{ model.name }}
+    </a>
+    <add :models="models"></add>
+</div>

@@ -1,14 +1,20 @@
 import Vue from "vue";
 import {TasksResource} from "../services/resources";
-import Menu from "./card/menu";
+import Add from "./card/add";
 import Tasks from "./card/tasks";
 
 export default Vue.extend({
 
     template: require('./views/card.html'),
     components: {
-        menu: Menu,
-        tasks: Tasks
+        tasks: Tasks,
+        add: Add
+    },
+
+    init: function() {
+        this.$on('tasks.+', (model) => {
+            this.models.push(model);
+        });
     },
 
     data: function() {
@@ -27,7 +33,9 @@ export default Vue.extend({
             return TasksResource.queryByCardId(params).then(response => {
                 return { models: response.data }
             });
-        }
+        },
+
+        canReuse: false
 
     }
 
