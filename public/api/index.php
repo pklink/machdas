@@ -66,6 +66,7 @@ $app->group('/cards', function() {
     $this->post('', \Dingbat\Action\Card\Create::class);
     $this->get('', \Dingbat\Action\Card\GetAll::class);
     $this->get('/{id:\d+}', \Dingbat\Action\Card\GetOne::class);
+    $this->get('/{id:\d+}/tasks', \Dingbat\Action\Card\GetAllTasks::class);
     $this->put('/{id:\d+}', \Dingbat\Action\Card\Update::class);
     $this->delete('/{id:\d+}', \Dingbat\Action\Card\Delete::class);
 });

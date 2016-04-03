@@ -35,7 +35,7 @@ class Create extends Action\AbstractImpl
         return $response
             ->withStatus(201)
             ->withHeader('Location', sprintf('/cards/%s', $model->id))
-            ->withJson(['id' => (int) $model->id]);
+            ->withJson($model);
 
     }
 
