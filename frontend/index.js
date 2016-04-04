@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import App from "./components/app";
 import Cards from "./components/cards";
 import Card from "./components/card";
+import Help from "./components/help";
 import {CardsResource} from "./services/resources";
 
 // register plugins
@@ -31,6 +32,10 @@ router.map({
                 component: Card
             }
         }
+    },
+    '/help': {
+        name: 'help',
+        component: Help
     }
 });
 
