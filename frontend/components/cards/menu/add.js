@@ -1,14 +1,26 @@
 import Vue from "vue";
+import {focusModel} from "vue-focus";
 import {CardsResource} from "../../../services/resources";
 
 export default Vue.extend({
 
     template: require('./views/add.html'),
 
+    directives: {
+        focusModel: focusModel
+    },
+
+    init: function() {
+        this.$on('cards.new', () => {
+            this.isFocused = true;
+        });
+    },
+
     data: function() {
         return {
+            isFocused: false,
             model: {
-                name: null
+                name: ''
             }
         }
     },
@@ -26,6 +38,10 @@ export default Vue.extend({
                 // clear field
                 this.model.name = '';
             });
+        },
+        cancel: function() {
+            this.model.name = '';
+            this.isFocused  = false;
         }
     }
 

@@ -1,10 +1,21 @@
 import Vue from "vue";
+import {focusModel} from "vue-focus";
 import {TasksResource} from "../../services/resources";
 import Utils from "../../services/utils";
 
 export default Vue.extend({
 
     template: require('./views/add.html'),
+
+    directives: {
+        focusModel: focusModel
+    },
+
+    init: function () {
+        this.$on('tasks.new', () => {
+            this.isFocused = true;
+        });
+    },
 
     methods: {
         save: function() {
@@ -25,12 +36,17 @@ export default Vue.extend({
                 // clear task
                 this.task = null;
             });
+        },
+        cancel: function() {
+            this.isFocused = false;
+            this.task = '';
         }
     },
 
     data: function() {
         return {
-            task: ''
+            task: '',
+            isFocused: true
         }
     }
 

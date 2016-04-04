@@ -1,3 +1,4 @@
 <div class="ui big fluid input">
-    <input @keyup.enter="save" v-model="task" type="text" placeholder="describe your task and press enter">
+    <input type="text" placeholder="describe your task and press enter"
+           @keyup.enter="save" @keyup.esc="cancel" v-model="task" v-focus-model="isFocused">
 </div>
