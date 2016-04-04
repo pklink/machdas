@@ -4,13 +4,12 @@
         <i class="trash icon" @click="delete"></i>
     </div>
     <div class="content" @click="toggle">
-        <div class="ui red horizontal label" v-show="!editMode" v-if="model.priority == 'high'">hi</div>
-        <div class="ui orange horizontal label" v-show="!editMode" v-if="model.priority == 'normal'">mi</div>
-        <div class="ui yellow horizontal label" v-show="!editMode" v-if="model.priority == 'low'">lo</div>
+        <div class="ui tiny red empty circular label" v-show="!editMode" v-if="model.priority == 'high'"></div>
+        <div class="ui tiny orange empty circular label" v-show="!editMode" v-if="model.priority == 'normal'"></div>
+        <div class="ui tiny yellow empty circular label" v-show="!editMode" v-if="model.priority == 'low'">&nbsp;</div>
         <div class="ui small transparent fluid input" v-show="editMode">
-            <label>
-                <input type="text" v-model="model.name" @keyup.enter="save" @keyup.esc="cancel">
-            </label>
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <input type="text" v-model="model.name" @keyup.enter="save" @keyup.esc="cancel">
         </div>
         <span v-show="!model.marked && !editMode">{{ model.name }}</span>
         <del v-show="model.marked && !editMode">{{ model.name }}</del>

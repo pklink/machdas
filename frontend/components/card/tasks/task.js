@@ -1,5 +1,6 @@
 import Vue from "vue";
 import {TasksResource} from "../../../services/resources";
+import Utils from "../../../services/utils";
 
 export default Vue.extend({
 
@@ -30,6 +31,8 @@ export default Vue.extend({
             this.editMode = false;
         },
         save: function() {
+            Utils.parseTask(this.model);
+
             TasksResource.update({ id: this.model.id }, this.model).then(() => {
                 this.$dispatch('tasks.updated');
             });

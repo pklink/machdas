@@ -1,5 +1,6 @@
 import Vue from "vue";
 import {TasksResource} from "../../services/resources";
+import Utils from "../../services/utils";
 
 export default Vue.extend({
 
@@ -12,6 +13,9 @@ export default Vue.extend({
                 name: this.task,
                 priority: 'normal'
             };
+
+            // parse models name
+            Utils.parseTask(model);
 
             // save task
             TasksResource.save({id: this.$route.params.id }, model).then((response) => {
