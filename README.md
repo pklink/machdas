@@ -14,7 +14,7 @@ You can use the following shorttags for setting priority:
 
 ### Status
 
-Use `@done` for mark a task as complete
+Use `@done` to mark a task as complete
 
 
 ## Requirements
