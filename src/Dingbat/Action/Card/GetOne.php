@@ -21,14 +21,7 @@ class GetOne extends Action\AbstractImpl
      */
     public function run(Request $request, Response $response, array $args)
     {
-        /* @var Card $model */
-        $model = Card::query()->findOrFail($args['id']);
-
-        return $response
-            ->withJson([
-                'id'   => (int) $model->id,
-                'name' => $model->name,
-            ]);
+        return $response->withJson(Card::query()->findOrFail($args['id']));
     }
 
 }

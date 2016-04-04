@@ -74,7 +74,6 @@ $app->group('/cards', function() {
 
 $app->group('/tasks', function() {
     /* @var \Slim\App $this */
-    $this->get('', \Dingbat\Action\Task\GetAll::class);
     $this->get('/{id:\d+}', \Dingbat\Action\Task\GetOne::class);
     $this->put('/{id:\d+}', \Dingbat\Action\Task\Update::class);
     $this->delete('/{id:\d+}', \Dingbat\Action\Task\Delete::class);

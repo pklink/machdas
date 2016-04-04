@@ -21,16 +21,7 @@ class GetOne extends Action\AbstractImpl
      */
     public function run(Request $request, Response $response, array $args)
     {
-        /* @var Task $task */
-        $task = Task::query()->findOrFail($args['id']);
-
-        return $response->withJson([
-            'id'       => (int) $task->id,
-            'cardId'   => (int) $task->cardId,
-            'name'     => $task->name,
-            'isDone'   => (bool) $task->isDone,
-            'priority' => $task->priority
-        ]);
+        return $response->withJson(Task::query()->findOrFail($args['id']));
     }
 
 }

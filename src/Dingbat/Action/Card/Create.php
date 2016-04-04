@@ -36,7 +36,6 @@ class Create extends Action\AbstractImpl
             ->withStatus(201)
             ->withHeader('Location', sprintf('/cards/%s', $model->id))
             ->withJson($model);
-
     }
 
 }

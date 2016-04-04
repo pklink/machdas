@@ -19,17 +19,8 @@ class GetAll extends Action\AbstractImpl
      */
     public function run(Request $request, Response $response, array $args)
     {
-        $cards = [];
         /** @noinspection PhpUndefinedMethodInspection */
-        foreach (Card::query()->orderBy('id', 'asc')->get() as $card) {
-            /* @var \Dingbat\Model\Card $card */
-
-            $cards[] = [
-                'id'   => (int) $card->id,
-                'name' => $card->name,
-            ];
-        }
-
+        $cards = Card::query()->orderBy('id', 'asc')->get();
         return $response->withJson($cards);
     }
 

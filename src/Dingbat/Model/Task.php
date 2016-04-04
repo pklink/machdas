@@ -31,6 +31,13 @@ class Task extends Model
     }
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'isDone' => 'boolean',
+    ];
+
+    /**
      * @var string
      */
     protected $table = 'tasks';
