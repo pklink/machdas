@@ -4,108 +4,152 @@
 
 /* @var \Codeception\Scenario $scenario */
 $guy = new TestGuy($scenario);
-$guy->wantTo('create a task');
 
-// create valid task
-$request = [
-    'cardId'   => 1,
+
+$guy->wantTo('create valid task');
+$guy->sendPOST('/cards/1/tasks', [
     'name'     => 'something',
     'marked'   => false,
     'priority' => 'normal'
-];
-$guy->sendPOST('/tasks', $request);
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(201);
 $guy->seeHttpHeader('Location', '/tasks/4');
 $guy->seeResponseContainsJson(['id' => 4]);
 $guy->sendGET('/tasks/4');
-$guy->seeResponseContainsJson($request);
+$guy->seeResponseContainsJson([
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 500
+]);
 
-// check `marked`: true
-$request['marked'] = true;
-$guy->sendPOST('/tasks', $request);
+
+$guy->wantTo('marked is `true`');
+$guy->sendPOST('/cards/1/tasks', [
+    'name'     => 'something',
+    'marked'   => true,
+    'priority' => 'normal'
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(201);
 $guy->seeResponseContainsJson(['id' => 5]);
 $guy->sendGET('/tasks/5');
-$guy->seeResponseContainsJson($request);
+$guy->seeResponseContainsJson([
+    'name'     => 'something',
+    'marked'   => true,
+    'priority' => 500
+]);
 
-// check without `marked`
-unset($request['marked']);
-$guy->sendPOST('/tasks', $request);
+
+$guy->wantTo('marked is not set');
+$guy->sendPOST('/cards/1/tasks', [
+    'name'     => 'something',
+    'priority' => 'normal'
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(201);
 $guy->seeResponseContainsJson(['id' => 6]);
-$request['marked'] = false;
 $guy->sendGET('/tasks/6');
-$guy->seeResponseContainsJson($request);
+$guy->seeResponseContainsJson([
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 500
+]);
 
-// check `priority`: "low"
-$request['priority'] = 'low';
-$guy->sendPOST('/tasks', $request);
+
+$guy->wantTo('priority is `low`');
+$guy->sendPOST('/cards/1/tasks', [
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 'low'
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(201);
 $guy->seeResponseContainsJson(['id' => 7]);
 $guy->sendGET('/tasks/7');
-$guy->seeResponseContainsJson($request);
+$guy->seeResponseContainsJson([
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 100
+]);
 
-// check `priority`: "high"
-$request['priority'] = 'high';
-$guy->sendPOST('/tasks', $request);
+
+$guy->wantTo('`priority` is `high`');
+$guy->sendPOST('/cards/1/tasks', [
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 'high'
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(201);
 $guy->seeResponseContainsJson(['id' => 8]);
 $guy->sendGET('/tasks/8');
-$guy->seeResponseContainsJson($request);
+$guy->seeResponseContainsJson([
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 900
+]);
 
-// check without `priority`
-unset($request['priority']);
-$guy->sendPOST('/tasks', $request);
+
+$guy->wantTo('`priority` is not set');
+$guy->sendPOST('/cards/1/tasks', [
+    'name'     => 'something',
+    'marked'   => false
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(201);
 $guy->seeResponseContainsJson(['id' => 9]);
-$request['priority'] = 'normal';
 $guy->sendGET('/tasks/9');
-$guy->seeResponseContainsJson($request);
+$guy->seeResponseContainsJson([
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 500
+]);
 
-// no cardId
-unset($request['cardId']);
-$guy->sendPOST('/tasks', $request);
+
+$guy->wantTo('card does not exist');
+$guy->sendPOST('/cards/900/tasks', [
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 'normal'
+]);
+$guy->seeResponseIsJson();
+$guy->seeResponseCodeIs(404);
+
+
+$guy->wantTo('name is not set');
+$guy->sendPOST('/cards/1/tasks', [
+    'marked'   => false,
+    'priority' => 'normal'
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(400);
 $guy->seeResponseJsonMatchesJsonPath('$.message');
 
-// invalid cardId
-$request['cardId'] = 999;
-$guy->sendPOST('/tasks', $request);
+
+$guy->wantTo('`priority` is invalid');
+$guy->sendPOST('/cards/1/tasks', [
+    'name'     => 'something',
+    'marked'   => false,
+    'priority' => 'bla'
+]);
 $guy->seeResponseIsJson();
 $guy->seeResponseCodeIs(400);
 $guy->seeResponseJsonMatchesJsonPath('$.message');
-$request['cardId'] = 1;
-
-// no name
-unset($request['name']);
-$guy->sendPOST('/tasks', $request);
-$guy->seeResponseIsJson();
-$guy->seeResponseCodeIs(400);
-$guy->seeResponseJsonMatchesJsonPath('$.message');
-$request['name'] = 'a name';
-
-// invalid `priority`
-$request['priority'] = 'bla';
-$guy->sendPOST('/tasks', $request);
-$guy->seeResponseIsJson();
-$guy->seeResponseCodeIs(400);
-$guy->seeResponseJsonMatchesJsonPath('$.message');
-$request['priority'] = 'normal';
 
 
-// invalid `marked`
-$request['marked'] = 'asdasd';
-$guy->sendPOST('/tasks', $request);
+$guy->wantTo('`marked` is invalid');
+$guy->sendPOST('/cards/1/tasks', [
+    'name'     => 'something',
+    'marked'   => 'asdas',
+    'priority' => 'normal'
+]);
 $guy->seeResponseCodeIs(201);
 $guy->seeResponseIsJson();
 $guy->seeResponseContainsJson(['id' => 10]);
-$request['marked'] = true;
 $guy->sendGET('/tasks/10');
-$guy->seeResponseContainsJson($request);
+$guy->seeResponseContainsJson([
+    'name'     => 'something',
+    'marked'   => true,
+    'priority' => 500
+]);
