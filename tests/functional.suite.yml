@@ -15,8 +15,8 @@ modules:
         - Db
     config:
         PhpBrowser:
-            url: 'http://localhost:8080/'
+            url: 'http://localhost:9000/'
         REST:
             depends: PhpBrowser
-            url: 'http://localhost:8080/api/index.php'
+            url: 'http://localhost:9000/api/index.php'
             timeout: 3
