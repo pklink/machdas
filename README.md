@@ -2,6 +2,21 @@
 
 Todo manager based on [Vue.js](http://vuejs.org/) and [Slim](http://www.slimframework.com/)
 
+## Shorttags
+
+### Priority
+
+You can use the following shorttags for setting priority:
+
+* `@high`
+* `@normal` (default priority)
+* `@low`
+
+### Status
+
+Use `@done` for mark a task as complete
+
+
 ## Requirements
 
 * PHP 5.6 and higher
@@ -74,17 +89,6 @@ composer install
 php -S localhost:8080 -t ./public &
 php vendor/bin/codecept run
 ```
-
-
-## Shorttags
-
-### Priority
-
-You can use the following shorttags for setting priority:
-
-* @high
-* @normal (default priority)
-* @low
 
 
 ## Todos
