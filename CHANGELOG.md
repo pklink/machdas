@@ -6,6 +6,7 @@
 * Chg: Replaced [Foundation][foundation] by [Semantic UI][semanticui]
 * Chg: MySQL: Changed type of `tasks.priority` to integer
 * Chg: MySQL: Changed name of `tasks.marked` to `tasks.isDone`
+* Enh: Improved tests
 
 ## 0.5.1
 
