@@ -26,9 +26,14 @@ class DatabaseUtils
      */
     public static function parseTaskPriority($priority) {
         switch ($priority) {
-            case 'normal': $priority = 500; break;
-            case 'low':    $priority = 100; break;
-            case 'high':   $priority = 900; break;
+            case 'normal':
+                $priority = 500;
+                break;
+            case 'low':
+                $priority = 100;
+                break;
+            case 'high':
+                $priority = 900;
         }
 
         return (int) $priority;
