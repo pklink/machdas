@@ -34,6 +34,11 @@ router.map({
     }
 });
 
+// default redirect to `/cards`
+router.redirect({
+    '/': '/cards'
+});
+
 // start app
 router.start(App, '#app');
 
