@@ -9,8 +9,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server",
-    "typings": "typings",
-    "postinstall": "typings install"
+    "build": "./node_modules/.bin/webpack -p"
   },
   "repository": {
     "type": "git",
