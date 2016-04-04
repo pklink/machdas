@@ -14,7 +14,7 @@ CREATE TABLE `tasks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
   `marked` tinyint(1) NOT NULL DEFAULT '0',
-  `priority` int(3) NOT NULL DEFAULT 'normal',
+  `priority` int(3) NOT NULL DEFAULT '500',
   `cardId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
