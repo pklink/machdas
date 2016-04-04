@@ -1,14 +1,19 @@
 # Changelog
 
+## 0.6.0
+
+* Chg: Replaced [Backbone.js][backbone] by [Vue.js][vue]
+* Chg: Replaced [Foundation][foundation] by [Semantic UI][semanticui]
+
 ## 0.5.1
 
-* Enh: improved code
-* Enh: improved tests
-* Enh: added respect/validation
+* Enh: Improved code
+* Enh: Improved tests
+* Enh: Added [respect/validation][respectvalidation]
 
 ## 0.5.0
 
-* Chg: Replaced Silex by Slim Framework
+* Chg: Replaced [Silex][silex] by Slim Framework
 * Chg: RESTify resource URIs (e.g. `/task/1` to `/tasks/1`)
 * Chg: Set required version of PHP to >= 5.6
 * Chg: Moved backend to `/api`-resource
@@ -39,7 +44,7 @@
 ## 0.4.1
 
 * Enh: #2 Make list names editable
-* Enh: # 3Add configuration for name of app
+* Enh: #3 Add configuration for name of app
 * Enh: Added advanced installation instructions to README
 * New: Added link to http://blog.einself.net to footer
 
@@ -108,3 +113,10 @@
 ## 0.1.0
 
 Initial version
+
+[backbone]: http://backbonejs.org/
+[foundation]: http://foundation.zurb.com/
+[respectvalidation]: https://github.com/Respect/Validation
+[sematicui]: http://semantic-ui.com/
+[silex]: http://silex.sensiolabs.org/
+[vue]: http://vuejs.org/
