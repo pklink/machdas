@@ -35,9 +35,9 @@ Use `@done` to mark a task as complete
 Import `setup/install.sql` to your MySQL database
 
 ```sh
-wget https://github.com/pklink/Dingbat/archive/<VERSION>.tar.gz
-tar xzf Dingbat-<VERSION>.tar.gz
-cd Dingbat-<VERSION>
+wget https://github.com/pklink/Dingbat/archive/<LATEST_VERSION>.tar.gz
+tar xzf Dingbat-<LATEST_VERSION>.tar.gz
+cd Dingbat-<LATEST_VERSION>
 composer install
 cp config.sample.php config.php
 vim config.php
