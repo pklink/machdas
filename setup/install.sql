@@ -6,9 +6,7 @@ CREATE TABLE `cards` (
 
 INSERT INTO `cards` (`id`, `name`)
   VALUES
-  (1, 'first list');
-
-
+  (1, 'First Card');
 
 CREATE TABLE `tasks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -22,6 +20,6 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `name`, `marked`, `priority`, `cardId`)
   VALUES
-  (1, 'save a whale', 0, 500, 1),
-  (2, 'kiss a chicken', 0, 900, 1),
-  (3, 'hug yourself', 0, 100, 1);
+  (1, 'add some tasks to the new card', 0, 500, 1),
+  (2, 'add a new card', 0, 900, 1),
+  (3, 'complete all tasks of the new card', 0, 100, 1);
