@@ -80,8 +80,8 @@
     * C: Create new card/list
     * N: Create new task
     * H: Toggle helping box
-* Removed [jQuery UI](http://jqueryui.com/)
-* Added [jquery.shake](http://github.com/pklink/jquery.shake)
+* Removed [jQuery UI][jqueryui]
+* Added jquery.shake
 
 ## 0.3.0.2
 
@@ -125,3 +125,4 @@ Initial version
 [silex]: http://silex.sensiolabs.org/
 [twig]: http://twig.sensiolabs.org/
 [vue]: http://vuejs.org/
+[jqueryui]: http://jqueryui.com/
