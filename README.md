@@ -1,4 +1,4 @@
-# machdas [![Build Status](https://travis-ci.org/pklink/Dingbat.png?branch=master)](https://travis-ci.org/pklink/Dingbat) [![Dependency Status](https://www.versioneye.com/user/projects/5281e27e632bacc772000027/badge.png)](https://www.versioneye.com/user/projects/5281e27e632bacc772000027) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pklink/Dingbat/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pklink/Dingbat/?branch=master)
+# machdas [![Build Status](https://travis-ci.org/pklink/machdas.png?branch=master)](https://travis-ci.org/pklink/Dingbat) [![Dependency Status](https://www.versioneye.com/user/projects/5702b434fcd19a00415b0081/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5702b434fcd19a00415b0081) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pklink/Dingbat/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pklink/machdas/?branch=master)
 
 Todo manager based on PHP 7, [Slim](http://www.slimframework.com/) and [Vue.js](http://vuejs.org/).
 
