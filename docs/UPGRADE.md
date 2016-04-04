@@ -1,5 +1,9 @@
 # Upgrade
 
+## to 0.6.0
+
+* execute `setup/update-to-0.6.0.sql`
+
 ## to 0.5.1
 
 * change the following keys in your `config.php`
