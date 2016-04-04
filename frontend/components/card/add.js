@@ -30,7 +30,7 @@ export default Vue.extend({
 
     data: function() {
         return {
-            task: null
+            task: ''
         }
     }
 
