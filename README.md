@@ -1,4 +1,4 @@
-# machdas [![Build Status](https://travis-ci.org/pklink/machdas.png?branch=master)](https://travis-ci.org/pklink/Dingbat) [![Dependency Status](https://www.versioneye.com/user/projects/5702b434fcd19a00415b0081/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5702b434fcd19a00415b0081) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pklink/Dingbat/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pklink/machdas/?branch=master)
+# machdas [![Build Status](https://travis-ci.org/pklink/machdas.png?branch=master)](https://travis-ci.org/pklink/machdas) [![Dependency Status](https://www.versioneye.com/user/projects/5702b434fcd19a00415b0081/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5702b434fcd19a00415b0081) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pklink/machdas/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pklink/machdas/?branch=master)
 
 Todo manager based on PHP 7, [Slim](http://www.slimframework.com/) and [Vue.js](http://vuejs.org/).
 
@@ -31,9 +31,9 @@ Use `@done` to mark a task as complete
 Import `setup/install.sql` to your MySQL database
 
 ```sh
-wget https://github.com/pklink/Dingbat/archive/<LATEST_VERSION>.tar.gz
+wget https://github.com/pklink/machdas/archive/<LATEST_VERSION>.tar.gz
 tar xzf <LATEST_VERSION>.tar.gz
-cd Dingbat-<LATEST_VERSION>
+cd machdas-<LATEST_VERSION>
 composer install
 cp config.sample.php config.php
 vim config.php
@@ -91,8 +91,8 @@ php vendor/bin/codecept run
 Import `setup/install.sql` to your MySQL database
 
 ```sh
-git clone git@github.com:pklink/Dingbat.git
-cd Dingbat
+git clone git@github.com:pklink/machdas.git
+cd machdas
 composer install
 cp config.sample.php config.php
 vim config.php
