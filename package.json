@@ -1,6 +1,5 @@
 {
   "name": "machdas",
-  "version": "0.6.0",
   "description": "Todo manager based on Vue.js",
   "main": "frontend/index.js",
   "directories": {
@@ -28,12 +27,10 @@
     "keymaster": "^1.6.2",
     "raw-loader": "^0.5.1",
     "vue": "^1.0.20",
+    "vue-focus": "^0.1.1",
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.11",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
-    "vue-focus": "^0.1.1"
   }
 }
