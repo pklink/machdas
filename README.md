@@ -43,7 +43,7 @@ cp config.sample.php config.php
 vim config.php
 npm install
 npm build
-php -S localhost:8080 -t ./public
+php -S localhost:9000 -t ./public
 ```
 
 ## Upgrade
@@ -86,7 +86,7 @@ php -S localhost:8080 -t ./public
 
 ```sh
 composer install
-php -S localhost:8080 -t ./public &
+php -S localhost:9000 -t ./public &
 php vendor/bin/codecept run
 ```
 
