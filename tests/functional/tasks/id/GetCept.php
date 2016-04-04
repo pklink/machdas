@@ -1,12 +1,9 @@
 <?php
 
-// @group cards retrieve
-
 /* @var \Codeception\Scenario $scenario */
+
 $guy = new TestGuy($scenario);
 $guy->wantTo('get a task');
-
-// get a task
 $guy->sendGET('/tasks/1');
 $guy->seeResponseCodeIs(200);
 $guy->seeResponseIsJson();
@@ -17,9 +14,3 @@ $guy->seeResponseContainsJson([
     'isDone'   => false,
     'priority' => 500,
 ]);
-
-// get a non existing task
-$guy->sendGET('/tasks/9');
-$guy->seeResponseIsJson();
-$guy->seeResponseCodeIs(404);
-$guy->seeResponseJsonMatchesJsonPath('$.message');

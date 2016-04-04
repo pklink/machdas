@@ -1,12 +1,9 @@
 <?php
 
-// @group cards create
-
 /* @var \Codeception\Scenario $scenario */
+
 $guy = new TestGuy($scenario);
 $guy->wantTo('get all tasks of a card');
-
-// all tasks
 $guy->sendGET('/cards/1/tasks');
 $guy->seeResponseCodeIs(200);
 $guy->seeResponseIsJson();

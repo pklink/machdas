@@ -4,6 +4,7 @@
 namespace Dingbat\Action\Card;
 
 use Dingbat\Action;
+use Dingbat\Model\Card;
 use Dingbat\Model\Task;
 use Dingbat\Utils\DatabaseUtils;
 use Slim\Http\Request;
@@ -20,8 +21,12 @@ class GetAllTasks extends Action\AbstractImpl
      */
     public function run(Request $request, Response $response, array $args) : Response
     {
+        // get card
+        /* @var Card $card */
+        $card = Card::query()->findOrFail($args['id']);
+
         /** @noinspection PhpUndefinedMethodInspection */
-        $builder = Task::query()->where('cardId', '=', $args['id']);
+        $builder = Task::query()->where('cardId', '=', $card->id);
 
         // sorting
         if (!is_null($request->getParam('order-by'))) {
