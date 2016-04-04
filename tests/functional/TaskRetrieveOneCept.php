@@ -15,7 +15,7 @@ $guy->seeResponseContainsJson([
     'cardId'   => 1,
     'name'     => 'save a whale',
     'marked'   => false,
-    'priority' => 'normal',
+    'priority' => 500,
 ]);
 
 // get a non existing task
