@@ -32,13 +32,13 @@ Import `setup/install.sql` to your MySQL database
 
 ```sh
 wget https://github.com/pklink/Dingbat/archive/<LATEST_VERSION>.tar.gz
-tar xzf Dingbat-<LATEST_VERSION>.tar.gz
+tar xzf <LATEST_VERSION>.tar.gz
 cd Dingbat-<LATEST_VERSION>
 composer install
 cp config.sample.php config.php
 vim config.php
 npm install
-npm build
+npm run build
 php -S localhost:9000 -t ./public
 ```
 
@@ -100,6 +100,8 @@ npm install
 php -S localhost:9000 -t ./public &
 npm start
 ```
+
+Frontend runs on localhost:8080 and backend on localhost:9000
 
 ## Todos
 
