@@ -96,14 +96,14 @@
 
 * Added cards/lists
 * Added routes for cards like "#card/1" etc.
-* Added [Assetic](http://github.com/kriswallsmith/assetic)
+* Added [Assetic][assetic]
 * Added @done-shorttag
 
 ## 0.2.1
 
 * Added slidable sidebar
 * Removed .htaccess for an easier configuration
-* Removed [Twig](http://twig.sensiolabs.org/)
+* Removed [Twig][twig]
 
 ## 0.2.0
 
@@ -114,9 +114,11 @@
 
 Initial version
 
+[assetic]: http://github.com/kriswallsmith/assetic
 [backbone]: http://backbonejs.org/
 [foundation]: http://foundation.zurb.com/
 [respectvalidation]: https://github.com/Respect/Validation
-[sematicui]: http://semantic-ui.com/
+[semanticui]: http://semantic-ui.com/
 [silex]: http://silex.sensiolabs.org/
+[twig]: http://twig.sensiolabs.org/
 [vue]: http://vuejs.org/
