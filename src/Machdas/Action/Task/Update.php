@@ -1,17 +1,17 @@
 <?php
 
 
-namespace Dingbat\Action\Card;
+namespace Machdas\Action\Task;
 
-use Dingbat\Action;
-use Dingbat\Model\Card;
-use Dingbat\Model\Task;
-use Dingbat\Utils\DatabaseUtils;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Machdas\Action;
+use Machdas\Model\Task;
+use Machdas\Utils\DatabaseUtils;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class CreateTask extends Action\AbstractImpl
+class Update extends Action\AbstractImpl
 {
 
     /**
@@ -19,33 +19,30 @@ class CreateTask extends Action\AbstractImpl
      * @param Response $response
      * @param array $args
      * @return Response
+     * @throws ModelNotFoundException
      * @throws NestedValidationException
      */
     public function run(Request $request, Response $response, array $args) : Response
     {
-        /* @var Card $card */
-        $card = Card::query()->findOrFail($args['id']);
-
-        // create task
-        $model           = new Task();
+        // load and fill model
+        /* @var Task $model */
+        $model           = Task::query()->findOrFail($args['id']);
         $model->name     = $request->getParsedBodyParam('name');
-        $model->isDone   = (bool) $request->getParsedBodyParam('isDone', false);
+        $model->isDone   = (bool) $request->getParsedBodyParam('isDone');
         $model->priority = DatabaseUtils::parseTaskPriority($request->getParsedBodyParam('priority', 500));
-        $model->cardId   = $card->id;
+        $model->cardId   = (int) $request->getParsedBodyParam('cardId');
 
         // validation
         Task::validators()['name']->assert($model->name);
         Task::validators()['isDone']->assert($model->isDone);
         Task::validators()['priority']->assert($model->priority);
+        Task::validators()['cardId']->assert($model->cardId);
 
         // save
         $model->saveOrFail();
 
         // response
-        return $response
-            ->withStatus(201)
-            ->withHeader('Location', sprintf('/tasks/%d', $model->id))
-            ->withJson($model);
+        return $response->withStatus(204);
     }
 
 }

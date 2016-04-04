@@ -63,20 +63,20 @@ $app = new \Slim\App($container);
 // routing
 $app->group('/cards', function() {
     /* @var \Slim\App $this */
-    $this->post('', \Dingbat\Action\Card\Create::class);
-    $this->post('/{id:\d+}/tasks', \Dingbat\Action\Card\CreateTask::class);
-    $this->get('', \Dingbat\Action\Card\GetAll::class);
-    $this->get('/{id:\d+}', \Dingbat\Action\Card\GetOne::class);
-    $this->get('/{id:\d+}/tasks', \Dingbat\Action\Card\GetAllTasks::class);
-    $this->put('/{id:\d+}', \Dingbat\Action\Card\Update::class);
-    $this->delete('/{id:\d+}', \Dingbat\Action\Card\Delete::class);
+    $this->post('', \Machdas\Action\Card\Create::class);
+    $this->post('/{id:\d+}/tasks', \Machdas\Action\Card\CreateTask::class);
+    $this->get('', \Machdas\Action\Card\GetAll::class);
+    $this->get('/{id:\d+}', \Machdas\Action\Card\GetOne::class);
+    $this->get('/{id:\d+}/tasks', \Machdas\Action\Card\GetAllTasks::class);
+    $this->put('/{id:\d+}', \Machdas\Action\Card\Update::class);
+    $this->delete('/{id:\d+}', \Machdas\Action\Card\Delete::class);
 });
 
 $app->group('/tasks', function() {
     /* @var \Slim\App $this */
-    $this->get('/{id:\d+}', \Dingbat\Action\Task\GetOne::class);
-    $this->put('/{id:\d+}', \Dingbat\Action\Task\Update::class);
-    $this->delete('/{id:\d+}', \Dingbat\Action\Task\Delete::class);
+    $this->get('/{id:\d+}', \Machdas\Action\Task\GetOne::class);
+    $this->put('/{id:\d+}', \Machdas\Action\Task\Update::class);
+    $this->delete('/{id:\d+}', \Machdas\Action\Task\Delete::class);
 });
 
 // initialize eloquent

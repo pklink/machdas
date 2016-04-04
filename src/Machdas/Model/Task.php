@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Dingbat\Model;
+namespace Machdas\Model;
 use Illuminate\Database\Eloquent\Model;
 use Respect\Validation\Validator;
 

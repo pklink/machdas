@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingbat\Utils;
+namespace Machdas\Utils;
 
 
 class DatabaseUtils

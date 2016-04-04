@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Dingbat\Action\Card;
+namespace Machdas\Action\Card;
 
-use Dingbat\Action;
-use Dingbat\Model\Card;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Machdas\Action;
+use Machdas\Model\Card;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
 use Slim\Http\Response;

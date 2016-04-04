@@ -1,7 +1,7 @@
 {
   "autoload": {
     "psr-0": {
-      "Dingbat": "src/"
+      "Machdas": "src/"
     }
   },
   "require": {

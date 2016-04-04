@@ -1,8 +1,8 @@
 <?php
 
-namespace Dingbat\Action;
-use Dingbat\Action;
+namespace Machdas\Action;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Machdas\Action;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Exception\NotFoundException;
 use Slim\Http\Request;

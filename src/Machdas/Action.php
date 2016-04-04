@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingbat;
+namespace Machdas;
 use Slim\Http\Request;
 use Slim\Http\Response;
 

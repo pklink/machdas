@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Dingbat\Action\Card;
+namespace Machdas\Action\Card;
 
-use Dingbat\Action;
-use Dingbat\Model\Card;
-use Dingbat\Model\Task;
-use Dingbat\Utils\DatabaseUtils;
+use Machdas\Action;
+use Machdas\Model\Card;
+use Machdas\Model\Task;
+use Machdas\Utils\DatabaseUtils;
 use Slim\Http\Request;
 use Slim\Http\Response;
 

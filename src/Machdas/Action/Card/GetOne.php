@@ -1,14 +1,15 @@
 <?php
 
 
-namespace Dingbat\Action\Task;
+namespace Machdas\Action\Card;
 
-use Dingbat\Action;
-use Dingbat\Model\Task;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Machdas\Action;
+use Machdas\Model\Card;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class Delete extends Action\AbstractImpl
+class GetOne extends Action\AbstractImpl
 {
 
     /**
@@ -16,11 +17,11 @@ class Delete extends Action\AbstractImpl
      * @param Response $response
      * @param array $args
      * @return Response
+     * @throws ModelNotFoundException
      */
     public function run(Request $request, Response $response, array $args) : Response
     {
-        Task::destroy($args['id']);
-        return $response->withStatus(204);
+        return $response->withJson(Card::query()->findOrFail($args['id']));
     }
 
 }
