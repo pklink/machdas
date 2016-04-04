@@ -107,7 +107,6 @@ npm start
 
 ## Todos
 
-- [ ] add hashtags (e.g. #project #blah ...)
 - [ ] remove lists
 - [ ] add users
 - [ ] add Swagger specification
