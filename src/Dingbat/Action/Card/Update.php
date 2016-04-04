@@ -22,7 +22,7 @@ class Update extends Action\AbstractImpl
      * @throws ModelNotFoundException
      * @throws NestedValidationException
      */
-    public function run(Request $request, Response $response, array $args)
+    public function run(Request $request, Response $response, array $args) : Response
     {
         // retrieve and fill model
         /* @var Card $model */

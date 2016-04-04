@@ -19,7 +19,7 @@ class GetOne extends Action\AbstractImpl
      * @return Response
      * @throws ModelNotFoundException
      */
-    public function run(Request $request, Response $response, array $args)
+    public function run(Request $request, Response $response, array $args) : Response
     {
         return $response->withJson(Task::query()->findOrFail($args['id']));
     }

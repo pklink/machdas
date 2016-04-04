@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Dingbat;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -14,6 +13,6 @@ interface Action
      * @param array    $args
      * @return Response
      */
-    public function __invoke(Request $request, Response $response, array $args);
+    public function __invoke(Request $request, Response $response, array $args) : Response;
 
 }

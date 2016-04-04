@@ -18,7 +18,7 @@ class GetAllTasks extends Action\AbstractImpl
      * @param array $args
      * @return Response
      */
-    public function run(Request $request, Response $response, array $args)
+    public function run(Request $request, Response $response, array $args) : Response
     {
         /** @noinspection PhpUndefinedMethodInspection */
         $builder = Task::query()->where('cardId', '=', $args['id']);

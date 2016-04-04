@@ -19,7 +19,7 @@ abstract class AbstractImpl implements Action
      * @throws NestedValidationException
      * @throws ModelNotFoundException
      */
-    abstract public function run(Request $request, Response $response, array $args);
+    abstract public function run(Request $request, Response $response, array $args) : Response;
 
     /**
      * @param Request $request
@@ -28,7 +28,7 @@ abstract class AbstractImpl implements Action
      * @return Response
      * @throws NotFoundException
      */
-    public function __invoke(Request $request, Response $response, array $args)
+    public function __invoke(Request $request, Response $response, array $args) : Response
     {
         try {
             return $this->run($request, $response, $args);

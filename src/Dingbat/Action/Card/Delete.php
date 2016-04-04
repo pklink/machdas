@@ -18,7 +18,7 @@ class Delete extends Action\AbstractImpl
      * @param array $args
      * @return Response
      */
-    public function run(Request $request, Response $response, array $args)
+    public function run(Request $request, Response $response, array $args) : Response
     {
         try {
             // find card

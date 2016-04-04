@@ -19,7 +19,8 @@ class Task extends Model
     /**
      * @return Validator[]
      */
-    public static function validators() {
+    public static function validators() : array 
+    {
         return [
             'name'     => Validator::stringType()->notEmpty()->setName('name'),
             'isDone'   => Validator::boolType()->setName('isDone'),

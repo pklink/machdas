@@ -1,7 +1,6 @@
 language: php
 php:
   - 7.0
-  - 5.6
 install:
   - mysql -e 'CREATE DATABASE dingbat;'
   - mysql dingbat < setup/install.sql

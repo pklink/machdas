@@ -21,7 +21,7 @@ class CreateTask extends Action\AbstractImpl
      * @return Response
      * @throws NestedValidationException
      */
-    public function run(Request $request, Response $response, array $args)
+    public function run(Request $request, Response $response, array $args) : Response
     {
         /* @var Card $card */
         $card = Card::query()->findOrFail($args['id']);

@@ -19,7 +19,7 @@ class Create extends Action\AbstractImpl
      * @return Response
      * @throws NestedValidationException
      */
-    public function run(Request $request, Response $response, array $args)
+    public function run(Request $request, Response $response, array $args) : Response
     {
         // create model
         $model       = new Card();

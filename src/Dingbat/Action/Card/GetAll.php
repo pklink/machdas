@@ -17,7 +17,7 @@ class GetAll extends Action\AbstractImpl
      * @param array $args
      * @return Response
      */
-    public function run(Request $request, Response $response, array $args)
+    public function run(Request $request, Response $response, array $args) : Response
     {
         /** @noinspection PhpUndefinedMethodInspection */
         $cards = Card::query()->orderBy('id', 'asc')->get();
