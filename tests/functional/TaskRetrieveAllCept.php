@@ -14,19 +14,19 @@ $guy->seeResponseContainsJson([
     [
         'id'       => 1,
         'name'     => 'save a whale',
-        'marked'   => false,
+        'isDone'   => false,
         'priority' => 500,
         'cardId'   => 1
     ], [
         'id'       => 2,
         'name'     => 'kiss a chicken',
-        'marked'   => false,
+        'isDone'   => false,
         'priority' => 900,
         'cardId'   => 1
     ], [
         'id'       => 3,
         'name'     => 'hug yourself',
-        'marked'   => false,
+        'isDone'   => false,
         'priority' => 100,
         'cardId'   => 1
     ]

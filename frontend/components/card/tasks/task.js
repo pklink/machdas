@@ -13,7 +13,7 @@ export default Vue.extend({
 
     methods: {
         toggle: function() {
-            this.model.marked = !this.model.marked;
+            this.model.isDone = !this.model.isDone;
             this.save();
         },
         delete: function () {

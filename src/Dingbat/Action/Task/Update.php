@@ -28,13 +28,13 @@ class Update extends Action\AbstractImpl
         /* @var Task $model */
         $model           = Task::query()->findOrFail($args['id']);
         $model->name     = $request->getParsedBodyParam('name');
-        $model->marked   = (bool) $request->getParsedBodyParam('marked');
+        $model->isDone   = (bool) $request->getParsedBodyParam('isDone');
         $model->priority = DatabaseUtils::parseTaskPriority($request->getParsedBodyParam('priority', 500));
         $model->cardId   = (int) $request->getParsedBodyParam('cardId');
 
         // validation
         Task::validators()['name']->assert($model->name);
-        Task::validators()['marked']->assert($model->marked);
+        Task::validators()['isDone']->assert($model->isDone);
         Task::validators()['priority']->assert($model->priority);
         Task::validators()['cardId']->assert($model->cardId);
 

@@ -22,10 +22,11 @@ class GetAll extends Action\AbstractImpl
         $tasks = [];
         /** @noinspection PhpUndefinedMethodInspection */
         foreach (Task::query()->orderBy('id', 'asc')->get() as $task) {
+            /* @var Task $task */
             $tasks[] = [
                 'id'       => (int) $task->id,
                 'name'     => $task->name,
-                'marked'   => (bool) $task->marked,
+                'isDone'   => (bool) $task->isDone,
                 'priority' => $task->priority,
                 'cardId'   => (int) $task->cardId
             ];

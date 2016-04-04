@@ -11,7 +11,7 @@
             <!--suppress HtmlFormInputWithoutLabel -->
             <input type="text" v-model="model.name" @keyup.enter="save" @keyup.esc="cancel">
         </div>
-        <span v-show="!model.marked && !editMode">{{ model.name }}</span>
-        <del v-show="model.marked && !editMode">{{ model.name }}</del>
+        <span v-show="!model.isDone && !editMode">{{ model.name }}</span>
+        <del v-show="model.isDone && !editMode">{{ model.name }}</del>
     </div>
 </a>

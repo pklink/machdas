@@ -14,7 +14,7 @@ $guy->seeResponseContainsJson([
     'id'       => 1,
     'cardId'   => 1,
     'name'     => 'save a whale',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 500,
 ]);
 

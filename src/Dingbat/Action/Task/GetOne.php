@@ -28,7 +28,7 @@ class GetOne extends Action\AbstractImpl
             'id'       => (int) $task->id,
             'cardId'   => (int) $task->cardId,
             'name'     => $task->name,
-            'marked'   => (bool) $task->marked,
+            'isDone'   => (bool) $task->isDone,
             'priority' => $task->priority
         ]);
     }

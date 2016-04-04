@@ -10,21 +10,21 @@ $guy->wantTo('update a task');
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'normal'
 ]);
 $guy->seeResponseCodeIs(204);
 
-// check `marked`: true
+// check `isDone`: true
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
     'name'     => 'something',
-    'marked'   => true,
+    'isDone'   => true,
     'priority' => 'normal'
 ]);
 $guy->seeResponseCodeIs(204);
 
-// check without `marked`
+// check without `isDone`
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
     'name'     => 'something',
@@ -35,7 +35,7 @@ $guy->seeResponseCodeIs(204);
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'low'
 ]);
 $guy->seeResponseCodeIs(204);
@@ -44,7 +44,7 @@ $guy->seeResponseCodeIs(204);
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'high'
 ]);
 $guy->seeResponseCodeIs(204);
@@ -53,7 +53,7 @@ $guy->seeResponseCodeIs(204);
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
 ]);
 $guy->seeResponseCodeIs(204);
 
@@ -61,7 +61,7 @@ $guy->seeResponseCodeIs(204);
 $guy->sendPUT('/tasks/9', [
     'cardId'   => 1,
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
@@ -71,7 +71,7 @@ $guy->seeResponseJsonMatchesJsonPath('$.message');
 // no `cardId`
 $guy->sendPUT('/tasks/1', [
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
@@ -82,7 +82,7 @@ $guy->seeResponseJsonMatchesJsonPath('$.message');
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 999,
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
@@ -92,7 +92,7 @@ $guy->seeResponseJsonMatchesJsonPath('$.message');
 // no name
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'normal'
 ]);
 $guy->seeResponseIsJson();
@@ -103,7 +103,7 @@ $guy->seeResponseJsonMatchesJsonPath('$.message');
 $guy->sendPUT('/tasks/1', [
     'cardId'   => 1,
     'name'     => 'something',
-    'marked'   => false,
+    'isDone'   => false,
     'priority' => 'bla'
 ]);
 $guy->seeResponseIsJson();

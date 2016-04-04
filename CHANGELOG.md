@@ -4,7 +4,8 @@
 
 * Chg: Replaced [Backbone.js][backbone] by [Vue.js][vue]
 * Chg: Replaced [Foundation][foundation] by [Semantic UI][semanticui]
-* Chg: Change SQL-type of `tasks.priority` to integer
+* Chg: MySQL: Changed type of `tasks.priority` to integer
+* Chg: MySQL: Changed name of `tasks.marked` to `tasks.isDone`
 
 ## 0.5.1
 

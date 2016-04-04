@@ -19,7 +19,7 @@ export default {
     parseIsDone: function(model) {
         // parse priority
         if (model.name.search(/@done/) !== -1) {
-            model.marked = true;
+            model.isDone = true;
             model.name   = model.name.replace(/@done/, '');
         }
     },

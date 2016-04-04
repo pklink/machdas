@@ -8,8 +8,8 @@ use Respect\Validation\Validator;
 
 
 /**
- * @property int    id
- * @property string name
+ * @property int    $id
+ * @property string $name
  */
 class Card extends Model
 {

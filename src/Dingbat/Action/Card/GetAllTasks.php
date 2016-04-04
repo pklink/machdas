@@ -29,7 +29,7 @@ class GetAllTasks extends Action\AbstractImpl
             $direction = DatabaseUtils::ensureOrderDirection($direction);
 
             // check if attribute is valid
-            if (!in_array($attribute, ['priority', 'name', 'marked'])) {
+            if (!in_array($attribute, ['priority', 'name', 'isDone'])) {
                 $attribute = 'id';
             }
 

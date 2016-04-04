@@ -11,14 +11,14 @@ INSERT INTO `cards` (`id`, `name`)
 CREATE TABLE `tasks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `marked` tinyint(1) NOT NULL DEFAULT '0',
+  `isDone` tinyint(1) NOT NULL DEFAULT '0',
   `priority` int(3) NOT NULL DEFAULT '500',
   `cardId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-INSERT INTO `tasks` (`id`, `name`, `marked`, `priority`, `cardId`)
+INSERT INTO `tasks` (`id`, `name`, `isDone`, `priority`, `cardId`)
   VALUES
   (1, 'add some tasks to the new card', 0, 500, 1),
   (2, 'add a new card', 0, 900, 1),
