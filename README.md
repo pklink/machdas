@@ -90,6 +90,20 @@ php -S localhost:9000 -t ./public &
 php vendor/bin/codecept run
 ```
 
+## Set up development environment
+
+Import `setup/install.sql` to your MySQL database
+
+```sh
+git clone git@github.com:pklink/Dingbat.git
+cd Dingbat
+composer install
+cp config.sample.php config.php
+vim config.php
+npm install
+php -S localhost:9000 -t ./public &
+npm start
+```
 
 ## Todos
 
