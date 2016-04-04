@@ -17,16 +17,12 @@ You can use the following shorttags for setting priority:
 Use `@done` to mark a task as complete
 
 
-## Requirements
-
-* PHP 5.6 and higher
-* MySQL 5.1 and higher
-
-
 ## Installation
 
 ### Requirements
 
+* PHP 5.6 and higher
+* MySQL 5.1 and higher
 * [Composer](http://getcomposer.org/)
 * [npm](https://www.npmjs.com/)
 
