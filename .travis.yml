@@ -2,8 +2,8 @@ language: php
 php:
   - 7.0
 install:
-  - mysql -e 'CREATE DATABASE dingbat;'
-  - mysql dingbat < setup/install.sql
+  - mysql -e 'CREATE DATABASE machdas;'
+  - mysql machdas < setup/install.sql
   - cp config.sample.php config.php
   - sed -i 's/root/travis/g' config.php
   - sed -i 's/secret//g' config.php

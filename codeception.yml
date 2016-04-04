@@ -12,7 +12,7 @@ settings:
 modules:
     config:
         Db:
-            dsn: 'mysql:dbname=dingbat;host=192.168.99.100'
+            dsn: 'mysql:dbname=machdas;host=192.168.99.100'
             user: 'root'
             password: 'password'
             dump: tests/_data/dump.sql

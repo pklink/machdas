@@ -1,8 +1,8 @@
 {
-  "name": "dingbat",
-  "version": "0.5.2",
-  "description": "A simple todo manager",
-  "main": "index.js",
+  "name": "machdas",
+  "version": "0.6.0",
+  "description": "Todo manager based on Vue.js",
+  "main": "frontend/index.js",
   "directories": {
     "doc": "docs",
     "test": "tests"
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pklink/Dingbat.git"
+    "url": "git+https://github.com/pklink/machdas.git"
   },
   "author": "Pierre Klink <dev@klink.xyz>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pklink/Dingbat/issues"
+    "url": "https://github.com/pklink/machdas/issues"
   },
-  "homepage": "https://github.com/pklink/Dingbat#readme",
+  "homepage": "https://github.com/pklink/machdas#readme",
   "devDependencies": {
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
