@@ -16,20 +16,14 @@ use Respect\Validation\Validator;
 class Task extends Model
 {
 
-    const PRIORITY_LOW    = 'low';
-    const PRIORITY_NORMAL = 'normal';
-    const PRIORITY_HIGH   = 'high';
-
     /**
      * @return Validator[]
      */
     public static function validators() {
-        $priorityList = [self::PRIORITY_LOW, self::PRIORITY_NORMAL, self::PRIORITY_HIGH];
-
         return [
             'name'     => Validator::stringType()->notEmpty()->setName('name'),
             'marked'   => Validator::boolType()->setName('marked'),
-            'priority' => Validator::stringType()->in($priorityList)->setName('priority'),
+            'priority' => Validator::intType()->between(1, 999)->setName('priority'),
             'cardId'   => Validator::intType()->notEmpty()->callback(function($v) {
                 return Card::query()->find($v) instanceof Card;
             })->setName('cardId')

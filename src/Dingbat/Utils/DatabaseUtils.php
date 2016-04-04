@@ -20,4 +20,18 @@ class DatabaseUtils
         return $direction;
     }
 
+    /**
+     * @param string|int $priority
+     * @return int
+     */
+    public static function parseTaskPriority($priority) {
+        switch ($priority) {
+            case 'normal': $priority = 500; break;
+            case 'low':    $priority = 100; break;
+            case 'high':   $priority = 900; break;
+        }
+
+        return (int) $priority;
+    }
+
 }

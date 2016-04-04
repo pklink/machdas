@@ -6,6 +6,7 @@ namespace Dingbat\Action\Card;
 use Dingbat\Action;
 use Dingbat\Model\Card;
 use Dingbat\Model\Task;
+use Dingbat\Utils\DatabaseUtils;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -29,7 +30,7 @@ class CreateTask extends Action\AbstractImpl
         $model           = new Task();
         $model->name     = $request->getParsedBodyParam('name');
         $model->marked   = (bool) $request->getParsedBodyParam('marked', false);
-        $model->priority = $request->getParsedBodyParam('priority', Task::PRIORITY_NORMAL);
+        $model->priority = DatabaseUtils::parseTaskPriority($request->getParsedBodyParam('priority', 500));
         $model->cardId   = $card->id;
 
         // validation

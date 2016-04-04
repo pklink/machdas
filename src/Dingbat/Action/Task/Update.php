@@ -5,6 +5,7 @@ namespace Dingbat\Action\Task;
 
 use Dingbat\Action;
 use Dingbat\Model\Task;
+use Dingbat\Utils\DatabaseUtils;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
@@ -28,7 +29,7 @@ class Update extends Action\AbstractImpl
         $model           = Task::query()->findOrFail($args['id']);
         $model->name     = $request->getParsedBodyParam('name');
         $model->marked   = (bool) $request->getParsedBodyParam('marked');
-        $model->priority = $request->getParsedBodyParam('priority', Task::PRIORITY_NORMAL);
+        $model->priority = DatabaseUtils::parseTaskPriority($request->getParsedBodyParam('priority', 500));
         $model->cardId   = (int) $request->getParsedBodyParam('cardId');
 
         // validation
