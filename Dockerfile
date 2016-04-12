@@ -1,4 +1,3 @@
-cat maches/machdas/Dockerfile
 FROM php:7.0-apache
 MAINTAINER Pierre Klink <dev@klink.xyz>
 
