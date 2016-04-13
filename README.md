@@ -103,12 +103,6 @@ npm start
 
 Frontend runs on localhost:8080 and backend on localhost:9000
 
-## Todos
-
-- [ ] remove lists
-- [ ] add users
-- [ ] add Swagger specification
-
 ## Changelog
 
 See `CHANGELOG.md`
