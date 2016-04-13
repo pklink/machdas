@@ -19,14 +19,29 @@ Use `@done` to mark a task as complete
 
 ## Installation
 
-### Requirements
+### Docker
+
+```
+docker run --link mysql -e MD_MYSQL_HOST=mysql -p 80:80 pklink/machdas
+```
+
+Available environment variables are:
+
+* `MD_MYSQL_HOST` (default: `mysql`)
+* `MD_MYSQL_USERNAME` (default: `root`)
+* `MD_MYSQL_PASSWORD` (default: `password`)
+* `MD_MYSQL_DATABASE` (default: `machdas`)
+
+### Manual Installation
+
+#### Requirements
 
 * PHP 7.0 and higher
 * MySQL 5.1 and higher
 * [Composer](http://getcomposer.org/)
 * [npm](https://www.npmjs.com/)
 
-### Instructions
+#### Instructions
 
 Import `setup/install.sql` to your MySQL database
 
