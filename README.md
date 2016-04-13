@@ -97,11 +97,11 @@ composer install
 cp config.sample.php config.php
 vim config.php
 npm install
-php -S localhost:9000 -t ./public &
+php -S 127.0.0.1:9000 -t ./public &
 npm start
 ```
 
-Frontend runs on localhost:8080 and backend on localhost:9000
+Open http://localhost:8080/ or http://localhost:8080/webpack-dev-server/ 
 
 ## Changelog
 

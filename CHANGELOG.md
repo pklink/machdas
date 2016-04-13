@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1
+
+* Enh: Added support for [Docker][docker]
+* Enh: Added Dockerfile
+* Fix: webpack-dev-server doesn't work correctly if PHPs built in server bind to `localhost` instead of `127.0.0.1`
+
 ## 0.6.0
 
 * Chg: Replaced [Backbone.js][backbone] by [Vue.js][vue]
@@ -120,10 +126,11 @@ Initial version
 
 [assetic]: http://github.com/kriswallsmith/assetic
 [backbone]: http://backbonejs.org/
+[docker]: https://www.docker.com/
 [foundation]: http://foundation.zurb.com/
+[jqueryui]: http://jqueryui.com/
 [respectvalidation]: https://github.com/Respect/Validation
 [semanticui]: http://semantic-ui.com/
 [silex]: http://silex.sensiolabs.org/
 [twig]: http://twig.sensiolabs.org/
 [vue]: http://vuejs.org/
-[jqueryui]: http://jqueryui.com/
