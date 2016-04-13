@@ -23,7 +23,7 @@
 
 ## 0.5.0
 
-* Chg: Replaced [Silex][silex] by Slim Framework
+* Chg: Replaced [Silex][silex] by [Slim Framework][slim]
 * Chg: RESTify resource URIs (e.g. `/task/1` to `/tasks/1`)
 * Chg: Set required version of PHP to >= 5.6
 * Chg: Moved backend to `/api`-resource
@@ -132,5 +132,6 @@ Initial version
 [respectvalidation]: https://github.com/Respect/Validation
 [semanticui]: http://semantic-ui.com/
 [silex]: http://silex.sensiolabs.org/
+[slim]: http://www.slimframework.com/
 [twig]: http://twig.sensiolabs.org/
 [vue]: http://vuejs.org/
