@@ -25,10 +25,10 @@ RUN composer install --no-dev \
     && mv public/ html
 
 RUN cp config.sample.php config.php \
-    && sed -i "s/127.0.0.1/getenv('MD_MYSQL_HOST')/g" config.php \
+    && sed -i "s/'127.0.0.1'/getenv('MD_MYSQL_HOST')/g" config.php \
     && sed -i "s/'root'/getenv('MD_MYSQL_USERNAME')/g" config.php \
-    && sed -i "s/secret/getenv('MD_MYSQL_PASSWORD')/g" config.php \
-    && sed -i "s/machdas/getenv('MD_MYSQL_DATABASE')/g" config.php
+    && sed -i "s/'secret'/getenv('MD_MYSQL_PASSWORD')/g" config.php \
+    && sed -i "s/'machdas'/getenv('MD_MYSQL_DATABASE')/g" config.php
 
 RUN apt-get remove -y nodejs build-essential git unzip \
     && apt-get clean
