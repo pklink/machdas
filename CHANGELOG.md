@@ -13,6 +13,7 @@
 * Chg: MySQL: Changed type of `tasks.priority` to integer
 * Chg: MySQL: Changed name of `tasks.marked` to `tasks.isDone`
 * Chg: Renamed project to "machdas"
+* Chg: Set required version of PHP to >= 7.0
 * Enh: Improved tests
 
 ## 0.5.1
