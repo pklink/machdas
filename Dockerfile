@@ -1,10 +1,10 @@
 FROM php:7.0-apache
 MAINTAINER Pierre Klink <dev@klink.xyz>
 
-ENV MYSQL_HOST mysql
-ENV MYSQL_USERNAME root
-ENV MYSQL_PASSWORD password
-ENV MYSQL_DATABASE machdas
+ENV MD_MYSQL_HOST mysql
+ENV MD_MYSQL_USERNAME root
+ENV MD_MYSQL_PASSWORD password
+ENV MD_MYSQL_DATABASE machdas
 
 COPY ./ /var/www/
 
@@ -25,10 +25,10 @@ RUN composer install --no-dev \
     && mv public/ html
 
 RUN cp config.sample.php config.php \
-    && sed -i "s/127.0.0.1/$MYSQL_HOST/g" config.php \
-    && sed -i "s/root/$MYSQL_USERNAME/g" config.php \
-    && sed -i "s/secret/$MYSQL_PASSWORD/g" config.php \
-    && sed -i "s/machdas/$MYSQL_DATABASE/g" config.php
+    && sed -i "s/127.0.0.1/getenv('MD_MYSQL_HOST')/g" config.php \
+    && sed -i "s/'root'/getenv('MD_MYSQL_USERNAME')/g" config.php \
+    && sed -i "s/secret/getenv('MD_MYSQL_PASSWORD')/g" config.php \
+    && sed -i "s/machdas/getenv('MD_MYSQL_DATABASE')/g" config.php
 
 RUN apt-get remove -y nodejs build-essential git unzip \
     && apt-get clean
