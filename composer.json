@@ -8,11 +8,11 @@
     "php": ">=7.0.0",
     "illuminate/database": "^5.2",
     "slim/slim": "^3.3",
-    "respect/validation": "^1.0"
+    "respect/validation": "^1.0",
+    "robmorgan/phinx": "^0.5.3"
   },
   "require-dev": {
     "codeception/codeception": "~2.1",
-    "flow/jsonpath": "^0.3.1",
-    "robmorgan/phinx": "^0.5.3"
+    "flow/jsonpath": "^0.3.1"
   }
 }
