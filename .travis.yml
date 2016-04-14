@@ -14,6 +14,7 @@ install:
   - php vendor/bin/phinx migrate -e dev
   - php vendor/bin/codecept build
   - php -S localhost:9000 -t ./public &
+  - npm install
 script:
   - node_modules/.bin/eslint frontend/
   - php vendor/bin/codecept run --debug
