@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7af9e33c43f6c764a56e0b36555dd273",
-    "content-hash": "6346dffa33f29340ffdfd1f5fbc63147",
+    "hash": "50ecb41a8d319d5498f357e70c5d0b0f",
+    "content-hash": "5250733af2eaaf10ffe2555985e946b3",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -600,6 +600,67 @@
             "time": "2016-03-31 17:39:15"
         },
         {
+            "name": "robmorgan/phinx",
+            "version": "v0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robmorgan/phinx.git",
+                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
+                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/console": "~2.8|~3.0",
+                "symfony/yaml": "~2.8|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^3.7|^4.0|^5.0"
+            },
+            "bin": [
+                "bin/phinx"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phinx\\": "src/Phinx"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Morgan",
+                    "email": "robbym@gmail.com",
+                    "homepage": "http://robmorgan.id.au",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Woody Gilk",
+                    "email": "woody.gilk@gmail.com",
+                    "homepage": "http://shadowhand.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Phinx makes it ridiculously easy to manage the database migrations for your PHP app.",
+            "homepage": "https://phinx.org",
+            "keywords": [
+                "database",
+                "database migrations",
+                "db",
+                "migrations",
+                "phinx"
+            ],
+            "time": "2016-03-07 14:09:22"
+        },
+        {
             "name": "slim/slim",
             "version": "3.3.0",
             "source": {
@@ -665,6 +726,168 @@
                 "router"
             ],
             "time": "2016-03-10 21:37:40"
+        },
+        {
+            "name": "symfony/config",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/config.git",
+                "reference": "980ee40c28f00acff8906c11b778aab5f0db74c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/config/zipball/980ee40c28f00acff8906c11b778aab5f0db74c2",
+                "reference": "980ee40c28f00acff8906c11b778aab5f0db74c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/filesystem": "~2.8|~3.0"
+            },
+            "suggest": {
+                "symfony/yaml": "To use the yaml reference dumper"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Config\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Config Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-03-04 07:55:57"
+        },
+        {
+            "name": "symfony/console",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/console.git",
+                "reference": "6b1175135bc2a74c08a28d89761272de8beed8cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/console/zipball/6b1175135bc2a74c08a28d89761272de8beed8cd",
+                "reference": "6b1175135bc2a74c08a28d89761272de8beed8cd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/event-dispatcher": "~2.8|~3.0",
+                "symfony/process": "~2.8|~3.0"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Console\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-03-16 17:00:50"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "f82499a459dcade2ea56df94cc58b19c8bde3d20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/f82499a459dcade2ea56df94cc58b19c8bde3d20",
+                "reference": "f82499a459dcade2ea56df94cc58b19c8bde3d20",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-03-27 10:24:39"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -788,6 +1011,55 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2016-03-25 01:41:20"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "0047c8366744a16de7516622c5b7355336afae96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/0047c8366744a16de7516622c5b7355336afae96",
+                "reference": "0047c8366744a16de7516622c5b7355336afae96",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-03-04 07:55:57"
         }
     ],
     "packages-dev": [
@@ -1122,16 +1394,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.2.3",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b"
+                "reference": "31382fef2889136415751badebbd1cb022a4ed72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2e89629ff057ebb49492ba08e6995d3a6a80021b",
-                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/31382fef2889136415751badebbd1cb022a4ed72",
+                "reference": "31382fef2889136415751badebbd1cb022a4ed72",
                 "shasum": ""
             },
             "require": {
@@ -1176,7 +1448,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2016-02-18 21:54:00"
+            "time": "2016-04-13 19:56:01"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1333,16 +1605,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "fe33716763b604ade4cb442c0794f5bd5ad73004"
+                "reference": "2431befdd451fac43fbcde94d1a92fb3b8b68f86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/fe33716763b604ade4cb442c0794f5bd5ad73004",
-                "reference": "fe33716763b604ade4cb442c0794f5bd5ad73004",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2431befdd451fac43fbcde94d1a92fb3b8b68f86",
+                "reference": "2431befdd451fac43fbcde94d1a92fb3b8b68f86",
                 "shasum": ""
             },
             "require": {
@@ -1360,7 +1632,7 @@
             },
             "suggest": {
                 "ext-dom": "*",
-                "ext-xdebug": ">=2.2.1",
+                "ext-xdebug": ">=2.4.0",
                 "ext-xmlwriter": "*"
             },
             "type": "library",
@@ -1392,7 +1664,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-03-03 08:49:08"
+            "time": "2016-04-08 08:14:53"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1574,16 +1846,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.3.0",
+            "version": "5.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "dd3001822b2df8f5add266020e3d2fd3c5db3ae9"
+                "reference": "2c6da3536035617bae3fe3db37283c9e0eb63ab3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/dd3001822b2df8f5add266020e3d2fd3c5db3ae9",
-                "reference": "dd3001822b2df8f5add266020e3d2fd3c5db3ae9",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2c6da3536035617bae3fe3db37283c9e0eb63ab3",
+                "reference": "2c6da3536035617bae3fe3db37283c9e0eb63ab3",
                 "shasum": ""
             },
             "require": {
@@ -1598,7 +1870,7 @@
                 "phpunit/php-code-coverage": "^3.3.0",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
-                "phpunit/php-timer": ">=1.0.6",
+                "phpunit/php-timer": "^1.0.6",
                 "phpunit/phpunit-mock-objects": "^3.1",
                 "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.2",
@@ -1645,7 +1917,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-03-31 21:35:50"
+            "time": "2016-04-12 16:20:08"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1702,67 +1974,6 @@
                 "xunit"
             ],
             "time": "2016-03-24 05:58:25"
-        },
-        {
-            "name": "robmorgan/phinx",
-            "version": "v0.5.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/robmorgan/phinx.git",
-                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
-                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4",
-                "symfony/config": "~2.8|~3.0",
-                "symfony/console": "~2.8|~3.0",
-                "symfony/yaml": "~2.8|~3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^3.7|^4.0|^5.0"
-            },
-            "bin": [
-                "bin/phinx"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phinx\\": "src/Phinx"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Morgan",
-                    "email": "robbym@gmail.com",
-                    "homepage": "http://robmorgan.id.au",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Woody Gilk",
-                    "email": "woody.gilk@gmail.com",
-                    "homepage": "http://shadowhand.me",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Phinx makes it ridiculously easy to manage the database migrations for your PHP app.",
-            "homepage": "https://phinx.org",
-            "keywords": [
-                "database",
-                "database migrations",
-                "db",
-                "migrations",
-                "phinx"
-            ],
-            "time": "2016-03-07 14:09:22"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2334,119 +2545,6 @@
             "time": "2016-03-04 07:55:57"
         },
         {
-            "name": "symfony/config",
-            "version": "v3.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "980ee40c28f00acff8906c11b778aab5f0db74c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/980ee40c28f00acff8906c11b778aab5f0db74c2",
-                "reference": "980ee40c28f00acff8906c11b778aab5f0db74c2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9",
-                "symfony/filesystem": "~2.8|~3.0"
-            },
-            "suggest": {
-                "symfony/yaml": "To use the yaml reference dumper"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Config\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Config Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:55:57"
-        },
-        {
-            "name": "symfony/console",
-            "version": "v3.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "6b1175135bc2a74c08a28d89761272de8beed8cd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/6b1175135bc2a74c08a28d89761272de8beed8cd",
-                "reference": "6b1175135bc2a74c08a28d89761272de8beed8cd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9",
-                "symfony/polyfill-mbstring": "~1.0"
-            },
-            "require-dev": {
-                "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.8|~3.0",
-                "symfony/process": "~2.8|~3.0"
-            },
-            "suggest": {
-                "psr/log": "For using the console logger",
-                "symfony/event-dispatcher": "",
-                "symfony/process": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Console\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Console Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-03-16 17:00:50"
-        },
-        {
             "name": "symfony/css-selector",
             "version": "v3.0.4",
             "source": {
@@ -2616,55 +2714,6 @@
             "time": "2016-03-10 10:34:12"
         },
         {
-            "name": "symfony/filesystem",
-            "version": "v3.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/filesystem.git",
-                "reference": "f82499a459dcade2ea56df94cc58b19c8bde3d20"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/f82499a459dcade2ea56df94cc58b19c8bde3d20",
-                "reference": "f82499a459dcade2ea56df94cc58b19c8bde3d20",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Filesystem\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Filesystem Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-03-27 10:24:39"
-        },
-        {
             "name": "symfony/finder",
             "version": "v3.0.4",
             "source": {
@@ -2712,55 +2761,6 @@
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
             "time": "2016-03-10 11:13:05"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "v3.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "0047c8366744a16de7516622c5b7355336afae96"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0047c8366744a16de7516622c5b7355336afae96",
-                "reference": "0047c8366744a16de7516622c5b7355336afae96",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:55:57"
         }
     ],
     "aliases": [],
