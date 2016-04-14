@@ -3,6 +3,7 @@
 ## 0.7.0
 
 * Enh: Added warning modal before deleting a task
+* Enh: Added [ESlint][eslint]
 
 ## 0.6.2
 
@@ -133,12 +134,13 @@
 
 Initial version
 
-[phinx]: https://phinx.org/ 
 [assetic]: http://github.com/kriswallsmith/assetic
 [backbone]: http://backbonejs.org/
 [docker]: https://www.docker.com/
+[eslint]: http://eslint.org/
 [foundation]: http://foundation.zurb.com/
 [jqueryui]: http://jqueryui.com/
+[phinx]: https://phinx.org/ 
 [respectvalidation]: https://github.com/Respect/Validation
 [semanticui]: http://semantic-ui.com/
 [silex]: http://silex.sensiolabs.org/
