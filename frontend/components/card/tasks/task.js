@@ -1,7 +1,9 @@
 import Vue from "vue";
 import {TasksResource} from "../../../services/resources";
 import Utils from "../../../services/utils";
+import $ from "jquery";
 
+//noinspection JSUnusedGlobalSymbols
 export default Vue.extend({
 
     template: require('./views/task.html'),
@@ -9,6 +11,13 @@ export default Vue.extend({
 
     data: function() {
         return { editMode: false };
+    },
+
+    ready: function() {
+        const modalEl = $(this.$el).find('.ui.modal');
+        this._modal = (action) => {
+            modalEl.modal(action)
+        };
     },
 
     methods: {
@@ -36,7 +45,11 @@ export default Vue.extend({
             TasksResource.update({ id: this.model.id }, this.model).then(() => {
                 this.$dispatch('tasks.updated');
             });
+        },
+        showWarning: function() {
+            this._modal('show');
         }
+
     }
 
 });
