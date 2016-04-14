@@ -1,5 +1,5 @@
-import Vue from "vue";
-import Task from "./tasks/task";
+import Vue from 'vue';
+import Task from './tasks/task';
 
 export default Vue.extend({
 

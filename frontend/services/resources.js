@@ -1,5 +1,5 @@
-import Vue from "vue";
-import VueResource from "vue-resource";
+import Vue from 'vue';
+import VueResource from 'vue-resource';
 
 Vue.use(VueResource);
 export const CardsResource = Vue.resource('api/index.php/cards{/id}');

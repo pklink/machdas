@@ -1,6 +1,6 @@
-import Vue from "vue";
-import {focusModel} from "vue-focus";
-import {CardsResource} from "../../../services/resources";
+import Vue from 'vue';
+import { focusModel } from 'vue-focus';
+import { CardsResource } from '../../../services/resources';
 
 export default Vue.extend({
 

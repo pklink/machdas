@@ -1,6 +1,6 @@
-import Vue from "vue";
-import {CardsResource} from "../../services/resources";
-import AddInput from "./menu/add";
+import Vue from 'vue';
+import { CardsResource } from '../../services/resources';
+import AddInput from './menu/add';
 
 export default Vue.extend({
 
