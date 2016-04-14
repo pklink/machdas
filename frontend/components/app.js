@@ -5,7 +5,7 @@ export default Vue.extend({
 
     template: require('./views/app.html'),
 
-    ready: function() {
+    ready() {
         // create new task
         key('n', () => {
             this.$broadcast('tasks.new');
@@ -24,4 +24,4 @@ export default Vue.extend({
         });
     }
 
-})
+});

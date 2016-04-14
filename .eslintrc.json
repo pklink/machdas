@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "extends": "airbnb/base",
+  "rules": {
+    "arrow-body-style":  "off",
+    "comma-dangle":      ["error", "never"],
+    "indent":            ["error", 4],
+    "key-spacing":       "off",
+    "no-multi-spaces":   "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "max-len":           ["error", 120, 4]
+  }
+}

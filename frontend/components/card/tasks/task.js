@@ -3,50 +3,50 @@ import {TasksResource} from "../../../services/resources";
 import Utils from "../../../services/utils";
 import $ from "jquery";
 
-//noinspection JSUnusedGlobalSymbols
+// noinspection JSUnusedGlobalSymbols
 export default Vue.extend({
 
     template: require('./views/task.html'),
     props:    ['model'],
 
-    data: function() {
+    data() {
         return { editMode: false };
     },
 
-    ready: function() {
+    ready() {
         const modalEl = $(this.$el).find('.ui.modal');
         this._modal = (action) => {
-            modalEl.modal(action)
+            modalEl.modal(action);
         };
     },
 
     methods: {
-        toggle: function() {
+        toggle() {
             this.model.isDone = !this.model.isDone;
             this.save();
         },
-        delete: function () {
+        delete() {
             TasksResource.delete({ id: this.model.id }).then(() => {
                 this.$dispatch('tasks.-', this.model);
             });
         },
-        edit: function() {
+        edit() {
             this.editMode = true;
             this.$nextTick(() => {
                 this.$el.getElementsByTagName('input')[0].focus();
             });
         },
-        cancel: function() {
+        cancel() {
             this.editMode = false;
         },
-        save: function() {
+        save() {
             Utils.parseTask(this.model);
 
             TasksResource.update({ id: this.model.id }, this.model).then(() => {
                 this.$dispatch('tasks.updated');
             });
         },
-        showWarning: function() {
+        showWarning() {
             this._modal('show');
         }
 

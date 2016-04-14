@@ -13,6 +13,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
     ],
     module: {
+        preLoaders: [{
+            test: /\.js$/,
+            loader: "eslint-loader",
+            include: __dirname + '/frontend'
+        }],
         loaders: [{
             test:   /\.js/,
             loader: 'babel-loader',

@@ -10,7 +10,7 @@ import {CardsResource} from "./services/resources";
 Vue.use(VueRouter);
 
 // create & configure router
-var router = new VueRouter();
+const router = new VueRouter();
 
 router.map({
     '/cards': {
@@ -19,7 +19,7 @@ router.map({
         subRoutes: {
             '/': {
                 component: {
-                    init: function() {
+                    init() {
                         // redirect to first card
                         CardsResource.query().then(response => {
                             this.$route.router.go({ name: 'card', params: { id: response.data[0].id } });

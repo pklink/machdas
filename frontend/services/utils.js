@@ -1,6 +1,6 @@
 export default {
 
-    parsePriority: function(model) {
+    parsePriority(model) {
         // parse priority
         if (model.name.search(/@high/) !== -1) {
             model.priority = 'high';
@@ -16,7 +16,7 @@ export default {
         }
     },
 
-    parseIsDone: function(model) {
+    parseIsDone(model) {
         // parse priority
         if (model.name.search(/@done/) !== -1) {
             model.isDone = true;
@@ -24,9 +24,9 @@ export default {
         }
     },
 
-    parseTask: function(model) {
+    parseTask(model) {
         this.parsePriority(model);
         this.parseIsDone(model);
     }
 
-}
+};

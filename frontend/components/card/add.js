@@ -8,19 +8,19 @@ export default Vue.extend({
     template: require('./views/add.html'),
 
     directives: {
-        focusModel: focusModel
+        focusModel
     },
 
-    init: function () {
+    init() {
         this.$on('tasks.new', () => {
             this.isFocused = true;
         });
     },
 
     methods: {
-        save: function() {
+        save() {
             // create model
-            let model = {
+            const model = {
                 name: this.task,
                 priority: 'normal'
             };
@@ -29,7 +29,7 @@ export default Vue.extend({
             Utils.parseTask(model);
 
             // save task
-            TasksResource.save({id: this.$route.params.id }, model).then((response) => {
+            TasksResource.save({ id: this.$route.params.id }, model).then((response) => {
                 // fire event
                 this.$dispatch('tasks.+', response.data);
 
@@ -37,17 +37,17 @@ export default Vue.extend({
                 this.task = null;
             });
         },
-        cancel: function() {
+        cancel() {
             this.isFocused = false;
             this.task = '';
         }
     },
 
-    data: function() {
+    data() {
         return {
             task: '',
             isFocused: true
-        }
+        };
     }
 
 });

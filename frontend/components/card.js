@@ -11,28 +11,28 @@ export default Vue.extend({
         add: Add
     },
 
-    init: function() {
-        let refresh = () => this.refresh();
+    init() {
+        const refresh = () => this.refresh();
         this.$on('tasks.+', refresh);
-        this.$on('tasks.updated', refresh)
+        this.$on('tasks.updated', refresh);
     },
 
-    data: function() {
+    data() {
         return {
             models: []
-        }
+        };
     },
 
     methods: {
-        loadModels: function() {
-            let params = {
+        loadModels() {
+            const params = {
                 id: this.$route.params.id,
                 'order-by': 'priority,desc'
             };
 
             return TasksResource.queryByCardId(params);
         },
-        refresh: function() {
+        refresh() {
             this.loadModels().then(response => {
                 this.models = response.data;
             });
@@ -41,10 +41,10 @@ export default Vue.extend({
 
     route: {
 
-        data: function() {
+        data() {
             return this.loadModels().then(response => {
                 return { models: response.data };
-            })
+            });
         },
 
         canReuse: false

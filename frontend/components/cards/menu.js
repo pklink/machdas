@@ -11,14 +11,14 @@ export default Vue.extend({
         add: AddInput
     },
 
-    init: function() {
+    init() {
         this.$on('cards.+', (model) => {
             this.models.push(model);
-        })
+        });
     },
 
 
-    data: function() {
+    data() {
         return CardsResource.query().then(response => {
             this.models = response.data;
         });

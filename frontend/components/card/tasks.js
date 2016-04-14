@@ -9,7 +9,7 @@ export default Vue.extend({
         task: Task
     },
 
-    init: function() {
+    init() {
         this.$on('tasks.-', model => {
             this.models.splice(this.models.indexOf(model), 1);
         });
