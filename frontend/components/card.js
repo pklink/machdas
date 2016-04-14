@@ -1,7 +1,7 @@
-import Vue from "vue";
-import {TasksResource} from "../services/resources";
-import Add from "./card/add";
-import Tasks from "./card/tasks";
+import Vue from 'vue';
+import { TasksResource } from '../services/resources';
+import Add from './card/add';
+import Tasks from './card/tasks';
 
 export default Vue.extend({
 
