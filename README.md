@@ -76,10 +76,19 @@ Open http://localhost:8080/ or http://localhost:8080/webpack-dev-server/
  
 ### Running test
 
+#### Backend
+
 ```sh
 composer install
 php -S localhost:9000 -t ./public &
 php vendor/bin/codecept run
+```
+
+#### Frontend
+
+```sh
+npm install
+node_modules/.bin/eslint frontend/
 ```
 
 ## Changelog
