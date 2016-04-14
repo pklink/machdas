@@ -8,4 +8,4 @@ export default Vue.extend({
         menu: Menu
     }
 
-});
+})

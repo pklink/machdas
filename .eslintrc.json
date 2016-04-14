@@ -14,6 +14,7 @@
     "key-spacing":       "off",
     "no-multi-spaces":   "off",
     "no-param-reassign": ["error", { "props": false }],
-    "max-len":           ["error", 120, 4]
+    "max-len":           ["error", 120, 4],
+    "semi":              ["error", "never"]
   }
 }

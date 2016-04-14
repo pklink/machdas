@@ -13,8 +13,8 @@ export default Vue.extend({
 
     init() {
         this.$on('tasks.new', () => {
-            this.isFocused = true;
-        });
+            this.isFocused = true
+        })
     },
 
     methods: {
@@ -23,23 +23,23 @@ export default Vue.extend({
             const model = {
                 name: this.task,
                 priority: 'normal'
-            };
+            }
 
             // parse models name
-            Utils.parseTask(model);
+            Utils.parseTask(model)
 
             // save task
             TasksResource.save({ id: this.$route.params.id }, model).then((response) => {
                 // fire event
-                this.$dispatch('tasks.+', response.data);
+                this.$dispatch('tasks.+', response.data)
 
                 // clear task
-                this.task = null;
-            });
+                this.task = null
+            })
         },
         cancel() {
-            this.isFocused = false;
-            this.task = '';
+            this.isFocused = false
+            this.task = ''
         }
     },
 
@@ -47,7 +47,7 @@ export default Vue.extend({
         return {
             task: '',
             isFocused: true
-        };
+        }
     }
 
-});
+})

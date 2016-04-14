@@ -13,15 +13,15 @@ export default Vue.extend({
 
     init() {
         this.$on('cards.+', (model) => {
-            this.models.push(model);
-        });
+            this.models.push(model)
+        })
     },
 
 
     data() {
         return CardsResource.query().then(response => {
-            this.models = response.data;
-        });
+            this.models = response.data
+        })
     }
 
-});
+})

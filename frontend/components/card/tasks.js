@@ -11,8 +11,8 @@ export default Vue.extend({
 
     init() {
         this.$on('tasks.-', model => {
-            this.models.splice(this.models.indexOf(model), 1);
-        });
+            this.models.splice(this.models.indexOf(model), 1)
+        })
     }
 
-});
+})

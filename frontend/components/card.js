@@ -12,15 +12,15 @@ export default Vue.extend({
     },
 
     init() {
-        const refresh = () => this.refresh();
-        this.$on('tasks.+', refresh);
-        this.$on('tasks.updated', refresh);
+        const refresh = () => this.refresh()
+        this.$on('tasks.+', refresh)
+        this.$on('tasks.updated', refresh)
     },
 
     data() {
         return {
             models: []
-        };
+        }
     },
 
     methods: {
@@ -28,14 +28,14 @@ export default Vue.extend({
             const params = {
                 id: this.$route.params.id,
                 'order-by': 'priority,desc'
-            };
+            }
 
-            return TasksResource.queryByCardId(params);
+            return TasksResource.queryByCardId(params)
         },
         refresh() {
             this.loadModels().then(response => {
-                this.models = response.data;
-            });
+                this.models = response.data
+            })
         }
     },
 
@@ -43,12 +43,12 @@ export default Vue.extend({
 
         data() {
             return this.loadModels().then(response => {
-                return { models: response.data };
-            });
+                return { models: response.data }
+            })
         },
 
         canReuse: false
 
     }
 
-});
+})

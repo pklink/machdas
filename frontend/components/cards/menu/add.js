@@ -12,8 +12,8 @@ export default Vue.extend({
 
     init() {
         this.$on('cards.new', () => {
-            this.isFocused = true;
-        });
+            this.isFocused = true
+        })
     },
 
     data() {
@@ -22,7 +22,7 @@ export default Vue.extend({
             model: {
                 name: ''
             }
-        };
+        }
     },
 
     methods: {
@@ -30,19 +30,19 @@ export default Vue.extend({
             // save card
             CardsResource.save(this.model).then((response) => {
                 // fire event
-                this.$dispatch('cards.+', response.data);
+                this.$dispatch('cards.+', response.data)
 
                 // route to new card
-                this.$route.router.go({ name: 'card', params: { id: response.data.id } });
+                this.$route.router.go({ name: 'card', params: { id: response.data.id } })
 
                 // clear field
-                this.model.name = '';
-            });
+                this.model.name = ''
+            })
         },
         cancel() {
-            this.model.name = '';
-            this.isFocused  = false;
+            this.model.name = ''
+            this.isFocused  = false
         }
     }
 
-});
+})

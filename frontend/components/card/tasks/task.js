@@ -10,46 +10,46 @@ export default Vue.extend({
     props:    ['model'],
 
     data() {
-        return { editMode: false };
+        return { editMode: false }
     },
 
     ready() {
-        const modalEl = $(this.$el).find('.ui.modal');
+        const modalEl = $(this.$el).find('.ui.modal')
         this._modal = (action) => {
-            modalEl.modal(action);
-        };
+            modalEl.modal(action)
+        }
     },
 
     methods: {
         toggle() {
-            this.model.isDone = !this.model.isDone;
-            this.save();
+            this.model.isDone = !this.model.isDone
+            this.save()
         },
         delete() {
             TasksResource.delete({ id: this.model.id }).then(() => {
-                this.$dispatch('tasks.-', this.model);
-            });
+                this.$dispatch('tasks.-', this.model)
+            })
         },
         edit() {
-            this.editMode = true;
+            this.editMode = true
             this.$nextTick(() => {
-                this.$el.getElementsByTagName('input')[0].focus();
-            });
+                this.$el.getElementsByTagName('input')[0].focus()
+            })
         },
         cancel() {
-            this.editMode = false;
+            this.editMode = false
         },
         save() {
-            Utils.parseTask(this.model);
+            Utils.parseTask(this.model)
 
             TasksResource.update({ id: this.model.id }, this.model).then(() => {
-                this.$dispatch('tasks.updated');
-            });
+                this.$dispatch('tasks.updated')
+            })
         },
         showWarning() {
-            this._modal('show');
+            this._modal('show')
         }
 
     }
 
-});
+})

@@ -7,10 +7,10 @@ import Help from './components/help';
 import { CardsResource } from './services/resources';
 
 // register plugins
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 // create & configure router
-const router = new VueRouter();
+const router = new VueRouter()
 
 router.map({
     '/cards': {
@@ -22,8 +22,8 @@ router.map({
                     init() {
                         // redirect to first card
                         CardsResource.query().then(response => {
-                            this.$route.router.go({ name: 'card', params: { id: response.data[0].id } });
-                        });
+                            this.$route.router.go({ name: 'card', params: { id: response.data[0].id } })
+                        })
                     }
                 }
             },
@@ -37,13 +37,13 @@ router.map({
         name: 'help',
         component: Help
     }
-});
+})
 
 // default redirect to `/cards`
 router.redirect({
     '/': '/cards'
-});
+})
 
 // start app
-router.start(App, '#app');
+router.start(App, '#app')
 
