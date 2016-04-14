@@ -10,6 +10,7 @@ install:
   - sed -i "s/'password'//g" codeception.yml
   - sed -i 's/192.168.99.100/127.0.0.1/g' codeception.yml
   - composer install --dev
+  - mysql -e 'CREATE DATABASE machdas;'
   - php vendor/bin/phinx migrate -e dev
   - php vendor/bin/codecept build
   - php -S localhost:9000 -t ./public &
