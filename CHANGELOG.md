@@ -133,7 +133,7 @@
 
 Initial version
 
-[phinx]: 
+[phinx]: https://phinx.org/ 
 [assetic]: http://github.com/kriswallsmith/assetic
 [backbone]: http://backbonejs.org/
 [docker]: https://www.docker.com/
