@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import key from 'keymaster';
+import Vue from 'vue'
+import key from 'keymaster'
 
 export default Vue.extend({
 

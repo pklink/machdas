@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import Menu from './cards/menu';
+import Vue from 'vue'
+import Menu from './cards/menu'
 
 export default Vue.extend({
 

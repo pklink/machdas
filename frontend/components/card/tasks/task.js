@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import { TasksResource } from '../../../services/resources';
-import Utils from '../../../services/utils';
-import $ from 'jquery';
+import Vue from 'vue'
+import { TasksResource } from '../../../services/resources'
+import Utils from '../../../services/utils'
+import $ from 'jquery'
 
 // noinspection JSUnusedGlobalSymbols
 export default Vue.extend({

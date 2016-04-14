@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import { focusModel } from 'vue-focus';
-import { TasksResource } from '../../services/resources';
-import Utils from '../../services/utils';
+import Vue from 'vue'
+import { focusModel } from 'vue-focus'
+import { TasksResource } from '../../services/resources'
+import Utils from '../../services/utils'
 
 export default Vue.extend({
 
