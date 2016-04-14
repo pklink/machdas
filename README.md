@@ -43,8 +43,6 @@ Available environment variables are:
 
 #### Instructions
 
-Import `setup/install.sql` to your MySQL database
-
 ```sh
 wget https://github.com/pklink/machdas/archive/<LATEST_VERSION>.tar.gz
 tar xzf <LATEST_VERSION>.tar.gz
@@ -54,51 +52,8 @@ cp config.sample.php config.php
 vim config.php
 npm install
 npm run build
+php vendor/bin/phinx migrate -e prod
 php -S localhost:9000 -t ./public
-```
-
-## Upgrade
-
-### to 0.6.0
-
-* execute `setup/update-to-0.6.0.sql`
-
-### to 0.5.1
-
-* change the following keys in your `config.php`
-    * `database` to `db`
-    * `db.name` to `db.database`
-* add the following keys and values to your `config.php`
-    * key: `driver` value: `'mysql'`
-    * key: `charset` value: `'utf8'`
-    * key: `collation` value: `'utf8_unicode_ci'`
-    * key: `prefix` value: `''`
-* execute `setup/update-to-0.5.1.sql`
-
-### to 0.4.2
-
-* write down your set priorities
-* execute `setup/update-to-0.4.2.sql`
-* set your priorities again - sorry
-
-### to 0.4.1
-
-* add key/config `name` to your `config.php` (default value is `Dingbat`)
-
-### to 0.3.0
-
-* execute `setup/update-to-0.3.0.sql`
-
-### to 0.2.0
-
-* execute `setup/update-to-0.2.0.sql`
-
-## Running test
-
-```sh
-composer install
-php -S localhost:9000 -t ./public &
-php vendor/bin/codecept run
 ```
 
 ## Set up development environment
@@ -112,11 +67,20 @@ composer install
 cp config.sample.php config.php
 vim config.php
 npm install
+php vendor/bin/phinx migrate -e dev
 php -S 127.0.0.1:9000 -t ./public &
 npm start
 ```
 
-Open http://localhost:8080/ or http://localhost:8080/webpack-dev-server/ 
+Open http://localhost:8080/ or http://localhost:8080/webpack-dev-server/
+ 
+### Running test
+
+```sh
+composer install
+php -S localhost:9000 -t ./public &
+php vendor/bin/codecept run
+```
 
 ## Changelog
 
