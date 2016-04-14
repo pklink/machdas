@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+
+* Enh: Added warning modal before deleting a task
+
 ## 0.6.2
 
 * Enh: Added [Phinx][phinx] for database bootstrapping 
