@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.2
+
+* Enh: Added [Phinx][phinx] for database bootstrapping 
+
 ## 0.6.1
 
 * Enh: Added support for [Docker][docker]
@@ -125,6 +129,7 @@
 
 Initial version
 
+[phinx]: 
 [assetic]: http://github.com/kriswallsmith/assetic
 [backbone]: http://backbonejs.org/
 [docker]: https://www.docker.com/
