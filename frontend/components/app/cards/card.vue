@@ -8,6 +8,7 @@
     import taskService from '../../../services/task'
     import Add from './card/add'
     import Tasks from './card/tasks'
+    import eventEmitter from '../../../services/event-emitter'
 
     export default {
 
@@ -18,8 +19,8 @@
 
         init() {
             const refresh = () => this.refresh()
-            this.$on('tasks.+', refresh)
-            this.$on('tasks.updated', refresh)
+            eventEmitter.on('tasks.created', refresh)
+            eventEmitter.on('tasks.updated', refresh)
         },
 
         data() {

@@ -1,3 +1,4 @@
+require('eventemitter2')
 require('keymaster')
 require('promise')
 require('vue')

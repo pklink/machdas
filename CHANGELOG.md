@@ -3,6 +3,7 @@
 ## 0.7.0
 
 * Enh: Added warning modal before deleting a task
+* Enh: Added task counter to card menu
 * Enh: Added [ESlint][eslint]
 * Chg: Added [Vue file components][vueloader]
 

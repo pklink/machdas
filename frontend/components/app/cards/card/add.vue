@@ -8,6 +8,7 @@
     import { focusModel } from 'vue-focus'
     import taskService from '../../../../services/task'
     import Utils from '../../../../services/utils'
+    import eventEmitter from '../../../../services/event-emitter'
 
     export default {
 
@@ -16,7 +17,7 @@
         },
 
         init() {
-            this.$on('tasks.new', () => {
+            eventEmitter.on('tasks.new', () => {
                 this.isFocused = true
             })
         },
@@ -35,7 +36,7 @@
                 // save task
                 taskService.save(this.$route.params.id, model).then((response) => {
                     // fire event
-                    this.$dispatch('tasks.+', response)
+                    eventEmitter.emit('tasks.created', response)
 
                     // clear task
                     this.task = null

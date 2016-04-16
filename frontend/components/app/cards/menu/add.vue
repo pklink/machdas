@@ -10,6 +10,7 @@
 <script type="text/babel">
     import { focusModel } from 'vue-focus'
     import cardService from '../../../../services/card'
+    import eventEmitter from '../../../../services/event-emitter'
 
     export default {
 
@@ -18,7 +19,7 @@
         },
 
         init() {
-            this.$on('cards.new', () => {
+            eventEmitter.on('cards.new', () => {
                 this.isFocused = true
             })
         },
@@ -37,7 +38,7 @@
                 // save card
                 cardService.save(this.model).then((response) => {
                     // fire event
-                    this.$dispatch('cards.+', response)
+                    eventEmitter.emit('cards.created', response)
 
                     // route to new card
                     this.$route.router.go({ name: 'card', params: { id: response.id } })

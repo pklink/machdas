@@ -18,19 +18,20 @@
 
 <script type="text/babel">
     import key from 'keymaster'
+    import eventEmitter from '../services/event-emitter'
 
     export default {
 
         ready() {
             // create new task
             key('n', () => {
-                this.$broadcast('tasks.new')
+                eventEmitter.emit('tasks.new')
                 return false
             })
 
             // create new card
             key('c', () => {
-                this.$broadcast('cards.new')
+                eventEmitter.emit('cards.new')
                 return false
             })
 

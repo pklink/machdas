@@ -1,6 +1,6 @@
 <template>
     <div class="four wide column">
-        <menu :models="cards"></menu>
+        <menu :tasks-count="tasksCount" :models="cards"></menu>
     </div>
 
     <div class="twelve wide column">
@@ -8,9 +8,10 @@
     </div>
 </template>
 
-<script>
+<script type="text/babel">
     import Menu from './cards/menu'
     import cardService from '../../services/card'
+    import taskService from '../../services/task'
 
     export default {
 
@@ -20,6 +21,7 @@
 
         data() {
             return {
+                tasksCount: {},
                 cards: {}
             }
         },
@@ -27,7 +29,8 @@
         route: {
             data() {
                 return {
-                    cards: cardService.query()
+                    tasksCount: taskService.countByCards(),
+                    cards:      cardService.query()
                 }
             }
         }

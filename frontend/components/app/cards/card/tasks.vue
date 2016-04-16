@@ -7,6 +7,7 @@
 
 <script type="text/babel">
     import Task from './tasks/task'
+    import eventEmitter from '../../../../services/event-emitter'
 
     export default {
 
@@ -16,7 +17,7 @@
         },
 
         init() {
-            this.$on('tasks.-', model => {
+            eventEmitter.on('tasks.deleted', model => {
                 this.models.splice(this.models.indexOf(model), 1)
             })
         }
