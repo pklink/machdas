@@ -1,4 +1,5 @@
 require('keymaster')
+require('promise')
 require('vue')
 require('vue-focus')
 require('vue-resource')
