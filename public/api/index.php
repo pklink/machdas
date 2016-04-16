@@ -25,6 +25,7 @@ $container['db'] = function($container) {
 
 // add error handler
 $container['notFoundHandler'] = function() {
+    /** @noinspection PhpUnusedParameterInspection */
     return function($request, \Slim\Http\Response $response) {
         return $response
             ->withStatus(404)
@@ -34,6 +35,7 @@ $container['notFoundHandler'] = function() {
 };
 
 $container['notAllowedHandler'] = function() {
+    /** @noinspection PhpUnusedParameterInspection */
     return function($request, \Slim\Http\Response $response, array $methods) {
         return $response
             ->withStatus(405)
@@ -43,6 +45,7 @@ $container['notAllowedHandler'] = function() {
 };
 
 $container['errorHandler'] = function($container) {
+    /** @noinspection PhpUnusedParameterInspection */
     return function($request, \Slim\Http\Response $response, Exception $exception) use ($container) {
         $payload = ['message' => 'Something went wrong!'];
 
@@ -70,6 +73,7 @@ $app->group('/cards', function() {
     $this->get('/{id:\d+}/tasks', \Machdas\Action\Card\GetAllTasks::class);
     $this->put('/{id:\d+}', \Machdas\Action\Card\Update::class);
     $this->delete('/{id:\d+}', \Machdas\Action\Card\Delete::class);
+    $this->get('/tasks/count', \Machdas\Action\Card\CountTasks::class);
 });
 
 $app->group('/tasks', function() {
