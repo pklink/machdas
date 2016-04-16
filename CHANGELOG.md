@@ -4,6 +4,7 @@
 
 * Enh: Added warning modal before deleting a task
 * Enh: Added [ESlint][eslint]
+* Chg: Added [Vue file components][vueloader]
 
 ## 0.6.2
 
@@ -147,3 +148,4 @@ Initial version
 [slim]: http://www.slimframework.com/
 [twig]: http://twig.sensiolabs.org/
 [vue]: http://vuejs.org/
+[vueloader]: https://github.com/vuejs/vue-loader

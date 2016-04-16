@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './components/app'
-import Cards from './components/cards'
-import Card from './components/card'
-import Help from './components/help'
+import Cards from './components/app/cards'
+import Card from './components/app/cards/card'
+import Help from './components/app/help'
 import { CardsResource } from './services/resources'
 
 // register plugins

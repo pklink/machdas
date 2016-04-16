@@ -12,9 +12,12 @@ module.exports = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
     ],
+    resolve: {
+        extensions: ['', '.js', '.vue']
+    },
     module: {
         preLoaders: [{
-            test: /\.js$/,
+            test: /\.(js|vue)$/,
             loader: "eslint-loader",
             include: __dirname + '/frontend'
         }],
@@ -25,6 +28,10 @@ module.exports = {
             query: {
                 presets: ['es2015']
             }
+        }, {
+            test:   /\.vue/,
+            loader: 'vue-loader',
+            include: __dirname + '/frontend'
         }, {
             test:   /\.html/,
             loader: 'raw-loader',

@@ -6,6 +6,9 @@
   "parserOptions": {
     "ecmaVersion": 6
   },
+  "plugins": [
+    "html"
+  ],
   "extends": "airbnb/base",
   "rules": {
     "arrow-body-style":  "off",
