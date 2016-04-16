@@ -38,6 +38,10 @@
                 // increment tasks count
                 this.tasksCount.find(count => count.card === model.cardId).count++
             })
+            eventEmitter.on('tasks.deleted', model => {
+                // decrement tasks count
+                this.tasksCount.find(count => count.card === model.cardId).count--
+            })
         }
 
     }
