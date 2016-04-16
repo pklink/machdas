@@ -1,6 +1,6 @@
 <template>
     <div class="four wide column">
-        <menu></menu>
+        <menu :models="cards"></menu>
     </div>
 
     <div class="twelve wide column">
@@ -10,11 +10,26 @@
 
 <script>
     import Menu from './cards/menu'
+    import { cardService } from '../../services/resources'
 
     export default {
 
         components: {
             menu: Menu
+        },
+
+        data() {
+            return {
+                cards: {}
+            }
+        },
+
+        route: {
+            data() {
+                return {
+                    cards: cardService.query()
+                }
+            }
         }
 
     }

@@ -11,7 +11,6 @@
 </template>
 
 <script type="text/babel">
-    import { CardsResource } from '../../../services/resources'
     import AddInput from './menu/add'
 
     export default {
@@ -25,12 +24,6 @@
         init() {
             this.$on('cards.+', (model) => {
                 this.models.push(model)
-            })
-        },
-
-        data() {
-            return CardsResource.query().then(response => {
-                this.models = response.data
             })
         }
 

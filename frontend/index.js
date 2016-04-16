@@ -4,7 +4,7 @@ import App from './components/app'
 import Cards from './components/app/cards'
 import Card from './components/app/cards/card'
 import Help from './components/app/help'
-import { CardsResource } from './services/resources'
+import { cardService } from './services/resources'
 
 // register plugins
 Vue.use(VueRouter)
@@ -21,7 +21,7 @@ router.map({
                 component: {
                     init() {
                         // redirect to first card
-                        CardsResource.query().then(response => {
+                        cardService.query().then(response => {
                             this.$route.router.go({ name: 'card', params: { id: response.data[0].id } })
                         })
                     }

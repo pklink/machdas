@@ -6,7 +6,7 @@
 
 <script type="text/babel">
     import { focusModel } from 'vue-focus'
-    import { TasksResource } from '../../../../services/resources'
+    import { taskService } from '../../../../services/resources'
     import Utils from '../../../../services/utils'
 
     export default {
@@ -33,9 +33,9 @@
                 Utils.parseTask(model)
 
                 // save task
-                TasksResource.save({ id: this.$route.params.id }, model).then((response) => {
+                taskService.save(this.$route.params.id, model).then((response) => {
                     // fire event
-                    this.$dispatch('tasks.+', response.data)
+                    this.$dispatch('tasks.+', response)
 
                     // clear task
                     this.task = null

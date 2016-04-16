@@ -34,7 +34,7 @@
 </template>
 
 <script type="text/babel">
-    import { TasksResource } from '../../../../../services/resources'
+    import { taskService } from '../../../../../services/resources'
     import Utils from '../../../../../services/utils'
     import $ from 'jquery'
 
@@ -60,7 +60,7 @@
                 this.save()
             },
             delete() {
-                TasksResource.delete({ id: this.model.id }).then(() => {
+                taskService.delete(this.model.id).then(() => {
                     this.$dispatch('tasks.-', this.model)
                 })
             },
@@ -76,7 +76,7 @@
             save() {
                 Utils.parseTask(this.model)
 
-                TasksResource.update({ id: this.model.id }, this.model).then(() => {
+                taskService.update(this.model.id, this.model).then(() => {
                     this.$dispatch('tasks.updated')
                 })
             },

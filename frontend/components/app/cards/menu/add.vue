@@ -9,7 +9,7 @@
 
 <script type="text/babel">
     import { focusModel } from 'vue-focus'
-    import { CardsResource } from '../../../../services/resources'
+    import { cardService } from '../../../../services/resources'
 
     export default {
 
@@ -35,12 +35,12 @@
         methods: {
             save() {
                 // save card
-                CardsResource.save(this.model).then((response) => {
+                cardService.save(this.model).then((response) => {
                     // fire event
-                    this.$dispatch('cards.+', response.data)
+                    this.$dispatch('cards.+', response)
 
                     // route to new card
-                    this.$route.router.go({ name: 'card', params: { id: response.data.id } })
+                    this.$route.router.go({ name: 'card', params: { id: response.id } })
 
                     // clear field
                     this.model.name = ''
