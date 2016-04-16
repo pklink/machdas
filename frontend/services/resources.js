@@ -72,7 +72,7 @@ export const taskService = {
 
     update(id, model) {
         return new Promise((resolve, reject) => {
-            Vue.http.update(`api/index.php/tasks/${id}`, model).then(response => {
+            Vue.http.put(`api/index.php/tasks/${id}`, model).then(response => {
                 resolve(response.data)
             }, error => {
                 reject(error)
