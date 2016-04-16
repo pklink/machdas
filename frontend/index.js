@@ -22,7 +22,7 @@ router.map({
                     init() {
                         // redirect to first card
                         cardService.query().then(response => {
-                            this.$route.router.go({ name: 'card', params: { id: response.data[0].id } })
+                            this.$route.router.go({ name: 'card', params: { id: response[0].id } })
                         })
                     }
                 }
