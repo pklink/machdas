@@ -1,12 +1,14 @@
 import Vue from 'vue'
+import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import App from './components/app'
 import Cards from './components/app/cards'
 import Card from './components/app/cards/card'
 import Help from './components/app/help'
-import { cardService } from './services/resources'
+import cardService from './services/card'
 
 // register plugins
+Vue.use(VueResource)
 Vue.use(VueRouter)
 
 // create & configure router

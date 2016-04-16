@@ -6,7 +6,7 @@
 
 <script type="text/babel">
     import { focusModel } from 'vue-focus'
-    import { taskService } from '../../../../services/resources'
+    import taskService from '../../../../services/task'
     import Utils from '../../../../services/utils'
 
     export default {

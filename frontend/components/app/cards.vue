@@ -10,7 +10,7 @@
 
 <script>
     import Menu from './cards/menu'
-    import { cardService } from '../../services/resources'
+    import cardService from '../../services/card'
 
     export default {
 

@@ -9,7 +9,7 @@
 
 <script type="text/babel">
     import { focusModel } from 'vue-focus'
-    import { cardService } from '../../../../services/resources'
+    import cardService from '../../../../services/card'
 
     export default {
 

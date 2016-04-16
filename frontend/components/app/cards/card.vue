@@ -4,7 +4,8 @@
 </template>
 
 <script type="text/babel">
-    import { cardService, taskService } from '../../../services/resources'
+    import cardService from '../../../services/card'
+    import taskService from '../../../services/task'
     import Add from './card/add'
     import Tasks from './card/tasks'
 

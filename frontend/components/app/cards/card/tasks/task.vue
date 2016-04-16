@@ -34,7 +34,7 @@
 </template>
 
 <script type="text/babel">
-    import { taskService } from '../../../../../services/resources'
+    import taskService from '../../../../../services/task'
     import Utils from '../../../../../services/utils'
     import $ from 'jquery'
 
