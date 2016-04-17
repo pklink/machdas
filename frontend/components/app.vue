@@ -11,7 +11,7 @@
 
         <div class="sixteen wide right aligned column">
             <div class="ui divider"></div>
-            <small class="secondary">this is <a href="https://github.com/pklink/machdas">machdas 0.6.2</a></small>
+            <small class="secondary">this is <a href="https://github.com/pklink/machdas">machdas 0.7.0</a></small>
         </div>
     </div>
 </template>
