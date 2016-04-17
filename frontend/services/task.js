@@ -27,7 +27,6 @@ export default {
 
     delete(model) {
         return new Promise((resolve, reject) => {
-            console.log(`api/index.php/tasks/${model.id}`)
             Vue.http.delete(`api/index.php/tasks/${model.id}`).then(response => {
                 eventEmitter.emit('tasks.deleted', model)
                 resolve(response.data)
