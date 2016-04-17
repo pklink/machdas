@@ -34,7 +34,7 @@
                 Utils.parseTask(model)
 
                 // save task
-                taskService.save(this.$route.params.id, model).then(() => {
+                taskService.create(this.$route.params.id, model).then(() => {
                     this.task = null
                 })
             },

@@ -36,7 +36,7 @@
         methods: {
             save() {
                 // save card
-                cardService.save(this.model).then((response) => {
+                cardService.create(this.model).then((response) => {
                     // route to new card
                     this.$route.router.go({ name: 'card', params: { id: response.id } })
 

@@ -14,6 +14,17 @@ export default {
         })
     },
 
+    create(cardId, model) {
+        return new Promise((resolve, reject) => {
+            Vue.http.post(`api/index.php/cards/${cardId}/tasks`, model).then(response => {
+                eventEmitter.emit('tasks.created', response.data)
+                resolve(response.data)
+            }, error => {
+                reject(error)
+            })
+        })
+    },
+
     delete(model) {
         return new Promise((resolve, reject) => {
             console.log(`api/index.php/tasks/${model.id}`)
@@ -29,17 +40,6 @@ export default {
     queryByCardId(id) {
         return new Promise((resolve, reject) => {
             Vue.http.get(`api/index.php/cards/${id}/tasks`).then(response => {
-                resolve(response.data)
-            }, error => {
-                reject(error)
-            })
-        })
-    },
-
-    save(cardId, model) {
-        return new Promise((resolve, reject) => {
-            Vue.http.post(`api/index.php/cards/${cardId}/tasks`, model).then(response => {
-                eventEmitter.emit('tasks.created', response.data)
                 resolve(response.data)
             }, error => {
                 reject(error)
