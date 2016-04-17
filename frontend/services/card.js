@@ -15,6 +15,17 @@ export default {
         })
     },
 
+    delete(model) {
+        return new Promise((resolve, reject) => {
+            Vue.http.delete(`api/index.php/cards/${model.id}`).then(() => {
+                eventEmitter.emit('cards.deleted', model)
+                resolve(model)
+            }, error => {
+                reject(error)
+            })
+        })
+    },
+
     get(id) {
         return new Promise((resolve, reject) => {
             Vue.http.get(`api/index.php/cards/${id}`).then((response) => {
