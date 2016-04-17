@@ -1,14 +1,26 @@
 <template>
-    <div class="ui large fluid input">
-        <input type="text" placeholder="describe your task and press enter" @keyup.enter="save" @keyup.esc="cancel" v-model="task" v-focus-model="isFocused">
+    <div class="item">
+        <div class="content">
+            <div class="ui small transparent icon fluid input">
+                <input type="text" placeholder="describe your task and press enter"
+                       @keyup.enter="save" @keyup.esc="cancel" v-model="task" v-focus-model="isFocused">
+                <i class="plus icon" id="add-task-input-icon"></i>
+            </div>
+        </div>
     </div>
 </template>
 
+<style>
+    #add-task-input-icon {
+        right: 4px;
+    }
+</style>
+
 <script type="text/babel">
     import { focusModel } from 'vue-focus'
-    import taskService from '../../../../services/task'
-    import Utils from '../../../../services/utils'
-    import eventEmitter from '../../../../services/event-emitter'
+    import taskService from '../../../../../services/task'
+    import Utils from '../../../../../services/utils'
+    import eventEmitter from '../../../../../services/event-emitter'
 
     export default {
 

@@ -39,10 +39,14 @@
             this.decrementTasksCounterCallback = (model) => {
                 this.tasksCount.find(count => count.card === model.cardId).count--
             }
+            this.updateModelCallback = (model) => {
+                this.models.find(card => card.id === model.id).name = model.name
+            }
         },
 
         ready() {
             eventEmitter.on('cards.created', this.addModelCallback)
+            eventEmitter.on('cards.updated', this.updateModelCallback)
             eventEmitter.on('tasks.created', this.incrementTasksCounterCallback)
             eventEmitter.on('tasks.deleted', this.decrementTasksCounterCallback)
         },

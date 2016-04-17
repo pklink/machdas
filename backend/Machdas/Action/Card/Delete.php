@@ -26,7 +26,7 @@ class Delete extends Action\AbstractImpl
             $card = Card::query()->findOrFail($args['id']);
 
             // delete tasks of card
-            Task::query()->where('cardId', $card->id);
+            Task::query()->where('cardId', $card->id)->delete();
 
             // delete card
             $card->delete();
