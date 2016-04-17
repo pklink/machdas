@@ -5,6 +5,7 @@ import App from './components/app'
 import Cards from './components/app/cards'
 import Card from './components/app/cards/card'
 import Help from './components/app/help'
+import NotFound from './components/app/404'
 import cardService from './services/card'
 
 // register plugins
@@ -38,11 +39,15 @@ router.map({
     '/help': {
         name: 'help',
         component: Help
+    },
+    '/404': {
+        name: '404',
+        component: NotFound
     }
 })
 
 router.redirect({
-    '*': { name: 'cards' }
+    '*': { name: '404' }
 })
 
 // default redirect to `/cards`
