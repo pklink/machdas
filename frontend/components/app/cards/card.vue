@@ -106,11 +106,15 @@
         route: {
 
             data(transition) {
-                const id = transition.to.params.id
+                const id            = transition.to.params.id
+                const errorHandler  = (response) => {
+                    transition.redirect({ name: 'cards' })
+                    transition.abort(response)
+                }
 
                 return {
-                    model:  cardService.get(id),
-                    models: taskService.queryByCardId(id, { 'order-by': 'priority,desc' })
+                    model: cardService.get(id).catch(errorHandler),
+                    models: taskService.queryByCardId(id, { 'order-by': 'priority,desc' }).catch(errorHandler)
                 }
             },
 
