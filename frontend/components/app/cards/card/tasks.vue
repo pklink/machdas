@@ -1,5 +1,6 @@
 <template>
     <div class="ui large divided selection list">
+        <add></add>
         <task v-for="model in models" :model="model"></task>
         <p class="ui message" v-if="models.length == 0">No tasks found</p>
     </div>
@@ -7,13 +8,15 @@
 
 <script type="text/babel">
     import Task from './tasks/task'
+    import Add from './tasks/add'
     import eventEmitter from '../../../../services/event-emitter'
 
     export default {
 
         props:    ['models'],
         components: {
-            task: Task
+            task: Task,
+            add: Add
         },
 
         init() {
