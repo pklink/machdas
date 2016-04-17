@@ -7,6 +7,7 @@
 * Enh: Added warning modal before deleting a task
 * Enh: Added task counter to card menu
 * Enh: Added [ESlint][eslint]
+* Enh: Added default routing to `#/cards/`
 * Chg: Added [Vue file components][vueloader]
 
 ## 0.6.2
