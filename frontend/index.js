@@ -41,6 +41,10 @@ router.map({
     }
 })
 
+router.redirect({
+    '*': { name: 'cards' }
+})
+
 // default redirect to `/cards`
 router.redirect({
     '/': '/cards'
