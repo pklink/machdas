@@ -36,9 +36,9 @@ export default {
         })
     },
 
-    queryByCardId(id) {
+    queryByCardId(id, params) {
         return new Promise((resolve, reject) => {
-            Vue.http.get(`api/index.php/cards/${id}/tasks`).then(response => {
+            Vue.http.get(`api/index.php/cards/${id}/tasks`, params).then(response => {
                 resolve(response.data)
             }, error => {
                 reject(error)

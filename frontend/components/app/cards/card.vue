@@ -90,7 +90,7 @@
                 this.deleteMode = !this.deleteMode
             },
             loadModels() {
-                return taskService.queryByCardId(this.$route.params.id)
+                return taskService.queryByCardId(this.model.id, { 'order-by': 'priority,desc' })
             },
             refresh() {
                 this.loadModels().then((response) => {
@@ -110,7 +110,7 @@
 
                 return {
                     model:  cardService.get(id),
-                    models: taskService.queryByCardId(id)
+                    models: taskService.queryByCardId(id, { 'order-by': 'priority,desc' })
                 }
             },
 
