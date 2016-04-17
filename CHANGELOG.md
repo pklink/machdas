@@ -2,6 +2,8 @@
 
 ## 0.7.0
 
+* New: Added possibility to delete cards #16
+* New: Added possibility to rename cards
 * Enh: Added warning modal before deleting a task
 * Enh: Added task counter to card menu
 * Enh: Added [ESlint][eslint]
@@ -43,7 +45,7 @@
 
 ## 0.4.4
 
-* Fix: #6 jquery.keycut.min.js doesn't load if Dingbat installed in a subdirectory
+* Fix: jquery.keycut.min.js doesn't load if Dingbat installed in a subdirectory #6
 
 ## 0.4.3
 
@@ -61,12 +63,12 @@
 
 ## 0.4.1.1
 
-* Bug: Fixed configuration of Phormium
+* Fix: Configuration of Phormium is broken
 
 ## 0.4.1
 
-* Enh: #2 Make list names editable
-* Enh: #3 Add configuration for name of app
+* Enh: Make list names editable #2
+* Enh: Add configuration for name of app #3
 * Enh: Added advanced installation instructions to README
 * New: Added link to http://blog.einself.net to footer
 
@@ -108,11 +110,11 @@
 
 ## 0.3.0.2
 
-* Bugfix: Card/List doesn't work after adding
+* Fix: Card/List doesn't work after adding
 
 ## 0.3.0.1
 
-* Bugfix: Remove tasks doesn't work correctly
+* Fix: Remove tasks doesn't work correctly
 
 ## 0.3.0
 
