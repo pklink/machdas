@@ -108,7 +108,7 @@
             data(transition) {
                 const id            = transition.to.params.id
                 const errorHandler  = (response) => {
-                    transition.redirect({ name: 'cards' })
+                    transition.redirect({ name: '404' })
                     transition.abort(response)
                 }
 
