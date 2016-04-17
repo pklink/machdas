@@ -20,6 +20,15 @@
     "url": "https://github.com/pklink/machdas/issues"
   },
   "homepage": "https://github.com/pklink/machdas#readme",
+  "dependencies": {
+    "eventemitter2": "^1.0.0",
+    "keymaster": "^1.6.2",
+    "promise": "^7.1.1",
+    "vue": "^1.0.20",
+    "vue-focus": "^0.1.1",
+    "vue-resource": "^0.7.0",
+    "vue-router": "^0.7.11"
+  },
   "devDependencies": {
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
@@ -30,17 +39,10 @@
     "eslint-config-airbnb": "^7.0.0",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-html": "^1.4.0",
-    "eventemitter2": "^1.0.0",
-    "keymaster": "^1.6.2",
-    "promise": "^7.1.1",
     "raw-loader": "^0.5.1",
-    "vue": "^1.0.20",
-    "vue-focus": "^0.1.1",
     "vue-hot-reload-api": "^1.3.2",
     "vue-html-loader": "^1.2.2",
     "vue-loader": "^8.2.3",
-    "vue-resource": "^0.7.0",
-    "vue-router": "^0.7.11",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
