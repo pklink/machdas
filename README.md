@@ -56,6 +56,12 @@ php vendor/bin/phinx migrate -e prod
 php -S localhost:9000 -t ./public
 ```
 
+## Upgrade
+
+```sh
+php vendor/bin/phinx migrate -e prod
+```
+
 ## Set up development environment
 
 Import `setup/install.sql` to your MySQL database
