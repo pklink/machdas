@@ -60,7 +60,8 @@
                 }
             },
 
-            canReuse: false
+            canReuse: false,
+            waitForData: true
 
         }
 

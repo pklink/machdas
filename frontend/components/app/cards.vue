@@ -32,7 +32,8 @@
                     tasksCount: taskService.countByCards(),
                     cards:      cardService.query()
                 }
-            }
+            },
+            waitForData: true
         }
 
     }
