@@ -14,7 +14,7 @@
         <div class="ui bottom attached segment">
             <div class="ui relaxed bulleted list">
                 <div class="item">Press <kbd>N</kbd> to focus the input field for creating a new task</div>
-                <div class="item">Press <kbd>C</kbd> to create a new card</div>
+                <div class="item">Press <kbd>C</kbd> to focus the input field for creating a new card</div>
                 <div class="item">Press <kbd>H</kbd> to show this help page</div>
                 <div class="item">Press <kbd>ESC</kbd> in an input field to cancel whatever you do</div>
                 <div class="item">Press <kbd>Enter</kbd> in an input field to save it.</div>
