@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Promise from 'promise'
+import eventEmitter from './event-emitter'
 
 export default {
 
@@ -26,6 +27,7 @@ export default {
     save(model) {
         return new Promise((resolve, reject) => {
             Vue.http.post('api/index.php/cards', model).then(response => {
+                eventEmitter.emit('cards.created', response.data)
                 resolve(response.data)
             }, error => {
                 reject(error)

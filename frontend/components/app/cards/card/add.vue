@@ -34,11 +34,7 @@
                 Utils.parseTask(model)
 
                 // save task
-                taskService.save(this.$route.params.id, model).then((response) => {
-                    // fire event
-                    eventEmitter.emit('tasks.created', response)
-
-                    // clear task
+                taskService.save(this.$route.params.id, model).then(() => {
                     this.task = null
                 })
             },

@@ -36,13 +36,12 @@
 <script type="text/babel">
     import taskService from '../../../../../services/task'
     import Utils from '../../../../../services/utils'
-    import eventEmitter from '../../../../../services/event-emitter'
     import $ from 'jquery'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
 
-        props:    ['model'],
+        props: ['model'],
 
         data() {
             return { editMode: false }
@@ -61,9 +60,7 @@
                 this.save()
             },
             delete() {
-                taskService.delete(this.model.id).then(() => {
-                    eventEmitter.emit('tasks.deleted', this.model)
-                })
+                taskService.delete(this.model)
             },
             edit() {
                 this.editMode = true
@@ -77,9 +74,7 @@
             save() {
                 Utils.parseTask(this.model)
 
-                taskService.update(this.model.id, this.model).then(() => {
-                    eventEmitter.emit('tasks.updated')
-                })
+                taskService.update(this.model.id, this.model)
             },
             showWarning() {
                 this._modal('show')

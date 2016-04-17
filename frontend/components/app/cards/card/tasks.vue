@@ -18,7 +18,7 @@
 
         init() {
             eventEmitter.on('tasks.deleted', model => {
-                this.models.splice(this.models.indexOf(model), 1)
+                this.models.$remove(model)
             })
         }
 

@@ -37,9 +37,6 @@
             save() {
                 // save card
                 cardService.save(this.model).then((response) => {
-                    // fire event
-                    eventEmitter.emit('cards.created', response)
-
                     // route to new card
                     this.$route.router.go({ name: 'card', params: { id: response.id } })
 
