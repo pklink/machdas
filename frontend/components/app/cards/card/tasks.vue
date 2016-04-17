@@ -1,7 +1,7 @@
 <template>
-    <add :transparent="false" v-show="models.length == 0"></add>
+    <add :transparent="false" v-if="models.length == 0"></add>
     <div class="ui large divided selection list">
-        <div class="item" v-show="models.length > 0">
+        <div class="item" v-if="models.length > 0">
             <div class="content">
                 <add :transparent="true"></add>
             </div>

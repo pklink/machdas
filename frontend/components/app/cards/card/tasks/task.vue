@@ -12,11 +12,11 @@
             <del v-show="model.isDone">{{ model.name }}</del>
         </div>
     </a>
-    <div class="item" v-show="editMode">
+    <div class="item" v-if="editMode">
         <div class="content">
             <div class="ui small transparent fluid input" v-show="editMode">
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <input type="text" v-model="model.name" @keyup.enter="save" @keyup.esc="toggleEditMode">
+                <input type="text" v-model="model.name" @keyup.enter="save" @keyup.esc="toggleEditMode" v-focus-auto>
             </div>
         </div>
     </div>
@@ -34,11 +34,16 @@
 <script type="text/babel">
     import taskService from '../../../../../services/task'
     import Utils from '../../../../../services/utils'
+    import { focusAuto } from 'vue-focus'
 
     // noinspection JSUnusedGlobalSymbols
     export default {
 
         props: ['model'],
+
+        directives: {
+            focusAuto
+        },
 
         data() {
             return {

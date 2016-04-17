@@ -13,7 +13,7 @@
 </style>
 
 <script type="text/babel">
-    import { focusModel } from 'vue-focus'
+    import { focusAuto, focusModel } from 'vue-focus'
     import taskService from '../../../../../services/task'
     import Utils from '../../../../../services/utils'
     import eventEmitter from '../../../../../services/event-emitter'
@@ -23,7 +23,7 @@
         props: ['transparent'],
 
         directives: {
-            focusModel
+            focusAuto, focusModel
         },
 
         init() {
@@ -33,6 +33,12 @@
         },
 
         ready() {
+            this.$nextTick(() => {
+                // dirty workaround, because v-focus doesnt work reliable on this component for any reason
+                if (this.$el !== null) {
+                    this.$el.querySelector('input').focus()
+                }
+            })
             eventEmitter.on('tasks.new', this.setFocusCallback)
         },
 
