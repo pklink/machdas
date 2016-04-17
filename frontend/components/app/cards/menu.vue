@@ -30,18 +30,27 @@
         },
 
         init() {
-            eventEmitter.on('cards.created', (model) => {
-                // add card to models
+            this.addModelCallback = (model) => {
                 this.models.push(model)
-            })
-            eventEmitter.on('tasks.created', model => {
-                // increment tasks count
+            }
+            this.incrementTasksCounterCallback = (model) => {
                 this.tasksCount.find(count => count.card === model.cardId).count++
-            })
-            eventEmitter.on('tasks.deleted', model => {
-                // decrement tasks count
+            }
+            this.decrementTasksCounterCallback = (model) => {
                 this.tasksCount.find(count => count.card === model.cardId).count--
-            })
+            }
+        },
+
+        ready() {
+            eventEmitter.on('cards.created', this.addModelCallback)
+            eventEmitter.on('tasks.created', this.incrementTasksCounterCallback)
+            eventEmitter.on('tasks.deleted', this.decrementTasksCounterCallback)
+        },
+
+        destroyed() {
+            eventEmitter.off('cards.created', this.addModelCallback)
+            eventEmitter.off('tasks.created', this.incrementTasksCounterCallback)
+            eventEmitter.off('tasks.deleted', this.decrementTasksCounterCallback)
         }
 
     }

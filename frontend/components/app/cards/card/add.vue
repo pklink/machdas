@@ -17,9 +17,17 @@
         },
 
         init() {
-            eventEmitter.on('tasks.new', () => {
+            this.setFocusCallback = () => {
                 this.isFocused = true
-            })
+            }
+        },
+
+        ready() {
+            eventEmitter.on('tasks.new', this.setFocusCallback)
+        },
+
+        destroyed() {
+            eventEmitter.off('tasks.new', this.setFocusCallback)
         },
 
         methods: {

@@ -17,9 +17,17 @@
         },
 
         init() {
-            eventEmitter.on('tasks.deleted', model => {
+            this.removeModelCallback = (model) => {
                 this.models.$remove(model)
-            })
+            }
+        },
+
+        ready() {
+            eventEmitter.on('tasks.deleted', this.removeModelCallback)
+        },
+
+        destroyed() {
+            eventEmitter.off('tasks.deleted', this.removeModelCallback)
         }
 
     }

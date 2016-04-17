@@ -18,10 +18,18 @@
             focusModel
         },
 
+        ready() {
+            eventEmitter.on('cards.new', this.setFocusCallback)
+        },
+
+        destroyed() {
+            eventEmitter.off('cards.new', this.setFocusCallback)
+        },
+
         init() {
-            eventEmitter.on('cards.new', () => {
+            this.setFocusCallback = () => {
                 this.isFocused = true
-            })
+            }
         },
 
         data() {

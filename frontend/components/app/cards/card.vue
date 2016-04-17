@@ -12,15 +12,23 @@
 
     export default {
 
+        init() {
+            this.refreshCallback = () => this.refresh()
+        },
+
         components: {
             tasks: Tasks,
             add: Add
         },
 
-        init() {
-            const refresh = () => this.refresh()
-            eventEmitter.on('tasks.created', refresh)
-            eventEmitter.on('tasks.updated', refresh)
+        destroyed() {
+            eventEmitter.off('tasks.created', this.refreshCallback)
+            eventEmitter.off('tasks.updated', this.refreshCallback)
+        },
+
+        ready() {
+            eventEmitter.on('tasks.created', this.refreshCallback)
+            eventEmitter.on('tasks.updated', this.refreshCallback)
         },
 
         data() {
