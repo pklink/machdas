@@ -1,8 +1,12 @@
 <template>
+    <add :transparent="false" v-show="models.length == 0"></add>
     <div class="ui large divided selection list">
-        <add></add>
+        <div class="item" v-show="models.length > 0">
+            <div class="content">
+                <add :transparent="true"></add>
+            </div>
+        </div>
         <task v-for="model in models" :model="model"></task>
-        <p class="ui message" v-if="models.length == 0">No tasks found</p>
     </div>
 </template>
 

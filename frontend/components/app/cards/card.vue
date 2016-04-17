@@ -118,6 +118,5 @@
             waitForData: true
 
         }
-
     }
 </script>

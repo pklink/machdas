@@ -1,12 +1,8 @@
 <template>
-    <div class="item">
-        <div class="content">
-            <div class="ui small transparent icon fluid input">
-                <input type="text" placeholder="describe your task and press enter"
-                       @keyup.enter="save" @keyup.esc="cancel" v-model="task" v-focus-model="isFocused">
-                <i class="plus icon" id="add-task-input-icon"></i>
-            </div>
-        </div>
+    <div class="ui icon fluid input" :class="{ transparent: transparent, small: transparent, large: !transparent }">
+        <input type="text" placeholder="describe your task and press enter"
+               @keyup.enter="save" @keyup.esc="cancel" v-model="task" v-focus-model="isFocused">
+        <i class="plus icon" id="add-task-input-icon"></i>
     </div>
 </template>
 
@@ -23,6 +19,8 @@
     import eventEmitter from '../../../../../services/event-emitter'
 
     export default {
+
+        props: ['transparent'],
 
         directives: {
             focusModel
