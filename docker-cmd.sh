@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-STATUS_CHECK="php vendor/bin/phinx status -e prod"
+MIGRATION="php vendor/bin/phinx migrate -e prod"
 i=1
 while [ ${i} -le 10 ]; do
-    echo "check migration status. ${i}/10"
-    eval ${STATUS_CHECK}
-    if [ $? -eq 0 ] || [ $? -eq 1 ] || [ $? -eq 2 ]; then
-        echo "run migration"
-        php vendor/bin/phinx migrate -e prod
+    eval ${MIGRATION}
+    if [ $? -eq 0 ]; then
         break
     fi
     i=`expr ${i} + 1`
@@ -19,4 +16,4 @@ if [ ${i} -gt 10 ]; then
     exit 1
 fi
 
-apache2-foreground
+#apache2-foreground
