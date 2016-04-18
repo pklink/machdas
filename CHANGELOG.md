@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.1
+
+* Bug: Docker: Migration failed if mysql server not ready at startup
+
 ## 0.7.0
 
 * New: Added possibility to delete cards #16
@@ -18,7 +22,7 @@
 
 * Enh: Added support for [Docker][docker]
 * Enh: Added Dockerfile
-* Fix: webpack-dev-server doesn't work correctly if PHPs built in server bind to `localhost` instead of `127.0.0.1`
+* Bug: webpack-dev-server doesn't work correctly if PHPs built in server bind to `localhost` instead of `127.0.0.1`
 
 ## 0.6.0
 
@@ -46,7 +50,7 @@
 
 ## 0.4.4
 
-* Fix: jquery.keycut.min.js doesn't load if Dingbat installed in a subdirectory #6
+* Bug: jquery.keycut.min.js doesn't load if Dingbat installed in a subdirectory #6
 
 ## 0.4.3
 
@@ -64,7 +68,7 @@
 
 ## 0.4.1.1
 
-* Fix: Configuration of Phormium is broken
+* Bug: Configuration of Phormium is broken
 
 ## 0.4.1
 
@@ -111,11 +115,11 @@
 
 ## 0.3.0.2
 
-* Fix: Card/List doesn't work after adding
+* Bug: Card/List doesn't work after adding
 
 ## 0.3.0.1
 
-* Fix: Remove tasks doesn't work correctly
+* Bug: Remove tasks doesn't work correctly
 
 ## 0.3.0
 
