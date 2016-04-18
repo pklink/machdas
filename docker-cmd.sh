@@ -16,4 +16,4 @@ if [ ${i} -gt 10 ]; then
     exit 1
 fi
 
-#apache2-foreground
+apache2-foreground
