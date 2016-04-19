@@ -2,6 +2,8 @@
 
 Todo manager based on PHP 7, [Slim](http://www.slimframework.com/) and [Vue.js](http://vuejs.org/).
 
+[Demo](https://machdas.dev.klink.xyz/)
+
 ## Shorttags
 
 ### Priority
