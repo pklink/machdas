@@ -44,6 +44,4 @@ class Update extends Action\AbstractImpl
         // response
         return $response->withStatus(204);
     }
-
 }
-

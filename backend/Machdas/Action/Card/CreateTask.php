@@ -47,6 +47,4 @@ class CreateTask extends Action\AbstractImpl
             ->withHeader('Location', sprintf('/tasks/%d', $model->id))
             ->withJson($model);
     }
-
 }
-

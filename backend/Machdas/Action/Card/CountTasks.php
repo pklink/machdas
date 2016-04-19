@@ -35,5 +35,4 @@ class CountTasks extends Action\AbstractImpl
 
         return $response->withJson($counts);
     }
-
 }

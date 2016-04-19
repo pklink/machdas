@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Machdas\Action\Card;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -9,7 +8,6 @@ use Machdas\Model\Card;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Slim\Http\Request;
 use Slim\Http\Response;
-
 
 class Update extends Action\AbstractImpl
 {
@@ -38,6 +36,4 @@ class Update extends Action\AbstractImpl
         // response
         return $response->withStatus(204);
     }
-
 }
-

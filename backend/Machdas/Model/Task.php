@@ -1,10 +1,9 @@
 <?php
 
-
 namespace Machdas\Model;
+
 use Illuminate\Database\Eloquent\Model;
 use Respect\Validation\Validator;
-
 
 /**
  * @property int     $id
@@ -19,13 +18,13 @@ class Task extends Model
     /**
      * @return Validator[]
      */
-    public static function validators() : array 
+    public static function validators() : array
     {
         return [
             'name'     => Validator::stringType()->notEmpty()->setName('name'),
             'isDone'   => Validator::boolType()->setName('isDone'),
             'priority' => Validator::intType()->between(1, 999)->setName('priority'),
-            'cardId'   => Validator::intType()->notEmpty()->callback(function($v) {
+            'cardId'   => Validator::intType()->notEmpty()->callback(function ($v) {
                 return Card::query()->find($v) instanceof Card;
             })->setName('cardId')
         ];
@@ -47,5 +46,4 @@ class Task extends Model
      * @var bool
      */
     public $timestamps = false;
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace Machdas;
+
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -14,5 +15,4 @@ interface Action
      * @return Response
      */
     public function __invoke(Request $request, Response $response, array $args) : Response;
-
 }

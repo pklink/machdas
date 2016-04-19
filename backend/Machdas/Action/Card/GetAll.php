@@ -23,6 +23,4 @@ class GetAll extends Action\AbstractImpl
         $cards = Card::query()->orderBy('id', 'asc')->get();
         return $response->withJson($cards);
     }
-
 }
-

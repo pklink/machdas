@@ -47,6 +47,4 @@ class GetAllTasks extends Action\AbstractImpl
 
         return $response->withJson($builder->get());
     }
-
 }
-

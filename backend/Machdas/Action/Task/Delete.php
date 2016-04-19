@@ -22,6 +22,4 @@ class Delete extends Action\AbstractImpl
         Task::destroy($args['id']);
         return $response->withStatus(204);
     }
-
 }
-

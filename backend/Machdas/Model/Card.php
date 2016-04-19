@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Machdas\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Respect\Validation\Validator;
-
 
 /**
  * @property int    $id
@@ -17,7 +15,7 @@ class Card extends Model
     /**
      * @return Validator[]
      */
-    public static function validators() : array 
+    public static function validators() : array
     {
         return [
             'name' => Validator::stringType()->notEmpty()->setName('name')
@@ -33,5 +31,4 @@ class Card extends Model
      * @var bool
      */
     public $timestamps = false;
-
 }

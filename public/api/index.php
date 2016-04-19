@@ -15,7 +15,7 @@ $container = new \Slim\Container([
 ]);
 
 // prepare eloquent
-$container['db'] = function($container) {
+$container['db'] = function ($container) {
     $capsule = new \Illuminate\Database\Capsule\Manager();
     $capsule->addConnection($container['settings']['db']);
     $capsule->setAsGlobal();
@@ -24,9 +24,10 @@ $container['db'] = function($container) {
 };
 
 // add error handler
-$container['notFoundHandler'] = function() {
+$container['notFoundHandler'] = function () {
     /** @noinspection PhpUnusedParameterInspection */
-    return function($request, \Slim\Http\Response $response) {
+    /** @noinspection PhpDocSignatureInspection */
+    return function ($request, \Slim\Http\Response $response) {
         return $response
             ->withStatus(404)
             ->withHeader('Content-Type', 'text/html')
@@ -34,9 +35,10 @@ $container['notFoundHandler'] = function() {
     };
 };
 
-$container['notAllowedHandler'] = function() {
+$container['notAllowedHandler'] = function () {
     /** @noinspection PhpUnusedParameterInspection */
-    return function($request, \Slim\Http\Response $response, array $methods) {
+    /** @noinspection PhpDocSignatureInspection */
+    return function ($request, \Slim\Http\Response $response, array $methods) {
         return $response
             ->withStatus(405)
             ->withHeader('Allow', implode(', ', $methods))
@@ -44,9 +46,10 @@ $container['notAllowedHandler'] = function() {
     };
 };
 
-$container['errorHandler'] = function($container) {
+$container['errorHandler'] = function ($container) {
     /** @noinspection PhpUnusedParameterInspection */
-    return function($request, \Slim\Http\Response $response, Exception $exception) use ($container) {
+    /** @noinspection PhpDocSignatureInspection */
+    return function ($request, \Slim\Http\Response $response, Exception $exception) use ($container) {
         $payload = ['message' => 'Something went wrong!'];
 
         // if debugging enabled add trace to response
@@ -64,7 +67,7 @@ $container['errorHandler'] = function($container) {
 $app = new \Slim\App($container);
 
 // routing
-$app->group('/cards', function() {
+$app->group('/cards', function () {
     /* @var \Slim\App $this */
     $this->post('', \Machdas\Action\Card\Create::class);
     $this->post('/{id:\d+}/tasks', \Machdas\Action\Card\CreateTask::class);
@@ -76,7 +79,7 @@ $app->group('/cards', function() {
     $this->get('/tasks/count', \Machdas\Action\Card\CountTasks::class);
 });
 
-$app->group('/tasks', function() {
+$app->group('/tasks', function () {
     /* @var \Slim\App $this */
     $this->get('/{id:\d+}', \Machdas\Action\Task\GetOne::class);
     $this->put('/{id:\d+}', \Machdas\Action\Task\Update::class);

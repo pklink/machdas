@@ -23,6 +23,4 @@ class GetOne extends Action\AbstractImpl
     {
         return $response->withJson(Task::query()->findOrFail($args['id']));
     }
-
 }
-

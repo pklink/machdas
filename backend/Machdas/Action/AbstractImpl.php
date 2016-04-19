@@ -1,6 +1,7 @@
 <?php
 
 namespace Machdas\Action;
+
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Machdas\Action;
 use Respect\Validation\Exceptions\NestedValidationException;
@@ -41,5 +42,4 @@ abstract class AbstractImpl implements Action
             throw new NotFoundException($request, $response);
         }
     }
-
 }

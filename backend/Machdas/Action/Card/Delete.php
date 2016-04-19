@@ -36,6 +36,4 @@ class Delete extends Action\AbstractImpl
 
         return $response->withStatus(204);
     }
-
 }
-
