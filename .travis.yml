@@ -17,4 +17,5 @@ install:
   - npm install
 script:
   - node_modules/.bin/eslint frontend/
+  - php vendor/bin/phpcs --standard=PSR2 backend/ public/api/index.php
   - php vendor/bin/codecept run --debug
