@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.2
+ 
+Chg: Removed jQuery and Semantic UI JS
+
 ## 0.7.1
 
 * Bug: Docker: Migration failed if mysql server not ready at startup
