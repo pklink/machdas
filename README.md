@@ -89,6 +89,7 @@ Open http://localhost:8080/ or http://localhost:8080/webpack-dev-server/
 ```sh
 composer install
 php -S localhost:9000 -t ./public &
+vim codeception.yml
 php vendor/bin/codecept run
 php vendor/bin/phpcs --standard=PSR2 backend/ public/api/index.php 
 ```
