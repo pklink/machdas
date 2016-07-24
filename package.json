@@ -21,13 +21,13 @@
   },
   "homepage": "https://github.com/pklink/machdas#readme",
   "dependencies": {
-    "eventemitter2": "^1.0.0",
-    "keymaster": "^1.6.2",
-    "promise": "^7.1.1",
-    "vue": "^1.0.20",
-    "vue-focus": "^0.1.1",
-    "vue-resource": "^0.7.0",
-    "vue-router": "^0.7.11"
+    "eventemitter2": "~1.0.0",
+    "keymaster": "~1.6.2",
+    "promise": "~7.1.1",
+    "vue": "~1.0.20",
+    "vue-focus": "~0.1.1",
+    "vue-resource": "~0.7.0",
+    "vue-router": "~0.7.11"
   },
   "devDependencies": {
     "babel-core": "^6.7.4",
