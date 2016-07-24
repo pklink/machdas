@@ -1,8 +1,13 @@
 # Changelog
 
+## 0.7.3
+ 
+* Chg: Updated frontend dependencies
+* Chg: Updated backend dependencies
+
 ## 0.7.2
  
-Chg: Removed jQuery and Semantic UI JS
+* Chg: Removed jQuery and Semantic UI JS
 
 ## 0.7.1
 
