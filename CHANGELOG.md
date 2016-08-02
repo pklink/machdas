@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.4
+ 
+* Chg: Updated backend dependencies
+
 ## 0.7.3
  
 * Chg: Updated frontend dependencies
