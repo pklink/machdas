@@ -66,8 +66,6 @@ php vendor/bin/phinx migrate -e prod
 
 ## Set up development environment
 
-Import `setup/install.sql` to your MySQL database
-
 ```sh
 git clone git@github.com:pklink/machdas.git
 cd machdas
