@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.5
+
+* Chg: Updated backend dependencies
+    * `illuminate/database` to `~5.3.0`
+
 ## 0.7.4
  
 * Chg: Updated backend dependencies
