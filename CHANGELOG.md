@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+
+* Upgraded dependencies
+
 ## 0.7.5
 
 * Chg: Updated backend dependencies
